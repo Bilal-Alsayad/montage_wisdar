@@ -7,6 +7,7 @@ import SudanTemplate from "./sudan";
 import RassadTunisiaTemplate from "./rassadtunisia";
 import SettelersTemplate from "./settelers";
 import TrackingTemplate from "./tracking";
+import Arabi21Template from "./arabi21";
 
 const S3_BASE = `${MONTAGE_FILES_URL}`;
 
@@ -193,7 +194,9 @@ export const VIDEO_TEMPLATES: VideoTemplateConfig[] = [
           blur: [],
         },
       ],
-      title: { text: "Guardiola continues to defend Gaza and Sudan in public opinion" },
+      title: {
+        text: "Guardiola continues to defend Gaza and Sudan in public opinion",
+      },
       captions: { src: staticFile("subtitle_translated_4362.srt") },
       tags: {
         location: "Spain",
@@ -204,6 +207,51 @@ export const VIDEO_TEMPLATES: VideoTemplateConfig[] = [
         { start: 6, name: "بيب غوارديولا", description: "مدرب مانشستر سيتي" },
       ],
       private_source: true,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
+    id: "arabi21new",
+    component: Arabi21Template,
+    width: 1080,
+    height: 1920,
+    outroUrl: `${S3_BASE}/arabi21/elements/outro.webm`,
+    outroOverlapFrames: 25,
+    defaultVideoSrc: `arabi21/Sequence05_1.mp4`,
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [0, 0],
+            bottom_right: [0, 0],
+          },
+          volume: 1,
+          videoSrc: staticFile("arabi21/Sequence05_1.mp4"),
+          blur: [
+            {
+              top_left: [0, 0],
+              bottom_right: [0, 0],
+              blur_gain: 40,
+              spread: 0,
+            },
+          ],
+        },
+      ],
+      title: {
+        text: "جوارديولا يواصل يشس يشسي شسيشس ي سايشستن اتعه العلني عن غزة والسودان",
+      },
+      captions: { src: "arabi21/subtitle_translated_4360.srt" },
+      tags: {
+        location: "بريطانيا",
+        date: "2026-02-03",
+        source: "@BeanymanSports",
+      },
+      speakers: [
+        { start: 420, name: "بيب غوارديولا", description: "مدرب مانشستر سيتي" },
+      ],
       scale_to_fit: false,
       background_img_url: "",
     },
