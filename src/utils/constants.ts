@@ -1,0 +1,2 @@
+export const MONTAGE_FILES_URL = "https://ekteb-01.s3.eu-central-1.amazonaws.com/ekteb2/montage_v2";
+export const COVERS_FILES_URL = "https://ekteb-01.s3.eu-central-1.amazonaws.com/ekteb2/platforms_tempaltes/covers";
