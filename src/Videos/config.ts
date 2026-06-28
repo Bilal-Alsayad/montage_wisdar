@@ -20,7 +20,6 @@ export interface VideoTemplateConfig {
   defaultVideoSrc: string;
   defaultData: TemplateProps["data"];
   outroOverlapFrames?: number;
-  baseDurationInFrames?: number;
 }
 
 export const VIDEO_TEMPLATES: VideoTemplateConfig[] = [
@@ -31,8 +30,7 @@ export const VIDEO_TEMPLATES: VideoTemplateConfig[] = [
     height: 1920,
     outroUrl: staticFile("harmony/elements/outro.webm"),
     defaultVideoSrc: "",
-    outroOverlapFrames: 120,
-    baseDurationInFrames: 485,
+    outroOverlapFrames: 45,
     defaultData: {
       sequences: [
         {
@@ -42,14 +40,14 @@ export const VIDEO_TEMPLATES: VideoTemplateConfig[] = [
             top_left: [0, 0],
             bottom_right: [0, 0],
           },
-          volume: 0,
-          videoSrc: staticFile("harmony/elements/background.mp4"),
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
           blur: [],
         },
       ],
       title: { text: "" },
       captions: {
-        src: staticFile("harmony/elements/subtitle_translated_4361.srt"),
+        src: staticFile("subtitle_translated_4361.srt"),
       },
       tags: {
         location: "",

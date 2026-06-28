@@ -30,13 +30,13 @@ export default function HarmonyTemplate({
   const fontsLoaded = useLoadFonts([
     {
       family: HARMONY_ANTON,
-      url: staticFile("harmony/elements/AntonRegular.ttf"),
+      url: staticFile("harmony/fonts/AntonRegular.ttf"),
       weight: "400",
       style: "normal",
     },
     {
       family: HARMONY_MONTSERRAT,
-      url: staticFile("harmony/elements/MontserratSemiBold.ttf"),
+      url: staticFile("harmony/fonts/MontserratSemiBold.ttf"),
       weight: "600",
       style: "normal",
     },
@@ -80,10 +80,10 @@ export default function HarmonyTemplate({
         src={staticFile("harmony/elements/logo.png")}
         style={{
           position: "absolute",
-          left: 540 - (3744 * 0.06822347164154) / 2,   // LOGO_POSITION_X - logoWidth / 2
-          top: 158.53209972381592 - (714 * 0.06822347164154) / 2,  // LOGO_POSITION_Y - logoHeight / 2
-          width: 3744 * 0.06822347164154,   // logoWidth
-          height: 714 * 0.06822347164154,   // logoHeight
+          left: 412,
+          top: 134,
+          width: 255,
+          height: 49,
         }}
       />
 
