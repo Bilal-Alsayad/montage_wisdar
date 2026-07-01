@@ -8,70 +8,30 @@ import {
 import { useLoadFonts } from "../../hooks/useLoadFonts";
 import Video from "../../Components/Video";
 import { TemplateProps } from "../types";
-import LocationTagAnimation from "./TagsAnimation";
-import PalCaptions from "./PalCaptions";
+import TagsAnimation from "./TagsAnimation";
 import SocialMediaAnimation, {
-  PAL_SOCIAL_MEDIA_DURATION,
+  SOCIAL_MEDIA_ANIMATION_DURATION,
 } from "./SocialMediaAnimation";
-import SourceAnimation from "./SourceAnimation";
-import SpeakerCard, { PAL_SPEAKER_CARD_DURATION } from "./SpeakerCard";
+import SourceAnimation, { SOURCE_ANIMATION_DURATION } from "./SourceAnimation";
+import SpeakerAnimation, { SPEAKER_ANIMATION_DURATION } from "./SpeakerAnimation";
 import Cover from "../../Components/Cover";
 import AudioClips from "../../Components/AudioClips";
+import Captions from "../../Components/Captions";
 
-const TAG_ANIMATIONS = [
-  { key: "location", icon: "location", from: 220, duration: 142 },
-  { key: "date", icon: "date", from: 369, duration: 143 },
-] as const;
+const RubikRegular = "RubikRegular";
+const DINAlternateBold = "DINAlternate Bold";
 
-const PAL_ALEF = "Alef";
-const PAL_RUBIK = "Rubik";
-const PAL_DIN_ALTERNATE_BOLD = "DINAlternate Bold";
-const PAL_CAPTIONS_SOURCE = "subtitle_translated_4362.srt";
-const PAL_DEFAULT_VIDEO_SEQUENCE = {
-  start: 0,
-  end: 20,
-  crop: {
-    top_left: [0, 0] as [number, number],
-    bottom_right: [0, 0] as [number, number],
-  },
-  volume: 1,
-  videoSrc: staticFile("Sequence05_1.mp4"),
-  blur: [],
-};
-
-type SpeakerWithOptionalEnd = TemplateProps["data"]["speakers"][number] & {
-  end?: number;
-};
-
-const getSpeakerDuration = (speaker: SpeakerWithOptionalEnd, fps: number) => {
-  if (speaker.end && speaker.end > speaker.start) {
-    return Math.round((speaker.end - speaker.start) * fps);
-  }
-
-  return PAL_SPEAKER_CARD_DURATION;
-};
-
-export default function PalNewTemplate({ data }: TemplateProps) {
+export default function PalTemplate({ data }: TemplateProps) {
   const { fps } = useVideoConfig();
 
   const fontsLoaded = useLoadFonts([
     {
-      family: PAL_ALEF,
-      url: staticFile("pal/fonts/Alef-Regular.ttf"),
-      weight: "400",
-      style: "normal",
+      family: RubikRegular,
+      url: staticFile("pal/fonts/RubikRegular.ttf"),
     },
     {
-      family: PAL_RUBIK,
-      url: staticFile("pal/fonts/Rubik-Regular.ttf"),
-      weight: "400",
-      style: "normal",
-    },
-    {
-      family: PAL_DIN_ALTERNATE_BOLD,
-      url: staticFile("pal/fonts/DINAlternate-Bold.ttf"),
-      weight: "700",
-      style: "normal",
+      family: DINAlternateBold,
+      url: staticFile("pal/fonts/DINAlternateBold.ttf"),
     },
   ]);
 
@@ -80,25 +40,21 @@ export default function PalNewTemplate({ data }: TemplateProps) {
   }
 
   return (
-    <AbsoluteFill
-      style={{
-        backgroundColor: "#000000",
-      }}
-    >
+    <AbsoluteFill>
+      {/* Video */}
       <Video
-        sequences={
-          data.sequences.length > 0
-            ? data.sequences
-            : [PAL_DEFAULT_VIDEO_SEQUENCE]
-        }
+        sequences={data.sequences}
         scaleToFit={data.scale_to_fit}
         backgroundUrl={data.background_img_url}
       />
 
+      {/* Cover */}
       {data.cover_src && <Cover coverSrc={data.cover_src} />}
 
+      {/* Audio Clips */}
       {data.audio_clips && <AudioClips audioClips={data.audio_clips} />}
 
+      {/* Logo */}
       <Img
         src={staticFile("pal/elements/logo.png")}
         style={{
@@ -110,54 +66,57 @@ export default function PalNewTemplate({ data }: TemplateProps) {
         }}
       />
 
-      <Sequence durationInFrames={PAL_SOCIAL_MEDIA_DURATION}>
-        <SocialMediaAnimation fontFamily={PAL_RUBIK} />
+      {/* Captions */}
+      <Captions
+        src={data.captions.src}
+        containerStyle={{
+          top: 1120,
+          maxWidth: "90%",
+          padding: 18,
+          borderRadius: 12,
+          backgroundColor: "rgba(172, 0, 0, 0.85)",
+        }}
+        textStyle={{
+          color: "#ffffff",
+          fontFamily: DINAlternateBold,
+          fontSize: 60,
+          lineHeight: 1.1,
+          textShadow: "2.12px 2.12px 12px rgba(0, 0, 0, 1)",
+          textTransform: "uppercase",
+        }}
+      />
+
+      {/* Social Media */}
+      <Sequence from={0} durationInFrames={SOCIAL_MEDIA_ANIMATION_DURATION}>
+        <SocialMediaAnimation fontFamily={RubikRegular} />
       </Sequence>
 
-      {data.tags.source ? (
-        <Sequence durationInFrames={189}>
-          <SourceAnimation text={data.tags.source} fontFamily={PAL_RUBIK} />
-        </Sequence>
-      ) : null}
+      {/* Source */}
+      <Sequence from={0} durationInFrames={SOURCE_ANIMATION_DURATION}>
+        <SourceAnimation text={data.tags.source} fontFamily={RubikRegular} />
+      </Sequence>
 
-      {TAG_ANIMATIONS.map(({ key, icon, from, duration }) => {
-        const text = data.tags[key];
-
-        return text ? (
-          <Sequence key={key} from={from} durationInFrames={duration}>
-            <LocationTagAnimation
-              text={text}
-              icon={icon}
-              durationInFrames={duration}
-              rectX={775}
-              rectY={261}
-              squareStartX={771}
-              squareStartY={278}
-              fontFamily={PAL_RUBIK}
-            />
-          </Sequence>
-        ) : null;
-      })}
-
-      {data.speakers.map((speaker, index) => {
-        return (
-          <Sequence
-            key={`${speaker.name}-${speaker.start}-${index}`}
-            from={Math.round(speaker.start * fps)}
-            durationInFrames={getSpeakerDuration(speaker, fps)}
-          >
-            <SpeakerCard
-              name={speaker.name}
-              description={speaker.description ?? ""}
-              fontFamily={PAL_RUBIK}
-            />
-          </Sequence>
-        );
-      })}
-      <PalCaptions
-        src={data.captions.src || staticFile(PAL_CAPTIONS_SOURCE)}
-        fontFamily={PAL_DIN_ALTERNATE_BOLD}
+      {/* Tags */}
+      <TagsAnimation
+        location={data.tags.location}
+        date={data.tags.date}
+        fontFamily={RubikRegular}
       />
+      {/* Speakers */}
+      {data.speakers.length > 0 &&
+        data.speakers.map((speaker, index) => (
+          <Sequence
+            from={speaker.start * fps}
+            key={index}
+            durationInFrames={250}
+          >
+            <SpeakerAnimation
+              name={speaker.name}
+              description={speaker.description}
+              fontFamily={RubikRegular}
+            />
+          </Sequence>
+        ))}
     </AbsoluteFill>
   );
 }

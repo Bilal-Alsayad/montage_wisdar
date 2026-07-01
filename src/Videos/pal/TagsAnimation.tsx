@@ -1,41 +1,36 @@
-import { fitText } from "@remotion/layout-utils";
-import { AbsoluteFill, Img, staticFile, useCurrentFrame } from "remotion";
+import { AbsoluteFill, Img, Sequence, staticFile, useCurrentFrame } from "remotion";
 import TagsDecoration from "./TagsDecoration";
 
-type TagsAnimationProps = {
-  text: string;
-  icon: "location" | "date";
-  durationInFrames: number;
-  rectX: number;
-  rectY: number;
-  squareStartX: number;
-  squareStartY: number;
-  fontFamily?: string;
-  finalRectWidth?: number;
-  finalRectHeight?: number;
-  squareSize?: number;
-  fontSize?: number;
-};
-
-const GHOST_COLOR = "#aaaaaa";
-const WHITE_BACKGROUND = "#ffffff";
+// Step animation constants
 const STEP_DURATION = 2;
 const LAST_STEP = 6;
 const STEP_COUNT = LAST_STEP + 1;
-const TAG_TEXT_HORIZONTAL_PADDING = 0;
-const TAG_FONT_WEIGHT = 500;
-const TAG_LETTER_SPACING = "0px";
-const TAG_TEXT_TRANSFORM = "none";
 
-const ICON_SRC = {
-  location: "pal/icons/location.png",
-  date: "pal/icons/date.png",
-};
+// Shared layout constants
+const RECT_X        = 775;
+const RECT_Y        = 261;
+const SQUARE_SIZE   = 44;
+const FINAL_WIDTH   = 190;
+const FINAL_HEIGHT  = 44;
+const SQUARE_START_X = 771;
+const SQUARE_START_Y = 278;
 
-const DECORATION_BY_ICON = {
-  location: { x: -76, y: -224, scale: 0.23 },
-  date: { x: -80, y: -273, scale: 0.23 },
-};
+const TAG_ANIMATIONS = [
+  {
+    key: "location" as const,
+    iconPath: "pal/icons/location.png",
+    decoration: { x: -76, y: -224, scale: 0.23 },
+    from: 220,
+    duration: 142,
+  },
+  {
+    key: "date" as const,
+    iconPath: "pal/icons/date.png",
+    decoration: { x: -80, y: -273, scale: 0.23 },
+    from: 369,
+    duration: 143,
+  },
+];
 
 const getStep = (frame: number, durationInFrames: number) => {
   const transitionDuration = STEP_COUNT * STEP_DURATION;
@@ -58,57 +53,40 @@ const getStep = (frame: number, durationInFrames: number) => {
   );
 };
 
-export default function TagsAnimation({
-  text,
-  icon,
-  durationInFrames,
-  rectX,
-  rectY,
-  squareStartX,
-  squareStartY,
-  fontFamily = "Rubik",
-  finalRectWidth = 190,
-  finalRectHeight = 44,
-  squareSize = 44,
-  fontSize = 22,
-}: TagsAnimationProps) {
+// Single tag item
+interface TagItemProps {
+  text: string;
+  iconPath: string;
+  decoration: { x: number; y: number; scale: number };
+  durationInFrames: number;
+  fontFamily: string;
+}
+
+function TagItem({ text, iconPath, decoration, durationInFrames, fontFamily }: TagItemProps) {
   const frame = useCurrentFrame();
 
-  if (!text) {
-    return null;
-  }
-
   const step = getStep(frame, durationInFrames);
-  const iconSrc = staticFile(ICON_SRC[icon]);
-  const decoration = DECORATION_BY_ICON[icon];
-  const squareFinalX = rectX - squareSize;
-  const squareFinalY = rectY;
-  const { fontSize: fittedFontSize } = fitText({
-    text,
-    withinWidth: finalRectWidth - TAG_TEXT_HORIZONTAL_PADDING * 2,
-    fontFamily,
-    fontWeight: TAG_FONT_WEIGHT,
-    letterSpacing: TAG_LETTER_SPACING,
-    textTransform: TAG_TEXT_TRANSFORM,
-    validateFontIsLoaded: true,
-  });
+  const iconSrc = staticFile(iconPath);
+  const squareFinalX = RECT_X - SQUARE_SIZE;
+  const squareFinalY = RECT_Y;
 
-  const showFirstGhostRect = step === 0;
-  const showSecondGhostRect = step === 1;
-  const showMiniSquare = step === 1;
-  const showFadedGhostRect = step === 2;
-  const showGrayIconSquare = step === 2;
-  const showRedSquare = step >= 3;
-  const showHalfWhiteRect = step === 4;
+  // Step visibility flags
+  const showFirstGhostRect     = step === 0;
+  const showSecondGhostRect    = step === 1;
+  const showMiniSquare         = step === 1;
+  const showFadedGhostRect     = step === 2;
+  const showGrayIconSquare     = step === 2;
+  const showRedSquare          = step >= 3;
+  const showHalfWhiteRect      = step === 4;
   const showFullLowerWhiteRect = step === 5;
-  const showFinalWhiteRect = step === 6;
-  const showText = step === 6;
+  const showFinalWhiteRect     = step === 6;
+  const showText               = step === 6;
 
   return (
     <AbsoluteFill>
       <TagsDecoration
-        x={rectX + decoration.x}
-        y={rectY + decoration.y}
+        x={RECT_X + decoration.x}
+        y={RECT_Y + decoration.y}
         scale={decoration.scale}
       />
 
@@ -116,11 +94,11 @@ export default function TagsAnimation({
         <div
           style={{
             position: "absolute",
-            left: rectX,
-            top: rectY + 10,
-            width: finalRectWidth,
+            left: RECT_X,
+            top: RECT_Y + 10,
+            width: FINAL_WIDTH,
             height: 14,
-            backgroundColor: GHOST_COLOR,
+            backgroundColor: "#aaaaaa",
             opacity: 0.45,
           }}
         />
@@ -130,11 +108,11 @@ export default function TagsAnimation({
         <div
           style={{
             position: "absolute",
-            left: rectX,
-            top: rectY + 5,
-            width: finalRectWidth,
+            left: RECT_X,
+            top: RECT_Y + 5,
+            width: FINAL_WIDTH,
             height: 28,
-            backgroundColor: GHOST_COLOR,
+            backgroundColor: "#aaaaaa",
             opacity: 0.7,
           }}
         />
@@ -144,11 +122,11 @@ export default function TagsAnimation({
         <div
           style={{
             position: "absolute",
-            left: squareStartX,
-            top: squareStartY,
+            left: SQUARE_START_X,
+            top: SQUARE_START_Y,
             width: 18,
             height: 18,
-            backgroundColor: GHOST_COLOR,
+            backgroundColor: "#aaaaaa",
             opacity: 0.45,
           }}
         />
@@ -158,11 +136,11 @@ export default function TagsAnimation({
         <div
           style={{
             position: "absolute",
-            left: rectX,
-            top: rectY,
-            width: finalRectWidth,
+            left: RECT_X,
+            top: RECT_Y,
+            width: FINAL_WIDTH,
             height: 28,
-            backgroundColor: GHOST_COLOR,
+            backgroundColor: "#aaaaaa",
             opacity: 0.25,
           }}
         />
@@ -172,24 +150,17 @@ export default function TagsAnimation({
         <div
           style={{
             position: "absolute",
-            left: squareStartX,
-            top: squareStartY,
-            width: squareSize,
-            height: squareSize,
+            left: SQUARE_START_X,
+            top: SQUARE_START_Y,
+            width: SQUARE_SIZE,
+            height: SQUARE_SIZE,
             backgroundColor: "#cdcdcd",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
           }}
         >
-          <Img
-            src={iconSrc}
-            style={{
-              width: 28,
-              height: 28,
-              objectFit: "contain",
-            }}
-          />
+          <Img src={iconSrc} style={{ width: 28, height: 28, objectFit: "contain" }} />
         </div>
       ) : null}
 
@@ -199,22 +170,15 @@ export default function TagsAnimation({
             position: "absolute",
             left: squareFinalX,
             top: squareFinalY,
-            width: squareSize,
-            height: squareSize,
+            width: SQUARE_SIZE,
+            height: SQUARE_SIZE,
             background: "linear-gradient(135deg, #b50815 80%, #ef3038 100%)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
           }}
         >
-          <Img
-            src={iconSrc}
-            style={{
-              width: 28,
-              height: 28,
-              objectFit: "contain",
-            }}
-          />
+          <Img src={iconSrc} style={{ width: 28, height: 28, objectFit: "contain" }} />
         </div>
       ) : null}
 
@@ -222,11 +186,11 @@ export default function TagsAnimation({
         <div
           style={{
             position: "absolute",
-            left: rectX,
-            top: rectY + finalRectHeight,
-            width: finalRectWidth,
-            height: finalRectHeight,
-            backgroundColor: WHITE_BACKGROUND,
+            left: RECT_X,
+            top: RECT_Y + FINAL_HEIGHT,
+            width: FINAL_WIDTH,
+            height: FINAL_HEIGHT,
+            backgroundColor: "#ffffff",
             opacity: 0.5,
           }}
         />
@@ -236,11 +200,11 @@ export default function TagsAnimation({
         <div
           style={{
             position: "absolute",
-            left: rectX,
-            top: rectY + finalRectHeight,
-            width: finalRectWidth,
-            height: finalRectHeight,
-            backgroundColor: WHITE_BACKGROUND,
+            left: RECT_X,
+            top: RECT_Y + FINAL_HEIGHT,
+            width: FINAL_WIDTH,
+            height: FINAL_HEIGHT,
+            backgroundColor: "#ffffff",
           }}
         />
       ) : null}
@@ -249,11 +213,11 @@ export default function TagsAnimation({
         <div
           style={{
             position: "absolute",
-            left: rectX,
-            top: rectY,
-            width: finalRectWidth,
-            height: finalRectHeight,
-            backgroundColor: WHITE_BACKGROUND,
+            left: RECT_X,
+            top: RECT_Y,
+            width: FINAL_WIDTH,
+            height: FINAL_HEIGHT,
+            backgroundColor: "#ffffff",
           }}
         />
       ) : null}
@@ -262,27 +226,54 @@ export default function TagsAnimation({
         <div
           style={{
             position: "absolute",
-            left: rectX,
-            top: rectY,
-            width: finalRectWidth,
-            height: finalRectHeight,
+            left: RECT_X,
+            top: RECT_Y,
+            width: FINAL_WIDTH,
+            height: FINAL_HEIGHT,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             color: "#111111",
             fontFamily,
-            fontSize: Math.min(fontSize, fittedFontSize),
-            fontWeight: TAG_FONT_WEIGHT,
-            letterSpacing: TAG_LETTER_SPACING,
-            lineHeight: 1,
+            fontSize: 22,
             whiteSpace: "nowrap",
-            textTransform: TAG_TEXT_TRANSFORM,
-            pointerEvents: "none",
           }}
         >
           {text}
         </div>
       ) : null}
+    </AbsoluteFill>
+  );
+}
+
+// Main export — renders all tag animations based on data
+interface TagsAnimationProps {
+  location?: string;
+  date?: string;
+  fontFamily: string;
+}
+
+export default function TagsAnimation({ location, date, fontFamily }: TagsAnimationProps) {
+  const data: Record<string, string | undefined> = { location, date };
+
+  return (
+    <AbsoluteFill>
+      {TAG_ANIMATIONS.map(({ key, iconPath, decoration, from, duration }) => {
+        const text = data[key];
+        if (!text) return null;
+
+        return (
+          <Sequence key={key} from={from} durationInFrames={duration}>
+            <TagItem
+              text={text}
+              iconPath={iconPath}
+              decoration={decoration}
+              durationInFrames={duration}
+              fontFamily={fontFamily}
+            />
+          </Sequence>
+        );
+      })}
     </AbsoluteFill>
   );
 }

@@ -6,79 +6,93 @@ import {
   useCurrentFrame,
 } from "remotion";
 
-type SourceAnimationProps = {
-  text: string;
-  fontFamily?: string;
-};
+export const SOURCE_ANIMATION_DURATION = 196;
 
+// Easing curves
+const EASE_OUT = Easing.out(Easing.cubic);
+const EASE_IN = Easing.in(Easing.cubic);
+
+// Layout constants
 const SOURCE_WIDTH = 258;
 const SOURCE_HEIGHT = 48;
 const SOURCE_ICON_WIDTH = 50;
-const SOURCE_TEXT_LEFT = 70;
 const SOURCE_TEXT_WIDTH = 170;
-const SOURCE_RED_BACKGROUND =
-  "linear-gradient(90deg, rgba(178, 54, 54, 1) 0%, rgba(255, 0, 0, 1) 50%)";
 
-const clamp = {
-  extrapolateLeft: "clamp" as const,
-  extrapolateRight: "clamp" as const,
-};
+interface SourceAnimationProps {
+  text?: string;
+  fontFamily?: string;
+}
 
 export default function SourceAnimation({
   text,
-  fontFamily = "Rubik",
+  fontFamily,
 }: SourceAnimationProps) {
+  if (!text) return null;
+
   const frame = useCurrentFrame();
 
-  const redWidth = interpolate(frame, [0, 24], [0, SOURCE_WIDTH], {
-    easing: Easing.out(Easing.cubic),
-    ...clamp,
+  // Red bar
+  const redWidth = interpolate(frame, [0, 24], [0, 258], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: EASE_OUT,
   });
-
   const redExitScale = interpolate(frame, [179, 189], [1, 0], {
-    easing: Easing.in(Easing.cubic),
-    ...clamp,
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: EASE_IN,
   });
 
+  // White bar
   const whiteWidth =
     frame < 172
-      ? interpolate(frame, [9, 17], [0, SOURCE_WIDTH], {
-          easing: Easing.out(Easing.cubic),
-          ...clamp,
+      ? interpolate(frame, [9, 17], [0, 258], {
+          extrapolateLeft: "clamp",
+          extrapolateRight: "clamp",
+          easing: EASE_OUT,
         })
-      : interpolate(frame, [172, 181], [SOURCE_WIDTH, 0], {
-          easing: Easing.in(Easing.cubic),
-          ...clamp,
+      : interpolate(frame, [172, 181], [258, 0], {
+          extrapolateLeft: "clamp",
+          extrapolateRight: "clamp",
+          easing: EASE_IN,
         });
 
+  // Icon
   const iconInOpacity = interpolate(frame, [7, 15], [0, 1], {
-    easing: Easing.out(Easing.cubic),
-    ...clamp,
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: EASE_OUT,
   });
   const iconOutOpacity = interpolate(frame, [170, 178], [1, 0], {
-    easing: Easing.in(Easing.cubic),
-    ...clamp,
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: EASE_IN,
   });
   const iconOpacity = Math.min(iconInOpacity, iconOutOpacity);
 
   const iconTranslateX =
-    frame < 170
-      ? interpolate(frame, [7, 15], [-SOURCE_ICON_WIDTH, 0], {
-          easing: Easing.out(Easing.cubic),
-          ...clamp,
+    frame < 172
+      ? interpolate(frame, [7, 15], [-50, 0], {
+          extrapolateLeft: "clamp",
+          extrapolateRight: "clamp",
+          easing: EASE_OUT,
         })
-      : interpolate(frame, [170, 178], [0, -SOURCE_ICON_WIDTH], {
-          easing: Easing.in(Easing.cubic),
-          ...clamp,
+      : interpolate(frame, [170, 178], [0, -50], {
+          extrapolateLeft: "clamp",
+          extrapolateRight: "clamp",
+          easing: EASE_IN,
         });
 
+  // Text reveal
   const textIn = interpolate(frame, [14, 24], [0, 1], {
-    easing: Easing.out(Easing.cubic),
-    ...clamp,
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: EASE_OUT,
   });
   const textOut = interpolate(frame, [168, 176], [1, 0], {
-    easing: Easing.in(Easing.cubic),
-    ...clamp,
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: EASE_IN,
   });
   const textProgress = Math.min(textIn, textOut);
 
@@ -93,6 +107,7 @@ export default function SourceAnimation({
         pointerEvents: "none",
       }}
     >
+      {/* Red background bar */}
       <div
         style={{
           position: "absolute",
@@ -100,7 +115,8 @@ export default function SourceAnimation({
           top: 0,
           width: redWidth,
           height: SOURCE_HEIGHT,
-          background: SOURCE_RED_BACKGROUND,
+          background:
+            "linear-gradient(90deg, rgba(178, 54, 54, 1) 0%, rgba(255, 0, 0, 1) 50%)",
           transform: `scaleX(${redExitScale})`,
           transformOrigin: "center center",
           overflow: "hidden",
@@ -108,6 +124,7 @@ export default function SourceAnimation({
         }}
       />
 
+      {/* White bar */}
       <div
         style={{
           position: "absolute",
@@ -121,6 +138,7 @@ export default function SourceAnimation({
         }}
       />
 
+      {/* Red icon background */}
       <div
         style={{
           position: "absolute",
@@ -128,7 +146,8 @@ export default function SourceAnimation({
           top: 0,
           width: Math.min(redWidth, SOURCE_ICON_WIDTH),
           height: SOURCE_HEIGHT,
-          background: SOURCE_RED_BACKGROUND,
+          background:
+            "linear-gradient(90deg, rgba(178, 54, 54, 1) 0%, rgba(255, 0, 0, 1) 50%)",
           transform: `scaleX(${redExitScale})`,
           transformOrigin: "center center",
           overflow: "hidden",
@@ -136,6 +155,7 @@ export default function SourceAnimation({
         }}
       />
 
+      {/* Icon */}
       <div
         style={{
           position: "absolute",
@@ -174,10 +194,11 @@ export default function SourceAnimation({
         </div>
       </div>
 
+      {/* Text */}
       <div
         style={{
           position: "absolute",
-          left: SOURCE_TEXT_LEFT,
+          left: 70,
           top: 0,
           width: SOURCE_TEXT_WIDTH,
           height: SOURCE_HEIGHT,
