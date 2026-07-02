@@ -5,6 +5,7 @@ import {
   staticFile,
   useCurrentFrame,
 } from "remotion";
+import { fitText } from "@remotion/layout-utils";
 
 export const SOURCE_ANIMATION_DURATION = 196;
 
@@ -18,6 +19,10 @@ const SOURCE_HEIGHT = 48;
 const SOURCE_ICON_WIDTH = 50;
 const SOURCE_TEXT_WIDTH = 170;
 
+// Fit-text constants
+const MAX_FONT_SIZE = 38;
+const MIN_FONT_SIZE = 22;
+
 interface SourceAnimationProps {
   text?: string;
   fontFamily?: string;
@@ -27,9 +32,20 @@ export default function SourceAnimation({
   text,
   fontFamily,
 }: SourceAnimationProps) {
+  const frame = useCurrentFrame();
+
   if (!text) return null;
 
-  const frame = useCurrentFrame();
+  // Fit font size to the available text width, clamped between MIN and MAX
+  let fontSize = MAX_FONT_SIZE;
+  if (fontFamily) {
+    const { fontSize: fitted } = fitText({
+      text,
+      withinWidth: SOURCE_TEXT_WIDTH,
+      fontFamily,
+    });
+    fontSize = Math.min(MAX_FONT_SIZE, Math.max(MIN_FONT_SIZE, fitted));
+  }
 
   // Red bar
   const redWidth = interpolate(frame, [0, 24], [0, 258], {
@@ -210,7 +226,7 @@ export default function SourceAnimation({
           zIndex: 4,
           color: "#111111",
           fontFamily,
-          fontSize: 38,
+          fontSize,
           whiteSpace: "nowrap",
         }}
       >

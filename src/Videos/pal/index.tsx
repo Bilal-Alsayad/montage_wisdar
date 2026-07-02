@@ -13,7 +13,7 @@ import SocialMediaAnimation, {
   SOCIAL_MEDIA_ANIMATION_DURATION,
 } from "./SocialMediaAnimation";
 import SourceAnimation, { SOURCE_ANIMATION_DURATION } from "./SourceAnimation";
-import SpeakerAnimation, { SPEAKER_ANIMATION_DURATION } from "./SpeakerAnimation";
+import SpeakerAnimation from "./SpeakerAnimation";
 import Cover from "../../Components/Cover";
 import AudioClips from "../../Components/AudioClips";
 import Captions from "../../Components/Captions";
@@ -27,11 +27,11 @@ export default function PalTemplate({ data }: TemplateProps) {
   const fontsLoaded = useLoadFonts([
     {
       family: RubikRegular,
-      url: staticFile("pal/fonts/RubikRegular.ttf"),
+      url: staticFile("pal/fonts/Rubik-Regular.ttf"),
     },
     {
       family: DINAlternateBold,
-      url: staticFile("pal/fonts/DINAlternateBold.ttf"),
+      url: staticFile("pal/fonts/DINAlternate-Bold.ttf"),
     },
   ]);
 
@@ -87,12 +87,12 @@ export default function PalTemplate({ data }: TemplateProps) {
       />
 
       {/* Social Media */}
-      <Sequence from={0} durationInFrames={SOCIAL_MEDIA_ANIMATION_DURATION}>
+      <Sequence  durationInFrames={SOCIAL_MEDIA_ANIMATION_DURATION}>
         <SocialMediaAnimation fontFamily={RubikRegular} />
       </Sequence>
 
       {/* Source */}
-      <Sequence from={0} durationInFrames={SOURCE_ANIMATION_DURATION}>
+      <Sequence  durationInFrames={SOURCE_ANIMATION_DURATION}>
         <SourceAnimation text={data.tags.source} fontFamily={RubikRegular} />
       </Sequence>
 
