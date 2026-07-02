@@ -19,7 +19,7 @@ import AudioClips from "../../Components/AudioClips";
 import Captions from "../../Components/Captions";
 
 const RubikRegular = "RubikRegular";
-const DINAlternateBold = "DINAlternate Bold";
+const DINAlternateBold = "DINAlternateBold";
 
 export default function PalTemplate({ data }: TemplateProps) {
   const { fps } = useVideoConfig();
@@ -27,11 +27,11 @@ export default function PalTemplate({ data }: TemplateProps) {
   const fontsLoaded = useLoadFonts([
     {
       family: RubikRegular,
-      url: staticFile("pal/fonts/Rubik-Regular.ttf"),
+      url: staticFile("pal/fonts/RubikRegular.ttf"),
     },
     {
       family: DINAlternateBold,
-      url: staticFile("pal/fonts/DINAlternate-Bold.ttf"),
+      url: staticFile("pal/fonts/DINAlternateBold.ttf"),
     },
   ]);
 

@@ -20,7 +20,6 @@ const SOURCE_ICON_WIDTH = 50;
 const SOURCE_TEXT_WIDTH = 170;
 
 // Fit-text constants
-const MAX_FONT_SIZE = 38;
 const MIN_FONT_SIZE = 22;
 
 interface SourceAnimationProps {
@@ -37,14 +36,14 @@ export default function SourceAnimation({
   if (!text) return null;
 
   // Fit font size to the available text width, clamped between MIN and MAX
-  let fontSize = MAX_FONT_SIZE;
+  let fontSize = 38;
   if (fontFamily) {
     const { fontSize: fitted } = fitText({
       text,
       withinWidth: SOURCE_TEXT_WIDTH,
       fontFamily,
     });
-    fontSize = Math.min(MAX_FONT_SIZE, Math.max(MIN_FONT_SIZE, fitted));
+    fontSize = Math.min(MIN_FONT_SIZE, fitted);
   }
 
   // Red bar
