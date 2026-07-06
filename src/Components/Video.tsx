@@ -6,9 +6,12 @@ import { delayRender, continueRender } from "remotion";
 
 interface Blur {
   top_left: [number, number];
+  top_right: [number, number];
+  bottom_left: [number, number];
   bottom_right: [number, number];
   blur_gain: number;
   spread: number;
+  is_circle: boolean;
 }
 
 interface SequenceProps {
@@ -41,29 +44,167 @@ interface ScalledVideoProps {
 }
 
 function BlurOverlay({ blur }: { blur: Blur }) {
-  const blurW = blur.bottom_right[0] - blur.top_left[0];
-  const blurH = blur.bottom_right[1] - blur.top_left[1];
-  if (blurW <= 0 || blurH <= 0) return null;
-  const spread = blur.spread ?? 0;
+  // Compute the bounding box of all four polygon points (matching the frontend).
+  const allX = [
+    blur.top_left[0],
+    blur.top_right[0],
+    blur.bottom_left[0],
+    blur.bottom_right[0],
+  ];
+  const allY = [
+    blur.top_left[1],
+    blur.top_right[1],
+    blur.bottom_left[1],
+    blur.bottom_right[1],
+  ];
+  const minX = Math.min(...allX);
+  const minY = Math.min(...allY);
+  const maxX = Math.max(...allX);
+  const maxY = Math.max(...allY);
+  let boxW = maxX - minX;
+  let boxH = maxY - minY;
+
+  if (boxW <= 0 || boxH <= 0) return null;
+
+  // Clamp spread: 0 ≤ spread ≤ round(min(bboxWidth, bboxHeight) / 3)
+  const maxSpread = Math.round(Math.min(boxW, boxH) / 3);
+  const spread = Math.max(0, Math.min(blur.spread ?? 0, maxSpread));
+
+  let clipPathValue = null;
+  let pts: [number, number][] = [];
+  if (!blur.is_circle) {
+    // Polygon points relative to the bounding box
+    pts = [
+      [blur.top_left[0] - minX, blur.top_left[1] - minY],
+      [blur.top_right[0] - minX, blur.top_right[1] - minY],
+      [blur.bottom_right[0] - minX, blur.bottom_right[1] - minY],
+      [blur.bottom_left[0] - minX, blur.bottom_left[1] - minY],
+    ];
+    clipPathValue = `polygon(${pts.map(([x, y]) => `${x}px ${y}px`).join(", ")})`;
+  }
+
+  if (spread <= 0) {
+    // Hard-edged blur with clip-path only (no feathering).
+    return (
+      <div
+        style={{
+          position: "absolute",
+          left: minX,
+          top: minY,
+          width: boxW,
+          height: boxH,
+          borderRadius: blur.is_circle ? "100%" : "none",
+          backdropFilter: `blur(${blur.blur_gain}px)`,
+          WebkitBackdropFilter: `blur(${blur.blur_gain}px)`,
+          clipPath: clipPathValue ? clipPathValue : "none",
+          WebkitClipPath: clipPathValue ? clipPathValue : "none",
+        }}
+      />
+    );
+  }
+
+  // Expand the div by `spread` on each side to accommodate the fade.
+  const fadeW = boxW + spread * 2;
+  const fadeH = boxH + spread * 2;
+
+  // Compute mask styles based on shape type.
+  let maskStyle: React.CSSProperties = {};
+
+  if (blur.is_circle) {
+    // Circle: radial-gradient mask.
+    const solidStopX = (boxW / fadeW) * 100;
+    const solidStopY = (boxH / fadeH) * 100;
+    const solidStop = Math.min(solidStopX, solidStopY);
+    const gradient = `radial-gradient(${fadeW / 2}px ${fadeH / 2}px at center, black ${solidStop}%, transparent 100%)`;
+
+    maskStyle = {
+      maskImage: gradient,
+      WebkitMaskImage: gradient,
+    };
+  } else {
+    // Detect axis-aligned rectangle (all corners share edges).
+    const isRect =
+      blur.top_left[1] === blur.top_right[1] &&
+      blur.bottom_left[1] === blur.bottom_right[1] &&
+      blur.top_left[0] === blur.bottom_left[0] &&
+      blur.top_right[0] === blur.bottom_right[0];
+
+    if (isRect) {
+      // Rectangle: intersecting linear-gradient masks.
+      maskStyle = {
+        maskImage: `linear-gradient(to bottom, transparent, black ${spread}px, black calc(100% - ${spread}px), transparent),
+                    linear-gradient(to right, transparent, black ${spread}px, black calc(100% - ${spread}px), transparent)`,
+        maskComposite: "intersect",
+        WebkitMaskImage: `linear-gradient(to bottom, transparent, black ${spread}px, black calc(100% - ${spread}px), transparent),
+                         linear-gradient(to right, transparent, black ${spread}px, black calc(100% - ${spread}px), transparent)`,
+        WebkitMaskComposite: "destination-in",
+      };
+    } else {
+      // Quadrilateral: one gradient per edge, perpendicular to each edge.
+      const fadePts: [number, number][] = [
+        [blur.top_left[0] - minX + spread, blur.top_left[1] - minY + spread],
+        [blur.top_right[0] - minX + spread, blur.top_right[1] - minY + spread],
+        [blur.bottom_right[0] - minX + spread, blur.bottom_right[1] - minY + spread],
+        [blur.bottom_left[0] - minX + spread, blur.bottom_left[1] - minY + spread],
+      ];
+
+      const edgePairs: [[number, number], [number, number]][] = [
+        [fadePts[0], fadePts[1]], // TL → TR
+        [fadePts[1], fadePts[2]], // TR → BR
+        [fadePts[2], fadePts[3]], // BR → BL
+        [fadePts[3], fadePts[0]], // BL → TL
+      ];
+
+      const gradientValue = edgePairs
+        .map(([a, b]) => {
+          const ex = b[0] - a[0];
+          const ey = b[1] - a[1];
+
+          // Inward normal for clockwise winding (screen coords, y-down).
+          const nx = -ey;
+          const ny = ex;
+
+          // CSS angle: 0deg = to top, 90deg = to right.
+          const angleRad = Math.atan2(nx, -ny);
+          const angleDeg = ((angleRad * 180) / Math.PI + 360) % 360;
+
+          // Gradient line length for this angle in the element.
+          const L =
+            Math.abs(fadeW * Math.sin(angleRad)) +
+            Math.abs(fadeH * Math.cos(angleRad));
+          if (L === 0) return "linear-gradient(0deg, black, black)";
+
+          // Project edge midpoint onto gradient line to find edge position.
+          const mx = (a[0] + b[0]) / 2 - fadeW / 2;
+          const my = (a[1] + b[1]) / 2 - fadeH / 2;
+          const pEdge =
+            (0.5 + (mx * Math.sin(angleRad) - my * Math.cos(angleRad)) / L) *
+            L;
+
+          return `linear-gradient(${angleDeg.toFixed(2)}deg, transparent ${pEdge.toFixed(1)}px, black ${(pEdge + spread).toFixed(1)}px)`;
+        })
+        .join(", ");
+
+      maskStyle = {
+        maskImage: gradientValue,
+        WebkitMaskImage: gradientValue,
+        maskComposite: "intersect",
+        WebkitMaskComposite: "destination-in",
+      };
+    }
+  }
 
   return (
     <div
       style={{
         position: "absolute",
-        top: blur.top_left[1],
-        left: blur.top_left[0],
-        width: blurW,
-        height: blurH,
+        left: minX - spread,
+        top: minY - spread,
+        width: fadeW,
+        height: fadeH,
         backdropFilter: `blur(${blur.blur_gain}px)`,
         WebkitBackdropFilter: `blur(${blur.blur_gain}px)`,
-        ...(spread > 0 && {
-          maskImage: `linear-gradient(to bottom, transparent, black ${spread}px, black calc(100% - ${spread}px), transparent),
-                      linear-gradient(to right, transparent, black ${spread}px, black calc(100% - ${spread}px), transparent)`,
-          maskComposite: "intersect",
-          WebkitMaskImage: `linear-gradient(to bottom, transparent, black ${spread}px, black calc(100% - ${spread}px), transparent),
-                           linear-gradient(to right, transparent, black ${spread}px, black calc(100% - ${spread}px), transparent)`,
-          WebkitMaskComposite: "destination-in",
-        }),
+        ...maskStyle,
       }}
     />
   );
@@ -178,7 +319,7 @@ function FitWidthVideo({
 
 /**
  * ScalledVideo: scale_to_fit = 1 (default)
- * Cover scaling (no crop) or distort/stretch (with crop) to fill the entire composition.
+ * Cover scaling to fill the entire composition while preserving aspect ratio, centered.
  */
 function ScalledVideo({
   sequence,
@@ -256,8 +397,12 @@ function ScalledVideo({
   const clipPathValue = `inset(${topPct}% ${rightPct}% ${bottomPct}% ${leftPct}%)`;
 
   // Apply independent stretching for X and Y to completely fill the composition (Distort/Stretch)
-  const scaleX = compWidth / cropW;
-  const scaleY = compHeight / cropH;
+  let scaleX = compWidth / cropW;
+  let scaleY = compHeight / cropH;
+
+  if (compWidth / compHeight == 4 / 5) {
+    scaleX = scaleY = Math.max(scaleX, scaleY);
+  }
 
   // We want the center of the scaled crop region to be at the center of the composition
   const scaledCropCenterX = (cropX + cropW / 2) * scaleX;
@@ -331,9 +476,7 @@ function VideoSequenceItem({
       fields: { dimensions: true },
     })
       .then((result) => {
-        setDimensions(
-          result.dimensions ?? { width: 1920, height: 1080 },
-        );
+        setDimensions(result.dimensions ?? { width: 1920, height: 1080 });
       })
       .catch(() => {
         setDimensions({ width: 1920, height: 1080 });
@@ -388,10 +531,15 @@ export default function Video({
     <>
       {sequences.map((sequence, i) => {
         // Calculate the accumulated starting frame position to play sequences sequentially
-        const fromFrame = Math.round(sequences
-          .slice(0, i)
-          .reduce((acc, curr) => acc + (curr.end - curr.start) * fps, 0));
-        const durationInFrames = Math.max(1, Math.round((sequence.end - sequence.start) * fps));
+        const fromFrame = Math.round(
+          sequences
+            .slice(0, i)
+            .reduce((acc, curr) => acc + (curr.end - curr.start) * fps, 0),
+        );
+        const durationInFrames = Math.max(
+          1,
+          Math.round((sequence.end - sequence.start) * fps),
+        );
 
         return (
           <Sequence

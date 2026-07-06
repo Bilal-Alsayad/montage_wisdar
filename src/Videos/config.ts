@@ -79,7 +79,17 @@ export const VIDEO_TEMPLATES: VideoTemplateConfig[] = [
           },
           volume: 1,
           videoSrc: staticFile("Sequence05_1.mp4"),
-          blur: [],
+          blur: [
+            {
+              top_left: [1000, 0],
+              top_right: [2000, 50],
+              bottom_left: [1000, 200],
+              bottom_right: [1100, 300],
+              blur_gain: 30,
+              spread: 20,
+              is_circle: true,
+            },
+          ],
         },
       ],
       title: { text: "" },
