@@ -9,6 +9,7 @@ import SettelersTemplate from "./settelers";
 import TrackingTemplate from "./tracking";
 import HarmonyTemplate from "./harmony";
 import PalTemplate from "./pal";
+import MeeTemplate from "./mee";
 import MemoTemplate from "./memo";
 
 // const S3_BASE = `${MONTAGE_FILES_URL}`;
@@ -25,6 +26,48 @@ export interface VideoTemplateConfig {
 }
 
 export const VIDEO_TEMPLATES: VideoTemplateConfig[] = [
+  {
+    id: "mee",
+    component: MeeTemplate,
+    width: 1080,
+    height: 1920,
+    outroUrl: "",
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [0, 0] as [number, number],
+            bottom_right: [0, 0] as [number, number],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "title title ",
+      },
+      captions: { src: staticFile("subtitle_translated_4362.srt") },
+      tags: {
+        location: "Gaza Palestine",
+        date: "11.03.2025",
+        source: "MOTION GRAPHICS",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "Pep Guardiola",
+          description: "Manchester City Manager",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
   {
     id: "memo",
     component: MemoTemplate,
