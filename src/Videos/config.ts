@@ -11,6 +11,10 @@ import HarmonyTemplate from "./harmony";
 import PalTemplate from "./pal";
 import MeeTemplate from "./mee";
 import MemoTemplate from "./memo";
+import Auk1_1Template from "./auk/index1_1";
+import Auk4_5Template from "./auk/index4_5";
+import Auk16_9Template from "./auk/index16_9";
+import NoonTemplate from "./noon";
 
 // const S3_BASE = `${MONTAGE_FILES_URL}`;
 
@@ -383,6 +387,162 @@ export const VIDEO_TEMPLATES: VideoTemplateConfig[] = [
       ],
       private_source: true,
       scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
+    id: "auk1-1",
+    component: Auk1_1Template,
+    width: 1080,
+    height: 1920,
+    outroUrl: `${staticFile("auk/elements/outro.webm")}`,
+    outroOverlapFrames: 30,
+    defaultVideoSrc: "Sequence05_1.mp4",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [657, 0],
+            bottom_right: [1265, 1080],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "جوارديولا يواصل دفاعه العلني عن غزة والسودان",
+      },
+      captions: { src: staticFile("subtitle_translated_4360.srt") },
+      tags: {
+        location: "بريطانيا",
+        date: "2026-02-03",
+        source: "يبسب",
+      },
+      speakers: [
+        { start: 6, name: "بيب غوارديولا", description: "مدرب مانشستر سيتي" },
+      ],
+      private_source: true,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
+    id: "auk4-5",
+    component: Auk4_5Template,
+    width: 1080,
+    height: 1920,
+    outroUrl: `${staticFile("auk/elements/outro.webm")}`,
+    outroOverlapFrames: 30,
+    defaultVideoSrc: "Sequence05_1.mp4",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [657, 0],
+            bottom_right: [1265, 1080],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "جوارديولا يواصل دفاعه العلني عن غزة والسودان",
+      },
+      captions: { src: staticFile("subtitle_translated_4360.srt") },
+      tags: {
+        location: "بريطانيا",
+        date: "2026-02-03",
+        source: "يبسب",
+      },
+      speakers: [
+        { start: 6, name: "بيب غوارديولا", description: "مدرب مانشستر سيتي" },
+      ],
+      private_source: true,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
+    id: "auk16-9",
+    component: Auk16_9Template,
+    width: 1080,
+    height: 1920,
+    outroUrl: `${staticFile("auk/elements/outro.webm")}`,
+    outroOverlapFrames: 30,
+    defaultVideoSrc: "Sequence05_1.mp4",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [657, 0],
+            bottom_right: [1265, 1080],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "جوارديولا يواصل دفاعه العلني عن غزة والسودان",
+      },
+      captions: { src: staticFile("subtitle_translated_4360.srt") },
+      tags: {
+        location: "بريطانيا",
+        date: "2026-02-03",
+        source: "يبسب",
+      },
+      speakers: [
+        { start: 6, name: "بيب غوارديولا", description: "مدرب مانشستر سيتي" },
+      ],
+      private_source: true,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
+    id: "noon",
+    component: NoonTemplate,
+    width: 1080,
+    height: 1920,
+    outroUrl: `${staticFile("auk/elements/outro.webm")}`,
+    outroOverlapFrames: 50,
+    defaultVideoSrc: "Sequence05_1.mp4",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [657, 0],
+            bottom_right: [1265, 1080],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "جوارديولا يواصل دفاعه العلني عن غزة والسودان",
+      },
+      captions: { src: staticFile("subtitle_translated_4360.srt") },
+      tags: {
+        location: "بريطانيا",
+        date: "2026-02-03",
+        source: "يبسب",
+      },
+      speakers: [
+        { start: 6, name: "بيب غوارديولا", description: "مدرب مانشستر سيتي" },
+      ],
+      private_source: true,
+      scale_to_fit: true,
       background_img_url: "",
     },
   },
