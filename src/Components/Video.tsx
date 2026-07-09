@@ -41,6 +41,8 @@ interface ScalledVideoProps {
   style: React.CSSProperties;
   srcW: number;
   srcH: number;
+  boxW?: number;
+  boxH?: number;
 }
 
 function BlurOverlay({ blur }: { blur: Blur }) {
@@ -178,8 +180,7 @@ function BlurOverlay({ blur }: { blur: Blur }) {
           const mx = (a[0] + b[0]) / 2 - fadeW / 2;
           const my = (a[1] + b[1]) / 2 - fadeH / 2;
           const pEdge =
-            (0.5 + (mx * Math.sin(angleRad) - my * Math.cos(angleRad)) / L) *
-            L;
+            (0.5 + (mx * Math.sin(angleRad) - my * Math.cos(angleRad)) / L) * L;
 
           return `linear-gradient(${angleDeg.toFixed(2)}deg, transparent ${pEdge.toFixed(1)}px, black ${(pEdge + spread).toFixed(1)}px)`;
         })
@@ -319,7 +320,7 @@ function FitWidthVideo({
 
 /**
  * ScalledVideo: scale_to_fit = 1 (default)
- * Cover scaling to fill the entire composition while preserving aspect ratio, centered.
+ * Cover scaling (no crop) or distort/stretch (with crop) to fill the entire composition.
  */
 function ScalledVideo({
   sequence,
@@ -327,8 +328,13 @@ function ScalledVideo({
   style,
   srcW,
   srcH,
+  boxW = 0,
+  boxH = 0,
 }: ScalledVideoProps) {
-  const { width: compWidth, height: compHeight, fps } = useVideoConfig();
+  const { width: defaultCompWidth, height: defaultCompHeight, fps } = useVideoConfig();
+
+  const compWidth = boxW || defaultCompWidth;
+  const compHeight = boxH || defaultCompHeight;
 
   const trimProps = {
     trimBefore: Math.round(sequence.start * fps),
@@ -459,10 +465,14 @@ function VideoSequenceItem({
   sequence,
   scaleToFit,
   backgroundUrl,
+  boxW,
+  boxH,
 }: {
   sequence: SequenceProps;
   scaleToFit: boolean;
   backgroundUrl: string;
+  boxW?: number;
+  boxH?: number;
 }) {
   const [handle] = useState(() => delayRender("Loading video dimensions"));
   const [dimensions, setDimensions] = useState<{
@@ -511,6 +521,8 @@ function VideoSequenceItem({
       srcW={dimensions.width}
       srcH={dimensions.height}
       style={style}
+      boxW={boxW}
+      boxH={boxH}
     />
   );
 }
@@ -519,12 +531,18 @@ interface VideoProps {
   sequences: SequenceProps[];
   scaleToFit: boolean;
   backgroundUrl: string;
+  muted?: boolean;
+  boxW?: number;
+  boxH?: number;
 }
 
 export default function Video({
   sequences,
   scaleToFit,
   backgroundUrl,
+  muted = false,
+  boxW,
+  boxH,
 }: VideoProps) {
   const { fps } = useVideoConfig();
   return (
@@ -559,9 +577,11 @@ export default function Video({
             }}
           >
             <VideoSequenceItem
-              sequence={sequence}
+              sequence={muted ? { ...sequence, volume: 0 } : sequence}
               scaleToFit={scaleToFit}
               backgroundUrl={backgroundUrl}
+              boxW={boxW}
+              boxH={boxH}
             />
           </Sequence>
         );
