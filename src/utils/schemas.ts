@@ -23,9 +23,12 @@ const coordinateObjSchema = z.object({
 
 const BlurSchema = z.object({
   top_left: coordinateTuple,
+  top_right: coordinateTuple,
+  bottom_left: coordinateTuple,
   bottom_right: coordinateTuple,
   blur_gain: z.number(),
   spread: z.number(),
+  is_circle: z.boolean(),
 });
 
 const AudioClipSchema = z.object({

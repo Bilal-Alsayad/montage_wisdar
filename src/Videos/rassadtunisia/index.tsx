@@ -34,60 +34,11 @@ export default function RassadTunisiaTemplate({ data }: TemplateProps) {
 
   if (!fontFamily) return null;
 
-  const adjustedSequences = data.sequences.map((seq) => {
-    const cropW = seq.crop.bottom_right[0] - seq.crop.top_left[0];
-    const cropH = seq.crop.bottom_right[1] - seq.crop.top_left[1];
-    if (cropW <= 0 || cropH <= 0) return seq;
-
-    const ratio = cropW / cropH;
-    // Check if ratio is ~9:16 (0.5625)
-    if (Math.abs(ratio - 9 / 16) < 0.01) {
-      // Convert to 4:5 ratio by widening horizontally
-      const newW = cropH * (4 / 5);
-      const centerX = (seq.crop.top_left[0] + seq.crop.bottom_right[0]) / 2;
-      let newLeft = centerX - newW / 2;
-      let newRight = centerX + newW / 2;
-
-      // Clamp: shift the whole crop if it goes out of bounds
-      if (newLeft < 0) {
-        newRight -= newLeft;
-        newLeft = 0;
-      }
-
-      // Scale blur X coordinates proportionally from the crop center
-      const scaleFactor = newW / cropW;
-      const adjustedBlur = seq.blur.map((b) => ({
-        ...b,
-        top_left: [
-          centerX + (b.top_left[0] - centerX) * scaleFactor,
-          b.top_left[1],
-        ] as [number, number],
-        bottom_right: [
-          centerX + (b.bottom_right[0] - centerX) * scaleFactor,
-          b.bottom_right[1],
-        ] as [number, number],
-      }));
-
-      return {
-        ...seq,
-        crop: {
-          top_left: [newLeft, seq.crop.top_left[1]] as [number, number],
-          bottom_right: [newRight, seq.crop.bottom_right[1]] as [
-            number,
-            number,
-          ],
-        },
-        blur: adjustedBlur,
-      };
-    }
-    return seq;
-  });
-
   return (
     <AbsoluteFill>
       {/* Video */}
       <Video
-        sequences={adjustedSequences}
+        sequences={data.sequences}
         scaleToFit={data.scale_to_fit}
         backgroundUrl={data.background_img_url}
       />
