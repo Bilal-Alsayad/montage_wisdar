@@ -18,9 +18,7 @@ import TagsAnimation, {
 } from "./Tagsanimation";
 
 const DINNEXTLTPRO_BOLD = "DINNextLTPro-Bold";
-
 const DINNEXTLTPRO_REGULAR = "DINNextLTPro-Regular";
-
 const DINNEXTLTPRO_MEDIUM = "DINNextLTPro-Medium";
 
 export default function MemoTemplate({ data }: TemplateProps) {
@@ -76,11 +74,16 @@ export default function MemoTemplate({ data }: TemplateProps) {
         </Sequence>
       )}
 
-      <Sequence durationInFrames={TITLE_ANIMATION_DURATION}>
-        <TitleAnimation text={data.title.text} fontFamily={DINNEXTLTPRO_MEDIUM} />
-      </Sequence>
+      <LogoAnimation privateSource={data.private_source} />
 
-      <LogoAnimation />
+      {data.title?.text && (
+        <Sequence durationInFrames={TITLE_ANIMATION_DURATION}>
+          <TitleAnimation
+            text={data.title.text}
+            fontFamily={DINNEXTLTPRO_MEDIUM}
+          />
+        </Sequence>
+      )}
 
       {data.captions.src && (
         <Captions

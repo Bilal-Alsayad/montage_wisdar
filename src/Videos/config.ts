@@ -11,6 +11,7 @@ import HarmonyTemplate from "./harmony";
 import PalTemplate from "./pal";
 import MeeTemplate from "./mee";
 import MemoTemplate from "./memo";
+import QudsTemplate from "./quds";
 
 // const S3_BASE = `${MONTAGE_FILES_URL}`;
 
@@ -26,6 +27,40 @@ export interface VideoTemplateConfig {
 }
 
 export const VIDEO_TEMPLATES: VideoTemplateConfig[] = [
+  {
+    id: "quds",
+    component: QudsTemplate,
+    width: 1080,
+    height: 1920,
+    outroUrl: staticFile("quds/elements/outro.webm"),
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [0, 0],
+            bottom_right: [0, 0],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: { text: "Daughter Blasts NM jjgjgjgjgjjj gjgjgj gjgjgjgjg bla" },
+      captions: {
+        src: staticFile("subtitle_translated_4361.srt"),
+      },
+      tags: {
+        source: "Maddie Block",
+      },
+      speakers: [],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
   {
     id: "mee",
     component: MeeTemplate,
@@ -115,7 +150,7 @@ export const VIDEO_TEMPLATES: VideoTemplateConfig[] = [
       sequences: [
         {
           start: 0,
-          end: 485 / 30,
+          end: 20,
           crop: {
             top_left: [0, 0],
             bottom_right: [0, 0],
