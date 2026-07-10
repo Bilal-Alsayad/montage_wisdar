@@ -5,7 +5,7 @@ import { CoverTemplateProps } from "../types";
 
 const fontFamily = "Anton Regular";
 
-export default function MeeYoutubeTemplate({ data }: CoverTemplateProps) {
+export default function MeeInstagramTemplate({ data }: CoverTemplateProps) {
   const loadFont = useLoadFonts([
     {
       family: fontFamily,
@@ -31,21 +31,23 @@ export default function MeeYoutubeTemplate({ data }: CoverTemplateProps) {
       </AbsoluteFill>
 
       <AbsoluteFill>
-        <Img src={staticFile("Covers/mee/mee_youtube/md5-1.png")} />
+        <Img src={staticFile("Covers/mee/mee_instagram/md5-1.png")} />
 
         <div
           style={{
             position: "absolute",
-            top: 580,
-            left: 120,
-            textAlign: "left",
+            top: 1140,
+            left:"50%", //daha iyi pls kalsin :P
+            transform:"translateX(-50%)",
+            width: "75%",
+            textAlign: "center",
           }}
         >
           <div
             className="text-[#f9ad17] first-line:text-white"
             style={{
               fontFamily,
-              fontSize: "120px",
+              fontSize: "100px",
               lineHeight: 1.1,
               textTransform: "uppercase",
             }}
