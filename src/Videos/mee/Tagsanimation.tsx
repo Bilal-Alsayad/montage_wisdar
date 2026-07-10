@@ -364,25 +364,27 @@ export default function TagsAnimation({
         pointerEvents: "none",
       }}
     >
-      {location && (
-        <TagRowAnimation
-          text={location}
-          iconPath="mee/images/location.png"
-          top={60}
-          fontFamily={fontFamily}
-          frame={tagsFrame}
-        />
-      )}
+      <div style={{ opacity: frame >= sourceStartOffset ? 0 : 1 }}>
+        {location && (
+          <TagRowAnimation
+            text={location}
+            iconPath="mee/images/location.png"
+            top={60}
+            fontFamily={fontFamily}
+            frame={tagsFrame}
+          />
+        )}
 
-      {date && (
-        <TagRowAnimation
-          text={date}
-          iconPath="mee/images/date.png"
-          top={location ? 120 : 60}
-          fontFamily={fontFamily}
-          frame={tagsFrame}
-        />
-      )}
+        {date && (
+          <TagRowAnimation
+            text={date}
+            iconPath="mee/images/date.png"
+            top={location ? 120 : 60}
+            fontFamily={fontFamily}
+            frame={tagsFrame}
+          />
+        )}
+      </div>
 
       {hasSource && frame >= sourceStartOffset && (
         <TagRowAnimation
