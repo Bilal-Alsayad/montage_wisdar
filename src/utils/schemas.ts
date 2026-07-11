@@ -9,6 +9,7 @@ export const CoverTemplateDataSchema = z.object({
   text_fields: z.record(z.string()),
   imageSrc: z.string(),
   crop: CropCoordinatesSchema.optional(),
+  fontSize: z.number().optional()
 });
 
 export const CoverTemplateSchema = z.object({

@@ -8,10 +8,10 @@ import {
 } from "remotion";
 import { useLoadFonts } from "../../hooks/useLoadFonts";
 import Video from "../../Components/Video";
-import Captions from "../../Components/Captions";
+// import Captions from "../../Components/Captions";
 import { TemplateProps } from "../types";
 import SpeakerAnimation, {
-  HARMONY_SPEAKER_ANIMATION_DURATION,
+  // HARMONY_SPEAKER_ANIMATION_DURATION,
 } from "./SpeakerAnimation";
 import SourceAnimation, {
   HARMONY_SOURCE_ANIMATION_DURATION,
@@ -31,21 +31,17 @@ export default function HarmonyTemplate({
     {
       family: HARMONY_ANTON,
       url: staticFile("harmony/fonts/AntonRegular.ttf"),
-      weight: "400",
-      style: "normal",
     },
     {
       family: HARMONY_MONTSERRAT,
       url: staticFile("harmony/fonts/MontserratSemiBold.ttf"),
-      weight: "600",
-      style: "normal",
     },
   ]);
 
   if (!fontsLoaded) return null;
 
   return (
-    <AbsoluteFill style={{ backgroundColor: "#000000" }}>
+    <AbsoluteFill>
       <Video
         sequences={data.sequences}
         scaleToFit={data.scale_to_fit}
@@ -64,9 +60,9 @@ export default function HarmonyTemplate({
       {data.speakers.length > 0 &&
         data.speakers.map((speaker, index) => (
           <Sequence
-            from={speaker.start * fps}
+            from={0 * fps}
             key={index}
-            durationInFrames={HARMONY_SPEAKER_ANIMATION_DURATION}
+            durationInFrames={300}
           >
             <SpeakerAnimation
               name={speaker.name}
@@ -77,17 +73,16 @@ export default function HarmonyTemplate({
         ))}
 
       <Img
-        src={staticFile("harmony/elements/logo.png")}
+        src={staticFile("harmony/images/logo.png")}
         style={{
           position: "absolute",
-          left: 412,
-          top: 134,
-          width: 255,
-          height: 49,
+          left: 170,
+          top: 420,
+          scale: "75%"
         }}
       />
 
-      {data.captions.src && (
+      {/* {data.captions.src && (
         <Captions
           src={data.captions.src}
           containerStyle={{
@@ -104,7 +99,7 @@ export default function HarmonyTemplate({
             lineHeight: 1.15,
           }}
         />
-      )}
+      )} */}
 
       <Sequence
         from={outroStartFrame}
