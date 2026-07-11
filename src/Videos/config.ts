@@ -52,7 +52,7 @@ export const VIDEO_TEMPLATES: VideoTemplateConfig[] = [
           blur: [],
         },
       ],
-      title: { text: "Daughter Blasts NM jjgjgjgjgjjj gjgjgj gjgjgjgjg bla" },
+      title: { text: "Daughter Blasts NM" },
       captions: {
         src: staticFile("subtitle_translated_4361.srt"),
       },

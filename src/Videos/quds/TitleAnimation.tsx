@@ -1,5 +1,6 @@
 import { Easing, interpolate, useCurrentFrame } from "remotion";
 import { measureText } from "@remotion/layout-utils";
+import { splitTitle } from "../../utils/textUtils";
 
 type TitleAnimationProps = {
   text: string;
@@ -12,12 +13,9 @@ const REVEAL_EXIT = 45;
 
 export const TITLE_ANIMATION_DURATION = 150;
 
-const NORMAL_PADDING_X = 20;
-const START_PADDING_X = 95;
-
-const TEXT_FEATHER_PX = 75;
-
 const REVEAL_EASE = Easing.bezier(0.333, 0, 0.667, 1);
+
+const MAX_SINGLE_LINE_WIDTH = 900;
 
 const CLAMP = {
   extrapolateLeft: "clamp" as const,
@@ -30,11 +28,36 @@ export default function TitleAnimation({
 }: TitleAnimationProps) {
   const frame = useCurrentFrame();
 
-  const { width: textWidth } = measureText({
+  const { width: fullWidth } = measureText({
     text,
     fontFamily,
     fontSize: 80,
   });
+
+  const needsTwoLines = fullWidth > MAX_SINGLE_LINE_WIDTH;
+
+  const { text1, text2 } = needsTwoLines
+    ? splitTitle(text)
+    : { text1: text, text2: "" };
+
+  const isTwoLines = text2 !== "";
+
+  const { width: width1 } = measureText({
+    text: text1,
+    fontFamily,
+    fontSize: 80,
+  });
+
+  const { width: width2 } = isTwoLines
+    ? measureText({
+        text: text2,
+        fontFamily,
+        fontSize: 80,
+      })
+    : { width: 0 };
+
+  const textWidth = Math.max(width1, width2);
+  const boxHeight = isTwoLines ? 100 * 2 : 100;
 
   const revealEnd = REVEAL_ENTER;
   const holdEnd = revealEnd + REVEAL_HOLD;
@@ -53,7 +76,7 @@ export default function TitleAnimation({
   const paddingX = interpolate(
     progress,
     [0, 1],
-    [START_PADDING_X, NORMAL_PADDING_X],
+    [95, 20],
     CLAMP
   );
 
@@ -68,7 +91,7 @@ export default function TitleAnimation({
       linear-gradient(
         90deg,
         black 0px,
-        black ${Math.max(0, visibleWidth - TEXT_FEATHER_PX)}px,
+        black ${Math.max(0, visibleWidth - 75)}px,
         transparent ${visibleWidth}px,
         transparent 100%
       )
@@ -82,7 +105,7 @@ export default function TitleAnimation({
         top: 1500,
         transform: "translateX(-50%)",
         width: boxWidth,
-        height: 100,
+        height: boxHeight,
         overflow: "hidden",
       }}
     >
@@ -100,16 +123,20 @@ export default function TitleAnimation({
           position: "absolute",
           inset: 0,
           display: "flex",
+          flexDirection: "column",
           alignItems: "center",
+          justifyContent: "center",
           fontFamily,
           fontSize: 80,
           lineHeight: `100px`,
           color: "#000000",
           padding: `0 20px`,
+          textAlign: "center",
           WebkitMaskImage: textMask, //animasyon
         }}
       >
-        {text}
+        <div>{text1}</div>
+        {isTwoLines && <div>{text2}</div>}
       </div>
     </div>
   );
