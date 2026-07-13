@@ -1,139 +1,218 @@
-import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from "remotion";
-
-export const HARMONY_SOURCE_ANIMATION_DURATION = 340;
-
-const BODYMOVIN_LINE_HEIGHT = 78;
-
-const FINAL_TEXT_COLOR = "#ffffff";
-const FINAL_BACKGROUND_COLOR = "#962244";
-const SOURCE_EXIT_SHIFT = 155;
-
-type Keyframe = {
-  t: number;
-  s: number;
-  o?: { x: number; y: number };
-  i?: { x: number; y: number };
-};
-
-const containerWidthKeyframes: Keyframe[] = [
-  { t: 4, s: 0, o: { x: 0.219, y: 0 } },
-  { t: 27, s: 100, o: { x: 0.213, y: 0 }, i: { x: 0.843, y: 1 } },
-  { t: 162, s: 100, o: { x: 0.788, y: 0 }, i: { x: 0.783, y: 1 } },
-  { t: 185, s: 0 },
-];
-
-const textMoveKeyframes: Keyframe[] = [
-  { t: 6, s: 0, o: { x: 0.095, y: 0 } },
-  { t: 27, s: 100, o: { x: 0.366, y: 0 }, i: { x: 0.194, y: 1 } },
-  { t: 162, s: 100, o: { x: 0.806, y: 0 }, i: { x: 0.825, y: 1 } },
-  { t: 184, s: 0 },
-];
+import {
+  Audio,
+  Easing,
+  interpolate,
+  Sequence,
+  staticFile,
+  useCurrentFrame,
+  useVideoConfig,
+} from "remotion";
 
 interface SourceAnimationProps {
-  source: string;
+  source?: string;
   fontFamily: string;
 }
 
-const toBodymovinFrame = (frame: number) => {
-  if (frame <= 27) {
-    return frame;
-  }
+const AUDIO_DURATION_IN_FRAMES =48;
+const VISUAL_DURATION_IN_FRAMES = 204;
 
-  if (frame <= 317) {
-    return 162;
-  }
-
-  return frame - SOURCE_EXIT_SHIFT;
+const CLAMP = {
+  extrapolateLeft: "clamp" as const,
+  extrapolateRight: "clamp" as const,
 };
 
-const valueAtFrame = (frame: number, keyframes: Keyframe[]) => {
-  if (frame <= keyframes[0].t) {
-    return keyframes[0].s;
-  }
-
-  for (let i = 0; i < keyframes.length - 1; i += 1) {
-    const current = keyframes[i];
-    const next = keyframes[i + 1];
-
-    if (frame <= next.t) {
-      if (current.s === next.s) {
-        return current.s;
-      }
-
-      const easing =
-        current.o && next.i
-          ? Easing.bezier(current.o.x, current.o.y, next.i.x, next.i.y)
-          : Easing.linear;
-
-      return interpolate(frame, [current.t, next.t], [current.s, next.s], {
-        extrapolateLeft: "clamp",
-        extrapolateRight: "clamp",
-        easing,
-      });
-    }
-  }
-
-  return keyframes[keyframes.length - 1].s;
-};
-
-export default function SourceAnimation({ source, fontFamily }: SourceAnimationProps) {
+export default function SourceAnimation({
+  source,
+  fontFamily,
+}: SourceAnimationProps) {
   const frame = useCurrentFrame();
-  const bodymovinFrame = toBodymovinFrame(frame);
-  const widthProgress =
-    valueAtFrame(bodymovinFrame, containerWidthKeyframes) / 100;
-  const textProgress = valueAtFrame(bodymovinFrame, textMoveKeyframes) / 100;
+  const { fps } = useVideoConfig();
+
+  if (!source) return null;
+
+  const visualFrame = frame - 8;
+  const animationDuration = Math.max(
+    1,
+    Math.min(fps, VISUAL_DURATION_IN_FRAMES / 2),
+  );
+
+  const fadeInFrame = interpolate(
+    visualFrame,
+    [0, animationDuration],
+    [0, 25],
+    CLAMP,
+  );
+
+  const fadeOutFrame = interpolate(
+    visualFrame,
+    [VISUAL_DURATION_IN_FRAMES - animationDuration, VISUAL_DURATION_IN_FRAMES],
+    [25, 0],
+    CLAMP,
+  );
+
+  const sourceFrame = Math.min(fadeInFrame, fadeOutFrame);
+  const isActive = frame >= 8 && frame <= 212;
+
+  const textProgress = interpolate(sourceFrame, [2, 25], [0, 1], {
+    ...CLAMP,
+    easing: Easing.bezier(0.747, 0, 0.149, 1),
+  });
+
+  const textX = interpolate(textProgress, [0, 1], [-36, 0], CLAMP);
+
+  const textOpacity = interpolate(textProgress, [0, 1], [0, 1], CLAMP);
+
+  const iconEasing = Easing.bezier(0.649, 0, 0.318, 1);
+
+  /*
+   * Alt-sol zincir parçası.
+   */
+  const bottomCurrentX = interpolate(sourceFrame, [1, 25], [0.378, -5.88], {
+    ...CLAMP,
+    easing: iconEasing,
+  });
+
+  const bottomCurrentY = interpolate(sourceFrame, [1, 25], [-2.464, 3.331], {
+    ...CLAMP,
+    easing: iconEasing,
+  });
+
+  /*
+   * Üst-sağ zincir parçası.
+   */
+  const topCurrentX = interpolate(sourceFrame, [1, 25], [1.078, 9.078], {
+    ...CLAMP,
+    easing: iconEasing,
+  });
+
+  const topCurrentY = interpolate(sourceFrame, [1, 25], [-3.502, -11.252], {
+    ...CLAMP,
+    easing: iconEasing,
+  });
+
+  const bottomTranslateX = (bottomCurrentX - -5.88) * (500 / 40);
+
+  const bottomTranslateY = (bottomCurrentY - 3.331) * (500 / 40);
+
+  const topTranslateX = (topCurrentX - 9.078) * (500 / 40);
+
+  const topTranslateY = (topCurrentY - -11.252) * (500 / 40);
+
+  const lineStart = interpolate(sourceFrame, [1, 25], [50, 0], {
+    ...CLAMP,
+    easing: Easing.bezier(0.71, 0.057, 0.157, 0.933),
+  });
+
+  const lineEnd = interpolate(sourceFrame, [1, 25], [50, 100], {
+    ...CLAMP,
+    easing: Easing.bezier(0.71, -0.057, 0.157, 1.067),
+  });
+
+  const lineLength = Math.max(0, lineEnd - lineStart);
 
   return (
-    <AbsoluteFill>
-        <div
-          style={{
-            position: "absolute",
-            left: 0,
-            right: 0,
-            margin: "0 auto",
-            top: 1540,
-            display: "flex",
-            alignItems: "center",
-            overflow: "hidden",
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: 8,
+        flexShrink: 0,
+        whiteSpace: "nowrap",
+        opacity: isActive ? 1 : 0,
+        pointerEvents: "none",
+      }}
+    >
+      <Sequence
+        from={6}
+        durationInFrames={AUDIO_DURATION_IN_FRAMES}
+        layout="none"
+      >
+        <Audio src={staticFile("harmony/sounds/ping.mov")} />
+      </Sequence>
+      <svg
+        viewBox="0 0 500 500"
+        xmlns="http://www.w3.org/2000/svg"
+        style={{
+          width: 40,
+          height: 40,
+          flexShrink: 0,
+          overflow: "visible",
 
-            width: "fit-content",
-            minWidth: 0,
-            height: 65,
+          transform: "rotate(90deg)",
+          transformOrigin: "center",
 
-            padding:25,
+          opacity: sourceFrame >= 10 && isActive ? 1 : 0,
+        }}
+      >
+        {/* Alt-sol zincir parçası */}
+        <path
+          d="
+            M 270 355
+            L 230 395
+            C 180 445, 100 445, 55 400
+            C 10 355, 10 275, 55 230
+            L 95 190
+          "
+          fill="none"
+          stroke="#FFFFFF"
+          strokeWidth="32"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          transform={`
+            translate(
+              ${bottomTranslateX}
+              ${bottomTranslateY}
+            )
+          `}
+        />
 
-            backgroundColor: FINAL_BACKGROUND_COLOR,
-            borderRadius: 0,
-            boxSizing: "border-box",
+        <path
+          d="M 145.1 328.5 L 339.9 172.2"
+          pathLength={100}
+          fill="none"
+          stroke="#FFFFFF"
+          strokeWidth="32"
+          strokeLinecap="round"
+          strokeDasharray={`${lineLength} 200`}
+          strokeDashoffset={-lineStart}
+        />
+        <path
+          d="
+            M 230 145
+            L 270 105
+            C 320 55, 400 55, 445 100
+            C 490 145, 490 225, 445 270
+            L 405 310
+          "
+          fill="none"
+          stroke="#FFFFFF"
+          strokeWidth="32"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          transform={`
+            translate(
+              ${topTranslateX}
+              ${topTranslateY}
+            )
+          `}
+        />
+      </svg>
 
-            clipPath: `inset(
-              0
-              ${Math.max(0, (1 - widthProgress) * 100)}%
-              0
-              0
-            )`,
-          }}
-        >
-          <span
-            style={{
-              display: "block",
-              flex: "0 0 auto",
-
-              color: FINAL_TEXT_COLOR,
-              fontFamily,
-              fontSize: 55,
-              fontStyle: "normal",
-              fontWeight: 700,
-              letterSpacing: 0,
-              lineHeight: `${BODYMOVIN_LINE_HEIGHT}px`,
-              whiteSpace: "nowrap",
-
-              transform: `translateX(${(textProgress - 1) * 100}%)`,
-            }}
-          >
-            {source}
-          </span>
-        </div>
-    </AbsoluteFill>
+      <div
+        style={{
+          color: "#FFFFFF",
+          fontFamily,
+          fontSize: 36,
+          fontWeight: 600,
+          lineHeight: "43.2px",
+          letterSpacing: 0,
+          whiteSpace: "nowrap",
+          opacity: textOpacity,
+          transform: `translateY(${textX}px)`,
+        }}
+      >
+        {source}
+      </div>
+    </div>
   );
 }

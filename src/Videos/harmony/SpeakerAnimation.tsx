@@ -1,46 +1,126 @@
-import { Img, staticFile } from "remotion";
+import {
+  AbsoluteFill,
+  Easing,
+  Img,
+  interpolate,
+  staticFile,
+  useCurrentFrame,
+} from "remotion";
 
 interface SpeakerAnimationProps {
   name: string;
   description: string;
-  fontFamily: string;
+  nameFontFamily: string;
+  descriptionFontFamily: string;
 }
+
+export const SPEAKER_ANIMATION_DURATION = 250;
+
+const FADE_IN_DURATION = 15;
+const FADE_OUT_DURATION = 15;
+
+const CLAMP = {
+  extrapolateLeft: "clamp" as const,
+  extrapolateRight: "clamp" as const,
+};
 
 export default function SpeakerAnimation({
   name,
   description,
-  fontFamily,
+  nameFontFamily,
+  descriptionFontFamily,
 }: SpeakerAnimationProps) {
+  const frame = useCurrentFrame();
+
+  const fadeInOpacity = interpolate(
+    frame,
+    [0, FADE_IN_DURATION],
+    [0, 1],
+    {
+      ...CLAMP,
+      easing: Easing.out(Easing.cubic),
+    },
+  );
+
+  const fadeOutOpacity = interpolate(
+    frame,
+    [
+      SPEAKER_ANIMATION_DURATION - FADE_OUT_DURATION,
+      SPEAKER_ANIMATION_DURATION,
+    ],
+    [1, 0],
+    {
+      ...CLAMP,
+      easing: Easing.in(Easing.cubic),
+    },
+  );
+
+  const opacity = Math.min(fadeInOpacity, fadeOutOpacity);
+
   return (
-    <div>
+    <AbsoluteFill
+      style={{
+        opacity,
+        pointerEvents: "none",
+      }}
+    >
       <Img
         src={staticFile("harmony/images/speaker.png")}
         style={{
           position: "absolute",
-          left: 169.8,
-          top: 418,
-          scale:"15%",
-          transform: "translate(-70.5px, -58.5px) scale(0.75, 0.76)",
-          transformOrigin: "70.5px 58.5px",
+          left: 162,
+          top: 924,
+          width: 57,
+          height: 57,
+          objectFit: "contain",
+          filter: [
+            "brightness(0)",
+            "invert(1)",
+            "drop-shadow(3.54px 3.54px 12.5px rgba(0, 0, 0, 0.5))",
+            "drop-shadow(0 0 9.5px rgba(0, 0, 0, 0.84))",
+          ].join(" "),
         }}
       />
 
-      <div>{name}</div>
-
-      <div
+      <svg
+        width="1080"
+        height="1920"
+        viewBox="0 0 1080 1920"
         style={{
           position: "absolute",
-          left: 150,
-          top: 897,
-          color: "white",
-          fontFamily,
-          fontSize: 40,
-          textAlign: "left",
-          whiteSpace: "nowrap",
+          inset: 0,
+          overflow: "visible",
         }}
       >
-        {description}
-      </div>
-    </div>
+        <text
+          x={190}
+          y={1010}
+          fill="#FF002D"
+          fontFamily={nameFontFamily}
+          fontSize={43}
+          textAnchor="start"
+          style={{
+            letterSpacing: 0,
+          }}
+        >
+          {name}
+        </text>
+
+        <text
+          x={185}
+          y={1060}
+          fill="#FFFFFF"
+          fontFamily={descriptionFontFamily}
+          fontSize={38}
+          textAnchor="start"
+          style={{
+            letterSpacing: 0,
+            filter: "drop-shadow(0 0 9.5px rgba(0, 0, 0, 0.84))",
+          }}
+        >
+          {description}
+        </text>
+      </svg>
+    </AbsoluteFill>
   );
 }
