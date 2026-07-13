@@ -78,15 +78,13 @@ export default function HarmonyTemplate({
         />
       </Sequence>
 
-      <Sequence>
-        <TagsAnimation
-          location={data.tags.location}
-          source={data.tags.source}
-          date={data.tags.date}
-          fontFamily={CONFIG_VARIABLE}
-          sourceFontFamily={CONFIG_VARIABLE}
-        />
-      </Sequence>
+      <TagsAnimation
+        location={data.tags.location}
+        source={data.tags.source}
+        date={data.tags.date}
+        fontFamily={CONFIG_VARIABLE}
+        sourceFontFamily={CONFIG_VARIABLE}
+      />
 
       {data.speakers.length > 0 &&
         data.speakers.map((speaker, index) => (
