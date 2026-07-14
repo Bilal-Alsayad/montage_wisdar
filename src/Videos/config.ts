@@ -16,6 +16,7 @@ import Auk1_1Template from "./auk/index1_1";
 import Auk4_5Template from "./auk/index4_5";
 import Auk16_9Template from "./auk/index16_9";
 import NoonTemplate from "./noon";
+import IrsalTemplate from "./irsal";
 import DiasporaPulseTemplate from "./diasporaPulse";
 
 // const S3_BASE = `${MONTAGE_FILES_URL}`;
@@ -32,6 +33,39 @@ export interface VideoTemplateConfig {
 }
 
 export const VIDEO_TEMPLATES: VideoTemplateConfig[] = [
+    {
+    id: "irsal",
+    component: IrsalTemplate,
+    width: 1080,
+    height: 1920,
+    outroUrl: staticFile("irsal/elements/outro.mp4"),
+    defaultVideoSrc: "",
+    outroOverlapFrames: 20, //! buraya bak unutma
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [0, 0],
+            bottom_right: [0, 0],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: { text: "التي انطلقت لنصرة القدس والأقصى التي انطلقت لنصرة القدس والأقصى" },
+      captions: {
+        src: staticFile("subtitle_translated_4361.srt"),
+      },
+      tags: {},
+      speakers: [],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
   {
     id: "quds",
     component: QudsTemplate,

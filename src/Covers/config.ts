@@ -5,6 +5,7 @@ import MeeInstagramTemplate from "./Mee/instagram";
 import MeeFacebookTemplate from "./Mee/facebook"; 
 import HarmonyInstagram1Template from "./Harmony/instagram_1";
 import HarmonyInstagram2Template from "./Harmony/instagram_2";
+import IrsalInstagramTemplate from "./irsal/instagram";
 
 export interface CoverTemplateConfig {
   id: string;
@@ -23,5 +24,6 @@ export const COVER_TEMPLATES: CoverTemplateConfig[] = [
   { id: "mee-instagram", component: MeeInstagramTemplate, width: 1080, height: 1920, defaultText: "ISRAEL HAS BOOBY-TRAPPED EQUIPMENT ‘IN ALL COUNTRIES’" },
   { id: "mee-facebook", component: MeeFacebookTemplate, width: 1440, height: 1440, defaultText: "ISRAEL HAS BOOBY-TRAPPED EQUIPMENT ‘IN ALL COUNTRIES’" },
   { id: "harmony-instagram1", component: HarmonyInstagram1Template, width: 1080, height: 1920, defaultText: "Haaland IDF askeriyle" },
-  { id: "harmony-instagram2", component: HarmonyInstagram2Template, width: 1080, height: 1920, defaultText: "New York Senatosunda Bir Filistinli" }
+  { id: "harmony-instagram2", component: HarmonyInstagram2Template, width: 1080, height: 1920, defaultText: "New York Senatosunda Bir Filistinli" },
+  { id: "irsal-instagram", component: IrsalInstagramTemplate, width: 1080, height: 1920, defaultText: "التي انطلقت لنصرة القدس والأقصى التي انطلقت لنصرة القدس والأقصى" }
 ];
