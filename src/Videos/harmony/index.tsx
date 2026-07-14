@@ -63,7 +63,7 @@ export default function HarmonyTemplate({
       />
 
       <Img
-        src={staticFile("harmony/images/logo.png")}
+        src={staticFile("harmony/elements/logo.png")}
         style={{
           position: "absolute",
           left: 110,
@@ -106,8 +106,7 @@ export default function HarmonyTemplate({
         <Captions
           src={data.captions.src}
           containerStyle={{
-            top: 1000,
-            width: "fit-content",
+            top: 1100,
             backgroundColor: "#000000",
             padding: "15px",
             borderRadius: "20px",

@@ -65,11 +65,11 @@ export default function SpeakerAnimation({
       }}
     >
       <Img
-        src={staticFile("harmony/images/speaker.png")}
+        src={staticFile("harmony/icons/speaker.png")}
         style={{
           position: "absolute",
-          left: 162,
-          top: 924,
+          left: 180,
+          top: 900,
           width: 57,
           height: 57,
           objectFit: "contain",
@@ -82,45 +82,34 @@ export default function SpeakerAnimation({
         }}
       />
 
-      <svg
-        width="1080"
-        height="1920"
-        viewBox="0 0 1080 1920"
+      <div
         style={{
           position: "absolute",
-          inset: 0,
-          overflow: "visible",
+          top: 960,
+          left: 190,
         }}
       >
-        <text
-          x={190}
-          y={1010}
-          fill="#FF002D"
-          fontFamily={nameFontFamily}
-          fontSize={43}
-          textAnchor="start"
+        <div
           style={{
-            letterSpacing: 0,
+            color: "#FF002D",
+            fontFamily: nameFontFamily,
+            fontSize: 43,
           }}
         >
           {name}
-        </text>
+        </div>
 
-        <text
-          x={185}
-          y={1060}
-          fill="#FFFFFF"
-          fontFamily={descriptionFontFamily}
-          fontSize={38}
-          textAnchor="start"
+        <div
           style={{
-            letterSpacing: 0,
+            color: "#FFFFFF",
+            fontFamily: descriptionFontFamily,
+            fontSize: 38,
             filter: "drop-shadow(0 0 9.5px rgba(0, 0, 0, 0.84))",
           }}
         >
           {description}
-        </text>
-      </svg>
+        </div>
+      </div>
     </AbsoluteFill>
   );
 }

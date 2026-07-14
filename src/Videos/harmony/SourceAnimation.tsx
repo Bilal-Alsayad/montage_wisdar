@@ -1,5 +1,4 @@
 import {
-  Audio,
   Easing,
   interpolate,
   Sequence,
@@ -7,6 +6,7 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
+import { Audio } from "@remotion/media";
 
 interface SourceAnimationProps {
   source?: string;
@@ -65,38 +65,19 @@ export default function SourceAnimation({
   const iconEasing = Easing.bezier(0.649, 0, 0.318, 1);
 
   /*
-   * Alt-sol zincir parçası.
+   * Diagonal separation along the chain's 45° axis:
+   * upper-left piece slides in from top-left,
+   * lower-right piece slides in from bottom-right.
    */
-  const bottomCurrentX = interpolate(sourceFrame, [1, 25], [0.378, -5.88], {
+  const separationXY = interpolate(sourceFrame, [1, 25], [-2, 0], {
     ...CLAMP,
     easing: iconEasing,
   });
 
-  const bottomCurrentY = interpolate(sourceFrame, [1, 25], [-2.464, 3.331], {
-    ...CLAMP,
-    easing: iconEasing,
-  });
-
-  /*
-   * Üst-sağ zincir parçası.
-   */
-  const topCurrentX = interpolate(sourceFrame, [1, 25], [1.078, 9.078], {
-    ...CLAMP,
-    easing: iconEasing,
-  });
-
-  const topCurrentY = interpolate(sourceFrame, [1, 25], [-3.502, -11.252], {
-    ...CLAMP,
-    easing: iconEasing,
-  });
-
-  const bottomTranslateX = (bottomCurrentX - -5.88) * (500 / 40);
-
-  const bottomTranslateY = (bottomCurrentY - 3.331) * (500 / 40);
-
-  const topTranslateX = (topCurrentX - 9.078) * (500 / 40);
-
-  const topTranslateY = (topCurrentY - -11.252) * (500 / 40);
+  const bottomTranslateX = -separationXY;
+  const bottomTranslateY = -separationXY;
+  const topTranslateX = separationXY;
+  const topTranslateY = separationXY;
 
   const lineStart = interpolate(sourceFrame, [1, 25], [50, 0], {
     ...CLAMP,
@@ -127,10 +108,10 @@ export default function SourceAnimation({
         durationInFrames={AUDIO_DURATION_IN_FRAMES}
         layout="none"
       >
-        <Audio src={staticFile("harmony/sounds/ping.mov")} />
+        <Audio src={staticFile("harmony/sounds/ping.wav")} />
       </Sequence>
       <svg
-        viewBox="0 0 500 500"
+        viewBox="0 0 32 32"
         xmlns="http://www.w3.org/2000/svg"
         style={{
           width: 40,
@@ -138,7 +119,6 @@ export default function SourceAnimation({
           flexShrink: 0,
           overflow: "visible",
 
-          transform: "rotate(90deg)",
           transformOrigin: "center",
 
           opacity: sourceFrame >= 10 && isActive ? 1 : 0,
@@ -146,55 +126,28 @@ export default function SourceAnimation({
       >
         {/* Alt-sol zincir parçası */}
         <path
-          d="
-            M 270 355
-            L 230 395
-            C 180 445, 100 445, 55 400
-            C 10 355, 10 275, 55 230
-            L 95 190
-          "
-          fill="none"
-          stroke="#FFFFFF"
-          strokeWidth="32"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          transform={`
-            translate(
-              ${bottomTranslateX}
-              ${bottomTranslateY}
-            )
-          `}
+          d="M6.1,11.8C5.3,11,4.9,10,4.9,8.9s0.4-2.1,1.2-2.8c1.5-1.5,4.1-1.5,5.7,0l4.9,4.9c0.4,0.4,1,0.4,1.4,0s0.4-1,0-1.4l-4.9-4.9C12,3.6,10.5,2.9,8.9,2.9S5.8,3.6,4.7,4.7C3.6,5.8,2.9,7.3,2.9,8.9s0.6,3.1,1.8,4.2l4.9,4.9c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3c0.4-0.4,0.4-1,0-1.4L6.1,11.8z"
+          fill="#FFFFFF"
+          transform={`translate(${bottomTranslateX} ${bottomTranslateY})`}
         />
 
+        {/* Orta çizgi */}
         <path
-          d="M 145.1 328.5 L 339.9 172.2"
+          d="M11.1,11.1l8.5,8.5"
           pathLength={100}
           fill="none"
           stroke="#FFFFFF"
-          strokeWidth="32"
+          strokeWidth="2"
           strokeLinecap="round"
           strokeDasharray={`${lineLength} 200`}
           strokeDashoffset={-lineStart}
         />
+
+        {/* Üst-sağ zincir parçası */}
         <path
-          d="
-            M 230 145
-            L 270 105
-            C 320 55, 400 55, 445 100
-            C 490 145, 490 225, 445 270
-            L 405 310
-          "
-          fill="none"
-          stroke="#FFFFFF"
-          strokeWidth="32"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          transform={`
-            translate(
-              ${topTranslateX}
-              ${topTranslateY}
-            )
-          `}
+          d="M27.3,18.8l-4.9-4.9c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4l4.9,4.9c0.8,0.8,1.2,1.8,1.2,2.8s-0.4,2.1-1.2,2.8c-1.5,1.5-4.1,1.5-5.7,0L15.3,21c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4l4.9,4.9c1.1,1.1,2.6,1.8,4.2,1.8s3.1-0.6,4.2-1.8c1.1-1.1,1.8-2.6,1.8-4.2S28.4,20,27.3,18.8z"
+          fill="#FFFFFF"
+          transform={`translate(${topTranslateX} ${topTranslateY})`}
         />
       </svg>
 

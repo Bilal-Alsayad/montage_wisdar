@@ -45,6 +45,16 @@ export default function TitleAnimation({
     },
   );
 
+  const fadeOut = interpolate(
+    frame,
+    [128, 148],
+    [1, 0],
+    {
+      ...CLAMP,
+      easing: Easing.bezier(0.42, 0, 1, 1),
+    },
+  );
+
   return (
     <>
       {text1 && (
@@ -58,7 +68,7 @@ export default function TitleAnimation({
               [0, 1],
               [-49, 0],
             )}px)`,
-            opacity: firstLineProgress,
+            opacity: firstLineProgress * fadeOut,
             color: "#FFFFFF",
             fontFamily,
             fontSize: 100,
@@ -82,7 +92,7 @@ export default function TitleAnimation({
               [0, 1],
               [-49, 0],
             )}px)`,
-            opacity: secondLineProgress,
+            opacity: secondLineProgress * fadeOut,
             color: "#FFFFFF",
             fontFamily,
             fontSize: 100,

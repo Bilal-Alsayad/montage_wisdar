@@ -90,7 +90,7 @@ export default function TagsAnimation({
       {/* Location icon */}
       {location && (
         <Img
-          src={staticFile("harmony/images/location.png")}
+          src={staticFile("harmony/icons/location.png")}
           style={{
             width: 48,
             height: 48,
