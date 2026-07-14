@@ -17,6 +17,7 @@ import Auk4_5Template from "./auk/index4_5";
 import Auk16_9Template from "./auk/index16_9";
 import NoonTemplate from "./noon";
 import IrsalTemplate from "./irsal";
+import TventTemplate from "./tvent"
 import DiasporaPulseTemplate from "./diasporaPulse";
 
 // const S3_BASE = `${MONTAGE_FILES_URL}`;
@@ -33,7 +34,52 @@ export interface VideoTemplateConfig {
 }
 
 export const VIDEO_TEMPLATES: VideoTemplateConfig[] = [
-    {
+  {
+    id: "tvent",
+    component: TventTemplate,
+    width: 1080,
+    height: 1920,
+    outroUrl: staticFile("tvent/elements/outro.mp4"),
+    defaultVideoSrc: "",
+    outroOverlapFrames: 20,
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [0, 0],
+            bottom_right: [0, 0],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "Daughter Blasts NM Daughter Blasts NM Daughter Blasts NM ",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4361.srt"),
+      },
+      tags: {
+        location: "istanbul",
+        date: "20-20-2000",
+        source: "Maddie Block",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "Pep Guardiola",
+          description: "Manchester City Manager",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
     id: "irsal",
     component: IrsalTemplate,
     width: 1080,
@@ -55,7 +101,9 @@ export const VIDEO_TEMPLATES: VideoTemplateConfig[] = [
           blur: [],
         },
       ],
-      title: { text: "التي انطلقت لنصرة القدس والأقصى التي انطلقت لنصرة القدس والأقصى" },
+      title: {
+        text: "التي انطلقت لنصرة القدس والأقصى التي انطلقت لنصرة القدس والأقصى",
+      },
       captions: {
         src: staticFile("subtitle_translated_4361.srt"),
       },
