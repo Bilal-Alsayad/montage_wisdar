@@ -10,16 +10,16 @@ import { useLoadFonts } from "../../hooks/useLoadFonts";
 import Video from "../../Components/Video";
 import Captions from "../../Components/Captions";
 import { TemplateProps } from "../types";
+import TagsAnimation from "./TagsAnimation";
 import SpeakerAnimation, {
-  HARMONY_SPEAKER_ANIMATION_DURATION,
+  SPEAKER_ANIMATION_DURATION,
 } from "./SpeakerAnimation";
-import SourceAnimation, {
-  HARMONY_SOURCE_ANIMATION_DURATION,
-} from "./SourceAnimation";
+import TitleAnimation, { TITLE_ANIMATION_DURATION } from "./TitleAnimation";
 
-const HARMONY_ANTON = "HarmonyAnton";
-const HARMONY_MONTSERRAT = "HarmonyMontserratSemiBold";
-
+const CONFIG_VARIABLE = "ConfigVariable";
+const FRACTUL_VARIABLE_BLACK = "FractulBlack";
+const ADRIANE_TEXT_BOLD_ITALIC = "AdrianeTextBoldItalic";
+const NEUE_PLAK_CONDBOLD ="NeuePlakCondensedBold"
 export default function HarmonyTemplate({
   data,
   outroDurationInFrames = 0,
@@ -29,87 +29,98 @@ export default function HarmonyTemplate({
 
   const fontsLoaded = useLoadFonts([
     {
-      family: HARMONY_ANTON,
-      url: staticFile("harmony/fonts/AntonRegular.ttf"),
-      weight: "400",
-      style: "normal",
+      family: CONFIG_VARIABLE,
+      url: staticFile("harmony/fonts/ConfigVariable.otf"),
     },
     {
-      family: HARMONY_MONTSERRAT,
-      url: staticFile("harmony/fonts/MontserratSemiBold.ttf"),
-      weight: "600",
-      style: "normal",
+      family: NEUE_PLAK_CONDBOLD,
+      url: staticFile("harmony/fonts/NeuePlakCondensedBold.ttf"),
+    },
+    {
+      family: FRACTUL_VARIABLE_BLACK,
+      url: staticFile("harmony/fonts/FractulBlack.ttf"),
+    },
+    {
+      family: ADRIANE_TEXT_BOLD_ITALIC,
+      url: staticFile("harmony/fonts/AdrianeTextBoldItalic.ttf"),
     },
   ]);
 
-  if (!fontsLoaded) return null;
+  if (!fontsLoaded) {
+    return null;
+  }
 
   return (
-    <AbsoluteFill style={{ backgroundColor: "#000000" }}>
+    <AbsoluteFill
+      style={{
+        backgroundColor: "#000000",
+      }}
+    >
       <Video
         sequences={data.sequences}
         scaleToFit={data.scale_to_fit}
         backgroundUrl={data.background_img_url}
       />
 
-      {data.tags.source && (
-        <Sequence durationInFrames={HARMONY_SOURCE_ANIMATION_DURATION}>
-          <SourceAnimation
-            source={data.tags.source}
-            fontFamily={HARMONY_ANTON}
-          />
-        </Sequence>
-      )}
+      <Img
+        src={staticFile("harmony/images/logo.png")}
+        style={{
+          position: "absolute",
+          left: 110,
+          top: 370,
+          scale: "75%",
+        }}
+      />
+      <Sequence from={20} durationInFrames={TITLE_ANIMATION_DURATION}>
+        <TitleAnimation
+          text={data.title.text}
+          fontFamily={NEUE_PLAK_CONDBOLD}
+        />
+      </Sequence>
+
+      <TagsAnimation
+        location={data.tags.location}
+        source={data.tags.source}
+        date={data.tags.date}
+        fontFamily={CONFIG_VARIABLE}
+        sourceFontFamily={CONFIG_VARIABLE}
+      />
 
       {data.speakers.length > 0 &&
         data.speakers.map((speaker, index) => (
           <Sequence
             from={speaker.start * fps}
             key={index}
-            durationInFrames={HARMONY_SPEAKER_ANIMATION_DURATION}
+            durationInFrames={SPEAKER_ANIMATION_DURATION}
           >
             <SpeakerAnimation
               name={speaker.name}
               description={speaker.description}
-              fontFamily={HARMONY_ANTON}
+              nameFontFamily={FRACTUL_VARIABLE_BLACK}
+              descriptionFontFamily={ADRIANE_TEXT_BOLD_ITALIC}
             />
           </Sequence>
         ))}
-
-      <Img
-        src={staticFile("harmony/elements/logo.png")}
-        style={{
-          position: "absolute",
-          left: 412,
-          top: 134,
-          width: 255,
-          height: 49,
-        }}
-      />
 
       {data.captions.src && (
         <Captions
           src={data.captions.src}
           containerStyle={{
-            top: 1180,
+            top: 1000,
             width: "fit-content",
-            padding: 24,
-            borderRadius: 15,
             backgroundColor: "#000000",
+            padding: "15px",
+            borderRadius: "20px",
           }}
           textStyle={{
             color: "#ffffff",
-            fontFamily: HARMONY_MONTSERRAT,
-            fontSize: 55,
-            lineHeight: 1.15,
+            fontFamily: CONFIG_VARIABLE,
+            fontSize: 45,
           }}
         />
       )}
 
-      <Sequence
-        from={outroStartFrame}
-        durationInFrames={outroDurationInFrames}
-      >
+      <Sequence from={outroStartFrame} durationInFrames={outroDurationInFrames}>
         <OffthreadVideo
           src={staticFile("harmony/elements/outro.webm")}
           transparent

@@ -3,13 +3,20 @@ import { useLoadFonts } from "../../hooks/useLoadFonts";
 import { CroppedImage } from "../../Components/CroppedImage";
 import { CoverTemplateProps } from "../types";
 
-const fontFamily = "Anton Regular";
+const firstLine = "Adriane Text Bold Italic";
+const secondLine = "Fractul Bold";
 
-export default function MeeYoutubeTemplate({ data }: CoverTemplateProps) {
+export default function HarmonyInstagram1Template({
+  data,
+}: CoverTemplateProps) {
   const loadFont = useLoadFonts([
     {
-      family: fontFamily,
-      url: staticFile("fonts/AntonRegular.ttf"),
+      family: secondLine,
+      url: staticFile("fonts/AdrianeTextBoldItalic.ttf"),
+    },
+    {
+      family: firstLine,
+      url: staticFile("fonts/FractulBold.ttf"),
     },
   ]);
 
@@ -31,24 +38,27 @@ export default function MeeYoutubeTemplate({ data }: CoverTemplateProps) {
       </AbsoluteFill>
 
       <AbsoluteFill>
-        <Img src={staticFile("Covers/mee/mee_youtube/md5-1.png")} />
+        <Img src={staticFile("Covers/harmony/insta_1/md5-1.png")} />
 
         <div
           style={{
             position: "absolute",
-            top: 580,
-            left: 120,
-            textAlign: "left",
-            width:"50%",
+            top: 1320,
+            left: "50%",
+            transform: "translateX(-50%)",
+            width: "75%",
+            textAlign: "center",
           }}
         >
           <div
-            className="text-[#f9ad17] first-line:text-white"
+            className="first-line:font-['Adriane_Text_Bold_Italic'] 
+                        first-line:text-[80px]"
             style={{
-              fontFamily,
-              fontSize: "120px",
+              fontFamily: secondLine,
+              fontSize: 80,
               lineHeight: 1.1,
               textTransform: "uppercase",
+              color: "#ffffff",
             }}
           >
             {data.text_fields.text}
