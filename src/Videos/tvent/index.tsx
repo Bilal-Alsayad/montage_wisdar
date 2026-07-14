@@ -4,7 +4,6 @@ import { TemplateProps } from "../types";
 import Video from "../../Components/Video";
 import AudioClips from "../../Components/AudioClips";
 import Cover from "../../Components/Cover";
-// import TitleAnimation from "./TitleAnimation";
 import LogoAnimation from "./LogoAnimation";
 import Captions from "../../Components/Captions";
 import TitleAnimation, { TITLE_ANIMATION_DURATION } from "./TitleAnimation";
@@ -44,7 +43,6 @@ export default function IrsalTemplate({
       {data.cover_src && <Cover coverSrc={data.cover_src} />}
 
       {data.audio_clips && <AudioClips audioClips={data.audio_clips} />}
-      <LogoAnimation />
 
       <Sequence>
         <LogoAnimation />
