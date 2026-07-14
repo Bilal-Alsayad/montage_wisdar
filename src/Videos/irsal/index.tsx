@@ -53,7 +53,7 @@ export default function IrsalTemplate({
         />
       </Sequence>
 
-      <Sequence durationInFrames={300}>
+      <Sequence>
         <LogoAnimation />
       </Sequence>
 

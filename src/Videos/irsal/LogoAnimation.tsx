@@ -4,6 +4,7 @@ import {
   interpolate,
   staticFile,
   useCurrentFrame,
+  useVideoConfig,
 } from "remotion";
 
 const CLAMP = {
@@ -13,31 +14,34 @@ const CLAMP = {
 
 export default function LogoAnimation() {
   const frame = useCurrentFrame();
+  const { durationInFrames } = useVideoConfig();
+
+  const fadeOutStart = durationInFrames - 294;
 
   const opacity =
-    frame < 279
+    frame < fadeOutStart + 10
       ? interpolate(frame, [3, 13], [0, 1], CLAMP)
-      : interpolate(frame, [279, 289], [1, 0], CLAMP);
-
-  const positionY =
-    frame < 269
-      ? interpolate(
-          frame,
-          [3, 33],
-          [590, 532],
-          {
-            ...CLAMP,
-            easing: Easing.bezier(
-              0.054,
-              0.013,
-              0,
-              1,
-            ),
-          },
-        )
       : interpolate(
           frame,
-          [269, 299],
+          [fadeOutStart + 10, fadeOutStart + 20],
+          [1, 0],
+          CLAMP,
+        );
+
+  const positionY =
+    frame < fadeOutStart
+      ? interpolate(frame, [3, 33], [590, 532], {
+          ...CLAMP,
+          easing: Easing.bezier(
+            0.054,
+            0.013,
+            0,
+            1,
+          ),
+        })
+      : interpolate(
+          frame,
+          [fadeOutStart, fadeOutStart + 30],
           [532, 590],
           {
             ...CLAMP,
@@ -57,14 +61,14 @@ export default function LogoAnimation() {
         left: 250,
         top: positionY,
         opacity,
-        transform: `scale(0.94)`,
+        transform: "scale(0.94)",
       }}
     >
       <Img
         src={staticFile("irsal/images/logo.png")}
         style={{
           position: "absolute",
-          left: -1350, //idk :P
+          left: -1350,
           top: 1060,
           maxWidth: "none",
         }}
