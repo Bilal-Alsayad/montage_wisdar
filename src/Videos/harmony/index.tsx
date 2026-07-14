@@ -38,11 +38,11 @@ export default function HarmonyTemplate({
     },
     {
       family: FRACTUL_VARIABLE_BLACK,
-      url: staticFile("harmony/fonts/FractulBlack.ttf"),
+      url: staticFile("harmony/fonts/fractulblack.ttf"),
     },
     {
       family: ADRIANE_TEXT_BOLD_ITALIC,
-      url: staticFile("harmony/fonts/AdrianeTextBoldItalic.ttf"),
+      url: staticFile("harmony/fonts/AdrianeTextBoldItalic.otf"),
     },
   ]);
 
