@@ -202,7 +202,7 @@ const TagsAnimation: React.FC<TagsAnimationProps> = ({
             }}
           >
             <Img
-              src={staticFile("tvent/images/source.png")}
+              src={staticFile("tvnet/images/source.png")}
               style={{
                 width: 18,
                 height: 12,

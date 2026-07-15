@@ -75,7 +75,7 @@ function GreenLine({ text, frame, lineIndex }: GreenLineProps) {
       }}
     >
       <Img
-        src={staticFile("tvent/images/line.png")}
+        src={staticFile("tvnet/images/line.png")}
         style={{
           position: "absolute",
           left: 0,

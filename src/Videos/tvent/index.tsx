@@ -11,7 +11,8 @@ import TagsAnimation, { TAGS_ANIMATION_DURATION } from "./TagsAnimation";
 import SpeakerAnimation, { SPEAKER_ANIMATION_DURATION } from "./SpeakerAnimation";
 
 const MONTSERRAT_BOLD = "MontserratBold";
-const HELVETICA = "HelveticaNeueBold" 
+const HELVETICA = "HelveticaNeueBold";
+
 export default function TventTemplate({
   data,
   outroDurationInFrames = 0,
@@ -20,11 +21,11 @@ export default function TventTemplate({
   const fontsLoaded = useLoadFonts([
     {
       family: MONTSERRAT_BOLD,
-      url: staticFile("tvent/fonts/MontserratBold.ttf"),
+      url: staticFile("tvnet/fonts/MontserratBold.ttf"),
     },
     {
       family: HELVETICA,
-      url: staticFile("tvent/fonts/HelveticaNeueBold.ttf"),
+      url: staticFile("tvnet/fonts/HelveticaNeueBold.ttf"),
     },
   ]);
 
@@ -90,7 +91,7 @@ export default function TventTemplate({
 
       <Sequence from={outroStartFrame} durationInFrames={outroDurationInFrames}>
         <OffthreadVideo
-          src={staticFile("tvent/elements/outro.mp4")}
+          src={staticFile("tvnet/elements/outro.mp4")}
           transparent
           style={{
             width: "100%",

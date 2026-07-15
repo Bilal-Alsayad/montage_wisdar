@@ -26,7 +26,7 @@ export default function LogoAnimation() {
 
   return (
     <Img
-      src={staticFile("tvent/images/logo.png")}
+      src={staticFile("tvnet/images/logo.png")}
       style={{
         position: "absolute",
         left: 80,
