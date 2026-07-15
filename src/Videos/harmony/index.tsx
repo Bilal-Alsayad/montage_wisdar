@@ -14,27 +14,24 @@ import TagsAnimation from "./TagsAnimation";
 import SpeakerAnimation, {
   SPEAKER_ANIMATION_DURATION,
 } from "./SpeakerAnimation";
-import TitleAnimation, { TITLE_ANIMATION_DURATION } from "./TitleAnimation";
+import AudioClips from "../../Components/AudioClips";
+import Cover from "../../Components/Cover";
 
 const CONFIG_VARIABLE = "ConfigVariable";
 const FRACTUL_VARIABLE_BLACK = "FractulBlack";
 const ADRIANE_TEXT_BOLD_ITALIC = "AdrianeTextBoldItalic";
-const NEUE_PLAK_CONDBOLD ="NeuePlakCondensedBold"
+const NOIR_PRO_REGULAR = "NoirProRegular";
 export default function HarmonyTemplate({
   data,
   outroDurationInFrames = 0,
   outroStartFrame,
 }: TemplateProps) {
-  const { fps } = useVideoConfig();
+  const { fps, durationInFrames } = useVideoConfig();
 
   const fontsLoaded = useLoadFonts([
     {
       family: CONFIG_VARIABLE,
       url: staticFile("harmony/fonts/ConfigVariable.otf"),
-    },
-    {
-      family: NEUE_PLAK_CONDBOLD,
-      url: staticFile("harmony/fonts/NeuePlakCondensedBold.ttf"),
     },
     {
       family: FRACTUL_VARIABLE_BLACK,
@@ -44,6 +41,10 @@ export default function HarmonyTemplate({
       family: ADRIANE_TEXT_BOLD_ITALIC,
       url: staticFile("harmony/fonts/AdrianeTextBoldItalic.otf"),
     },
+    {
+      family: NOIR_PRO_REGULAR,
+      url: staticFile("harmony/fonts/NoirProRegular.otf"),
+    },
   ]);
 
   if (!fontsLoaded) {
@@ -51,16 +52,35 @@ export default function HarmonyTemplate({
   }
 
   return (
-    <AbsoluteFill
-      style={{
-        backgroundColor: "#000000",
-      }}
-    >
+    <AbsoluteFill>
       <Video
         sequences={data.sequences}
         scaleToFit={data.scale_to_fit}
         backgroundUrl={data.background_img_url}
       />
+
+      {/* Cover */}
+      {data.cover_src && <Cover coverSrc={data.cover_src} />}
+
+      {/* Audio Clips */}
+      {data.audio_clips && <AudioClips audioClips={data.audio_clips} />}
+
+      {data.captions.src && (
+        <Captions
+          src={data.captions.src}
+          containerStyle={{
+            top: 1100,
+            backgroundColor: "#000000",
+            padding: "15px",
+            borderRadius: "20px",
+          }}
+          textStyle={{
+            color: "#ffffff",
+            fontFamily: NOIR_PRO_REGULAR,
+            fontSize: 45,
+          }}
+        />
+      )}
 
       <Img
         src={staticFile("harmony/elements/logo.png")}
@@ -71,20 +91,15 @@ export default function HarmonyTemplate({
           scale: "75%",
         }}
       />
-      <Sequence from={20} durationInFrames={TITLE_ANIMATION_DURATION}>
-        <TitleAnimation
-          text={data.title.text}
-          fontFamily={NEUE_PLAK_CONDBOLD}
+
+      <Sequence from={0} durationInFrames={durationInFrames}>
+        <TagsAnimation
+          location={data.tags.location}
+          source={data.tags.source}
+          date={data.tags.date}
+          fontFamily={CONFIG_VARIABLE}
         />
       </Sequence>
-
-      <TagsAnimation
-        location={data.tags.location}
-        source={data.tags.source}
-        date={data.tags.date}
-        fontFamily={CONFIG_VARIABLE}
-        sourceFontFamily={CONFIG_VARIABLE}
-      />
 
       {data.speakers.length > 0 &&
         data.speakers.map((speaker, index) => (
@@ -101,23 +116,6 @@ export default function HarmonyTemplate({
             />
           </Sequence>
         ))}
-
-      {data.captions.src && (
-        <Captions
-          src={data.captions.src}
-          containerStyle={{
-            top: 1100,
-            backgroundColor: "#000000",
-            padding: "15px",
-            borderRadius: "20px",
-          }}
-          textStyle={{
-            color: "#ffffff",
-            fontFamily: CONFIG_VARIABLE,
-            fontSize: 45,
-          }}
-        />
-      )}
 
       <Sequence from={outroStartFrame} durationInFrames={outroDurationInFrames}>
         <OffthreadVideo

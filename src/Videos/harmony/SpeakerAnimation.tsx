@@ -89,26 +89,30 @@ export default function SpeakerAnimation({
           left: 190,
         }}
       >
-        <div
-          style={{
-            color: "#FF002D",
-            fontFamily: nameFontFamily,
-            fontSize: 43,
+        {name && (
+          <div
+            style={{
+              color: "#FF002D",
+              fontFamily: nameFontFamily,
+              fontSize: 43,
           }}
         >
           {name}
         </div>
+        )}
 
-        <div
-          style={{
-            color: "#FFFFFF",
-            fontFamily: descriptionFontFamily,
-            fontSize: 38,
+        {description && (
+          <div
+            style={{
+              color: "#FFFFFF",
+              fontFamily: descriptionFontFamily,
+              fontSize: 38,
             filter: "drop-shadow(0 0 9.5px rgba(0, 0, 0, 0.84))",
           }}
         >
           {description}
         </div>
+        )}
       </div>
     </AbsoluteFill>
   );

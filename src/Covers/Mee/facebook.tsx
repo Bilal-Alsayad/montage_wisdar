@@ -33,7 +33,7 @@ export default function MeeFacebookTemplate({ data }: CoverTemplateProps) {
       </AbsoluteFill>
 
       <AbsoluteFill>
-        <Img src={staticFile("Covers/mee/mee_facebook/md5-1.png")} />
+        <Img src={staticFile("Covers/mee_facebook/md5-1.png")} />
 
         <div
           style={{

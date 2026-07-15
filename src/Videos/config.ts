@@ -120,6 +120,7 @@ export const VIDEO_TEMPLATES: VideoTemplateConfig[] = [
     width: 1080,
     height: 1920,
     outroUrl: staticFile("quds/elements/outro.webm"),
+    outroOverlapFrames: 30,
     defaultVideoSrc: "",
     defaultData: {
       sequences: [
@@ -135,7 +136,7 @@ export const VIDEO_TEMPLATES: VideoTemplateConfig[] = [
           blur: [],
         },
       ],
-      title: { text: "Daughter Blasts NM" },
+      title: { text: "Daughter Blasts NM Daughter Blasts NM" },
       captions: {
         src: staticFile("subtitle_translated_4361.srt"),
       },

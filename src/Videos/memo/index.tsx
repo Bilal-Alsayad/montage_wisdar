@@ -5,21 +5,21 @@ import { TemplateProps } from "../types";
 import Video from "../../Components/Video";
 import AudioClips from "../../Components/AudioClips";
 import Cover from "../../Components/Cover";
-import TagsAnimation, { TAGS_ANIMATION_DURATION } from "./Tagsanimation";
-import TitleAnimation, { TITLE_ANIMATION_DURATION } from "./Titleanimation";
+import TagsAnimation, { TAGS_ANIMATION_DURATION } from "./TagsAnimation";
+import TitleAnimation, { TITLE_ANIMATION_DURATION } from "./TitleAnimation";
 
-const SOURCE_SANS_BOLD = "SourceSansPro Bold";
-const SOURCE_SANS_SEMIBOLD = "SourceSansPro SemiBold";
+const SOURCE_SANS_BOLD = "SourceSansProBold";
+const SOURCE_SANS_SEMIBOLD = "SourceSansProSemiBold";
 
 export default function MemoTemplate({ data }: TemplateProps) {
   const fontsLoaded = useLoadFonts([
     {
       family: SOURCE_SANS_BOLD,
-      url: staticFile("memo/fonts/SourceSansPro-Bold.ttf"),
+      url: staticFile("memo/fonts/SourceSansProBold.ttf"),
     },
     {
       family: SOURCE_SANS_SEMIBOLD,
-      url: staticFile("memo/fonts/SourceSansPro-SemiBold.ttf"),
+      url: staticFile("memo/fonts/SourceSansProSemiBold.ttf"),
     },
   ]);
 
