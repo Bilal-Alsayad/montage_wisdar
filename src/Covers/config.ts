@@ -3,9 +3,11 @@ import { CoverTemplateProps } from "./types";
 import MeeYoutubeTemplate from "./Mee/youtube";
 import MeeInstagramTemplate from "./Mee/instagram";
 import MeeFacebookTemplate from "./Mee/facebook"; 
-import HarmonyInstagram1Template from "./Harmony/instagram_1";
-import HarmonyInstagram2Template from "./Harmony/instagram_2";
+import HarmonyInstagram1Template from "./Harmony/cover_reel1";
+import HarmonyInstagram2Template from "./Harmony/cover_reel2";
 import IrsalInstagramTemplate from "./irsal/instagram";
+import TventInstagramTemplate from "./tvnet/instagram"
+import ThetimesofpalestineInstagramTemplate from "./thetimesofpalestine/instagram"
 
 export interface CoverTemplateConfig {
   id: string;
@@ -25,5 +27,7 @@ export const COVER_TEMPLATES: CoverTemplateConfig[] = [
   { id: "mee-facebook", component: MeeFacebookTemplate, width: 1440, height: 1440, defaultText: "ISRAEL HAS BOOBY-TRAPPED EQUIPMENT ‘IN ALL COUNTRIES’" },
   { id: "harmony-instagram1", component: HarmonyInstagram1Template, width: 1080, height: 1920, defaultText: "Haaland IDF askeriyle" },
   { id: "harmony-instagram2", component: HarmonyInstagram2Template, width: 1080, height: 1920, defaultText: "New York Senatosunda Bir Filistinli" },
-  { id: "irsal-instagram", component: IrsalInstagramTemplate, width: 1080, height: 1920, defaultText: "التي انطلقت لنصرة القدس والأقصى التي انطلقت لنصرة القدس والأقصى" }
+  { id: "irsal-instagram", component: IrsalInstagramTemplate, width: 1080, height: 1920, defaultText: "التي انطلقت لنصرة القدس والأقصى التي انطلقت لنصرة القدس والأقصى" },
+  { id: "tvent-instagram", component: TventInstagramTemplate, width: 1080, height: 1920, defaultText: "Daughter Blasts NM Daughter Blasts NM Daughter Blasts NM" },
+  { id: "Thetimesofpalestine-instagram", component: ThetimesofpalestineInstagramTemplate, width: 1080, height: 1920, defaultText: "Daughter Blasts Daughter Blast" }
 ];

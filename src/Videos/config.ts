@@ -17,7 +17,8 @@ import Auk4_5Template from "./auk/index4_5";
 import Auk16_9Template from "./auk/index16_9";
 import NoonTemplate from "./noon";
 import IrsalTemplate from "./irsal";
-import TventTemplate from "./tvent"
+import TventTemplate from "./tvent";
+import ThetimesofpalestineTemplate from "./thetimesofpalestine"
 import DiasporaPulseTemplate from "./diasporaPulse";
 
 // const S3_BASE = `${MONTAGE_FILES_URL}`;
@@ -34,6 +35,45 @@ export interface VideoTemplateConfig {
 }
 
 export const VIDEO_TEMPLATES: VideoTemplateConfig[] = [
+  {
+    id: "thetimesofpalestine",
+    component: ThetimesofpalestineTemplate,
+    width: 1080,
+    height: 1920,
+    outroUrl: staticFile("thetimesofpalestine/elements/outro.mp4"),
+    defaultVideoSrc: "",
+    outroOverlapFrames: 0,
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [0, 0],
+            bottom_right: [0, 0],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "Daughter Blasts NM Daughter Blasts NM",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4361.srt"),
+      },
+      tags: {
+        location: "istanbul",
+        date: "20-20-2000",
+        source: "Maddie Block",
+      },
+      speakers: [],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
   {
     id: "tvent",
     component: TventTemplate,
