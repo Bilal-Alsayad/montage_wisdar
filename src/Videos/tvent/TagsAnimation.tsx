@@ -110,8 +110,8 @@ const TagsAnimation: React.FC<TagsAnimationProps> = ({
       <div
         style={{
           position: "absolute",
-          top: 60,
-          right: 60,
+          top: 180,
+          right: 100,
           display: "flex",
           flexDirection: "column",
           alignItems: "flex-end",
@@ -186,7 +186,7 @@ const TagsAnimation: React.FC<TagsAnimationProps> = ({
         <div
           style={{
             position: "absolute",
-            top: 585,
+            top: "50%",
             left: 55,
             transform: "translateY(-50%)",
           }}

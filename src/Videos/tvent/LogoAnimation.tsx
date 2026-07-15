@@ -16,7 +16,7 @@ export default function LogoAnimation() {
 
   const top = interpolate(
     frame,
-    [0, 25],
+    [0, 48],
     [-160, 0],
     {
       ...CLAMP,

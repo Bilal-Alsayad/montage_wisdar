@@ -49,7 +49,7 @@ function GreenLine({ text, frame, lineIndex }: GreenLineProps) {
             easing: EASING,
           },
         ),
-        top: 763.077 + lineIndex * 85,
+        top: 1206 + lineIndex * 85,
         width:
           lineWidth *
           interpolate(
@@ -109,7 +109,7 @@ export default function TitleAnimation({
           style={{
             position: "absolute",
             left: 95,
-            top: 687 + lineIndex * 85,
+            top: 1130 + lineIndex * 85,
             width: 880,
             height: 75,
             color: "white",

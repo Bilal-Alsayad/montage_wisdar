@@ -43,7 +43,7 @@ export default function SpeakerAnimation({
         style={{
           position: "absolute",
           left: 220,
-          top: 1230,
+          top: 1225,
           display: "flex",
           flexDirection: "column",
           alignItems: "flex-start",

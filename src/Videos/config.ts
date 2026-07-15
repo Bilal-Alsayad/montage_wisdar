@@ -41,7 +41,7 @@ export const VIDEO_TEMPLATES: VideoTemplateConfig[] = [
     height: 1920,
     outroUrl: staticFile("tvent/elements/outro.mp4"),
     defaultVideoSrc: "",
-    outroOverlapFrames: 20,
+    outroOverlapFrames: 0,
     defaultData: {
       sequences: [
         {
