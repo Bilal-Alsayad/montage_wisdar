@@ -161,6 +161,7 @@ export default function LogoAnimation({ privateSource }: LogoAnimationProps) {
         height: 1920,
         overflow: "hidden",
         pointerEvents: "none",
+        zIndex: 99
       }}
     >
       <LogoBar />

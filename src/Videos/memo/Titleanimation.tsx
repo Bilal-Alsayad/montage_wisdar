@@ -86,7 +86,7 @@ export default function TitleAnimation({
       <div
         style={{
           marginTop: 40,
-          width: 610,
+          width: "100%",
           height: 10,
           backgroundColor: "#cc2127",
           opacity: lineOpacity,

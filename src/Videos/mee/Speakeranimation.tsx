@@ -323,7 +323,7 @@ export default function SpeakerAnimation({
           }}
         />
 
-        {name ? (
+        {name && (
           <div
             style={{
               position: "absolute",
@@ -354,7 +354,7 @@ export default function SpeakerAnimation({
               {name}
             </div>
           </div>
-        ) : null}
+        )}
 
 
         <div
@@ -425,7 +425,7 @@ export default function SpeakerAnimation({
         />
       </div>
 
-      {description ? (
+      {description && (
         <div
           style={{
             position: "absolute",
@@ -450,9 +450,9 @@ export default function SpeakerAnimation({
             {description}
           </div>
         </div>
-      ) : null}
+      )}
 
-      {exitHasStarted ? (
+      {exitHasStarted && (
         <div
           style={{
             position: "absolute",
@@ -463,7 +463,7 @@ export default function SpeakerAnimation({
             backgroundColor: "#FFFFFF",
           }}
         />
-      ) : null}
+      )}
     </div>
   );
 }

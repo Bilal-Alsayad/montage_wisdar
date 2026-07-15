@@ -39,7 +39,7 @@ export default function TagsAnimation({
 
   return (
     <>
-      {location ? (
+      {location && (
         <div
           style={{
             position: "absolute",
@@ -54,9 +54,9 @@ export default function TagsAnimation({
         >
           {location}
         </div>
-      ) : null}
+      )}
 
-      {date ? (
+      {date && (
         <div
           style={{
             position: "absolute",
@@ -71,7 +71,7 @@ export default function TagsAnimation({
         >
           {date}
         </div>
-      ) : null}
+      )}
     </>
   );
 }

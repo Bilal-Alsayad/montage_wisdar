@@ -13,7 +13,6 @@ interface TagsAnimationProps {
   source?: string;
   date?: string;
   fontFamily: string;
-  sourceFontFamily: string;
 }
 
 const CLAMP = {
@@ -26,7 +25,6 @@ export default function TagsAnimation({
   source,
   date,
   fontFamily,
-  sourceFontFamily,
 }: TagsAnimationProps) {
   const frame = useCurrentFrame();
 
@@ -68,10 +66,7 @@ export default function TagsAnimation({
             flexShrink: 0,
           }}
         >
-          <SourceAnimation
-            source={source}
-            fontFamily={sourceFontFamily}
-          />
+          <SourceAnimation source={source} fontFamily={fontFamily} />
         </div>
       )}
 

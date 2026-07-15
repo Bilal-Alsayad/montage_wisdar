@@ -6,16 +6,11 @@ import Video from "../../Components/Video";
 import AudioClips from "../../Components/AudioClips";
 import Cover from "../../Components/Cover";
 import LogoAnimation from "./LogoAnimation";
-
-import TitleAnimation, { TITLE_ANIMATION_DURATION } from "./Titleanimation";
-
+import TitleAnimation, { TITLE_ANIMATION_DURATION } from "./TitleAnimation";
 import SpeakerAnimation, {
   SPEAKER_ANIMATION_DURATION,
-} from "./Speakeranimation";
-
-import TagsAnimation, {
-  TAGS_AND_SOURCE_DURATION,
-} from "./Tagsanimation";
+} from "./SpeakerAnimation";
+import TagsAnimation, { TAGS_AND_SOURCE_DURATION } from "./TagsAnimation";
 
 const DINNEXTLTPRO_BOLD = "DINNextLTPro-Bold";
 const DINNEXTLTPRO_REGULAR = "DINNextLTPro-Regular";
@@ -25,15 +20,15 @@ export default function MemoTemplate({ data }: TemplateProps) {
   const fontsLoaded = useLoadFonts([
     {
       family: DINNEXTLTPRO_BOLD,
-      url: staticFile("mee/fonts/DINNextLTPro-Bold.ttf"),
+      url: staticFile("mee/fonts/DINNextLTProBold.ttf"),
     },
     {
       family: DINNEXTLTPRO_REGULAR,
-      url: staticFile("mee/fonts/DINNextLTPro-Regular.ttf"),
+      url: staticFile("mee/fonts/DINNextLTProRegular.ttf"),
     },
     {
       family: DINNEXTLTPRO_MEDIUM,
-      url: staticFile("mee/fonts/DINNextLTPro-Medium.ttf"),
+      url: staticFile("mee/fonts/DINNextLTProMedium.ttf"),
     },
   ]);
 
@@ -63,42 +58,37 @@ export default function MemoTemplate({ data }: TemplateProps) {
         </Sequence>
       )}
 
-      {(data.tags?.location || data.tags?.date || data.tags?.source) && (
-        <Sequence from={90} durationInFrames={TAGS_AND_SOURCE_DURATION}>
-          <TagsAnimation
-            location={data.tags?.location}
-            date={data.tags?.date}
-            source={data.tags?.source}
-            fontFamily={DINNEXTLTPRO_BOLD}
-          />
-        </Sequence>
-      )}
+      <Sequence from={90} durationInFrames={TAGS_AND_SOURCE_DURATION}>
+        <TagsAnimation
+          location={data.tags?.location}
+          date={data.tags?.date}
+          source={data.tags?.source}
+          fontFamily={DINNEXTLTPRO_BOLD}
+        />
+      </Sequence>
 
       <LogoAnimation privateSource={data.private_source} />
 
-      {data.title?.text && (
-        <Sequence durationInFrames={TITLE_ANIMATION_DURATION}>
-          <TitleAnimation
-            text={data.title.text}
-            fontFamily={DINNEXTLTPRO_MEDIUM}
-          />
-        </Sequence>
-      )}
+      <Sequence durationInFrames={TITLE_ANIMATION_DURATION}>
+        <TitleAnimation
+          text={data.title.text}
+          fontFamily={DINNEXTLTPRO_MEDIUM}
+        />
+      </Sequence>
 
       {data.captions.src && (
         <Captions
           src={data.captions.src}
           containerStyle={{
             position: "absolute",
-            top: 1350,
-            transform: "translateY(-50%)",
-            maxWidth: "85%",
+            top: 1150,
           }}
           textStyle={{
             fontSize: 67,
             textShadow: "0px 3px 6px rgba(0, 0, 0, 0.17)",
             color: "#FFFFFF",
             fontFamily: DINNEXTLTPRO_REGULAR,
+            lineHeight: "1",
           }}
         />
       )}

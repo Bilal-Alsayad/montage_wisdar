@@ -31,7 +31,7 @@ export default function MeeInstagramTemplate({ data }: CoverTemplateProps) {
       </AbsoluteFill>
 
       <AbsoluteFill>
-        <Img src={staticFile("Covers/mee/mee_instagram/md5-1.png")} />
+        <Img src={staticFile("Covers/mee_instagram/md5-1.png")} />
 
         <div
           style={{

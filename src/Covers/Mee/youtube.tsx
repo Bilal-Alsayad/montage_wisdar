@@ -31,7 +31,7 @@ export default function MeeYoutubeTemplate({ data }: CoverTemplateProps) {
       </AbsoluteFill>
 
       <AbsoluteFill>
-        <Img src={staticFile("Covers/mee/mee_youtube/md5-1.png")} />
+        <Img src={staticFile("Covers/mee_youtube/md5-1.png")} />
 
         <div
           style={{
