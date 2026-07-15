@@ -12,7 +12,7 @@ import SpeakerAnimation, { SPEAKER_ANIMATION_DURATION } from "./SpeakerAnimation
 
 const MONTSERRAT_BOLD = "MontserratBold";
 const HELVETICA = "HelveticaNeueBold" 
-export default function IrsalTemplate({
+export default function TventTemplate({
   data,
   outroDurationInFrames = 0,
   outroStartFrame,
