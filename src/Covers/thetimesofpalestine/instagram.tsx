@@ -12,7 +12,7 @@ export default function ThetimesofpalestineInstagramTemplate({
   const loadFont = useLoadFonts([
     {
       family: LATO_BOLD,
-      url: staticFile("thetimesofpalestine/fonts/LatoBold.ttf"),
+      url: staticFile("fonts/LatoBold.ttf"),
     },
   ]);
 
