@@ -22,6 +22,7 @@ export const CoverCompositions: React.FC = () => {
                 ...(template.defaultAdj ? { adj: template.defaultAdj } : {}),
                 ...(template.defaultTitle ? { title: template.defaultTitle } : {}),
                 ...(template.defaultSource ? { source: template.defaultSource } : {}),
+                ...(template.defaultLocation ? { location: template.defaultLocation } : {}),
               },
               imageSrc: staticFile("still/sample.png"),
               crop: {

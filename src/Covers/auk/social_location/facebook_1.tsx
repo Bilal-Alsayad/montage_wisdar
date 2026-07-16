@@ -1,11 +1,12 @@
 import { AbsoluteFill, Img, staticFile } from "remotion";
-import { useLoadFonts } from "../../hooks/useLoadFonts";
-import { CroppedImage } from "../../Components/CroppedImage";
-import { CoverTemplateProps } from "../types";
+import { useLoadFonts } from "../../../hooks/useLoadFonts";
+import { CroppedImage } from "../../../Components/CroppedImage";
+import { CoverTemplateProps } from "../../types";
+import { fitText } from "@remotion/layout-utils";
 
 const fontFamily = "BahijTheSansArabicBold";
 
-export default function AukFacebook4Template({ data }: CoverTemplateProps) {
+export default function SocialLocationAukFacebook1Template({ data }: CoverTemplateProps) {
   const loadFont = useLoadFonts([
     {
       family: fontFamily,
@@ -31,20 +32,25 @@ export default function AukFacebook4Template({ data }: CoverTemplateProps) {
       </AbsoluteFill>
 
       <AbsoluteFill>
-        <Img src={staticFile("Covers/auk/facebook_4/md5-1.png")} />
+        <Img
+          src={staticFile("Covers/auk/social_location/facebook_2/md5-1.png")}
+        />
       </AbsoluteFill>
       <div
         style={{
           position: "absolute",
-          top: 1050,
+          top: 870,
           left: "50%",
           transform: "translateX(-50%)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "85%",
           textAlign: "right",
-          width: "80%",
           direction: "rtl",
           color: "#ffffff",
           fontFamily,
-          fontSize: 80,
+          fontSize: 65,
         }}
       >
         {data.text_fields.text}
@@ -53,18 +59,27 @@ export default function AukFacebook4Template({ data }: CoverTemplateProps) {
       <div
         style={{
           position: "absolute",
-          top: 890,
-          left: 700,
+          top: 808,
+          left: 840,
           textAlign: "center",
-          width: "85%",
+          width: 140,
+          height: 40,
           direction: "rtl",
           color: "#ffffff",
+          display: "flex",
+          alignItems: "center",
           fontFamily,
-          fontSize: 75,
+          fontSize: Math.min(
+            35,
+            fitText({
+              text: data.text_fields.location,
+              withinWidth: 140,
+              fontFamily,
+            }).fontSize,
+          ),
         }}
       >
         {data.text_fields.location}
-        {"صين"}
       </div>
     </AbsoluteFill>
   );

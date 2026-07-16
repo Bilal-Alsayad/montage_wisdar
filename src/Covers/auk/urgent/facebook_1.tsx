@@ -1,11 +1,11 @@
 import { AbsoluteFill, Img, staticFile } from "remotion";
-import { useLoadFonts } from "../../hooks/useLoadFonts";
-import { CroppedImage } from "../../Components/CroppedImage";
-import { CoverTemplateProps } from "../types";
+import { useLoadFonts } from "../../../hooks/useLoadFonts";
+import { CroppedImage } from "../../../Components/CroppedImage";
+import { CoverTemplateProps } from "../../types";
 
 const fontFamily = "BahijTheSansArabicBold";
 
-export default function AukFacebook7Template({ data }: CoverTemplateProps) {
+export default function UrgentAukFacebook1Template({ data }: CoverTemplateProps) {
   const loadFont = useLoadFonts([
     {
       family: fontFamily,
@@ -31,21 +31,24 @@ export default function AukFacebook7Template({ data }: CoverTemplateProps) {
       </AbsoluteFill>
 
       <AbsoluteFill>
-        <Img src={staticFile("Covers/auk/facebook_7/md5-1.png")} />
+        <Img src={staticFile("Covers/auk/urgent/facebook_2/md5-1.png")} />
       </AbsoluteFill>
       <div
-      className="text-[#192a40] first-line:text-[#dec8b5]"
         style={{
           position: "absolute",
-          top: 1330,
-          left: "50%",
-          transform: "translateX(-50%)",
-          lineHeight:"200px",
+          top: 915,
+          left: 60,
+          width: 985,
+          height: 260,
+
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+
           textAlign: "center",
-          width: "80%",
-          direction: "rtl",
+          color: "#ffffff",
           fontFamily,
-          fontSize: 120,
+          fontSize: 65,
         }}
       >
         {data.text_fields.text}
