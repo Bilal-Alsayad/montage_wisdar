@@ -24,6 +24,15 @@ import SubsTurquoiseAukFacebook2Template from "./auk/subs_turquoise/facebook_2";
 import SubsTurquoiseAukInstagramTemplate from "./auk/subs_turquoise/instagram";
 import UrgentAukFacebook1Template from "./auk/urgent/facebook_1";
 import UrgentAukFacebook2Template from "./auk/urgent/facebook_2";
+import SudanFacebook1Template from "./sudan/facebook_1"
+import SudanFacebook2Template from "./sudan/facebook_2"
+import SudanFacebook3Template from "./sudan/facebook_3"
+import SudanFacebook4Template from "./sudan/facebook_4"
+import SudanFacebook5Template from "./sudan/facebook_5"
+import SudanYoutube1Template from "./sudan/youtube_1"
+
+import SudanInstagram1Template from "./sudan/instagram_1"
+
 
 
 
@@ -41,6 +50,57 @@ export interface CoverTemplateConfig {
 }
 
 export const COVER_TEMPLATES: CoverTemplateConfig[] = [
+  {
+    id: "sunda-facebook-1",
+    component: SudanFacebook1Template,
+    width: 1080,
+    height: 1320,
+    defaultText: "ISRAEL HAS BOOBY-TRAPPED EQUIPMENT ‘IN ALL COUNTRIES’",
+  },
+  {
+    id: "sunda-facebook-2",
+    component: SudanFacebook2Template,
+    width: 1080,
+    height: 1320,
+    defaultText: `رف التجارية تعمل مدار الـ(24) ساعة خلال العد`,
+    defaultLocation: "غزة",
+  },
+  {
+    id: "sunda-facebook-3",
+    component: SudanFacebook3Template,
+    width: 1080,
+    height: 1320,
+    defaultText: `رف التجارية تعمل مدار الـ(24) ساعة خلال العد`,
+  },
+  {
+    id: "sunda-facebook-4",
+    component: SudanFacebook4Template,
+    width: 1080,
+    height: 1080,
+    defaultText: `رف التجارية تعمل مدار الـ(24) ساعة خلال العد`,
+  },
+  {
+    id: "sunda-facebook-5",
+    component: SudanFacebook5Template,
+    width: 1080,
+    height: 1320,
+    defaultText: `رف التجارية تعمل مدار الـ(24) ساعة خلال العد`,
+    defaultSpeaker: "غزة",
+  },
+  {
+    id: "sunda-instagram-1",
+    component: SudanInstagram1Template,
+    width: 1080,
+    height: 1920,
+    defaultText: `رف التجارية تعمل مدار الـ(24) ساعة خلال العد`,
+  },
+    {
+    id: "sudan-youtube-1",
+    component: SudanYoutube1Template,
+    width: 1080,
+    height: 720,
+    defaultText: `رف التجارية تعمل مدار الـ(24) ساعة خلال العد`,
+  },
   {
     id: "mee-youtube",
     component: MeeYoutubeTemplate,
