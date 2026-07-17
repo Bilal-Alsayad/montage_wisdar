@@ -30,8 +30,10 @@ import SudanFacebook3Template from "./sudan/facebook_3"
 import SudanFacebook4Template from "./sudan/facebook_4"
 import SudanFacebook5Template from "./sudan/facebook_5"
 import SudanYoutube1Template from "./sudan/youtube_1"
+import SudanYoutube2Template from "./sudan/youtube_2"
 
 import SudanInstagram1Template from "./sudan/instagram_1"
+import SudanInstagram2Template from "./sudan/instagram_2"
 
 
 
@@ -94,12 +96,28 @@ export const COVER_TEMPLATES: CoverTemplateConfig[] = [
     height: 1920,
     defaultText: `رف التجارية تعمل مدار الـ(24) ساعة خلال العد`,
   },
-    {
+  {
+    id: "sunda-instagram-2",
+    component: SudanInstagram2Template,
+    width: 1080,
+    height: 1920,
+    defaultText: `رف التجارية تعمل مدار الـ(24) ساعة خلال العد`,
+    defaultLocation: "غزة",
+  },
+  {
     id: "sudan-youtube-1",
     component: SudanYoutube1Template,
     width: 1080,
     height: 720,
     defaultText: `رف التجارية تعمل مدار الـ(24) ساعة خلال العد`,
+  },
+  {
+    id: "sudan-youtube-2",
+    component: SudanYoutube2Template,
+    width: 1080,
+    height: 720,
+    defaultLocation: ` التجارد`,
+    defaultSource:"الذكاء الاصطناعي"
   },
   {
     id: "mee-youtube",
