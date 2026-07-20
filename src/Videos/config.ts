@@ -21,7 +21,8 @@ import TventTemplate from "./tvent";
 import ThetimesofpalestineTemplate from "./thetimesofpalestine"
 import DiasporaPulseTemplate from "./diasporaPulse";
 import AlasimahTemplate from "./alasimah"
-
+import FokusTemplate from "./fokus"
+import AlarabyTemplate from "./alaraby";
 // const S3_BASE = `${MONTAGE_FILES_URL}`;
 
 export interface VideoTemplateConfig {
@@ -36,7 +37,97 @@ export interface VideoTemplateConfig {
 }
 
 export const VIDEO_TEMPLATES: VideoTemplateConfig[] = [
-    {
+  {
+    id: "alaraby",
+    component: AlarabyTemplate,
+    width: 1080,
+    height: 1920,
+    outroUrl: staticFile("alaraby/elements/outro.webm"),
+    defaultVideoSrc: "",
+    outroOverlapFrames: 0,
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [0, 0],
+            bottom_right: [0, 0],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "تصاعد التوتر بعد تصريحات جديدة حول الأزمة",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4360.srt"),
+      },
+      tags: {
+        location: "إسطنبول",
+        date: "20-20-2000",
+        source: "الجزيرة",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "بيب غوارديولا",
+          description: "مدرب مانشستر سيتي",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
+    id: "fokus",
+    component: FokusTemplate,
+    width: 1080,
+    height: 1920,
+    outroUrl: staticFile("fokus/elements/outro.mp4"),
+    defaultVideoSrc: "",
+    outroOverlapFrames: 0,
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [0, 0],
+            bottom_right: [0, 0],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "Daughter Blasts NM Daughter Blasts NM",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4361.srt"),
+      },
+      tags: {
+        location: "istanbul",
+        date: "20-20-2000",
+        source: "Maddie Block",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "Pep Guardiola",
+          description: "Manchester City Manager",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
     id: "alasimah",
     component: AlasimahTemplate,
     width: 1080,
