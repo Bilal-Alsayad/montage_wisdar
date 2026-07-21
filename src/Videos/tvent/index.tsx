@@ -1,4 +1,4 @@
-import { AbsoluteFill, Sequence, staticFile, OffthreadVideo } from "remotion";
+import { AbsoluteFill, Sequence, staticFile, OffthreadVideo, useVideoConfig } from "remotion";
 import { useLoadFonts } from "../../hooks/useLoadFonts";
 import { TemplateProps } from "../types";
 import Video from "../../Components/Video";
@@ -17,7 +17,9 @@ export default function TventTemplate({
   data,
   outroDurationInFrames = 0,
   outroStartFrame,
+  mainVideoDurationInFrames,
 }: TemplateProps) {
+  const { fps } = useVideoConfig();
   const fontsLoaded = useLoadFonts([
     {
       family: MONTSERRAT_BOLD,
@@ -45,15 +47,15 @@ export default function TventTemplate({
 
       {data.audio_clips && <AudioClips audioClips={data.audio_clips} />}
 
-      <Sequence>
+      <Sequence from={0} durationInFrames={mainVideoDurationInFrames}>
         <LogoAnimation />
       </Sequence>
 
-      <Sequence durationInFrames={TITLE_ANIMATION_DURATION}>
+      <Sequence from={0} durationInFrames={TITLE_ANIMATION_DURATION}>
         <TitleAnimation text={data.title.text} fontFamily={MONTSERRAT_BOLD} />
       </Sequence>
 
-      <Sequence durationInFrames={TAGS_ANIMATION_DURATION}>
+      <Sequence from={0} durationInFrames={TAGS_ANIMATION_DURATION}>
         <TagsAnimation
           source={data.tags.source}
           location={data.tags.location}
@@ -62,15 +64,20 @@ export default function TventTemplate({
         />
       </Sequence>
 
-      {data.speakers && data.speakers.length > 0 && (
-        <Sequence from={142} durationInFrames={SPEAKER_ANIMATION_DURATION}>
-          <SpeakerAnimation
-            name={data.speakers[0].name}
-            description={data.speakers[0].description}
-            fontFamily={MONTSERRAT_BOLD}
-          />
-        </Sequence>
-      )}
+      {data.speakers.length > 0 &&
+        data.speakers.map((speaker, index) => (
+          <Sequence
+            key={index}
+            from={speaker.start * fps}
+            durationInFrames={SPEAKER_ANIMATION_DURATION}
+          >
+            <SpeakerAnimation
+              fontFamily={MONTSERRAT_BOLD}
+              name={speaker.name}
+              description={speaker.description}
+            />
+          </Sequence>
+        ))}
 
       {data.captions.src && (
         <Captions

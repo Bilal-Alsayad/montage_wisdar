@@ -5,8 +5,8 @@ import { TemplateProps } from "../types";
 import Video from "../../Components/Video";
 import AudioClips from "../../Components/AudioClips";
 import Cover from "../../Components/Cover";
-import TagsAnimation, { TAGS_ANIMATION_DURATION } from "./TagsAnimation";
-import TitleAnimation, { TITLE_ANIMATION_DURATION } from "./TitleAnimation";
+import TagsAnimation, { TAGS_ANIMATION_DURATION } from "./Tagsanimation";
+import TitleAnimation, { TITLE_ANIMATION_DURATION } from "./Titleanimation";
 
 const SOURCE_SANS_BOLD = "SourceSansProBold";
 const SOURCE_SANS_SEMIBOLD = "SourceSansProSemiBold";
