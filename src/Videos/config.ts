@@ -27,9 +27,9 @@ import AlarabyfrTemplate from "./alarabyfr";
 import JomarkTemplate from "./jomark";
 import AlqastalTemplate from "./alqastal";
 import TurkpressTemplate from "./turkpress";
-import Arabi21LightTemplate from "./arabi21light";
-import Arabi21AsdaaTemplate from "./arabi21asdaa";
-import Arabi21SportTemplate from "./arabi21sport";
+// import Arabi21LightTemplate from "./arabi21light";
+// import Arabi21AsdaaTemplate from "./arabi21asdaa";
+// import Arabi21SportTemplate from "./arabi21sport";
 
 // const S3_BASE = `${MONTAGE_FILES_URL}`;
 
@@ -45,120 +45,120 @@ export interface VideoTemplateConfig {
 }
 // TurkpressTemplate
 export const VIDEO_TEMPLATES: VideoTemplateConfig[] = [
-    {
-    id: "arab21sport",
-    component: Arabi21SportTemplate,
-    width: 1080,
-    height: 1920,
-    outroUrl: staticFile("arabi21sport/elements/outro.webm"),
-    defaultVideoSrc: "",
-    defaultData: {
-      sequences: [
-        {
-          start: 0,
-          end: 20,
-          crop: {
-            top_left: [0, 0],
-            bottom_right: [0, 0],
-          },
-          volume: 1,
-          videoSrc: staticFile("Sequence05_1.mp4"),
-          blur: [],
-        },
-      ],
-      title: {
-        text: "جوارديولا يواصل دفاعه العلني عن غزة والسودان",
-      },
-      captions: {
-        src: staticFile("subtitle_translated_4360.srt"),
-      },
-      tags: {
-        location: "مانشستر",
-        date: "18-07-2026",
-        source: "رويترز",
-      },
-      speakers: [],
-      private_source: false,
-      scale_to_fit: false,
-      background_img_url: "",
-    },
-  },
-  {
-    id: "arab21light",
-    component: Arabi21LightTemplate,
-    width: 1080,
-    height: 1920,
-    outroUrl: staticFile("arabi21light/elements/outro.webm"),
-    defaultVideoSrc: "",
-    defaultData: {
-      sequences: [
-        {
-          start: 0,
-          end: 20,
-          crop: {
-            top_left: [0, 0],
-            bottom_right: [0, 0],
-          },
-          volume: 1,
-          videoSrc: staticFile("Sequence05_1.mp4"),
-          blur: [],
-        },
-      ],
-      title: {
-        text: "جوارديولا يواصل دفاعه العلني عن غزة والسودان",
-      },
-      captions: {
-        src: staticFile("subtitle_translated_4360.srt"),
-      },
-      tags: {
-        location: "مانشستر",
-        date: "18-07-2026",
-        source: "رويترز",
-      },
-      speakers: [],
-      private_source: false,
-      scale_to_fit: false,
-      background_img_url: "",
-    },
-  },
-  {
-    id: "arab21asdaa",
-    component: Arabi21AsdaaTemplate,
-    width: 1080,
-    height: 1920,
-    outroUrl: staticFile("arabi21asdaa/elements/outro.webm"),
-    defaultVideoSrc: "",
-    defaultData: {
-      sequences: [
-        {
-          start: 0,
-          end: 20,
-          crop: {
-            top_left: [0, 0],
-            bottom_right: [0, 0],
-          },
-          volume: 1,
-          videoSrc: staticFile("Sequence05_1.mp4"),
-          blur: [],
-        },
-      ],
-      title: {
-        text: "جوارديولا يواصل دفاعه العلني عن غزة والسودان",
-      },
-      captions: {
-        src: staticFile("subtitle_translated_4360.srt"),
-      },
-      tags: {
-        location: "مانشستر",
-        date: "18-07-2026",
-        source: "رويترز",
-      },
-      speakers: [],
-      private_source: false,
-      scale_to_fit: false,
-      background_img_url: "",
-    },
-  },
+  //   {
+  //   id: "arab21sport",
+  //   component: Arabi21SportTemplate,
+  //   width: 1080,
+  //   height: 1920,
+  //   outroUrl: staticFile("arabi21sport/elements/outro.webm"),
+  //   defaultVideoSrc: "",
+  //   defaultData: {
+  //     sequences: [
+  //       {
+  //         start: 0,
+  //         end: 20,
+  //         crop: {
+  //           top_left: [0, 0],
+  //           bottom_right: [0, 0],
+  //         },
+  //         volume: 1,
+  //         videoSrc: staticFile("Sequence05_1.mp4"),
+  //         blur: [],
+  //       },
+  //     ],
+  //     title: {
+  //       text: "جوارديولا يواصل دفاعه العلني عن غزة والسودان",
+  //     },
+  //     captions: {
+  //       src: staticFile("subtitle_translated_4360.srt"),
+  //     },
+  //     tags: {
+  //       location: "مانشستر",
+  //       date: "18-07-2026",
+  //       source: "رويترز",
+  //     },
+  //     speakers: [],
+  //     private_source: false,
+  //     scale_to_fit: false,
+  //     background_img_url: "",
+  //   },
+  // },
+  // {
+  //   id: "arab21light",
+  //   component: Arabi21LightTemplate,
+  //   width: 1080,
+  //   height: 1920,
+  //   outroUrl: staticFile("arabi21light/elements/outro.webm"),
+  //   defaultVideoSrc: "",
+  //   defaultData: {
+  //     sequences: [
+  //       {
+  //         start: 0,
+  //         end: 20,
+  //         crop: {
+  //           top_left: [0, 0],
+  //           bottom_right: [0, 0],
+  //         },
+  //         volume: 1,
+  //         videoSrc: staticFile("Sequence05_1.mp4"),
+  //         blur: [],
+  //       },
+  //     ],
+  //     title: {
+  //       text: "جوارديولا يواصل دفاعه العلني عن غزة والسودان",
+  //     },
+  //     captions: {
+  //       src: staticFile("subtitle_translated_4360.srt"),
+  //     },
+  //     tags: {
+  //       location: "مانشستر",
+  //       date: "18-07-2026",
+  //       source: "رويترز",
+  //     },
+  //     speakers: [],
+  //     private_source: false,
+  //     scale_to_fit: false,
+  //     background_img_url: "",
+  //   },
+  // },
+  // {
+  //   id: "arab21asdaa",
+  //   component: Arabi21AsdaaTemplate,
+  //   width: 1080,
+  //   height: 1920,
+  //   outroUrl: staticFile("arabi21asdaa/elements/outro.webm"),
+  //   defaultVideoSrc: "",
+  //   defaultData: {
+  //     sequences: [
+  //       {
+  //         start: 0,
+  //         end: 20,
+  //         crop: {
+  //           top_left: [0, 0],
+  //           bottom_right: [0, 0],
+  //         },
+  //         volume: 1,
+  //         videoSrc: staticFile("Sequence05_1.mp4"),
+  //         blur: [],
+  //       },
+  //     ],
+  //     title: {
+  //       text: "جوارديولا يواصل دفاعه العلني عن غزة والسودان",
+  //     },
+  //     captions: {
+  //       src: staticFile("subtitle_translated_4360.srt"),
+  //     },
+  //     tags: {
+  //       location: "مانشستر",
+  //       date: "18-07-2026",
+  //       source: "رويترز",
+  //     },
+  //     speakers: [],
+  //     private_source: false,
+  //     scale_to_fit: false,
+  //     background_img_url: "",
+  //   },
+  // },
   {
     id: "turkpress",
     component: TurkpressTemplate,

@@ -31,9 +31,11 @@ import SudanFacebook4Template from "./sudan/facebook_4"
 import SudanFacebook5Template from "./sudan/facebook_5"
 import SudanYoutube1Template from "./sudan/youtube_1"
 import SudanYoutube2Template from "./sudan/youtube_2"
-
 import SudanInstagram1Template from "./sudan/instagram_1"
 import SudanInstagram2Template from "./sudan/instagram_2"
+import TurkpressInstagramTemplate from "./turkpress/instagram";
+import TurkpressFacebookTemplate from "./turkpress/facebook";
+import TurkpressYoutubeTemplate from "./turkpress/youtube";
 
 
 
@@ -52,6 +54,27 @@ export interface CoverTemplateConfig {
 }
 
 export const COVER_TEMPLATES: CoverTemplateConfig[] = [
+    {
+    id: "turkppress-youtube",
+    component: TurkpressYoutubeTemplate,
+    width: 1920,
+    height: 1080,
+    defaultText: `رف التجارية تعمل مدار الـ(24) ساعة خلال العد`,
+  },
+  {
+    id: "turkpress-facebook",
+    component: TurkpressFacebookTemplate,
+    width: 1080,
+    height: 1080,
+    defaultText: `رف التجارية تعمل مدار الـ(24) ساعة خلال العد`,
+  },
+  {
+    id: "turkpress-instagram",
+    component: TurkpressInstagramTemplate,
+    width: 1080,
+    height: 1920,
+    defaultText: `رف التجارية تعمل مدار الـ(24) ساعة خلال العد`,
+  },
   {
     id: "sunda-facebook-1",
     component: SudanFacebook1Template,
@@ -117,7 +140,7 @@ export const COVER_TEMPLATES: CoverTemplateConfig[] = [
     width: 1080,
     height: 720,
     defaultLocation: ` التجارد`,
-    defaultSource:"الذكاء الاصطناعي"
+    defaultSource: "الذكاء الاصطناعي",
   },
   {
     id: "mee-youtube",
