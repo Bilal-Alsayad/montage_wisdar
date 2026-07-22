@@ -14,42 +14,42 @@ export default function SourceAnimation({
   }
 
   return (
-    <>
+    <div
+      style={{
+        position: "absolute",
+        top: 515,
+        left: 95,
+        width: 55,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        opacity: 0.5,
+      }}
+    >
       <Img
         src={staticFile("alqastal/images/source.png")}
         style={{
-          position: "absolute",
-          top: 515,
-          left: 95,
-          opacity:"50%",
           width: 55,
         }}
       />
 
       <div
+        dir="rtl"
         style={{
-          position: "absolute",
-          top: 575,
-          left: 160,
-          opacity:"50%",
-          transform: "rotate(90deg)",
-          transformOrigin: "top left",
+          marginTop: 28,
+          writingMode: "vertical-rl",
+          textOrientation: "sideways",
+          backgroundColor: "#fff",
+          color: "#141414",
+          fontFamily,
+          padding: 7,
+          borderRadius: 4,
+          fontSize: 23,
+          whiteSpace: "nowrap",
         }}
       >
-        <div
-          style={{
-            backgroundColor: "#fff",
-            color: "#141414",
-            fontFamily,
-            padding: "7px",
-            borderRadius: "4px",
-            fontSize: 23,
-            whiteSpace: "nowrap",
-          }}
-        >
-          {text}
-        </div>
+        {text}
       </div>
-    </>
+    </div>
   );
 }

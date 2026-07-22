@@ -14,7 +14,7 @@ import TitleAnimation, { TITLE_ANIMATION_DURATION } from "./TitleAnimation";
 import SourceAnimation from "./SourceAnimation";
 
 const ARIAL_BOLD = "ArialBold"
-const HEADLINES_BOLD ="headlinesbold"
+const HEADLINE_BOLD ="HeadlineBold"
 export default function AlqastalTemplate({
   data,
 }: TemplateProps) {
@@ -25,8 +25,8 @@ export default function AlqastalTemplate({
       url: staticFile("alqastal/fonts/ArialBold.ttf"),
     },
         {
-      family: HEADLINES_BOLD,
-      url: staticFile("alqastal/fonts/headlinesbold.otf"),
+      family: HEADLINE_BOLD,
+      url: staticFile("alqastal/fonts/HeadlineBold.ttf"),
     },
   ]);
 
@@ -64,7 +64,7 @@ export default function AlqastalTemplate({
           bottom: 0,
         }}
       />
-      <SourceAnimation text={data.tags.source} fontFamily={HEADLINES_BOLD} />
+      <SourceAnimation text={data.tags.source} fontFamily={HEADLINE_BOLD} />
 
       <Sequence from={0} durationInFrames={TITLE_ANIMATION_DURATION}>
         <TitleAnimation text={data.title.text} fontFamily={ARIAL_BOLD} />
