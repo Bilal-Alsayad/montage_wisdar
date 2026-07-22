@@ -229,7 +229,7 @@ export const VIDEO_TEMPLATES: VideoTemplateConfig[] = [
         text: "التي انطلقت لنصرة القدس والأقصى التي انطلق والأقصى",
       },
       captions: {
-        src: staticFile("subtitle_translated_4362.srt"),
+        src: staticFile("subtitle_translated_4360.srt"),
       },
       tags: { source: "بلا بلا بلا" },
       speakers: [],

@@ -3,6 +3,7 @@ import {
   AbsoluteFill,
   Sequence,
   staticFile,
+  useCurrentFrame,
   useVideoConfig,
 } from "remotion";
 import { useLoadFonts } from "../../hooks/useLoadFonts";
@@ -10,14 +11,15 @@ import Video from "../../Components/Video";
 import { TemplateProps } from "../types";
 import AudioClips from "../../Components/AudioClips";
 import Cover from "../../Components/Cover";
-import { TitleAnimation } from "./TitleAnimation";
+import { TITLE_ANIMATION_DURATION, TitleAnimation } from "./TitleAnimation";
+import Captions from "../../Components/Captions";
 
 const LYON_ARABIC_DISPLAY_BOLD = "lyonarabicdisplaybold"
 
 export default function JomarkTemplate({
   data,
 }: TemplateProps) {
-
+  const frame = useCurrentFrame();
   const { durationInFrames } = useVideoConfig();
   const fontsLoaded = useLoadFonts([
     {
@@ -51,6 +53,23 @@ export default function JomarkTemplate({
         />
       </Sequence>
 
+      {data.captions.src && (
+        <Captions
+          src={data.captions.src}
+          containerStyle={{
+            bottom: frame < TITLE_ANIMATION_DURATION ? 700 : 400,
+            backgroundColor: "rgba(6, 6, 6, 0.54)",
+            textShadow: "0 0 50px 11.3px rgba(0, 0, 0, 0.52)",
+            padding: "10px",
+          }}
+          textStyle={{
+            color: "#fff",
+            fontFamily: LYON_ARABIC_DISPLAY_BOLD,
+
+            fontSize: 45,
+          }}
+        />
+      )}
     </AbsoluteFill>
   );
 }

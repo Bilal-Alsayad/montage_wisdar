@@ -36,7 +36,7 @@ export default function SourceAnimation({
       <div
         dir="rtl"
         style={{
-          marginTop: 28,
+          marginTop: 18,
           writingMode: "vertical-rl",
           textOrientation: "sideways",
           backgroundColor: "#fff",

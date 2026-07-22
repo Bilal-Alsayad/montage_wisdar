@@ -33,7 +33,7 @@ export default function SourceAnimation({
   }
 
   return (
-    <AbsoluteFill style={{opacity: 0.6}}>
+    <AbsoluteFill style={{ opacity: 0.6 }}>
       <Img
         src={staticFile("alarabyfr/images/source.png")}
         style={{
@@ -42,15 +42,10 @@ export default function SourceAnimation({
           top: 590,
           width: 44,
           height: 44,
-          opacity: interpolate(
-            animationFrame,
-            [0, 16.683],
-            [0, 1],
-            {
-              ...clamp,
-              easing: Easing.bezier(0.333, 0, 0.833, 1),
-            },
-          ),
+          opacity: interpolate(animationFrame, [0, 16.683], [0, 1], {
+            ...clamp,
+            easing: Easing.bezier(0.333, 0, 0.833, 1),
+          }),
         }}
       />
 
@@ -62,15 +57,10 @@ export default function SourceAnimation({
           width: 40,
           height: 3,
           backgroundColor: "#ffffff",
-          transform: `scaleX(${interpolate(
-            animationFrame,
-            [17, 24],
-            [0, 1],
-            {
-              ...clamp,
-              easing: Easing.bezier(0.333, 0, 0.667, 1),
-            },
-          )})`,
+          transform: `scaleX(${interpolate(animationFrame, [17, 24], [0, 1], {
+            ...clamp,
+            easing: Easing.bezier(0.333, 0, 0.667, 1),
+          })})`,
           transformOrigin: "center",
         }}
       />
@@ -78,33 +68,18 @@ export default function SourceAnimation({
       <div
         style={{
           position: "absolute",
-          left: interpolate(
-            animationFrame,
-            [5.367, 28],
-            [115, 110],
-            {
-              ...clamp,
-              easing: Easing.bezier(0.167, 0.167, 0, 1),
-            },
-          ),
-          top: interpolate(
-            animationFrame,
-            [5.367, 28],
-            [940, 654],
-            {
-              ...clamp,
-              easing: Easing.bezier(0.167, 0.167, 0, 1),
-            },
-          ),
-          opacity: interpolate(
-            animationFrame,
-            [5.367, 13],
-            [0.01, 1],
-            {
-              ...clamp,
-              easing: Easing.bezier(0.333, 0, 0.662, 1),
-            },
-          ),
+          left: interpolate(animationFrame, [5.367, 28], [115, 110], {
+            ...clamp,
+            easing: Easing.bezier(0.167, 0.167, 0, 1),
+          }),
+          top: interpolate(animationFrame, [5.367, 28], [940, 654], {
+            ...clamp,
+            easing: Easing.bezier(0.167, 0.167, 0, 1),
+          }),
+          opacity: interpolate(animationFrame, [5.367, 13], [0.01, 1], {
+            ...clamp,
+            easing: Easing.bezier(0.333, 0, 0.662, 1),
+          }),
         }}
       >
         <div
@@ -116,6 +91,8 @@ export default function SourceAnimation({
             top: 0,
             color: "#ffffff",
             fontFamily,
+
+            lineHeight: "44px",
             fontSize: 41,
             whiteSpace: "nowrap",
             transform: "rotate(-90deg)",
