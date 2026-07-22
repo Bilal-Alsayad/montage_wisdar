@@ -6,7 +6,7 @@ import AudioClips from "../../Components/AudioClips";
 import Cover from "../../Components/Cover";
 import Captions from "../../Components/Captions";
 import TitleAnimation, { TITLE_ANIMATION_DURATION } from "./TitleAnimation";
-import SourceAnimation from "./SourceAnimation";
+import SourceAnimation, { SOURCE_ANIMATION_DURATION } from "./SourceAnimation";
 
 const LATO_MEDIUM = "LatoMedium"; 
 const LATO_BOLD = "LatoBold"; 
@@ -52,13 +52,13 @@ export default function ThetimesofpalestineTemplate({
         }}
       />
 
-      <Sequence from={TITLE_ANIMATION_DURATION}>
+      <Sequence from={TITLE_ANIMATION_DURATION} durationInFrames={SOURCE_ANIMATION_DURATION}>
         <SourceAnimation text={data.tags.source} fontFamily={LATO_BOLD} />
       </Sequence>
 
       <Loop durationInFrames={914}>
         <OffthreadVideo
-          src={staticFile("quds/elements/texture.webm")}
+          src={staticFile("thetimesofpalestine/elements/texture.webm")}
           muted
           transparent
           style={{
