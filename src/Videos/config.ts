@@ -23,6 +23,10 @@ import DiasporaPulseTemplate from "./diasporaPulse";
 import AlasimahTemplate from "./alasimah"
 import FokusTemplate from "./fokus"
 import AlarabyTemplate from "./alaraby";
+import AlarabyfrTemplate from "./alarabyfr";
+import JomarkTemplate from "./jomark";
+import AlqastalTemplate from "./alqastal";
+import TurkpressTemplate from "./turkpress";
 // const S3_BASE = `${MONTAGE_FILES_URL}`;
 
 export interface VideoTemplateConfig {
@@ -35,8 +39,166 @@ export interface VideoTemplateConfig {
   defaultData: TemplateProps["data"];
   outroOverlapFrames?: number;
 }
-
+// TurkpressTemplate
 export const VIDEO_TEMPLATES: VideoTemplateConfig[] = [
+  {
+    id: "turkpress",
+    component: TurkpressTemplate,
+    width: 1080,
+    height: 1920,
+    outroUrl: staticFile("fokus/elements/outro.mp4"),
+    defaultVideoSrc: "",
+    outroOverlapFrames: 0,
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [0, 0],
+            bottom_right: [0, 0],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "Daughter Blasts NM Daughter Blasts NM",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4361.srt"),
+      },
+      tags: {
+        location: "istanbul",
+        date: "20-20-2000",
+        source: "Maddie Block",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "Pep Guardiola",
+          description: "Manchester City Manager",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
+    id: "alqastal",
+    component: AlqastalTemplate,
+    width: 1080,
+    height: 1920,
+    outroUrl: "",
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [0, 0],
+            bottom_right: [0, 0],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "التي انطلقت لنصرة القدس والأقصى التي انطلق والأقصى",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4362.srt"),
+      },
+      tags: { source: "بلا بلا بلا" },
+      speakers: [],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
+    id: "jomark",
+    component: JomarkTemplate,
+    width: 1080,
+    height: 1920,
+    outroUrl: "",
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [0, 0],
+            bottom_right: [0, 0],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "التي انطلقت لنصرة القدس والأقصى التي انطلقت لنصرة القدس والأقصى",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4362.srt"),
+      },
+      tags: {},
+      speakers: [],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
+    id: "alarabyfr",
+    component: AlarabyfrTemplate,
+    width: 1080,
+    height: 1920,
+    outroUrl: staticFile("alarabyfr/elements/outro.webm"),
+    defaultVideoSrc: "",
+    outroOverlapFrames: 0,
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [0, 0],
+            bottom_right: [0, 0],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "Daughter Blasts NM Daughter Blasts NM",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4362.srt"),
+      },
+      tags: {
+        location: "istanbul",
+        date: "20-20-2000",
+        source: "Maddie Block",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "Pep Guardiola",
+          description: "Manchester City Manager",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
   {
     id: "alaraby",
     component: AlarabyTemplate,
