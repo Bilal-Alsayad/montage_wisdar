@@ -73,6 +73,25 @@ export default function SpeakerAnimation({
     easing: EASE,
   });
 
+  // Purple line + triangle — grows from right to left as one piece
+  const lineScaleX = interpolate(frame, [6 * R, 34 * R], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: EASE,
+  });
+
+  // White progress bar — starts AFTER line fully appears (34*R)
+  // Lottie Layer 5: Linear Wipe 87→73 (13%→27% visible from right)
+  const progressWidth = interpolate(
+    frame,
+    [34 * R, durationInFrames],
+    [0, 27],
+    {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+    },
+  );
+
   // ── EXIT (reverse-frame technique, matching Adjustment Layer 1) ──
   // Exit: position [540,960]→[604,960] t=140→149 → slideX = 604-540 = 64px
   // Exit: opacity 100→0 t=143→149
@@ -137,7 +156,7 @@ export default function SpeakerAnimation({
           style={{
             fontFamily: fontBoldFamily,
             fontSize: 62,
-            color: "#fe490c",
+            color: "#fe460a",
             transform: `translateX(${nameSlideX}px)`,
             WebkitMaskImage: nameMask,
             maskImage: nameMask,
@@ -177,6 +196,56 @@ export default function SpeakerAnimation({
           </div>
 
           {/* Purple line + triangle (one piece, pulled from right to left) */}
+          <div
+            style={{
+              position: "absolute",
+              bottom: -15,
+              right: 0,
+              left: 0,
+              clipPath: `inset(-20px 0 -20px ${(1 - lineScaleX) * 100}%)`,
+            }}
+          >
+            {/* Purple layer */}
+            <div style={{ height: "4px", backgroundColor: "#b8ff02" }} />
+            <span
+              style={{
+                width: 0,
+                height: 0,
+                position: "absolute",
+                top: 3,
+                right: 0,
+                borderStyle: "solid",
+                borderWidth: "12px 0 0 12px",
+                borderColor: "#b8ff02 transparent transparent transparent",
+              }}
+            />
+
+            {/* White progress layer (same shapes, clipped from right) */}
+            <div
+              style={{
+                position: "absolute",
+                top: 0,
+                right: 0,
+                left: 0,
+                bottom: -16,
+                clipPath: `inset(-20px 0 -20px ${100 - progressWidth}%)`,
+              }}
+            >
+              <div style={{ height: "4px", backgroundColor: "#FFFFFF" }} />
+              <span
+                style={{
+                  width: 0,
+                  height: 0,
+                  position: "absolute",
+                  top: 3,
+                  right: 0,
+                  borderStyle: "solid",
+                  borderWidth: "12px 0 0 12px",
+                  borderColor: "#FFFFFF transparent transparent transparent",
+                }}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </AbsoluteFill>
