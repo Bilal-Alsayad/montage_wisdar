@@ -6,7 +6,7 @@ import {
   staticFile,
   useCurrentFrame,
 } from "remotion";
-import { splitTitle } from "../../utils/textUtils";
+import { splitTextIntoMultipleLines } from "../../utils/textUtils";
 
 interface TitleAnimationProps {
   text: string;
@@ -20,15 +20,13 @@ export default function TitleAnimation({
   fontFamily,
 }: TitleAnimationProps) {
   const frame = useCurrentFrame();
-  const { text1, text2 } = splitTitle(text);
+  const rawLines = splitTextIntoMultipleLines(text, 3);
 
-  if (!text1) {
+  if (!rawLines || rawLines.length === 0) {
     return null;
   }
 
-  const lines = [text1, text2]
-    .filter(Boolean)
-    .map((line) => line.split(/\s+/));
+  const lines = rawLines.map((line) => line.split(/\s+/));
 
   return (
     <AbsoluteFill>
@@ -38,7 +36,7 @@ export default function TitleAnimation({
         style={{
           position: "absolute",
           bottom: 200,
-          left:"50%",
+          left: "50%",
           transform: "translate(-50%, -50%)",
         }}
       >
@@ -73,51 +71,51 @@ export default function TitleAnimation({
               zIndex: 1,
               color: "#404040",
               fontFamily,
-              padding:20,
+              padding: 20,
               fontSize: 70,
               lineHeight: "80px",
               textAlign: "center",
               unicodeBidi: "plaintext",
             }}
           >
-            {lines.map((words, lineIndex) => (
-              <div
-                key={lineIndex}
-                style={{
-                  whiteSpace: "nowrap",
-                }}
-              >
-                {words.map((word, wordIndex) => (
-                  <span
-                    key={`${lineIndex}-${wordIndex}`}
-                    style={{
-                      opacity: interpolate(
-                        frame,
-                        [
-                          30 +
-                            (wordIndex +
-                              (lineIndex === 1 ? lines[0].length : 0)) *
-                              6,
-                          36 +
-                            (wordIndex +
-                              (lineIndex === 1 ? lines[0].length : 0)) *
-                              6,
-                        ],
-                        [0, 1],
-                        {
-                          extrapolateLeft: "clamp",
-                          extrapolateRight: "clamp",
-                          easing: Easing.bezier(0.333, 0, 0.667, 1),
-                        },
-                      ),
-                    }}
-                  >
-                    {word}
-                    {wordIndex < words.length - 1 && "\u00A0"}
-                  </span>
-                ))}
-              </div>
-            ))}
+            {lines.map((words, lineIndex) => {
+              const previousWordsCount = lines
+                .slice(0, lineIndex)
+                .reduce((acc, l) => acc + l.length, 0);
+
+              return (
+                <div
+                  key={lineIndex}
+                  style={{
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {words.map((word, wordIndex) => {
+                    const totalWordIndex = previousWordsCount + wordIndex;
+                    return (
+                      <span
+                        key={`${lineIndex}-${wordIndex}`}
+                        style={{
+                          opacity: interpolate(
+                            frame,
+                            [30 + totalWordIndex * 6, 36 + totalWordIndex * 6],
+                            [0, 1],
+                            {
+                              extrapolateLeft: "clamp",
+                              extrapolateRight: "clamp",
+                              easing: Easing.bezier(0.333, 0, 0.667, 1),
+                            },
+                          ),
+                        }}
+                      >
+                        {word}
+                        {wordIndex < words.length - 1 && "\u00A0"}
+                      </span>
+                    );
+                  })}
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

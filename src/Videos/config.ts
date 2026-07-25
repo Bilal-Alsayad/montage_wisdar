@@ -27,7 +27,6 @@ import AlarabyfrTemplate from "./alarabyfr";
 import JomarkTemplate from "./jomark";
 import AlqastalTemplate from "./alqastal";
 import TurkpressTemplate from "./turkpress";
-import Turkhaber247Template from "./turkhaber247";
 import WajhaTemplate from "./wajha";
 // import Arabi21LightTemplate from "./arabi21light";
 // import Arabi21AsdaaTemplate from "./arabi21asdaa";
@@ -92,60 +91,60 @@ export const VIDEO_TEMPLATES: VideoTemplateConfig[] = [
       background_img_url: "",
     },
   },
-  {
-    id: "turkhaber247",
-    component: Turkhaber247Template,
-    width: 1080,
-    height: 1920,
-    outroUrl: "",
-    defaultVideoSrc: "",
-    defaultData: {
-      sequences: [
-        {
-          start: 0,
-          end: 20,
-          crop: {
-            top_left: [0, 0],
-            bottom_right: [0, 0],
-          },
-          volume: 1,
-          videoSrc: staticFile("Sequence05_1.mp4"),
-          blur: [],
-        },
-      ],
-      audio_clips: [
-        {
-          src: staticFile("turkhaber247/sounds/backgorund.mp3"),
-          gain: 0.25,
-          fadeIn: 1,
-          fadeOut: 2,
-          startTime: 0,
-          duration: 20,
-        },
-      ],
-      title: {
-        text: "Daughter Blasts NM Daughter Blasts NM",
-      },
-      captions: {
-        src: staticFile("subtitle_translated_4361.srt"),
-      },
-      tags: {
-        location: "istanbul",
-        date: "20-20-2000",
-        source: "Maddie Block",
-      },
-      speakers: [
-        {
-          start: 6,
-          name: "Pep Guardiola",
-          description: "Manchester City Manager",
-        },
-      ],
-      private_source: false,
-      scale_to_fit: false,
-      background_img_url: "",
-    },
-  },
+  // {
+  //   id: "turkhaber247",
+  //   component: Turkhaber247Template,
+  //   width: 1080,
+  //   height: 1920,
+  //   outroUrl: "",
+  //   defaultVideoSrc: "",
+  //   defaultData: {
+  //     sequences: [
+  //       {
+  //         start: 0,
+  //         end: 20,
+  //         crop: {
+  //           top_left: [0, 0],
+  //           bottom_right: [0, 0],
+  //         },
+  //         volume: 1,
+  //         videoSrc: staticFile("Sequence05_1.mp4"),
+  //         blur: [],
+  //       },
+  //     ],
+  //     audio_clips: [
+  //       {
+  //         src: staticFile("turkhaber247/sounds/backgorund.mp3"),
+  //         gain: 0.25,
+  //         fadeIn: 1,
+  //         fadeOut: 2,
+  //         startTime: 0,
+  //         duration: 20,
+  //       },
+  //     ],
+  //     title: {
+  //       text: "Daughter Blasts NM Daughter Blasts NM",
+  //     },
+  //     captions: {
+  //       src: staticFile("subtitle_translated_4361.srt"),
+  //     },
+  //     tags: {
+  //       location: "istanbul",
+  //       date: "20-20-2000",
+  //       source: "Maddie Block",
+  //     },
+  //     speakers: [
+  //       {
+  //         start: 6,
+  //         name: "Pep Guardiola",
+  //         description: "Manchester City Manager",
+  //       },
+  //     ],
+  //     private_source: false,
+  //     scale_to_fit: false,
+  //     background_img_url: "",
+  //   },
+  // },
   //   {
   //   id: "arab21sport",
   //   component: Arabi21SportTemplate,
@@ -468,9 +467,9 @@ export const VIDEO_TEMPLATES: VideoTemplateConfig[] = [
     component: FokusTemplate,
     width: 1080,
     height: 1920,
-    outroUrl: staticFile("fokus/elements/outro.mp4"),
+    outroUrl: staticFile("fokus/elements/outro.webm"),
     defaultVideoSrc: "",
-    outroOverlapFrames: 0,
+    outroOverlapFrames: 15 ,
     defaultData: {
       sequences: [
         {

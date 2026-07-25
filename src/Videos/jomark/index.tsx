@@ -12,6 +12,7 @@ import { TemplateProps } from "../types";
 import AudioClips from "../../Components/AudioClips";
 import Cover from "../../Components/Cover";
 import { TITLE_ANIMATION_DURATION, TitleAnimation } from "./TitleAnimation";
+import { Logo } from "./Logo";
 import Captions from "../../Components/Captions";
 
 const LYON_ARABIC_DISPLAY_BOLD = "lyonarabicdisplaybold"
@@ -34,6 +35,7 @@ export default function JomarkTemplate({
 
   return (
     <AbsoluteFill>
+      {/* Video */}
       <Video
         sequences={data.sequences}
         scaleToFit={data.scale_to_fit}
@@ -53,6 +55,7 @@ export default function JomarkTemplate({
         />
       </Sequence>
 
+      {/* Captions */}
       {data.captions.src && (
         <Captions
           src={data.captions.src}
@@ -65,11 +68,13 @@ export default function JomarkTemplate({
           textStyle={{
             color: "#fff",
             fontFamily: LYON_ARABIC_DISPLAY_BOLD,
-
             fontSize: 45,
           }}
         />
       )}
+
+      {/* Logo */}
+      <Logo />
     </AbsoluteFill>
   );
 }

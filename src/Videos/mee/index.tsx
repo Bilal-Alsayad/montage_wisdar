@@ -9,7 +9,7 @@ import LogoAnimation from "./LogoAnimation";
 import TitleAnimation, { TITLE_ANIMATION_DURATION } from "./TitleAnimation";
 import SpeakerAnimation, {
   SPEAKER_ANIMATION_DURATION,
-} from "./SpeakerAnimation";
+} from "./Speakeranimation";
 import TagsAnimation, { TAGS_AND_SOURCE_DURATION } from "./TagsAnimation";
 
 const DINNEXTLTPRO_BOLD = "DINNextLTPro-Bold";

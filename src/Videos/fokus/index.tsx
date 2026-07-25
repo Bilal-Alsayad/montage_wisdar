@@ -25,8 +25,6 @@ export default function FokusTemplate({
 }: TemplateProps) {
   const { fps } = useVideoConfig();
   
-  const { durationInFrames } = useVideoConfig();
-
   const fontsLoaded = useLoadFonts([
     {
       family: QUIET_SANS_SEMIBOLD,
@@ -40,6 +38,7 @@ export default function FokusTemplate({
 
   return (
     <AbsoluteFill>
+      {/* Video */}
       <Video
         sequences={data.sequences}
         scaleToFit={data.scale_to_fit}
@@ -52,6 +51,7 @@ export default function FokusTemplate({
       {/* Audio Clips */}
       {data.audio_clips && <AudioClips audioClips={data.audio_clips} />}
 
+      {/* Speakers */}
       {data.speakers.length > 0 &&
         data.speakers.map((speaker, index) => (
           <Sequence
@@ -67,6 +67,7 @@ export default function FokusTemplate({
           </Sequence>
         ))}
         
+      {/* Captions */}
       {data.captions.src && (
         <Captions
           src={data.captions.src}
@@ -82,17 +83,17 @@ export default function FokusTemplate({
           }}
         />
       )}
+
+      {/* Title */}
       <Sequence from={0} durationInFrames={TITLE_ANIMATION_DURATION}>
         <TitleAnimation
           text={data.title.text}
           fontFamily={QUIET_SANS_SEMIBOLD}
         />
       </Sequence>
+      
+      {/* Logo */}
       <Loop durationInFrames={3600}>
-        <Sequence
-          from={0}
-          durationInFrames={durationInFrames}
-        >
           <OffthreadVideo
             src={staticFile("fokus/elements/logo.webm")}
             transparent
@@ -102,12 +103,11 @@ export default function FokusTemplate({
               objectFit: "cover",
             }}
           />
-        </Sequence>
       </Loop>
 
       <Sequence from={outroStartFrame} durationInFrames={outroDurationInFrames}>
         <OffthreadVideo
-          src={staticFile("fokus/elements/outro.mp4")}
+          src={staticFile("fokus/elements/outro.webm")}
           transparent
           style={{
             width: "100%",
