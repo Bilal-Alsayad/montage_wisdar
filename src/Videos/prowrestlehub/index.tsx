@@ -51,7 +51,7 @@ const TITLE_STYLES: TitleAnimationStyles = {
   firstLine: {
     width: "fit-content",
     padding: "18px 34px",
-    backgroundColor: "rgba(214, 33, 42, 0.82)",
+    backgroundColor: "rgba(152 ,53, 60 ,0.82)",
     color: "#FFFFFF",
     borderRadius: 22,
     fontSize: 66,
@@ -210,7 +210,7 @@ export default function ProWrestleHubTemplate({data}: TemplateProps) {
 
       <Img
         src={staticFile("short/prowrestlehub/images/logo.png")}
-        style={{position: "absolute", top: 270, left: 100, width: 160}}
+        style={{position: "absolute", top: 290, left: 100, width: 160}}
       />
 
       {data.captions.src && (
