@@ -28,7 +28,6 @@ import JomarkTemplate from "./jomark";
 import AlqastalTemplate from "./alqastal";
 import TurkpressTemplate from "./turkpress";
 import WajhaTemplate from "./wajha";
-import BaseTemplate from "./base";
 import News247Template from "./247news";
 import ArabFactTemplate from "./arabfact";
 import Arabi21SportIbrahimTemplate from "./arabi21sportibrahim";
@@ -71,50 +70,6 @@ export interface VideoTemplateConfig {
 }
 // TurkpressTemplate
 export const VIDEO_TEMPLATES: VideoTemplateConfig[] = [
-  {
-    id: "base",
-    component: BaseTemplate,
-    width: 1080,
-    height: 1920,
-    outroUrl: "",
-    defaultVideoSrc: "",
-    defaultData: {
-      sequences: [
-        {
-          start: 0,
-          end: 20,
-          crop: {
-            top_left: [0, 0],
-            bottom_right: [0, 0],
-          },
-          volume: 1,
-          videoSrc: staticFile("Sequence05_1.mp4"),
-          blur: [],
-        },
-      ],
-      title: {
-        text: "Daughter Blasts NM Daughter Blasts NM",
-      },
-      captions: {
-        src: staticFile("subtitle_translated_4361.srt"),
-      },
-      tags: {
-        location: "istanbul",
-        date: "20-20-2000",
-        source: "Maddie Block",
-      },
-      speakers: [
-        {
-          start: 6,
-          name: "Pep Guardiola",
-          description: "Manchester City Manager",
-        },
-      ],
-      private_source: false,
-      scale_to_fit: false,
-      background_img_url: "",
-    },
-  },
   {
     id: "247news",
     component: News247Template,
