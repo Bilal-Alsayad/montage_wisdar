@@ -52,6 +52,7 @@ import FromMeccaToJerusalemTemplate from "./frommeccatojerusalem";
 import ArabVarietyTemplate from "./arabvariety";
 import LivePulseTemplate from "./livepulse";
 import TurkeyPulseTemplate from "./turkeypulse";
+import TurkHaber247Template from "./turkhaber247";
 // import Arabi21LightTemplate from "./arabi21light";
 // import Arabi21AsdaaTemplate from "./arabi21asdaa";
 // import Arabi21SportTemplate from "./arabi21sport";
@@ -664,21 +665,21 @@ export const VIDEO_TEMPLATES: VideoTemplateConfig[] = [
         },
       ],
       title: {
-        text: "Daughter Blasts NM Daughter Blasts NM",
+        text: "التي انطلقت لنصرة ال قدس ال قدس والأق صى",
       },
       captions: {
-        src: staticFile("subtitle_translated_4361.srt"),
+        src: staticFile("subtitle_translated_4360.srt"),
       },
       tags: {
-        location: "istanbul",
+        location: "إسطنبول",
         date: "20-20-2000",
-        source: "Maddie Block",
+        source: "مادي بلوك",
       },
       speakers: [
         {
           start: 6,
-          name: "Pep Guardiola",
-          description: "Manchester City Manager",
+          name: "بيب غوارديولا",
+          description: "مدرب مانشستر سيتي",
         },
       ],
       private_source: false,
@@ -1016,21 +1017,21 @@ export const VIDEO_TEMPLATES: VideoTemplateConfig[] = [
         },
       ],
       title: {
-        text: "Daughter Blasts NM Daughter Blasts NM",
+        text: "التي انطلقت لنصرة ال قدس ال قدس والأق صى",
       },
       captions: {
-        src: staticFile("subtitle_translated_4361.srt"),
+        src: staticFile("subtitle_translated_4360.srt"),
       },
       tags: {
-        location: "istanbul",
+        location: "إسطنبول",
         date: "20-20-2000",
-        source: "Maddie Block",
+        source: "مادي بلوك",
       },
       speakers: [
         {
           start: 6,
-          name: "Pep Guardiola",
-          description: "Manchester City Manager",
+          name: "بيب غوارديولا",
+          description: "مدرب مانشستر سيتي",
         },
       ],
       private_source: false,
@@ -1060,21 +1061,21 @@ export const VIDEO_TEMPLATES: VideoTemplateConfig[] = [
         },
       ],
       title: {
-        text: "Daughter Blasts NM Daughter Blasts NM",
+        text: "التي انطلقت لنصرة ال قدس ال قدس والأق صى",
       },
       captions: {
-        src: staticFile("subtitle_translated_4361.srt"),
+        src: staticFile("subtitle_translated_4360.srt"),
       },
       tags: {
-        location: "istanbul",
+        location: "إسطنبول",
         date: "20-20-2000",
-        source: "Maddie Block",
+        source: "مادي بلوك",
       },
       speakers: [
         {
           start: 6,
-          name: "Pep Guardiola",
-          description: "Manchester City Manager",
+          name: "بيب غوارديولا",
+          description: "مدرب مانشستر سيتي",
         },
       ],
       private_source: false,
@@ -1085,6 +1086,50 @@ export const VIDEO_TEMPLATES: VideoTemplateConfig[] = [
   {
     id: "turkeypulse",
     component: TurkeyPulseTemplate,
+    width: 1080,
+    height: 1920,
+    outroUrl: "",
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [0, 0],
+            bottom_right: [0, 0],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "التي انطلقت لنصرة ال قدس ال قدس والأق صى",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4360.srt"),
+      },
+      tags: {
+        location: "إسطنبول",
+        date: "20-20-2000",
+        source: "مادي بلوك",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "بيب غوارديولا",
+          description: "مدرب مانشستر سيتي",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+    {
+    id: "turkhaber247",
+    component: TurkHaber247Template,
     width: 1080,
     height: 1920,
     outroUrl: "",
