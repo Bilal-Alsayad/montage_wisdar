@@ -76,7 +76,7 @@ export default function TagsAnimation({
   const locExitStart = durationInFrames - locEnterDuration;
   const locReverseFrame = Math.max(
     0,
-    Math.min(locEnterDuration, locEnterDuration - (frame - locExitStart))
+    Math.min(locEnterDuration, locEnterDuration - (frame - locExitStart)),
   );
 
   const locExitBorderSlideX = interpolate(locReverseFrame, [0, 58], [-94, 0], {
@@ -89,10 +89,15 @@ export default function TagsAnimation({
     extrapolateRight: "clamp",
     easing: EASE,
   });
-  const locExitBorderClipLeft = interpolate(locExitBorderWipe, [59, 88], [0, 100], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
+  const locExitBorderClipLeft = interpolate(
+    locExitBorderWipe,
+    [59, 88],
+    [0, 100],
+    {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+    },
+  );
   const locExitTextSlideX = interpolate(locReverseFrame, [14, 58], [-50, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
@@ -103,24 +108,38 @@ export default function TagsAnimation({
     extrapolateRight: "clamp",
     easing: EASE,
   });
-  const locExitIconScale = interpolate(locReverseFrame, [12, 36, 50], [0, 1.08, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: EASE_BOUNCE,
-  });
-  const locExitIconRotation = interpolate(locReverseFrame, [12, 36, 50], [9, -3, 0], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: EASE_BOUNCE,
-  });
+  const locExitIconScale = interpolate(
+    locReverseFrame,
+    [12, 36, 50],
+    [0, 1.08, 1],
+    {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+      easing: EASE_BOUNCE,
+    },
+  );
+  const locExitIconRotation = interpolate(
+    locReverseFrame,
+    [12, 36, 50],
+    [9, -3, 0],
+    {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+      easing: EASE_BOUNCE,
+    },
+  );
 
   // Location combined
-  const locFinalSlideX = frame >= locExitStart ? locExitBorderSlideX : locBorderSlideX;
-  const locFinalClipLeft = frame >= locExitStart ? locExitBorderClipLeft : locBorderClipLeft;
-  const locFinalTextSlideX = frame >= locExitStart ? locExitTextSlideX : locTextSlideX;
+  const locFinalSlideX =
+    frame >= locExitStart ? locExitBorderSlideX : locBorderSlideX;
+  const locFinalClipLeft =
+    frame >= locExitStart ? locExitBorderClipLeft : locBorderClipLeft;
+  const locFinalTextSlideX =
+    frame >= locExitStart ? locExitTextSlideX : locTextSlideX;
   const locFinalTextOpacity = Math.min(locTextOpacity, locExitTextOpacity);
   const locFinalIconScale = Math.min(locIconScale, locExitIconScale);
-  const locFinalIconRotation = frame >= locExitStart ? locExitIconRotation : locIconRotation;
+  const locFinalIconRotation =
+    frame >= locExitStart ? locExitIconRotation : locIconRotation;
 
   // --- Source enter ---
   const srcBoxScaleY = interpolate(frame, [0, 30], [0, 1], {
@@ -165,7 +184,7 @@ export default function TagsAnimation({
 
   const srcReverseFrame = Math.max(
     0,
-    Math.min(srcEnterDuration, srcEnterDuration - (frame - srcExitStart))
+    Math.min(srcEnterDuration, srcEnterDuration - (frame - srcExitStart)),
   );
 
   const srcExitBoxScaleY = interpolate(srcReverseFrame, [0, 30], [0, 1], {
@@ -173,21 +192,36 @@ export default function TagsAnimation({
     extrapolateRight: "clamp",
     easing: EASE,
   });
-  const srcExitContainerScaleX = interpolate(srcReverseFrame, [12, 48], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: EASE,
-  });
-  const srcExitIconScale = interpolate(srcReverseFrame, [12, 40, 56], [0, 1.08, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: EASE_BOUNCE,
-  });
-  const srcExitIconRotation = interpolate(srcReverseFrame, [12, 40, 56], [-21, 5, 0], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: EASE_BOUNCE,
-  });
+  const srcExitContainerScaleX = interpolate(
+    srcReverseFrame,
+    [12, 48],
+    [0, 1],
+    {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+      easing: EASE,
+    },
+  );
+  const srcExitIconScale = interpolate(
+    srcReverseFrame,
+    [12, 40, 56],
+    [0, 1.08, 1],
+    {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+      easing: EASE_BOUNCE,
+    },
+  );
+  const srcExitIconRotation = interpolate(
+    srcReverseFrame,
+    [12, 40, 56],
+    [-21, 5, 0],
+    {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+      easing: EASE_BOUNCE,
+    },
+  );
   const srcExitTextOpacity = interpolate(srcReverseFrame, [28, 46], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
@@ -201,11 +235,16 @@ export default function TagsAnimation({
 
   // Source combined
   const srcFinalBoxScaleY = Math.min(srcBoxScaleY, srcExitBoxScaleY);
-  const srcFinalContainerScaleX = Math.min(srcTextContainerScaleX, srcExitContainerScaleX);
+  const srcFinalContainerScaleX = Math.min(
+    srcTextContainerScaleX,
+    srcExitContainerScaleX,
+  );
   const srcFinalIconScale = Math.min(srcIconScale, srcExitIconScale);
   const srcFinalTextOpacity = Math.min(srcTextOpacity, srcExitTextOpacity);
-  const srcFinalTextSlideX = frame >= srcExitStart ? srcExitTextSlideX : srcTextSlideX;
-  const srcFinalIconRotation = frame >= srcExitStart ? srcExitIconRotation : srcIconRotation;
+  const srcFinalTextSlideX =
+    frame >= srcExitStart ? srcExitTextSlideX : srcTextSlideX;
+  const srcFinalIconRotation =
+    frame >= srcExitStart ? srcExitIconRotation : srcIconRotation;
 
   // --- Date enter ---
   const dateEnterDuration = 89;
@@ -232,7 +271,7 @@ export default function TagsAnimation({
   const dateExitStart = durationInFrames - dateEnterDuration;
   const dateReverseFrame = Math.max(
     0,
-    Math.min(dateEnterDuration, dateEnterDuration - (frame - dateExitStart))
+    Math.min(dateEnterDuration, dateEnterDuration - (frame - dateExitStart)),
   );
 
   const dateExitSlideX = interpolate(dateReverseFrame, [0, 77], [97, 0], {

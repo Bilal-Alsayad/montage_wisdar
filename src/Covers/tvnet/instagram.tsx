@@ -6,9 +6,7 @@ import { splitTextIntoMultipleLines } from "../../utils/textUtils";
 
 const FONT_FAMILY = "MontserratBold";
 
-export default function TventInstagramTemplate({
-  data,
-}: CoverTemplateProps) {
+export default function TventInstagramTemplate({ data }: CoverTemplateProps) {
   const loadFont = useLoadFonts([
     {
       family: FONT_FAMILY,
@@ -22,11 +20,9 @@ export default function TventInstagramTemplate({
 
   const text = data.text_fields.text ?? "";
 
-  const lines = splitTextIntoMultipleLines(
-    text,
-    3,
-    25,
-  ).filter((line) => line.trim());
+  const lines = splitTextIntoMultipleLines(text, 3, 25).filter((line) =>
+    line.trim(),
+  );
 
   return (
     <AbsoluteFill>

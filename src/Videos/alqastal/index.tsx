@@ -1,10 +1,5 @@
 /* eslint-disable @remotion/from-0 */
-import {
-  AbsoluteFill,
-  Sequence,
-  staticFile,
-  Img
-} from "remotion";
+import { AbsoluteFill, Sequence, staticFile, Img } from "remotion";
 import { useLoadFonts } from "../../hooks/useLoadFonts";
 import Video from "../../Components/Video";
 import { TemplateProps } from "../types";
@@ -14,18 +9,15 @@ import TitleAnimation, { TITLE_ANIMATION_DURATION } from "./TitleAnimation";
 import SourceAnimation from "./SourceAnimation";
 import Captions from "../../Components/Captions";
 
-const ARIAL_BOLD = "ArialBold"
-const HEADLINE_BOLD ="HeadlineBold"
-export default function AlqastalTemplate({
-  data,
-}: TemplateProps) {
-
+const ARIAL_BOLD = "ArialBold";
+const HEADLINE_BOLD = "HeadlineBold";
+export default function AlqastalTemplate({ data }: TemplateProps) {
   const fontsLoaded = useLoadFonts([
     {
-      family:ARIAL_BOLD ,
+      family: ARIAL_BOLD,
       url: staticFile("alqastal/fonts/ArialBold.ttf"),
     },
-        {
+    {
       family: HEADLINE_BOLD,
       url: staticFile("alqastal/fonts/Headline Bold.ttf"),
     },

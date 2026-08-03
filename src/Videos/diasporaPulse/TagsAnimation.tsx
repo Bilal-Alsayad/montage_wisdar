@@ -3,9 +3,9 @@ import { Easing, interpolate, staticFile, useCurrentFrame } from "remotion";
 // ─── Timing ────────────────────────────────────────────────────────────────────
 const EASE = Easing.bezier(0.333, 0, 0.667, 1);
 
-const SEGMENT = 170;           // duration of each group (location+date | source)
-const ENTER_DURATION = 20;     // clipPath reveal duration (frames)
-const EXIT_DURATION = 20;      // fadeOut duration (frames)
+const SEGMENT = 170; // duration of each group (location+date | source)
+const ENTER_DURATION = 20; // clipPath reveal duration (frames)
+const EXIT_DURATION = 20; // fadeOut duration (frames)
 
 export const TAGS_ANIMATION_DURATION = SEGMENT * 2; // 340 frames total
 
@@ -28,7 +28,7 @@ function useGroupAnim(frame: number, segmentStart: number) {
     localFrame,
     [SEGMENT - EXIT_DURATION, SEGMENT],
     [1, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE }
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE },
   );
 
   // Visible only within this segment
@@ -57,7 +57,9 @@ function TagPill({ text, icon, fontFamily }: TagProps) {
         width: "fit-content",
       }}
     >
-      <span style={{ fontFamily, fontSize: 35, color: "#fff", marginRight: 15 }}>
+      <span
+        style={{ fontFamily, fontSize: 35, color: "#fff", marginRight: 15 }}
+      >
         {text}
       </span>
       <img src={icon} alt={text} width={30} height={30} />

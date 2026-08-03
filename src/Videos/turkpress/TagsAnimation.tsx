@@ -9,7 +9,7 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import {measureText} from "@remotion/layout-utils";
+import { measureText } from "@remotion/layout-utils";
 import RedStrapAnimation, {
   RED_STRAP_BASE_WIDTH,
   RED_STRAP_HEIGHT,
@@ -43,13 +43,9 @@ const ICON_SIZE = 46;
 
 const EASE = Easing.bezier(0.333, 0, 0.667, 1);
 
-function TagItem({
-  text,
-  icon,
-  fontFamily,
-}: TagItemProps) {
+function TagItem({ text, icon, fontFamily }: TagItemProps) {
   const frame = useCurrentFrame();
-  const {width: compositionWidth} = useVideoConfig();
+  const { width: compositionWidth } = useVideoConfig();
 
   if (!text) {
     return null;
@@ -68,39 +64,28 @@ function TagItem({
     }).width + TAG_HORIZONTAL_PADDING,
   );
 
-  const strapLeft =
-    compositionWidth - TAG_RIGHT - strapWidth;
+  const strapLeft = compositionWidth - TAG_RIGHT - strapWidth;
 
   /*
    * Kırmızı strap 16. kare civarında tamamlanır.
    * İkon kutusu hemen ardından aşağı iner.
    */
-  const iconBoxProgress = interpolate(
-    frame,
-    [18, 30],
-    [0, 1],
-    {
-      easing: EASE,
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-    },
-  );
+  const iconBoxProgress = interpolate(frame, [18, 30], [0, 1], {
+    easing: EASE,
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
 
   /*
    * Çıkış animasyonu sadece opacity.
    */
-  const tagOpacity = interpolate(
-    frame,
-    [126, TAG_ANIMATION_DURATION],
-    [1, 0],
-    {
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-    },
-  );
+  const tagOpacity = interpolate(frame, [126, TAG_ANIMATION_DURATION], [1, 0], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
 
   return (
-    <AbsoluteFill style={{opacity: tagOpacity}}>
+    <AbsoluteFill style={{ opacity: tagOpacity }}>
       {/*
        * İkon kutusu önce çizilir.
        * RedStrapAnimation daha sonra çizildiği için kutu
@@ -158,10 +143,7 @@ export default function TagsAnimation({
   return (
     <AbsoluteFill>
       {location && (
-        <Sequence
-          from={0}
-          durationInFrames={TAG_ANIMATION_DURATION}
-        >
+        <Sequence from={0} durationInFrames={TAG_ANIMATION_DURATION}>
           <TagItem
             text={location}
             icon="turkpress/images/location.png"

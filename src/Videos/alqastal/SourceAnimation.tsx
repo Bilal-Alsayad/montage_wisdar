@@ -1,4 +1,4 @@
-import {Img, staticFile} from "remotion";
+import { Img, staticFile } from "remotion";
 
 interface SourceAnimationProps {
   text?: string;

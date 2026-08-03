@@ -1,9 +1,4 @@
-import {
-  AbsoluteFill,
-  Easing,
-  interpolate,
-  useCurrentFrame,
-} from "remotion";
+import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from "remotion";
 import { splitTextIntoMultipleLines } from "../../utils/textUtils";
 
 interface TitleAnimationProps {

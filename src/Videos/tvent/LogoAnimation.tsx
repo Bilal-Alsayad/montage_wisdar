@@ -14,15 +14,10 @@ const CLAMP = {
 export default function LogoAnimation() {
   const frame = useCurrentFrame();
 
-  const top = interpolate(
-    frame,
-    [0, 48],
-    [-160, 0],
-    {
-      ...CLAMP,
-      easing: Easing.out(Easing.cubic),
-    },
-  );
+  const top = interpolate(frame, [0, 48], [-160, 0], {
+    ...CLAMP,
+    easing: Easing.out(Easing.cubic),
+  });
 
   return (
     <Img
@@ -31,7 +26,7 @@ export default function LogoAnimation() {
         position: "absolute",
         left: 80,
         top,
-        width:160,
+        width: 160,
       }}
     />
   );

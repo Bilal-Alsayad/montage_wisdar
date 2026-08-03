@@ -39,8 +39,8 @@ export default function SudanFacebook3Template({ data }: CoverTemplateProps) {
           top: 421,
           left: "50%",
           transform: "translateX(-50%)",
-          width:912,
-          height:256,
+          width: 912,
+          height: 256,
 
           display: "flex",
           alignItems: "center",

@@ -6,7 +6,9 @@ import { CoverTemplateProps } from "../../types";
 
 const fontFamily = "BahijTheSansArabicBold";
 
-export default function SocialLocationAukFacebook2Template({ data }: CoverTemplateProps) {
+export default function SocialLocationAukFacebook2Template({
+  data,
+}: CoverTemplateProps) {
   const loadFont = useLoadFonts([
     {
       family: fontFamily,
@@ -32,7 +34,9 @@ export default function SocialLocationAukFacebook2Template({ data }: CoverTempla
       </AbsoluteFill>
 
       <AbsoluteFill>
-        <Img src={staticFile("Covers/auk/social_location/facebook_1/md5-1.png")} />
+        <Img
+          src={staticFile("Covers/auk/social_location/facebook_1/md5-1.png")}
+        />
       </AbsoluteFill>
 
       <div

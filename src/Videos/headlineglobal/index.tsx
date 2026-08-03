@@ -1,11 +1,11 @@
 /* eslint-disable @remotion/from-0 */
-import {AbsoluteFill, Img, Sequence, staticFile} from "remotion";
-import {useLoadFonts} from "../../hooks/useLoadFonts";
+import { AbsoluteFill, Img, Sequence, staticFile } from "remotion";
+import { useLoadFonts } from "../../hooks/useLoadFonts";
 import Video from "../../Components/Video";
 import Captions from "../../Components/Captions";
 import AudioClips from "../../Components/AudioClips";
 import Cover from "../../Components/Cover";
-import {TemplateProps} from "../types";
+import { TemplateProps } from "../types";
 
 import TitleAnimation, {
   TITLE_ANIMATION_DURATION,
@@ -127,7 +127,7 @@ const tagsIconBox = {
 
 const tagsCommon: Omit<TagsAnimationStyles["location"], "icon"> = {
   textBox: tagsTextBox,
-  text: {position: "relative"},
+  text: { position: "relative" },
   iconBox: tagsIconBox,
   textBackgroundColors: [PRIMARY_COLOR, "#FFFFFF"],
   textColors: ["#DEDEDE", "#FFFFFF", PRIMARY_COLOR],
@@ -137,19 +137,37 @@ const tagsCommon: Omit<TagsAnimationStyles["location"], "icon"> = {
 const TAGS_STYLES: TagsAnimationStyles = {
   location: {
     ...tagsCommon,
-    icon: {position: "absolute", top: 301.5, right: 112.85, width: 32.3, height: 45},
+    icon: {
+      position: "absolute",
+      top: 301.5,
+      right: 112.85,
+      width: 32.3,
+      height: 45,
+    },
   },
   date: {
     ...tagsCommon,
-    icon: {position: "absolute", top: 304.34, right: 112.2, width: 33.6, height: 37.32},
+    icon: {
+      position: "absolute",
+      top: 304.34,
+      right: 112.2,
+      width: 33.6,
+      height: 37.32,
+    },
   },
   source: {
     ...tagsCommon,
-    icon: {position: "absolute", top: 306.83, right: 111.85, width: 34.3, height: 34.35},
+    icon: {
+      position: "absolute",
+      top: 306.83,
+      right: 111.85,
+      width: 34.3,
+      height: 34.35,
+    },
   },
 };
 
-export default function HeadlineGlobalTemplate({data}: TemplateProps) {
+export default function HeadlineGlobalTemplate({ data }: TemplateProps) {
   const fontsLoaded = useLoadFonts([
     {
       family: TEMPLATE_FONT,
@@ -189,7 +207,10 @@ export default function HeadlineGlobalTemplate({data}: TemplateProps) {
         <TitleAnimation text={data.title.text} styles={TITLE_STYLES} />
       </Sequence>
 
-      <Sequence from={TITLE_ANIMATION_DURATION} durationInFrames={TAGS_ANIMATION_DURATION}>
+      <Sequence
+        from={TITLE_ANIMATION_DURATION}
+        durationInFrames={TAGS_ANIMATION_DURATION}
+      >
         <TagsAnimation
           location={data.tags.location}
           date={data.tags.date}
@@ -200,7 +221,7 @@ export default function HeadlineGlobalTemplate({data}: TemplateProps) {
 
       <Img
         src={staticFile("short/headlineglobal/images/logo.png")}
-        style={{position: "absolute", top: 180, left: 110, width: 160}}
+        style={{ position: "absolute", top: 180, left: 110, width: 160 }}
       />
 
       {data.captions.src && (

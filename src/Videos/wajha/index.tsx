@@ -5,7 +5,7 @@ import {
   OffthreadVideo,
   Sequence,
   staticFile,
-  useVideoConfig
+  useVideoConfig,
 } from "remotion";
 import { useLoadFonts } from "../../hooks/useLoadFonts";
 import Video from "../../Components/Video";
@@ -14,13 +14,17 @@ import AudioClips from "../../Components/AudioClips";
 import Cover from "../../Components/Cover";
 import TitleAnimation from "./TitleAnimation";
 import TagsAnimation, { TAGS_ANIMATION_DURATION } from "./TagsAnimation";
-import SpeakerAnimation, { SPEAKER_ANIMATION_DURATION } from "./SpeakerAnimation";
+import SpeakerAnimation, {
+  SPEAKER_ANIMATION_DURATION,
+} from "./SpeakerAnimation";
 // import Captions from "../../Components/Captions";
 
-const MorabbaSemiBold = "MorabbaSemiBold"
+const MorabbaSemiBold = "MorabbaSemiBold";
 
 export default function WajhaTemplate({
-  data, outroDurationInFrames ,outroStartFrame
+  data,
+  outroDurationInFrames,
+  outroStartFrame,
 }: TemplateProps) {
   const { durationInFrames } = useVideoConfig();
 
@@ -105,7 +109,6 @@ export default function WajhaTemplate({
           }}
         />
       </Sequence>
-
     </AbsoluteFill>
   );
 }

@@ -58,11 +58,11 @@ export default function SudanFacebook5Template({ data }: CoverTemplateProps) {
       <div
         style={{
           position: "absolute",
-          top: 626 ,
-          left:537 ,
+          top: 626,
+          left: 537,
           textAlign: "right",
-          width: 509   ,
-          height: 124  ,
+          width: 509,
+          height: 124,
           direction: "rtl",
           color: "#000000",
           fontFamily,

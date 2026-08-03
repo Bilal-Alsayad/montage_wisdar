@@ -1,9 +1,4 @@
-import {
-  AbsoluteFill,
-  Easing,
-  interpolate,
-  useCurrentFrame,
-} from "remotion";
+import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from "remotion";
 import { splitTitle } from "../../utils/textUtils";
 
 interface TitleAnimationProps {
@@ -56,16 +51,11 @@ export default function TitleAnimation({
               extrapolateRight: "clamp",
               easing: ease,
             }),
-            transform: `translateY(${interpolate(
-              frame,
-              [0, 24],
-              [133.36, 0],
-              {
-                extrapolateLeft: "clamp",
-                extrapolateRight: "clamp",
-                easing: ease,
-              },
-            )}px)`,
+            transform: `translateY(${interpolate(frame, [0, 24], [133.36, 0], {
+              extrapolateLeft: "clamp",
+              extrapolateRight: "clamp",
+              easing: ease,
+            })}px)`,
           }}
         >
           {text1}

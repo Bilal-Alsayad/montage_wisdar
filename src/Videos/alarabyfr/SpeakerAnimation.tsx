@@ -1,9 +1,4 @@
-import {
-  AbsoluteFill,
-  Easing,
-  interpolate,
-  useCurrentFrame,
-} from "remotion";
+import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from "remotion";
 
 interface SpeakerAnimationProps {
   name: string;
@@ -66,9 +61,7 @@ export default function SpeakerAnimation({
   });
 
   const whiteBoxOpacity =
-    frame < 26
-      ? 1
-      : interpolate(frame, [26, 46], [1, 0], clamp);
+    frame < 26 ? 1 : interpolate(frame, [26, 46], [1, 0], clamp);
 
   const wipeFrame = frame >= 80 ? frame - 80 : frame;
 
@@ -118,8 +111,7 @@ export default function SpeakerAnimation({
                 alignItems: "center",
                 height: 60,
                 padding: "0 20px",
-                background:
-                  "linear-gradient(90deg, #2337d3 0%, #233095 100%)",
+                background: "linear-gradient(90deg, #2337d3 0%, #233095 100%)",
                 color: "#ffffff",
                 fontFamily,
                 fontSize: 55,

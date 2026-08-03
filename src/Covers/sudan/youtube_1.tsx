@@ -38,8 +38,8 @@ export default function SudanYoutube1Template({ data }: CoverTemplateProps) {
           position: "absolute",
           top: 525,
           left: 32,
-          width: 998 ,
-          height: 140 ,
+          width: 998,
+          height: 140,
 
           display: "flex",
           alignItems: "center",

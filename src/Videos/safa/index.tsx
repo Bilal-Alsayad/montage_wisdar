@@ -8,7 +8,9 @@ import Captions from "../../Components/Captions";
 import { ImageSequence } from "../../Components/ImageSequence";
 import TitleAnimation, { TITLE_ANIMATION_DURATION } from "./TitleAnimation";
 import TagsAnimation, { TAGS_ANIMATION_DURATION } from "./TagsAnimation";
-import SpeakerAnimation, { SPEAKER_ANIMATION_DURATION } from "./SpeakerAnimation";
+import SpeakerAnimation, {
+  SPEAKER_ANIMATION_DURATION,
+} from "./SpeakerAnimation";
 
 const AlexandriaSemiBold = "Alexandria SemiBold";
 
@@ -64,11 +66,17 @@ export default function SafaTemplate({
 
       {/* Title */}
       <Sequence from={0} durationInFrames={TITLE_ANIMATION_DURATION}>
-        <TitleAnimation text={data.title.text} fontFamily={AlexandriaSemiBold} />
+        <TitleAnimation
+          text={data.title.text}
+          fontFamily={AlexandriaSemiBold}
+        />
       </Sequence>
 
       {/* Tags */}
-      <Sequence from={TITLE_ANIMATION_DURATION} durationInFrames={TAGS_ANIMATION_DURATION}>
+      <Sequence
+        from={TITLE_ANIMATION_DURATION}
+        durationInFrames={TAGS_ANIMATION_DURATION}
+      >
         <TagsAnimation
           date={data.tags.date}
           location={data.tags.location}

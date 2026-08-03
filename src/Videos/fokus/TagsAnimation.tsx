@@ -196,7 +196,7 @@ function SourceIconSVG({
       </g>
     </svg>
   );
-};
+}
 
 export default function TagsAnimation({
   source,

@@ -6,9 +6,7 @@ import { CoverTemplateProps } from "../types";
 
 const fontFamily = "SwissraCondensedHeavy";
 
-export default function TurkpressYoutubeTemplate({
-  data,
-}: CoverTemplateProps) {
+export default function TurkpressYoutubeTemplate({ data }: CoverTemplateProps) {
   const fontsLoaded = useLoadFonts([
     {
       family: fontFamily,
@@ -37,15 +35,14 @@ export default function TurkpressYoutubeTemplate({
         <Img src={staticFile("Covers/turkpress/youtube/md5-1.png")} />
       </AbsoluteFill>
 
-
       {text1 ? (
         <div
           style={{
             position: "absolute",
-            top:643,
-            left:833,
-            width:984,
-            height:129,
+            top: 643,
+            left: 833,
+            width: 984,
+            height: 129,
 
             display: "flex",
             alignItems: "center",
@@ -57,8 +54,6 @@ export default function TurkpressYoutubeTemplate({
             color: "#ffffff",
             direction: "rtl",
             textAlign: "right",
-
-
           }}
         >
           {text1}
@@ -69,10 +64,10 @@ export default function TurkpressYoutubeTemplate({
         <div
           style={{
             position: "absolute",
-            top:812,
-            left:833,
-            width:984,
-            height:129,
+            top: 812,
+            left: 833,
+            width: 984,
+            height: 129,
 
             display: "flex",
             alignItems: "center",
@@ -84,7 +79,6 @@ export default function TurkpressYoutubeTemplate({
             color: "#ffffff",
             direction: "rtl",
             textAlign: "right",
-
           }}
         >
           {text2}

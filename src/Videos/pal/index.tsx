@@ -87,12 +87,12 @@ export default function PalTemplate({ data }: TemplateProps) {
       />
 
       {/* Social Media */}
-      <Sequence  durationInFrames={SOCIAL_MEDIA_ANIMATION_DURATION}>
+      <Sequence durationInFrames={SOCIAL_MEDIA_ANIMATION_DURATION}>
         <SocialMediaAnimation fontFamily={RubikRegular} />
       </Sequence>
 
       {/* Source */}
-      <Sequence  durationInFrames={SOURCE_ANIMATION_DURATION}>
+      <Sequence durationInFrames={SOURCE_ANIMATION_DURATION}>
         <SourceAnimation text={data.tags.source} fontFamily={RubikRegular} />
       </Sequence>
 

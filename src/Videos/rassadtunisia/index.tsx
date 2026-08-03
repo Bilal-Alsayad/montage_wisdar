@@ -136,7 +136,10 @@ export default function RassadTunisiaTemplate({ data }: TemplateProps) {
         ))}
 
       <Sequence from={0} durationInFrames={160}>
-        <TitleAnimation text={data.title.text} fontFamily={itfGhroobSSExtraBold}/>
+        <TitleAnimation
+          text={data.title.text}
+          fontFamily={itfGhroobSSExtraBold}
+        />
       </Sequence>
     </AbsoluteFill>
   );

@@ -1,4 +1,10 @@
-import { AbsoluteFill, Sequence, staticFile, OffthreadVideo, useVideoConfig } from "remotion";
+import {
+  AbsoluteFill,
+  Sequence,
+  staticFile,
+  OffthreadVideo,
+  useVideoConfig,
+} from "remotion";
 import { useLoadFonts } from "../../hooks/useLoadFonts";
 import { TemplateProps } from "../types";
 import Video from "../../Components/Video";
@@ -8,7 +14,9 @@ import LogoAnimation from "./LogoAnimation";
 import Captions from "../../Components/Captions";
 import TitleAnimation, { TITLE_ANIMATION_DURATION } from "./TitleAnimation";
 import TagsAnimation, { TAGS_ANIMATION_DURATION } from "./TagsAnimation";
-import SpeakerAnimation, { SPEAKER_ANIMATION_DURATION } from "./SpeakerAnimation";
+import SpeakerAnimation, {
+  SPEAKER_ANIMATION_DURATION,
+} from "./SpeakerAnimation";
 
 const MONTSERRAT_BOLD = "MontserratBold";
 const HELVETICA = "HelveticaNeueBold";

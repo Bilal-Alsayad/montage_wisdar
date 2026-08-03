@@ -1,4 +1,4 @@
-import type {CSSProperties} from "react";
+import type { CSSProperties } from "react";
 import {
   AbsoluteFill,
   Easing,
@@ -38,8 +38,7 @@ export default function SpeakerAnimation({
 }: SpeakerAnimationProps) {
   const frame = useCurrentFrame();
 
-  const animationFrame =
-    frame < 94 ? frame / 1.2 : 98 - frame / 1.2;
+  const animationFrame = frame < 94 ? frame / 1.2 : 98 - frame / 1.2;
 
   if (!name && !description) {
     return null;
@@ -61,15 +60,10 @@ export default function SpeakerAnimation({
               styles.nameBackgroundColors,
             ),
 
-            opacity: interpolate(
-              animationFrame,
-              [5, 10],
-              [0, 1],
-              {
-                ...clamp,
-                easing: ease,
-              },
-            ),
+            opacity: interpolate(animationFrame, [5, 10], [0, 1], {
+              ...clamp,
+              easing: ease,
+            }),
 
             transform: `translateY(${interpolate(
               animationFrame,
@@ -116,15 +110,10 @@ export default function SpeakerAnimation({
               styles.descriptionBackgroundColors,
             ),
 
-            opacity: interpolate(
-              animationFrame,
-              [7, 12],
-              [0, 1],
-              {
-                ...clamp,
-                easing: ease,
-              },
-            ),
+            opacity: interpolate(animationFrame, [7, 12], [0, 1], {
+              ...clamp,
+              easing: ease,
+            }),
 
             transform: `translateY(${interpolate(
               animationFrame,

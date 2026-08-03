@@ -64,91 +64,44 @@ export default function SpeakerAnimation({
 
   const sourceFrame = frame * (25 / fps);
 
-  const circleScale = interpolate(
-    sourceFrame,
-    [0, 6],
-    [0, 1],
-    {
-      ...CLAMP,
-      easing: Easing.bezier(0.167, 0.167, 0.4, 1),
-    },
-  );
+  const circleScale = interpolate(sourceFrame, [0, 6], [0, 1], {
+    ...CLAMP,
+    easing: Easing.bezier(0.167, 0.167, 0.4, 1),
+  });
 
-  const circleMove = interpolate(
-    sourceFrame,
-    [156, 163],
-    [0, 1],
-    {
-      ...CLAMP,
-      easing: Easing.bezier(0.6, 0, 0.833, 0.833),
-    },
-  );
+  const circleMove = interpolate(sourceFrame, [156, 163], [0, 1], {
+    ...CLAMP,
+    easing: Easing.bezier(0.6, 0, 0.833, 0.833),
+  });
 
-  const circleY = cubic(
-    230.732,
-    217.649,
-    165.315,
-    152.232,
-    circleMove,
-  );
+  const circleY = cubic(230.732, 217.649, 165.315, 152.232, circleMove);
 
-  const squareScaleY = interpolate(
-    sourceFrame,
-    [6, 13],
-    [0, 1],
-    {
-      ...CLAMP,
-      easing: Easing.bezier(0.167, 0, 0.4, 1),
-    },
-  );
+  const squareScaleY = interpolate(sourceFrame, [6, 13], [0, 1], {
+    ...CLAMP,
+    easing: Easing.bezier(0.167, 0, 0.4, 1),
+  });
 
-  const rectangleScaleY = interpolate(
-    sourceFrame,
-    [9, 20.400390625],
-    [0, 1],
-    {
-      ...CLAMP,
-      easing: Easing.bezier(0.167, 0, 0.4, 1),
-    },
-  );
+  const rectangleScaleY = interpolate(sourceFrame, [9, 20.400390625], [0, 1], {
+    ...CLAMP,
+    easing: Easing.bezier(0.167, 0, 0.4, 1),
+  });
 
-  const rectangleMove = interpolate(
-    sourceFrame,
-    [16.6, 28],
-    [0, 1],
-    {
-      ...CLAMP,
-      easing: ease,
-    },
-  );
+  const rectangleMove = interpolate(sourceFrame, [16.6, 28], [0, 1], {
+    ...CLAMP,
+    easing: ease,
+  });
 
-  const rectangleY = cubic(
-    121.665,
-    157.332,
-    299.998,
-    335.665,
-    rectangleMove,
-  );
+  const rectangleY = cubic(121.665, 157.332, 299.998, 335.665, rectangleMove);
 
-  const rectangleOpacity = interpolate(
-    sourceFrame,
-    [17, 28],
-    [1, 0],
-    {
-      ...CLAMP,
-      easing: Easing.bezier(0.167, 0.167, 0.833, 0.833),
-    },
-  );
+  const rectangleOpacity = interpolate(sourceFrame, [17, 28], [1, 0], {
+    ...CLAMP,
+    easing: Easing.bezier(0.167, 0.167, 0.833, 0.833),
+  });
 
-  const exitSquareProgress = interpolate(
-    sourceFrame,
-    [163, 172],
-    [0, 1],
-    {
-      ...CLAMP,
-      easing: ease,
-    },
-  );
+  const exitSquareProgress = interpolate(sourceFrame, [163, 172], [0, 1], {
+    ...CLAMP,
+    easing: ease,
+  });
 
   return (
     <AbsoluteFill>

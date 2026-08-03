@@ -6,9 +6,7 @@ import { CoverTemplateProps } from "../types";
 
 const SWISSRA_CONDENSED_HEAVY = "SwissraCondensedHeavy";
 
-export default function IrsalInstagramTemplate({
-  data,
-}: CoverTemplateProps) {
+export default function IrsalInstagramTemplate({ data }: CoverTemplateProps) {
   const fontsLoaded = useLoadFonts([
     {
       family: SWISSRA_CONDENSED_HEAVY,
@@ -53,7 +51,7 @@ export default function IrsalInstagramTemplate({
         />
       </div>
 
-{/* AI */}
+      {/* AI */}
 
       {text1 ? (
         <div
@@ -136,7 +134,7 @@ export default function IrsalInstagramTemplate({
           </div>
         </div>
       ) : null}
-{/* AI */}
+      {/* AI */}
     </AbsoluteFill>
   );
 }

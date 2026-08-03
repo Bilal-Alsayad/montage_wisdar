@@ -32,27 +32,12 @@ export default function LogoAnimation() {
     frame < fadeOutStart
       ? interpolate(frame, [3, 33], [590, 532], {
           ...CLAMP,
-          easing: Easing.bezier(
-            0.054,
-            0.013,
-            0,
-            1,
-          ),
+          easing: Easing.bezier(0.054, 0.013, 0, 1),
         })
-      : interpolate(
-          frame,
-          [fadeOutStart, fadeOutStart + 30],
-          [532, 590],
-          {
-            ...CLAMP,
-            easing: Easing.bezier(
-              1,
-              0,
-              0.946,
-              0.987,
-            ),
-          },
-        );
+      : interpolate(frame, [fadeOutStart, fadeOutStart + 30], [532, 590], {
+          ...CLAMP,
+          easing: Easing.bezier(1, 0, 0.946, 0.987),
+        });
 
   return (
     <div

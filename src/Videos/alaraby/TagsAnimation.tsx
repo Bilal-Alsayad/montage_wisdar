@@ -29,17 +29,14 @@ const EASE = Easing.bezier(0.33, 0, 0.2, 1);
 
 export const TAGS_ANIMATION_DURATION = 232;
 
-function Tag({text, icon, top, fontFamily}: TagProps) {
+function Tag({ text, icon, top, fontFamily }: TagProps) {
   const frame = useCurrentFrame();
 
   if (!text) {
     return null;
   }
 
-  const animationFrame = Math.max(
-    0,
-    Math.min(frame, TAG_DURATION - frame, 25),
-  );
+  const animationFrame = Math.max(0, Math.min(frame, TAG_DURATION - frame, 25));
 
   return (
     <div
@@ -83,16 +80,11 @@ function Tag({text, icon, top, fontFamily}: TagProps) {
           ),
           fontFamily,
           fontSize: 30,
-          transform: `scaleX(${interpolate(
-            animationFrame,
-            [5, 19],
-            [0, 1],
-            {
-              easing: EASE,
-              extrapolateLeft: "clamp",
-              extrapolateRight: "clamp",
-            },
-          )})`,
+          transform: `scaleX(${interpolate(animationFrame, [5, 19], [0, 1], {
+            easing: EASE,
+            extrapolateLeft: "clamp",
+            extrapolateRight: "clamp",
+          })})`,
           transformOrigin: "right center",
         }}
       >
@@ -131,16 +123,11 @@ function Tag({text, icon, top, fontFamily}: TagProps) {
             [0, 10, 17, 18],
             ["#ffffff", "#ffffff", "#171717", RED],
           ),
-          transform: `scaleX(${interpolate(
-            animationFrame,
-            [0, 12],
-            [0.16, 1],
-            {
-              easing: EASE,
-              extrapolateLeft: "clamp",
-              extrapolateRight: "clamp",
-            },
-          )})`,
+          transform: `scaleX(${interpolate(animationFrame, [0, 12], [0.16, 1], {
+            easing: EASE,
+            extrapolateLeft: "clamp",
+            extrapolateRight: "clamp",
+          })})`,
           transformOrigin: "right center",
         }}
       >
@@ -173,12 +160,7 @@ export default function TagsAnimation({
           fontFamily={fontFamily}
         />
 
-        <Tag
-          text={date}
-          icon="date.png"
-          top={363}
-          fontFamily={fontFamily}
-        />
+        <Tag text={date} icon="date.png" top={363} fontFamily={fontFamily} />
       </Sequence>
 
       <Sequence from={TAG_DURATION} durationInFrames={TAG_DURATION}>

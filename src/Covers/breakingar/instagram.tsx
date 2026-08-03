@@ -1,16 +1,18 @@
-import {AbsoluteFill, Img, staticFile} from "remotion";
-import {useLoadFonts} from "../../hooks/useLoadFonts";
-import {CroppedImage} from "../../Components/CroppedImage";
-import {splitTitle} from "../../utils/textUtils";
-import {CoverTemplateProps} from "../types";
+import { AbsoluteFill, Img, staticFile } from "remotion";
+import { useLoadFonts } from "../../hooks/useLoadFonts";
+import { CroppedImage } from "../../Components/CroppedImage";
+import { splitTitle } from "../../utils/textUtils";
+import { CoverTemplateProps } from "../types";
 
 const fontFamily = "AlJazeeraBold";
 
-export default function BreakingArInstagramTemplate({data}: CoverTemplateProps) {
+export default function BreakingArInstagramTemplate({
+  data,
+}: CoverTemplateProps) {
   const fontsLoaded = useLoadFonts([
-    {family: fontFamily, url: staticFile("font_/AlJazeeraBold.TTF")},
+    { family: fontFamily, url: staticFile("font_/AlJazeeraBold.TTF") },
   ]);
-  const {text1, text2} = splitTitle(data.text_fields.text);
+  const { text1, text2 } = splitTitle(data.text_fields.text);
 
   if (!fontsLoaded) return null;
 

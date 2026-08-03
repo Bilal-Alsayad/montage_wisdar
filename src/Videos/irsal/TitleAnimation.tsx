@@ -1,8 +1,4 @@
-import {
-  Easing,
-  interpolate,
-  useCurrentFrame,
-} from "remotion";
+import { Easing, interpolate, useCurrentFrame } from "remotion";
 import { splitTitle } from "../../utils/textUtils";
 
 interface TitleAnimationProps {
@@ -55,8 +51,7 @@ function TitleLine({
     return null;
   }
 
-  const skewOffset =
-    Math.tan((skew * Math.PI) / 180) * 55 * scale;
+  const skewOffset = Math.tan((skew * Math.PI) / 180) * 55 * scale;
 
   const collapsedOffset = (1 - scale) * 413.655;
   const left = (1 - scale) * 50;
@@ -98,9 +93,7 @@ function TitleLine({
         }}
       />
 
-      <span style={{ position: "relative" }}>
-        {text}
-      </span>
+      <span style={{ position: "relative" }}>{text}</span>
     </div>
   );
 }
@@ -112,21 +105,9 @@ export default function TitleAnimation({
   const frame = useCurrentFrame();
   const { text1, text2 } = splitTitle(text);
 
-  const firstLineScale = getScale(
-    frame,
-    0,
-    49.95,
-    112.038,
-    147.0025,
-  );
+  const firstLineScale = getScale(frame, 0, 49.95, 112.038, 147.0025);
 
-  const secondLineScale = getScale(
-    frame,
-    2.997,
-    52.947,
-    115.035,
-    149,
-  );
+  const secondLineScale = getScale(frame, 2.997, 52.947, 115.035, 149);
 
   return (
     <>

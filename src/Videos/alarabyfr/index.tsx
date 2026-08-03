@@ -15,9 +15,11 @@ import Cover from "../../Components/Cover";
 import TitleAnimation, { TITLE_ANIMATION_DURATION } from "./TitleAnimation";
 import TagsAnimation, { TAGS_ANIMATION_DURATION } from "./TagsAnimation";
 import SourceAnimation, { SOURCE_ANIMATION_DURATION } from "./SourceAnimation";
-import SpeakerAnimation, { SPEAKER_ANIMATION_DURATION } from "./SpeakerAnimation";
+import SpeakerAnimation, {
+  SPEAKER_ANIMATION_DURATION,
+} from "./SpeakerAnimation";
 
-const ALARABY_TELEVISION_BOLD = "AlarabyTelevisionBold"
+const ALARABY_TELEVISION_BOLD = "AlarabyTelevisionBold";
 
 export default function AlarabyfrTemplate({
   data,

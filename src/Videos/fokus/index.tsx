@@ -14,11 +14,13 @@ import { TemplateProps } from "../types";
 import AudioClips from "../../Components/AudioClips";
 import Cover from "../../Components/Cover";
 import TitleAnimation, { TITLE_ANIMATION_DURATION } from "./TitleAnimation";
-import SpeakerAnimation, { SPEAKER_ANIMATION_DURATION } from "./SpeakerAnimation";
+import SpeakerAnimation, {
+  SPEAKER_ANIMATION_DURATION,
+} from "./SpeakerAnimation";
 import TagsAnimation from "./TagsAnimation";
 import { TAGS_ANIMATION_DURATION } from "../safa/TagsAnimation";
 
-const QUIET_SANS_SEMIBOLD = "QuietSansSemiBold"
+const QUIET_SANS_SEMIBOLD = "QuietSansSemiBold";
 
 export default function FokusTemplate({
   data,
@@ -26,7 +28,7 @@ export default function FokusTemplate({
   outroStartFrame,
 }: TemplateProps) {
   const { fps } = useVideoConfig();
-  
+
   const fontsLoaded = useLoadFonts([
     {
       family: QUIET_SANS_SEMIBOLD,

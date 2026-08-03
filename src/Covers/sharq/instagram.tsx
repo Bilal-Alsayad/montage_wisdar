@@ -6,9 +6,7 @@ import { CoverTemplateProps } from "../types";
 
 const fontFamily = "DINNextArabicBold";
 
-export default function SharqInstagramTemplate({
-  data,
-}: CoverTemplateProps) {
+export default function SharqInstagramTemplate({ data }: CoverTemplateProps) {
   const fontsLoaded = useLoadFonts([
     {
       family: fontFamily,

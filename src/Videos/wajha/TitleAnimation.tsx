@@ -49,12 +49,7 @@ export default function TitleAnimation({
     easing: Easing.bezier(0.33, 0, 0.2, 1),
   });
 
-  const sourceOpacity = interpolate(
-    sourceFrame,
-    [0, 12],
-    [0, 1],
-    clamp,
-  );
+  const sourceOpacity = interpolate(sourceFrame, [0, 12], [0, 1], clamp);
 
   const firstTranslateY = interpolate(frame, [0, 16], [80, 0], {
     ...clamp,
@@ -80,12 +75,7 @@ export default function TitleAnimation({
     easing: Easing.bezier(0.33, 0, 0.2, 1),
   });
 
-  const secondBoxOpacity = interpolate(
-    secondFrame,
-    [0, 12],
-    [0, 1],
-    clamp,
-  );
+  const secondBoxOpacity = interpolate(secondFrame, [0, 12], [0, 1], clamp);
 
   return (
     <AbsoluteFill dir="rtl">

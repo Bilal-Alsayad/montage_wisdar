@@ -6,7 +6,9 @@ import { splitTitle } from "../../../utils/textUtils";
 
 const fontFamily = "BahijTheSansArabicBold";
 
-export default function SubsBeigeAukInstagramTemplate({ data }: CoverTemplateProps) {
+export default function SubsBeigeAukInstagramTemplate({
+  data,
+}: CoverTemplateProps) {
   const loadFont = useLoadFonts([
     {
       family: fontFamily,

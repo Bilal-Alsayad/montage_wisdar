@@ -6,7 +6,9 @@ import { splitTitle } from "../../../utils/textUtils";
 
 const fontFamily = "BahijTheSansArabicBold";
 
-export default function SubsTurquoiseAukFacebook2Template({ data }: CoverTemplateProps) {
+export default function SubsTurquoiseAukFacebook2Template({
+  data,
+}: CoverTemplateProps) {
   const loadFont = useLoadFonts([
     {
       family: fontFamily,
@@ -33,7 +35,9 @@ export default function SubsTurquoiseAukFacebook2Template({ data }: CoverTemplat
       </AbsoluteFill>
 
       <AbsoluteFill>
-        <Img src={staticFile("Covers/auk/subs_turquoise/facebook_2/md5-1.png")} />
+        <Img
+          src={staticFile("Covers/auk/subs_turquoise/facebook_2/md5-1.png")}
+        />
       </AbsoluteFill>
       <div
         style={{

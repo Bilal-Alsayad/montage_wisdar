@@ -1,8 +1,4 @@
-import {
-  AbsoluteFill,
-  interpolate,
-  useCurrentFrame,
-} from "remotion";
+import { AbsoluteFill, interpolate, useCurrentFrame } from "remotion";
 
 interface SourceAnimationProps {
   text?: string;
@@ -34,7 +30,7 @@ export default function SourceAnimation({
           left: 60,
           top: 185,
           display: "inline-flex",
-          padding:"5px",
+          padding: "5px",
           backgroundColor: "#000000",
           opacity: interpolate(frame, [0, 3], [0, 1], CLAMP),
         }}

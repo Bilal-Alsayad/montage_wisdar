@@ -34,10 +34,22 @@ const TEXT_REVEAL_EASING = Easing.bezier(0.186, 0.808, 0.667, 1);
 const TEXT_EXIT_EASING = Easing.bezier(0.465, 0.528, 0.676, 0.729);
 
 const mixPoints = (progress: number): Point[] => [
-  [-1796.281 + (-56.429 + 1796.281) * progress, 965.657 + (1948.8 - 965.657) * progress],
-  [2579.296 + (1113.01 - 2579.296) * progress, 957.172 + (1957.774 - 957.172) * progress],
-  [2584.951 + (1111.153 - 2584.951) * progress, 957.17 + (-6.742 - 957.17) * progress],
-  [-1790.623 + (-10.971 + 1790.623) * progress, 959.999 + (-9.886 - 959.999) * progress],
+  [
+    -1796.281 + (-56.429 + 1796.281) * progress,
+    965.657 + (1948.8 - 965.657) * progress,
+  ],
+  [
+    2579.296 + (1113.01 - 2579.296) * progress,
+    957.172 + (1957.774 - 957.172) * progress,
+  ],
+  [
+    2584.951 + (1111.153 - 2584.951) * progress,
+    957.17 + (-6.742 - 957.17) * progress,
+  ],
+  [
+    -1790.623 + (-10.971 + 1790.623) * progress,
+    959.999 + (-9.886 - 959.999) * progress,
+  ],
 ];
 
 const polygonPoints = (points: readonly Point[]) =>
@@ -89,7 +101,10 @@ const createExitMask = (progress: number) => {
   )`;
 };
 
-export default function TitleAnimation({ text, fontFamily }: TitleAnimationProps) {
+export default function TitleAnimation({
+  text,
+  fontFamily,
+}: TitleAnimationProps) {
   const frame = useCurrentFrame();
   const { durationInFrames } = useVideoConfig();
 
@@ -127,15 +142,10 @@ export default function TitleAnimation({ text, fontFamily }: TitleAnimationProps
   );
 
   // Her iki polygon'u aynı progress ile senkronize et
-  const maskProgress = interpolate(
-    animationFrame,
-    [0, 37.2],
-    [0, 1],
-    {
-      ...CLAMP,
-      easing: MASK_EASING,
-    },
-  );
+  const maskProgress = interpolate(animationFrame, [0, 37.2], [0, 1], {
+    ...CLAMP,
+    easing: MASK_EASING,
+  });
 
   const whiteMaskProgress = maskProgress;
 
@@ -143,25 +153,15 @@ export default function TitleAnimation({ text, fontFamily }: TitleAnimationProps
   // 37.2-46.8'de görünürlüğü azalt
   const darkMaskProgress = maskProgress;
 
-  const darkMaskOpacity = interpolate(
-    animationFrame,
-    [37.2, 46.8],
-    [0.5, 0],
-    {
-      ...CLAMP,
-      easing: STANDARD_EASING,
-    },
-  );
+  const darkMaskOpacity = interpolate(animationFrame, [37.2, 46.8], [0.5, 0], {
+    ...CLAMP,
+    easing: STANDARD_EASING,
+  });
 
-  const textY = interpolate(
-    animationFrame,
-    [13.206, 43.236],
-    [147.4192, 0],
-    {
-      ...CLAMP,
-      easing: TEXT_POSITION_EASING,
-    },
-  );
+  const textY = interpolate(animationFrame, [13.206, 43.236], [147.4192, 0], {
+    ...CLAMP,
+    easing: TEXT_POSITION_EASING,
+  });
 
   const lineSpacing = interpolate(
     animationFrame,
@@ -173,35 +173,20 @@ export default function TitleAnimation({ text, fontFamily }: TitleAnimationProps
     },
   );
 
-  const enterReveal = interpolate(
-    animationFrame,
-    [13.206, 43.236],
-    [0, 1],
-    {
-      ...CLAMP,
-      easing: TEXT_REVEAL_EASING,
-    },
-  );
+  const enterReveal = interpolate(animationFrame, [13.206, 43.236], [0, 1], {
+    ...CLAMP,
+    easing: TEXT_REVEAL_EASING,
+  });
 
-  const exitReveal = interpolate(
-    animationFrame,
-    [70.7988, 91.2],
-    [0, 1],
-    {
-      ...CLAMP,
-      easing: TEXT_EXIT_EASING,
-    },
-  );
+  const exitReveal = interpolate(animationFrame, [70.7988, 91.2], [0, 1], {
+    ...CLAMP,
+    easing: TEXT_EXIT_EASING,
+  });
 
-  const colorProgress = interpolate(
-    animationFrame,
-    [2.4, 19.9176],
-    [0, 1],
-    {
-      ...CLAMP,
-      easing: STANDARD_EASING,
-    },
-  );
+  const colorProgress = interpolate(animationFrame, [2.4, 19.9176], [0, 1], {
+    ...CLAMP,
+    easing: STANDARD_EASING,
+  });
 
   const whiteMaskPoints = mixPoints(whiteMaskProgress);
   const darkMaskPoints = mixPoints(darkMaskProgress);

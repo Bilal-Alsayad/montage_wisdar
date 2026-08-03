@@ -1,5 +1,5 @@
 /* eslint-disable @remotion/from-0 */
-import type {CSSProperties} from "react";
+import type { CSSProperties } from "react";
 import {
   AbsoluteFill,
   Easing,
@@ -99,7 +99,12 @@ function AnimatedTag({
     easing: ease,
   });
 
-  const iconOpacity = interpolate(animationFrame, iconOpacityRange, [0, 1], clamp);
+  const iconOpacity = interpolate(
+    animationFrame,
+    iconOpacityRange,
+    [0, 1],
+    clamp,
+  );
 
   const content = (
     <>
@@ -165,7 +170,7 @@ function AnimatedTag({
   }
 
   return (
-    <AbsoluteFill style={{transform: `translateY(${offsetY}px)`}}>
+    <AbsoluteFill style={{ transform: `translateY(${offsetY}px)` }}>
       {content}
     </AbsoluteFill>
   );

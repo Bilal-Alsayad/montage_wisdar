@@ -1,8 +1,4 @@
-import {
-  Easing,
-  interpolate,
-  useCurrentFrame,
-} from "remotion";
+import { Easing, interpolate, useCurrentFrame } from "remotion";
 import { splitTitle } from "../../utils/textUtils";
 
 interface TitleAnimationProps {
@@ -25,35 +21,20 @@ export default function TitleAnimation({
 
   const { text1, text2 } = splitTitle(text);
 
-  const firstLineProgress = interpolate(
-    frame,
-    [12, 37],
-    [0, 1],
-    {
-      ...CLAMP,
-      easing: Easing.bezier(0.556, 0, 0.175, 1),
-    },
-  );
+  const firstLineProgress = interpolate(frame, [12, 37], [0, 1], {
+    ...CLAMP,
+    easing: Easing.bezier(0.556, 0, 0.175, 1),
+  });
 
-  const secondLineProgress = interpolate(
-    frame,
-    [20, 45],
-    [0, 1],
-    {
-      ...CLAMP,
-      easing: Easing.bezier(0.556, 0, 0.175, 1),
-    },
-  );
+  const secondLineProgress = interpolate(frame, [20, 45], [0, 1], {
+    ...CLAMP,
+    easing: Easing.bezier(0.556, 0, 0.175, 1),
+  });
 
-  const fadeOut = interpolate(
-    frame,
-    [128, 148],
-    [1, 0],
-    {
-      ...CLAMP,
-      easing: Easing.bezier(0.42, 0, 1, 1),
-    },
-  );
+  const fadeOut = interpolate(frame, [128, 148], [1, 0], {
+    ...CLAMP,
+    easing: Easing.bezier(0.42, 0, 1, 1),
+  });
 
   return (
     <>

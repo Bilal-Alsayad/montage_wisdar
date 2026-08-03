@@ -164,18 +164,30 @@ const TagItem = ({
           </div>
         ) : (
           // char-by-char right-to-left: rightmost char (last index) animates first
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
             {chars.map((char, i) => {
               // Reverse: i=0 is leftmost char → animates last
               //          i=nChars-1 is rightmost → animates first
               const revI = nChars - 1 - i;
-              const charStart = nChars <= 1 ? 4 : 4 + (revI / (nChars - 1)) * 17;
+              const charStart =
+                nChars <= 1 ? 4 : 4 + (revI / (nChars - 1)) * 17;
               const charEnd = Math.min(charStart + 5, 22);
-              const charOpacity = interpolate(rf, [charStart, charEnd], [0, 1], {
-                extrapolateLeft: "clamp",
-                extrapolateRight: "clamp",
-                easing: EASE,
-              });
+              const charOpacity = interpolate(
+                rf,
+                [charStart, charEnd],
+                [0, 1],
+                {
+                  extrapolateLeft: "clamp",
+                  extrapolateRight: "clamp",
+                  easing: EASE,
+                },
+              );
               return (
                 <span
                   key={i}
@@ -260,4 +272,4 @@ export default function TagsAnimation({
       )}
     </AbsoluteFill>
   );
-};
+}

@@ -1,12 +1,12 @@
 import { CoverTemplateProps } from "./types";
 import MeeYoutubeTemplate from "./Mee/youtube";
 import MeeInstagramTemplate from "./Mee/instagram";
-import MeeFacebookTemplate from "./Mee/facebook"; 
+import MeeFacebookTemplate from "./Mee/facebook";
 import HarmonyInstagram1Template from "./Harmony/cover_reel1";
 import HarmonyInstagram2Template from "./Harmony/cover_reel2";
 import IrsalInstagramTemplate from "./irsal/instagram";
-import TventInstagramTemplate from "./tvnet/instagram"
-import ThetimesofpalestineInstagramTemplate from "./thetimesofpalestine/instagram"
+import TventInstagramTemplate from "./tvnet/instagram";
+import ThetimesofpalestineInstagramTemplate from "./thetimesofpalestine/instagram";
 import MainAukYoutubeTemplate from "./auk/main/youtube";
 import MainAukFacebook1Template from "./auk/main/facebook_1";
 import MainAukFacebook2Template from "./auk/main/facebook_2";
@@ -24,15 +24,15 @@ import SubsTurquoiseAukFacebook2Template from "./auk/subs_turquoise/facebook_2";
 import SubsTurquoiseAukInstagramTemplate from "./auk/subs_turquoise/instagram";
 import UrgentAukFacebook1Template from "./auk/urgent/facebook_1";
 import UrgentAukFacebook2Template from "./auk/urgent/facebook_2";
-import SudanFacebook1Template from "./sudan/facebook_1"
-import SudanFacebook2Template from "./sudan/facebook_2"
-import SudanFacebook3Template from "./sudan/facebook_3"
-import SudanFacebook4Template from "./sudan/facebook_4"
-import SudanFacebook5Template from "./sudan/facebook_5"
-import SudanYoutube1Template from "./sudan/youtube_1"
-import SudanYoutube2Template from "./sudan/youtube_2"
-import SudanInstagram1Template from "./sudan/instagram_1"
-import SudanInstagram2Template from "./sudan/instagram_2"
+import SudanFacebook1Template from "./sudan/facebook_1";
+import SudanFacebook2Template from "./sudan/facebook_2";
+import SudanFacebook3Template from "./sudan/facebook_3";
+import SudanFacebook4Template from "./sudan/facebook_4";
+import SudanFacebook5Template from "./sudan/facebook_5";
+import SudanYoutube1Template from "./sudan/youtube_1";
+import SudanYoutube2Template from "./sudan/youtube_2";
+import SudanInstagram1Template from "./sudan/instagram_1";
+import SudanInstagram2Template from "./sudan/instagram_2";
 import TurkpressInstagramTemplate from "./turkpress/instagram";
 import TurkpressFacebookTemplate from "./turkpress/facebook";
 import TurkpressYoutubeTemplate from "./turkpress/youtube";
@@ -66,9 +66,6 @@ import AlmaredaltounsiInstagramTemplate from "./almaredaltounsi/instagram";
 import Intikhabat2019InstagramTemplate from "./intikhabat2019/instagram";
 import Tounes2020InstagramTemplate from "./tounes2020/instagram";
 
-
-
-
 export interface CoverTemplateConfig {
   id: string;
   component: React.ComponentType<CoverTemplateProps>;
@@ -83,7 +80,7 @@ export interface CoverTemplateConfig {
 }
 
 export const COVER_TEMPLATES: CoverTemplateConfig[] = [
-    {
+  {
     id: "turkppress-youtube",
     component: TurkpressYoutubeTemplate,
     width: 1920,
@@ -350,206 +347,206 @@ export const COVER_TEMPLATES: CoverTemplateConfig[] = [
     defaultText: "شركة كلود الصينية تقضي على مستخدمي الذكاء الاصطناعي",
   },
   {
-   id: "247news-instagram",
-   component: News247InstagramTemplate,
-   width: 1080,
-   height: 1920,
+    id: "247news-instagram",
+    component: News247InstagramTemplate,
+    width: 1080,
+    height: 1920,
     defaultText: "شركة كلود الصينية تقضي على مستخدمي الذكاء الاصطناعي",
   },
   {
-   id: "arabfact-instagram",
-   component: ArabFactInstagramTemplate,
-   width: 1080,
-   height: 1920,
+    id: "arabfact-instagram",
+    component: ArabFactInstagramTemplate,
+    width: 1080,
+    height: 1920,
     defaultText: "شركة كلود الصينية تقضي على مستخدمي الذكاء الاصطناعي",
   },
   {
-   id: "arabi21sportibrahim-instagram",
-   component: Arabi21SportIbrahimInstagramTemplate,
-   width: 1080,
-   height: 1920,
+    id: "arabi21sportibrahim-instagram",
+    component: Arabi21SportIbrahimInstagramTemplate,
+    width: 1080,
+    height: 1920,
     defaultText: "شركة كلود الصينية تقضي على مستخدمي الذكاء الاصطناعي",
   },
   {
-   id: "breakingar-instagram",
-   component: BreakingArInstagramTemplate,
-   width: 1080,
-   height: 1920,
+    id: "breakingar-instagram",
+    component: BreakingArInstagramTemplate,
+    width: 1080,
+    height: 1920,
     defaultText: "شركة كلود الصينية تقضي على مستخدمي الذكاء الاصطناعي",
   },
   {
-   id: "dailynews247-instagram",
-   component: DailyNews247InstagramTemplate,
-   width: 1080,
-   height: 1920,
+    id: "dailynews247-instagram",
+    component: DailyNews247InstagramTemplate,
+    width: 1080,
+    height: 1920,
     defaultText: "شركة كلود الصينية تقضي على مستخدمي الذكاء الاصطناعي",
   },
   {
-   id: "headlineglobal-instagram",
-   component: HeadlineGlobalInstagramTemplate,
-   width: 1080,
-   height: 1920,
+    id: "headlineglobal-instagram",
+    component: HeadlineGlobalInstagramTemplate,
+    width: 1080,
+    height: 1920,
     defaultText: "شركة كلود الصينية تقضي على مستخدمي الذكاء الاصطناعي",
   },
   {
-   id: "headlinear-instagram",
-   component: HeadlineArInstagramTemplate,
-   width: 1080,
-   height: 1920,
+    id: "headlinear-instagram",
+    component: HeadlineArInstagramTemplate,
+    width: 1080,
+    height: 1920,
     defaultText: "شركة كلود الصينية تقضي على مستخدمي الذكاء الاصطناعي",
   },
   {
-   id: "newsar-instagram",
-   component: NewsArInstagramTemplate,
-   width: 1080,
-   height: 1920,
+    id: "newsar-instagram",
+    component: NewsArInstagramTemplate,
+    width: 1080,
+    height: 1920,
     defaultText: "شركة كلود الصينية تقضي على مستخدمي الذكاء الاصطناعي",
   },
   {
-   id: "prowrestlehub-instagram",
-   component: ProWrestleHubInstagramTemplate,
-   width: 1080,
-   height: 1920,
+    id: "prowrestlehub-instagram",
+    component: ProWrestleHubInstagramTemplate,
+    width: 1080,
+    height: 1920,
     defaultText: "شركة كلود الصينية تقضي على مستخدمي الذكاء الاصطناعي",
   },
   {
-   id: "trendnews-instagram",
-   component: TrendNewsInstagramTemplate,
-   width: 1080,
-   height: 1920,
+    id: "trendnews-instagram",
+    component: TrendNewsInstagramTemplate,
+    width: 1080,
+    height: 1920,
     defaultText: "شركة كلود الصينية تقضي على مستخدمي الذكاء الاصطناعي",
   },
   {
-   id: "turkhaber247-instagram",
-   component: TurkHaber247InstagramTemplate,
-   width: 1080,
-   height: 1920,
+    id: "turkhaber247-instagram",
+    component: TurkHaber247InstagramTemplate,
+    width: 1080,
+    height: 1920,
     defaultText: "شركة كلود الصينية تقضي على مستخدمي الذكاء الاصطناعي",
   },
   {
-   id: "turkhaber247tikbum-instagram",
-   component: TurkHaber247TikbumInstagramTemplate,
-   width: 1080,
-   height: 1920,
+    id: "turkhaber247tikbum-instagram",
+    component: TurkHaber247TikbumInstagramTemplate,
+    width: 1080,
+    height: 1920,
     defaultText: "شركة كلود الصينية تقضي على مستخدمي الذكاء الاصطناعي",
   },
   {
-   id: "flash-instagram",
-   component: FlashInstagramTemplate,
-   width: 1080,
-   height: 1920,
+    id: "flash-instagram",
+    component: FlashInstagramTemplate,
+    width: 1080,
+    height: 1920,
     defaultText: "شركة كلود الصينية تقضي على مستخدمي الذكاء الاصطناعي",
   },
   {
-   id: "sharq-instagram",
-   component: SharqInstagramTemplate,
-   width: 1080,
-   height: 1920,
+    id: "sharq-instagram",
+    component: SharqInstagramTemplate,
+    width: 1080,
+    height: 1920,
     defaultText: "شركة كلود الصينية تقضي على مستخدمي الذكاء الاصطناعي",
   },
   {
-   id: "trendsfacts-instagram",
-   component: TrendsFactsInstagramTemplate,
-   width: 1080,
-   height: 1920,
+    id: "trendsfacts-instagram",
+    component: TrendsFactsInstagramTemplate,
+    width: 1080,
+    height: 1920,
     defaultText: "شركة كلود الصينية تقضي على مستخدمي الذكاء الاصطناعي",
   },
   {
-   id: "nowvoice-instagram",
-   component: NowVoiceInstagramTemplate,
-   width: 1080,
-   height: 1920,
+    id: "nowvoice-instagram",
+    component: NowVoiceInstagramTemplate,
+    width: 1080,
+    height: 1920,
     defaultText: "شركة كلود الصينية تقضي على مستخدمي الذكاء الاصطناعي",
   },
   {
-   id: "breaking24-instagram",
-   component: Breaking24InstagramTemplate,
-   width: 1080,
-   height: 1920,
+    id: "breaking24-instagram",
+    component: Breaking24InstagramTemplate,
+    width: 1080,
+    height: 1920,
     defaultText: "شركة كلود الصينية تقضي على مستخدمي الذكاء الاصطناعي",
   },
   {
-   id: "mdarnews-instagram",
-   component: MdarNewsInstagramTemplate,
-   width: 1080,
-   height: 1920,
+    id: "mdarnews-instagram",
+    component: MdarNewsInstagramTemplate,
+    width: 1080,
+    height: 1920,
     defaultText: "شركة كلود الصينية تقضي على مستخدمي الذكاء الاصطناعي",
   },
   {
-   id: "masrfive-instagram",
-   component: MasrFiveInstagramTemplate,
-   width: 1080,
-   height: 1920,
+    id: "masrfive-instagram",
+    component: MasrFiveInstagramTemplate,
+    width: 1080,
+    height: 1920,
     defaultText: "شركة كلود الصينية تقضي على مستخدمي الذكاء الاصطناعي",
   },
   {
-   id: "factsinseconds-instagram",
-   component: FactsInSecondsInstagramTemplate,
-   width: 1080,
-   height: 1920,
+    id: "factsinseconds-instagram",
+    component: FactsInSecondsInstagramTemplate,
+    width: 1080,
+    height: 1920,
     defaultText: "شركة كلود الصينية تقضي على مستخدمي الذكاء الاصطناعي",
   },
   {
-   id: "frommeccatojerusalem-instagram",
-   component: FromMeccaToJerusalemInstagramTemplate,
-   width: 1080,
-   height: 1920,
+    id: "frommeccatojerusalem-instagram",
+    component: FromMeccaToJerusalemInstagramTemplate,
+    width: 1080,
+    height: 1920,
     defaultText: "شركة كلود الصينية تقضي على مستخدمي الذكاء الاصطناعي",
   },
   {
-   id: "arabvariety-instagram",
-   component: ArabVarietyInstagramTemplate,
-   width: 1080,
-   height: 1920,
+    id: "arabvariety-instagram",
+    component: ArabVarietyInstagramTemplate,
+    width: 1080,
+    height: 1920,
     defaultText: "شركة كلود الصينية تقضي على مستخدمي الذكاء الاصطناعي",
   },
   {
-   id: "livepulse-instagram",
-   component: LivePulseInstagramTemplate,
-   width: 1080,
-   height: 1920,
+    id: "livepulse-instagram",
+    component: LivePulseInstagramTemplate,
+    width: 1080,
+    height: 1920,
     defaultText: "شركة كلود الصينية تقضي على مستخدمي الذكاء الاصطناعي",
   },
   {
-   id: "turkeypulse-instagram",
-   component: TurkeyPulseInstagramTemplate,
-   width: 1080,
-   height: 1920,
+    id: "turkeypulse-instagram",
+    component: TurkeyPulseInstagramTemplate,
+    width: 1080,
+    height: 1920,
     defaultText: "شركة كلود الصينية تقضي على مستخدمي الذكاء الاصطناعي",
   },
   {
-   id: "infoplus-instagram",
-   component: InfoplusInstagramTemplate,
-   width: 1080,
-   height: 1920,
+    id: "infoplus-instagram",
+    component: InfoplusInstagramTemplate,
+    width: 1080,
+    height: 1920,
     defaultText: "شركة كلود الصينية تقضي على مستخدمي الذكاء الاصطناعي",
   },
   {
-   id: "awlad9-instagram",
-   component: Awlad9InstagramTemplate,
-   width: 1080,
-   height: 1920,
+    id: "awlad9-instagram",
+    component: Awlad9InstagramTemplate,
+    width: 1080,
+    height: 1920,
     defaultText: "شركة كلود الصينية تقضي على مستخدمي الذكاء الاصطناعي",
   },
   {
-   id: "almaredaltounsi-instagram",
-   component: AlmaredaltounsiInstagramTemplate,
-   width: 1080,
-   height: 1920,
+    id: "almaredaltounsi-instagram",
+    component: AlmaredaltounsiInstagramTemplate,
+    width: 1080,
+    height: 1920,
     defaultText: "شركة كلود الصينية تقضي على مستخدمي الذكاء الاصطناعي",
   },
   {
-   id: "intikhabat2019-instagram",
-   component: Intikhabat2019InstagramTemplate,
-   width: 1080,
-   height: 1920,
+    id: "intikhabat2019-instagram",
+    component: Intikhabat2019InstagramTemplate,
+    width: 1080,
+    height: 1920,
     defaultText: "شركة كلود الصينية تقضي على مستخدمي الذكاء الاصطناعي",
   },
   {
-   id: "tounes2020-instagram",
-   component: Tounes2020InstagramTemplate,
-   width: 1080,
-   height: 1920,
+    id: "tounes2020-instagram",
+    component: Tounes2020InstagramTemplate,
+    width: 1080,
+    height: 1920,
     defaultText: "شركة كلود الصينية تقضي على مستخدمي الذكاء الاصطناعي",
   },
 ];

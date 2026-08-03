@@ -6,7 +6,9 @@ import { fitText } from "@remotion/layout-utils";
 
 const fontFamily = "BahijTheSansArabicBold";
 
-export default function SocialLocationAukFacebook1Template({ data }: CoverTemplateProps) {
+export default function SocialLocationAukFacebook1Template({
+  data,
+}: CoverTemplateProps) {
   const loadFont = useLoadFonts([
     {
       family: fontFamily,

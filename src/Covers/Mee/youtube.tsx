@@ -39,7 +39,7 @@ export default function MeeYoutubeTemplate({ data }: CoverTemplateProps) {
             top: 580,
             left: 120,
             textAlign: "left",
-            width:"50%",
+            width: "50%",
           }}
         >
           <div

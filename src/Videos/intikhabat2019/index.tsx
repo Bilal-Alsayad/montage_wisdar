@@ -209,10 +209,10 @@ export default function Intikhabat2019Template({ data }: TemplateProps) {
           styles={TAGS_STYLES}
         />
       </Sequence>
-        <Img
-          src={staticFile("pulitkat/intikhabat2019/images/logo.png")}
-          style={{ position: "absolute", top: 250, left: 110, width: 160 }}
-        />
+      <Img
+        src={staticFile("pulitkat/intikhabat2019/images/logo.png")}
+        style={{ position: "absolute", top: 250, left: 110, width: 160 }}
+      />
       {data.captions.src && (
         <Captions
           src={data.captions.src}

@@ -1,4 +1,10 @@
-import { AbsoluteFill, Sequence, Img, staticFile, OffthreadVideo } from "remotion";
+import {
+  AbsoluteFill,
+  Sequence,
+  Img,
+  staticFile,
+  OffthreadVideo,
+} from "remotion";
 import { useLoadFonts } from "../../hooks/useLoadFonts";
 import { TemplateProps } from "../types";
 import Video from "../../Components/Video";

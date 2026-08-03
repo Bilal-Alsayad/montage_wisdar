@@ -20,7 +20,7 @@ export default function FlashInstagramTemplate({ data }: CoverTemplateProps) {
       />
       <Img
         src={staticFile("Covers/flash/insta/logo.png")}
-        style={{position: "absolute", top: 250, left: 60, width: 200}}
+        style={{ position: "absolute", top: 250, left: 60, width: 200 }}
       />
       {data.text_fields.text ? (
         <div

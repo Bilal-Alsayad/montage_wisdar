@@ -75,7 +75,7 @@ export interface VideoTemplateConfig {
 }
 // TurkpressTemplate
 export const VIDEO_TEMPLATES: VideoTemplateConfig[] = [
-    {
+  {
     id: "almaredaltounsi",
     component: AlmaredaltounsiTemplate,
     width: 1080,
