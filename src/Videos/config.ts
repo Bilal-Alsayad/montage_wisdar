@@ -31,6 +31,11 @@ import WajhaTemplate from "./wajha";
 import News247Template from "./247news";
 import ArabFactTemplate from "./arabfact";
 import Arabi21SportIbrahimTemplate from "./arabi21sportibrahim";
+import AlmaredaltounsiTemplate from "./almaredaltounsi";
+import Awlad9Template from "./awlad9";
+import InfoplusTemplate from "./infoplus";
+import Intikhabat2019Template from "./intikhabat2019";
+import Tounes2020Template from "./tounes2020";
 import BreakingArTemplate from "./breakingar";
 import DailyNews247Template from "./dailynews247";
 import HeadlineGlobalTemplate from "./headlineglobal";
@@ -70,6 +75,211 @@ export interface VideoTemplateConfig {
 }
 // TurkpressTemplate
 export const VIDEO_TEMPLATES: VideoTemplateConfig[] = [
+    {
+    id: "almaredaltounsi",
+    component: AlmaredaltounsiTemplate,
+    width: 1080,
+    height: 1920,
+    outroUrl: "",
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: { top_left: [0, 0], bottom_right: [0, 0] },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "التي انطلقت لنصرة ال قدس ال قدس والأق صى",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4360.srt"),
+      },
+      tags: {
+        location: "إسطنبول",
+        date: "20-20-2000",
+        source: "مادي بلوك",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "بيب غوارديولا",
+          description: "مدرب مانشستر سيتي",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
+    id: "awlad9",
+    component: Awlad9Template,
+    width: 1080,
+    height: 1920,
+    outroUrl: "",
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: { top_left: [0, 0], bottom_right: [0, 0] },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "التي انطلقت لنصرة ال قدس ال قدس والأق صى",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4360.srt"),
+      },
+      tags: {
+        location: "إسطنبول",
+        date: "20-20-2000",
+        source: "مادي بلوك",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "بيب غوارديولا",
+          description: "مدرب مانشستر سيتي",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
+    id: "infoplus",
+    component: InfoplusTemplate,
+    width: 1080,
+    height: 1920,
+    outroUrl: "",
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: { top_left: [0, 0], bottom_right: [0, 0] },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "التي انطلقت لنصرة ال قدس ال قدس والأق صى",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4360.srt"),
+      },
+      tags: {
+        location: "إسطنبول",
+        date: "20-20-2000",
+        source: "مادي بلوك",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "بيب غوارديولا",
+          description: "مدرب مانشستر سيتي",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
+    id: "intikhabat2019",
+    component: Intikhabat2019Template,
+    width: 1080,
+    height: 1920,
+    outroUrl: "",
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: { top_left: [0, 0], bottom_right: [0, 0] },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "التي انطلقت لنصرة ال قدس ال قدس والأق صى",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4360.srt"),
+      },
+      tags: {
+        location: "إسطنبول",
+        date: "20-20-2000",
+        source: "مادي بلوك",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "بيب غوارديولا",
+          description: "مدرب مانشستر سيتي",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
+    id: "tounes2020",
+    component: Tounes2020Template,
+    width: 1080,
+    height: 1920,
+    outroUrl: "",
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: { top_left: [0, 0], bottom_right: [0, 0] },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "التي انطلقت لنصرة ال قدس ال قدس والأق صى",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4360.srt"),
+      },
+      tags: {
+        location: "إسطنبول",
+        date: "20-20-2000",
+        source: "مادي بلوك",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "بيب غوارديولا",
+          description: "مدرب مانشستر سيتي",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
   {
     id: "247news",
     component: News247Template,
@@ -1082,7 +1292,7 @@ export const VIDEO_TEMPLATES: VideoTemplateConfig[] = [
       background_img_url: "",
     },
   },
-    {
+  {
     id: "turkhaber247",
     component: TurkHaber247Template,
     width: 1080,
