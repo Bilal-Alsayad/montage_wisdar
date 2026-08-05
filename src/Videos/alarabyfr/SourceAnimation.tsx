@@ -25,8 +25,7 @@ export default function SourceAnimation({
 }: SourceAnimationProps) {
   const frame = useCurrentFrame();
 
-  const animationFrame =
-    frame < 162 ? frame / 1.2 : 222 - frame / 1.2;
+  const animationFrame = frame < 162 ? frame / 1.2 : 222 - frame / 1.2;
 
   if (!text) {
     return null;

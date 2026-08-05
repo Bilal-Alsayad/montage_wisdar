@@ -94,8 +94,7 @@ export default function TitleAnimation({
 }: TitleAnimationProps) {
   const frame = useCurrentFrame();
 
-  const animationFrame =
-    frame < 72 ? frame : TITLE_ANIMATION_DURATION - frame;
+  const animationFrame = frame < 72 ? frame : TITLE_ANIMATION_DURATION - frame;
 
   const lines = splitTextIntoMultipleLines(text, 3).filter((line) =>
     line.trim(),
@@ -122,10 +121,7 @@ export default function TitleAnimation({
             whiteSpace: "nowrap",
             opacity: interpolate(
               animationFrame,
-              [
-                lineIndex === 0 ? 1 : lineIndex * 9,
-                9 + lineIndex * 9,
-              ],
+              [lineIndex === 0 ? 1 : lineIndex * 9, 9 + lineIndex * 9],
               [0, 1],
               {
                 ...CLAMP,
@@ -134,10 +130,7 @@ export default function TitleAnimation({
             ),
             transform: `translateY(${interpolate(
               animationFrame,
-              [
-                lineIndex === 0 ? 1 : lineIndex * 9,
-                9 + lineIndex * 9,
-              ],
+              [lineIndex === 0 ? 1 : lineIndex * 9, 9 + lineIndex * 9],
               [15, 0],
               {
                 ...CLAMP,

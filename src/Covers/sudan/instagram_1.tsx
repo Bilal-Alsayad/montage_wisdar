@@ -39,8 +39,8 @@ export default function SudanInstagram1Template({ data }: CoverTemplateProps) {
           top: 1200,
           left: "50%",
           transform: "translateX(-50%)",
-          width:920,
-          height:445,
+          width: 920,
+          height: 445,
 
           display: "flex",
           alignItems: "center",

@@ -59,12 +59,7 @@ export default function TagsAnimation({
     easing: ease,
   });
 
-  const locationTextOpacity = interpolate(
-    frame,
-    [16, 25],
-    [0, 1],
-    clamp,
-  );
+  const locationTextOpacity = interpolate(frame, [16, 25], [0, 1], clamp);
 
   const dateFrame = frame - 18;
 
@@ -83,12 +78,7 @@ export default function TagsAnimation({
     easing: ease,
   });
 
-  const dateTextOpacity = interpolate(
-    dateFrame,
-    [8, 17],
-    [0, 1],
-    clamp,
-  );
+  const dateTextOpacity = interpolate(dateFrame, [8, 17], [0, 1], clamp);
 
   return (
     <AbsoluteFill>
@@ -98,15 +88,10 @@ export default function TagsAnimation({
             position: "absolute",
             inset: 0,
             opacity: interpolate(frame, [141, 164], [1, 0], clamp),
-            transform: `translateX(${interpolate(
-              frame,
-              [141, 164],
-              [0, 100],
-              {
-                ...clamp,
-                easing: ease,
-              },
-            )}px)`,
+            transform: `translateX(${interpolate(frame, [141, 164], [0, 100], {
+              ...clamp,
+              easing: ease,
+            })}px)`,
           }}
         >
           <div
@@ -194,15 +179,10 @@ export default function TagsAnimation({
             position: "absolute",
             inset: 0,
             opacity: interpolate(frame, [144, 167], [1, 0], clamp),
-            transform: `translateX(${interpolate(
-              frame,
-              [144, 167],
-              [0, 100],
-              {
-                ...clamp,
-                easing: ease,
-              },
-            )}px)`,
+            transform: `translateX(${interpolate(frame, [144, 167], [0, 100], {
+              ...clamp,
+              easing: ease,
+            })}px)`,
           }}
         >
           <div

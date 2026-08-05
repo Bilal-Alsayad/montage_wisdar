@@ -6,7 +6,9 @@ import { splitTitle } from "../../../utils/textUtils";
 
 const fontFamily = "BahijTheSansArabicBold";
 
-export default function SubsBeigeAukYoutubeTemplate({ data }: CoverTemplateProps) {
+export default function SubsBeigeAukYoutubeTemplate({
+  data,
+}: CoverTemplateProps) {
   const loadFont = useLoadFonts([
     {
       family: fontFamily,

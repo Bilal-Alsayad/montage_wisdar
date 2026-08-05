@@ -24,7 +24,6 @@ export default function TitleAnimation({
 
   const words = text.split(/\s+/);
 
-
   // Box slides in from right: Null 2 position [712→540] at t:0→18
   const boxSlideX = interpolate(frame, [0, 18], [172, 0], {
     extrapolateLeft: "clamp",
@@ -62,18 +61,28 @@ export default function TitleAnimation({
   const exitStart = durationInFrames - exitDuration;
 
   // Position
-  const exitSlideX = interpolate(frame, [exitStart, exitStart + exitDuration], [0, -81], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: EASE,
-  });
+  const exitSlideX = interpolate(
+    frame,
+    [exitStart, exitStart + exitDuration],
+    [0, -81],
+    {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+      easing: EASE,
+    },
+  );
 
   // Tint
-  const exitBrightness = interpolate(frame, [exitStart + 1, exitStart + 11], [1, 3], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: EASE,
-  });
+  const exitBrightness = interpolate(
+    frame,
+    [exitStart + 1, exitStart + 11],
+    [1, 3],
+    {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+      easing: EASE,
+    },
+  );
 
   // Enter opacity: Rectangle 5 opacity 0→100 at t:0→6
   const boxFadeIn = interpolate(frame, [0, 6], [0, 1], {
@@ -83,11 +92,16 @@ export default function TitleAnimation({
   });
 
   // Exit opacity: 100→0 at relative t:7→14
-  const exitOpacity = interpolate(frame, [exitStart + 7, exitStart + exitDuration], [1, 0], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: EASE,
-  });
+  const exitOpacity = interpolate(
+    frame,
+    [exitStart + 7, exitStart + exitDuration],
+    [1, 0],
+    {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+      easing: EASE,
+    },
+  );
 
   const finalOpacity = Math.min(boxFadeIn, exitOpacity);
 
@@ -185,7 +199,7 @@ export default function TitleAnimation({
                 extrapolateLeft: "clamp",
                 extrapolateRight: "clamp",
                 easing: EASE,
-              }
+              },
             );
 
             const wordBlur = interpolate(
@@ -196,7 +210,7 @@ export default function TitleAnimation({
                 extrapolateLeft: "clamp",
                 extrapolateRight: "clamp",
                 easing: EASE,
-              }
+              },
             );
 
             return (

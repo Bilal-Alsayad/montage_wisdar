@@ -83,11 +83,7 @@ export default function SpeakerAnimation({
             style={{
               clipPath: `inset(0 0 0 ${
                 100 -
-                animate(
-                  [7, 22],
-                  [0, 100],
-                  Easing.bezier(0.333, 0, 0.194, 1),
-                )
+                animate([7, 22], [0, 100], Easing.bezier(0.333, 0, 0.194, 1))
               }%)`,
             }}
           >
@@ -124,11 +120,7 @@ export default function SpeakerAnimation({
             style={{
               clipPath: `inset(0 0 0 ${
                 100 -
-                animate(
-                  [9, 24],
-                  [0, 100],
-                  Easing.bezier(0.333, 0, 0.194, 1),
-                )
+                animate([9, 24], [0, 100], Easing.bezier(0.333, 0, 0.194, 1))
               }%)`,
             }}
           >

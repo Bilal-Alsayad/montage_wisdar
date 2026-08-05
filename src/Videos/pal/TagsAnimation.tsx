@@ -1,4 +1,10 @@
-import { AbsoluteFill, Img, Sequence, staticFile, useCurrentFrame } from "remotion";
+import {
+  AbsoluteFill,
+  Img,
+  Sequence,
+  staticFile,
+  useCurrentFrame,
+} from "remotion";
 import TagsDecoration from "./TagsDecoration";
 
 // Step animation constants
@@ -7,11 +13,11 @@ const LAST_STEP = 6;
 const STEP_COUNT = LAST_STEP + 1;
 
 // Shared layout constants
-const RECT_X        = 775;
-const RECT_Y        = 261;
-const SQUARE_SIZE   = 44;
-const FINAL_WIDTH   = 190;
-const FINAL_HEIGHT  = 44;
+const RECT_X = 775;
+const RECT_Y = 261;
+const SQUARE_SIZE = 44;
+const FINAL_WIDTH = 190;
+const FINAL_HEIGHT = 44;
 const SQUARE_START_X = 771;
 const SQUARE_START_Y = 278;
 
@@ -62,7 +68,13 @@ interface TagItemProps {
   fontFamily: string;
 }
 
-function TagItem({ text, iconPath, decoration, durationInFrames, fontFamily }: TagItemProps) {
+function TagItem({
+  text,
+  iconPath,
+  decoration,
+  durationInFrames,
+  fontFamily,
+}: TagItemProps) {
   const frame = useCurrentFrame();
 
   const step = getStep(frame, durationInFrames);
@@ -71,16 +83,16 @@ function TagItem({ text, iconPath, decoration, durationInFrames, fontFamily }: T
   const squareFinalY = RECT_Y;
 
   // Step visibility flags
-  const showFirstGhostRect     = step === 0;
-  const showSecondGhostRect    = step === 1;
-  const showMiniSquare         = step === 1;
-  const showFadedGhostRect     = step === 2;
-  const showGrayIconSquare     = step === 2;
-  const showRedSquare          = step >= 3;
-  const showHalfWhiteRect      = step === 4;
+  const showFirstGhostRect = step === 0;
+  const showSecondGhostRect = step === 1;
+  const showMiniSquare = step === 1;
+  const showFadedGhostRect = step === 2;
+  const showGrayIconSquare = step === 2;
+  const showRedSquare = step >= 3;
+  const showHalfWhiteRect = step === 4;
   const showFullLowerWhiteRect = step === 5;
-  const showFinalWhiteRect     = step === 6;
-  const showText               = step === 6;
+  const showFinalWhiteRect = step === 6;
+  const showText = step === 6;
 
   return (
     <AbsoluteFill>
@@ -160,7 +172,10 @@ function TagItem({ text, iconPath, decoration, durationInFrames, fontFamily }: T
             justifyContent: "center",
           }}
         >
-          <Img src={iconSrc} style={{ width: 28, height: 28, objectFit: "contain" }} />
+          <Img
+            src={iconSrc}
+            style={{ width: 28, height: 28, objectFit: "contain" }}
+          />
         </div>
       ) : null}
 
@@ -178,7 +193,10 @@ function TagItem({ text, iconPath, decoration, durationInFrames, fontFamily }: T
             justifyContent: "center",
           }}
         >
-          <Img src={iconSrc} style={{ width: 28, height: 28, objectFit: "contain" }} />
+          <Img
+            src={iconSrc}
+            style={{ width: 28, height: 28, objectFit: "contain" }}
+          />
         </div>
       ) : null}
 
@@ -253,7 +271,11 @@ interface TagsAnimationProps {
   fontFamily: string;
 }
 
-export default function TagsAnimation({ location, date, fontFamily }: TagsAnimationProps) {
+export default function TagsAnimation({
+  location,
+  date,
+  fontFamily,
+}: TagsAnimationProps) {
   const data: Record<string, string | undefined> = { location, date };
 
   return (

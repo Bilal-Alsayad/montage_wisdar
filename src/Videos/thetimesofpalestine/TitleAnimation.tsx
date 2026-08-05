@@ -1,9 +1,4 @@
-import {
-  AbsoluteFill,
-  Easing,
-  interpolate,
-  useCurrentFrame,
-} from "remotion";
+import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from "remotion";
 import { splitTitle } from "../../utils/textUtils";
 
 interface TitleAnimationProps {
@@ -40,9 +35,7 @@ function getProgress(
 ): number {
   return interpolate(
     frame,
-    frame < exitStart
-      ? [enterStart, enterEnd]
-      : [exitStart, exitEnd],
+    frame < exitStart ? [enterStart, enterEnd] : [exitStart, exitEnd],
     frame < exitStart ? [0, 1] : [1, 0],
     {
       ...CLAMP,
@@ -71,10 +64,7 @@ function AnimatedCharacters({
               progress,
               [
                 index / characters.length,
-                Math.min(
-                  1,
-                  index / characters.length + 0.35,
-                ),
+                Math.min(1, index / characters.length + 0.35),
               ],
               [0, 1],
               CLAMP,
@@ -106,8 +96,7 @@ function AnimatedLine({
     return null;
   }
 
-  const finalWidth =
-    trimmedText.length * 46.4 + horizontalPadding * 2;
+  const finalWidth = trimmedText.length * 46.4 + horizontalPadding * 2;
 
   if (finalWidth <= 100) {
     return null;
@@ -118,7 +107,7 @@ function AnimatedLine({
       style={{
         position: "absolute",
         top,
-        left: 540 - finalWidth / 2, //WHAT ?!?!?! 
+        left: 540 - finalWidth / 2, //WHAT ?!?!?!
         width:
           finalWidth *
           getProgress(

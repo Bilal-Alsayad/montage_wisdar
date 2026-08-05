@@ -117,9 +117,16 @@ function TagRowAnimation({
     fontFamily,
     fontSize,
   }).width;
-  const width = Math.ceil(TEXT_LEFT_PADDING + naturalTextWidth + ICON_BOX_WIDTH + 10);
+  const width = Math.ceil(
+    TEXT_LEFT_PADDING + naturalTextWidth + ICON_BOX_WIDTH + 10,
+  );
 
-  const purpleRight = lottieInterpolate(frame, [0, 22], [41.08, width], EASE.bar);
+  const purpleRight = lottieInterpolate(
+    frame,
+    [0, 22],
+    [41.08, width],
+    EASE.bar,
+  );
 
   const purpleLeft =
     frame < toRemotionFrame(13)
@@ -142,7 +149,12 @@ function TagRowAnimation({
 
   const textStyle = {
     position: "absolute" as const,
-    left: lottieInterpolate(frame, [1, 25], [width, TEXT_LEFT_PADDING], EASE.textMove),
+    left: lottieInterpolate(
+      frame,
+      [1, 25],
+      [width, TEXT_LEFT_PADDING],
+      EASE.textMove,
+    ),
     fontFamily,
     fontSize,
     letterSpacing: lottieInterpolate(
@@ -174,7 +186,12 @@ function TagRowAnimation({
           inset: 0,
           clipPath: `inset(0 0 0 ${
             exitHasStarted
-              ? lottieInterpolate(frame, [80, 102], [41.48, width + 0.47], EASE.capMove)
+              ? lottieInterpolate(
+                  frame,
+                  [80, 102],
+                  [41.48, width + 0.47],
+                  EASE.capMove,
+                )
               : 0
           }px)`,
         }}
@@ -243,7 +260,15 @@ function TagRowAnimation({
             overflow: "hidden",
           }}
         >
-          <div style={{ position: "absolute", left: 0, top: 0, width, height: ROW_HEIGHT }}>
+          <div
+            style={{
+              position: "absolute",
+              left: 0,
+              top: 0,
+              width,
+              height: ROW_HEIGHT,
+            }}
+          >
             <div style={{ ...textStyle, color: "#FFFFFF" }}>{text}</div>
           </div>
         </div>
@@ -292,7 +317,12 @@ function TagRowAnimation({
                 movingCapRight -
                 lottieInterpolate(frame, [9, 26], [41.08, 0.72], EASE.shrink),
               top: 0,
-              width: lottieInterpolate(frame, [9, 26], [41.08, 0.72], EASE.shrink),
+              width: lottieInterpolate(
+                frame,
+                [9, 26],
+                [41.08, 0.72],
+                EASE.shrink,
+              ),
               height: ROW_HEIGHT,
               backgroundColor: "#FFFFFF",
             }}
@@ -305,10 +335,20 @@ function TagRowAnimation({
           style={{
             position: "absolute",
             left:
-              lottieInterpolate(frame, [80, 102], [41.48, width + 0.47], EASE.capMove) -
+              lottieInterpolate(
+                frame,
+                [80, 102],
+                [41.48, width + 0.47],
+                EASE.capMove,
+              ) -
               lottieInterpolate(frame, [89, 106], [41.08, 0.72], EASE.shrink),
             top: 0,
-            width: lottieInterpolate(frame, [89, 106], [41.08, 0.72], EASE.shrink),
+            width: lottieInterpolate(
+              frame,
+              [89, 106],
+              [41.08, 0.72],
+              EASE.shrink,
+            ),
             height: ROW_HEIGHT,
             backgroundColor: "#FFFFFF",
           }}

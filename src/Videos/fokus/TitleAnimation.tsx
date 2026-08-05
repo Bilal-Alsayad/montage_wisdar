@@ -5,7 +5,7 @@ import {
   interpolateColors,
   useCurrentFrame,
 } from "remotion";
-import { splitTitle } from "../../utils/textUtils";
+import { splitTextIntoMultipleLines } from "../../utils/textUtils";
 
 interface TitleAnimationProps {
   text: string;
@@ -13,6 +13,8 @@ interface TitleAnimationProps {
 }
 
 export const TITLE_ANIMATION_DURATION = 178;
+
+const LINE_COLORS = ["#B80C09", "#940A07", "#6B0705", "#420403"];
 
 const CLAMP = {
   extrapolateLeft: "clamp" as const,
@@ -24,57 +26,45 @@ export default function TitleAnimation({
   fontFamily,
 }: TitleAnimationProps) {
   const frame = useCurrentFrame();
-  const title = splitTitle(text);
+  const lines = splitTextIntoMultipleLines(text, 4);
 
-  if (!title.text1) {
+  if (!lines[0]) {
     return null;
   }
 
   return (
     <AbsoluteFill>
-      {[title.text1, title.text2]
-        .filter(Boolean)
-        .map((line, index) => {
+      <div
+        style={{
+          position: "absolute",
+          left: 110,
+          bottom: 680,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+        }}
+      >
+        {lines.map((line, index) => {
           const start = index * 8;
-          const exit = 155 + index * 5;
+          const exit = 155 + index * 4;
+
+          const translateX =
+            interpolate(frame, [start, start + 24], [-343, 0], {
+              ...CLAMP,
+              easing: Easing.bezier(0.167, 0.167, 0.4, 1),
+            }) +
+            interpolate(frame, [exit, exit + 10], [0, 40], {
+              ...CLAMP,
+              easing: Easing.bezier(0.33, 0, 0.833, 0.833),
+            });
 
           return (
             <div
-              key={index}
+              key={`${line}-${index}`}
               style={{
-                position: "absolute",
-                left: 110,
-                top: title.text2 ? 1000 + index * 120 : 1120,
-                transform: `translateX(${
-                  interpolate(
-                    frame,
-                    [start, start + 24],
-                    [-343, 0],
-                    {
-                      ...CLAMP,
-                      easing: Easing.bezier(
-                        0.167,
-                        0.167,
-                        0.4,
-                        1,
-                      ),
-                    },
-                  ) +
-                  interpolate(
-                    frame,
-                    [exit, exit + 10],
-                    [0, 40],
-                    {
-                      ...CLAMP,
-                      easing: Easing.bezier(
-                        0.33,
-                        0,
-                        0.833,
-                        0.833,
-                      ),
-                    },
-                  )
-                }px)`,
+                position: "relative",
+                height: 120,
+                transform: `translateX(${translateX}px)`,
                 opacity: interpolate(
                   frame,
                   [exit + 5, exit + 10],
@@ -88,12 +78,7 @@ export default function TitleAnimation({
                   style={{
                     position: "absolute",
                     top: -8,
-                    left: interpolate(
-                      frame,
-                      [0, 174],
-                      [-33, 185],
-                      CLAMP,
-                    ),
+                    left: interpolate(frame, [0, 174], [-33, 185], CLAMP),
                     width: 37,
                     height: 15,
                     backgroundColor: "white",
@@ -116,10 +101,7 @@ export default function TitleAnimation({
                   backgroundColor: interpolateColors(
                     frame,
                     [exit, exit + 10],
-                    [
-                      index === 0 ? "#b80c09" : "#940A07",
-                      "#ffffff",
-                    ],
+                    [LINE_COLORS[index], "#ffffff"],
                   ),
                   clipPath: `inset(0 ${interpolate(
                     frame,
@@ -127,12 +109,7 @@ export default function TitleAnimation({
                     [100, 0],
                     {
                       ...CLAMP,
-                      easing: Easing.bezier(
-                        0.167,
-                        0.167,
-                        0.4,
-                        1,
-                      ),
+                      easing: Easing.bezier(0.167, 0.167, 0.4, 1),
                     },
                   )}% 0 0)`,
                   color: "white",
@@ -145,11 +122,7 @@ export default function TitleAnimation({
               >
                 <span
                   style={{
-                    opacity:
-                      frame >=
-                      start + (index === 0 ? 1 : 3)
-                        ? 1
-                        : 0,
+                    opacity: frame >= start + (index === 0 ? 1 : 3) ? 1 : 0,
                   }}
                 >
                   {line}
@@ -158,6 +131,7 @@ export default function TitleAnimation({
             </div>
           );
         })}
+      </div>
     </AbsoluteFill>
   );
 }

@@ -1,10 +1,5 @@
-import {
-  AbsoluteFill,
-  Easing,
-  interpolate,
-  useCurrentFrame,
-} from "remotion";
-import {splitTitle} from "../../utils/textUtils";
+import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from "remotion";
+import { splitTitle } from "../../utils/textUtils";
 
 interface TitleAnimationProps {
   text: string;
@@ -13,12 +8,9 @@ interface TitleAnimationProps {
 
 export const TITLE_ANIMATION_DURATION = 300;
 
-export function TitleAnimation({
-  text,
-  fontFamily,
-}: TitleAnimationProps) {
+export function TitleAnimation({ text, fontFamily }: TitleAnimationProps) {
   const frame = useCurrentFrame();
-  const {text1, text2} = splitTitle(text);
+  const { text1, text2 } = splitTitle(text);
 
   const clamp = {
     extrapolateLeft: "clamp",

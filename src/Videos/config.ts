@@ -39,6 +39,38 @@ import Arabi21ExclusiveIntervieweTemplate from "./arabi21exclusiveinterview";
 import Arabi21MowajhaTemplate from "./arabi21mowajha";
 import AukTemplate from "./auknew";
 import SadaNewTemplate from "./sadanew";
+import News247Template from "./247news";
+import ArabFactTemplate from "./arabfact";
+import Arabi21SportIbrahimTemplate from "./arabi21sportibrahim";
+import AlmaredaltounsiTemplate from "./almaredaltounsi";
+import Awlad9Template from "./awlad9";
+import InfoplusTemplate from "./infoplus";
+import Intikhabat2019Template from "./intikhabat2019";
+import Tounes2020Template from "./tounes2020";
+import BreakingArTemplate from "./breakingar";
+import DailyNews247Template from "./dailynews247";
+import HeadlineGlobalTemplate from "./headlineglobal";
+import HeadlineArTemplate from "./headlinear";
+import NewsArTemplate from "./newsar";
+import ProWrestleHubTemplate from "./prowrestlehub";
+import TrendNewsTemplate from "./trendnews";
+import TurkHaber247TikbumTemplate from "./turkhaber247tikbum";
+import FlashTemplate from "./flash";
+import SharqTemplate from "./sharq";
+import TrendsFactsTemplate from "./trendsfacts";
+import NowVoiceTemplate from "./nowvoice";
+import Breaking24Template from "./breaking24";
+import MdarNewsTemplate from "./mdarnews";
+import MasrFiveTemplate from "./masrfive";
+import FactsInSecondsTemplate from "./factsinseconds";
+import FromMeccaToJerusalemTemplate from "./frommeccatojerusalem";
+import ArabVarietyTemplate from "./arabvariety";
+import LivePulseTemplate from "./livepulse";
+import TurkeyPulseTemplate from "./turkeypulse";
+import TurkHaber247Template from "./turkhaber247";
+// import Arabi21LightTemplate from "./arabi21light";
+// import Arabi21AsdaaTemplate from "./arabi21asdaa";
+// import Arabi21SportTemplate from "./arabi21sport";
 
 // const S3_BASE = `${MONTAGE_FILES_URL}`;
 
@@ -54,6 +86,1267 @@ export interface VideoTemplateConfig {
 }
 // TurkpressTemplate
 export const VIDEO_TEMPLATES: VideoTemplateConfig[] = [
+  {
+    id: "almaredaltounsi",
+    component: AlmaredaltounsiTemplate,
+    width: 1080,
+    height: 1920,
+    outroUrl: "",
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: { top_left: [0, 0], bottom_right: [0, 0] },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "التي انطلقت لنصرة ال قدس ال قدس والأق صى",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4360.srt"),
+      },
+      tags: {
+        location: "إسطنبول",
+        date: "20-20-2000",
+        source: "مادي بلوك",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "بيب غوارديولا",
+          description: "مدرب مانشستر سيتي",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
+    id: "awlad9",
+    component: Awlad9Template,
+    width: 1080,
+    height: 1920,
+    outroUrl: "",
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: { top_left: [0, 0], bottom_right: [0, 0] },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "التي انطلقت لنصرة ال قدس ال قدس والأق صى",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4360.srt"),
+      },
+      tags: {
+        location: "إسطنبول",
+        date: "20-20-2000",
+        source: "مادي بلوك",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "بيب غوارديولا",
+          description: "مدرب مانشستر سيتي",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
+    id: "infoplus",
+    component: InfoplusTemplate,
+    width: 1080,
+    height: 1920,
+    outroUrl: "",
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: { top_left: [0, 0], bottom_right: [0, 0] },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "التي انطلقت لنصرة ال قدس ال قدس والأق صى",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4360.srt"),
+      },
+      tags: {
+        location: "إسطنبول",
+        date: "20-20-2000",
+        source: "مادي بلوك",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "بيب غوارديولا",
+          description: "مدرب مانشستر سيتي",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
+    id: "intikhabat2019",
+    component: Intikhabat2019Template,
+    width: 1080,
+    height: 1920,
+    outroUrl: "",
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: { top_left: [0, 0], bottom_right: [0, 0] },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "التي انطلقت لنصرة ال قدس ال قدس والأق صى",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4360.srt"),
+      },
+      tags: {
+        location: "إسطنبول",
+        date: "20-20-2000",
+        source: "مادي بلوك",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "بيب غوارديولا",
+          description: "مدرب مانشستر سيتي",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
+    id: "tounes2020",
+    component: Tounes2020Template,
+    width: 1080,
+    height: 1920,
+    outroUrl: "",
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: { top_left: [0, 0], bottom_right: [0, 0] },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "التي انطلقت لنصرة ال قدس ال قدس والأق صى",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4360.srt"),
+      },
+      tags: {
+        location: "إسطنبول",
+        date: "20-20-2000",
+        source: "مادي بلوك",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "بيب غوارديولا",
+          description: "مدرب مانشستر سيتي",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
+    id: "247news",
+    component: News247Template,
+    width: 1080,
+    height: 1920,
+    outroUrl: "",
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [0, 0],
+            bottom_right: [0, 0],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "التي انطلقت لنصرة ال قدس ال قدس والأق صى",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4360.srt"),
+      },
+      tags: {
+        location: "إسطنبول",
+        date: "20-20-2000",
+        source: "مادي بلوك",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "بيب غوارديولا",
+          description: "مدرب مانشستر سيتي",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
+    id: "arabfact",
+    component: ArabFactTemplate,
+    width: 1080,
+    height: 1920,
+    outroUrl: "",
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [0, 0],
+            bottom_right: [0, 0],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "التي انطلقت لنصرة ال قدس ال قدس والأق صى",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4360.srt"),
+      },
+      tags: {
+        location: "إسطنبول",
+        date: "20-20-2000",
+        source: "مادي بلوك",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "بيب غوارديولا",
+          description: "مدرب مانشستر سيتي",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
+    id: "arabi21sportibrahim",
+    component: Arabi21SportIbrahimTemplate,
+    width: 1080,
+    height: 1920,
+    outroUrl: "",
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [0, 0],
+            bottom_right: [0, 0],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "التي انطلقت لنصرة القدس والأقصى التي انطلقت لنصرة القدس والأقصى",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4360.srt"),
+      },
+      tags: {
+        location: "إسطنبول",
+        date: "20-20-2000",
+        source: "مادي بلوك",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "بيب غوارديولا",
+          description: "مدرب مانشستر سيتي",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
+    id: "breakingar",
+    component: BreakingArTemplate,
+    width: 1080,
+    height: 1920,
+    outroUrl: "",
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [0, 0],
+            bottom_right: [0, 0],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "التي انطلقت لنصرة ال قدس ال قدس والأق صى",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4360.srt"),
+      },
+      tags: {
+        location: "إسطنبول",
+        date: "20-20-2000",
+        source: "مادي بلوك",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "بيب غوارديولا",
+          description: "مدرب مانشستر سيتي",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
+    id: "dailynews247",
+    component: DailyNews247Template,
+    width: 1080,
+    height: 1920,
+    outroUrl: "",
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [0, 0],
+            bottom_right: [0, 0],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "Daughter Blasts NM Daughter Blasts NM",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4361.srt"),
+      },
+      tags: {
+        location: "istanbul",
+        date: "20-20-2000",
+        source: "Maddie Block",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "Pep Guardiola",
+          description: "Manchester City Manager",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
+    id: "headlineglobal",
+    component: HeadlineGlobalTemplate,
+    width: 1080,
+    height: 1920,
+    outroUrl: "",
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [0, 0],
+            bottom_right: [0, 0],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "Daughter Blasts NM Daughter Blasts NM",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4361.srt"),
+      },
+      tags: {
+        location: "istanbul",
+        date: "20-20-2000",
+        source: "Maddie Block",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "Pep Guardiola",
+          description: "Manchester City Manager",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
+    id: "headlinear",
+    component: HeadlineArTemplate,
+    width: 1080,
+    height: 1920,
+    outroUrl: "",
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [0, 0],
+            bottom_right: [0, 0],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "التي انطلقت لنصرة القدس والأقصى التي انطلقت لنصرة القدس والأقصى",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4360.srt"),
+      },
+      tags: {
+        location: "إسطنبول",
+        date: "20-20-2000",
+        source: "مادي بلوك",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "بيب غوارديولا",
+          description: "مدرب مانشستر سيتي",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
+    id: "newsar",
+    component: NewsArTemplate,
+    width: 1080,
+    height: 1920,
+    outroUrl: "",
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [0, 0],
+            bottom_right: [0, 0],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "التي انطلقت لنصرة ال قدس ال قدس والأق صى",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4360.srt"),
+      },
+      tags: {
+        location: "إسطنبول",
+        date: "20-20-2000",
+        source: "مادي بلوك",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "بيب غوارديولا",
+          description: "مدرب مانشستر سيتي",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
+    id: "prowrestlehub",
+    component: ProWrestleHubTemplate,
+    width: 1080,
+    height: 1920,
+    outroUrl: "",
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [0, 0],
+            bottom_right: [0, 0],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "التي انطلقت لنصرة ال قدس ال قدس والأق صى",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4360.srt"),
+      },
+      tags: {
+        location: "إسطنبول",
+        date: "20-20-2000",
+        source: "مادي بلوك",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "بيب غوارديولا",
+          description: "مدرب مانشستر سيتي",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
+    id: "trendnews",
+    component: TrendNewsTemplate,
+    width: 1080,
+    height: 1920,
+    outroUrl: "",
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [0, 0],
+            bottom_right: [0, 0],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "Daughter Blasts NM Daughter Blasts NM",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4361.srt"),
+      },
+      tags: {
+        location: "istanbul",
+        date: "20-20-2000",
+        source: "Maddie Block",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "Pep Guardiola",
+          description: "Manchester City Manager",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
+    id: "turkhaber247tikbum",
+    component: TurkHaber247TikbumTemplate,
+    width: 1080,
+    height: 1920,
+    outroUrl: "",
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [0, 0],
+            bottom_right: [0, 0],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "Daughter Blasts NM Daughter Blasts NM",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4361.srt"),
+      },
+      tags: {
+        location: "istanbul",
+        date: "20-20-2000",
+        source: "Maddie Block",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "Pep Guardiola",
+          description: "Manchester City Manager",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
+    id: "flash",
+    component: FlashTemplate,
+    width: 1080,
+    height: 1920,
+    outroUrl: "",
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [0, 0],
+            bottom_right: [0, 0],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "التي انطلقت لنصرة ال قدس ال قدس والأق صى",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4360.srt"),
+      },
+      tags: {
+        location: "إسطنبول",
+        date: "20-20-2000",
+        source: "مادي بلوك",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "بيب غوارديولا",
+          description: "مدرب مانشستر سيتي",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
+    id: "sharq",
+    component: SharqTemplate,
+    width: 1080,
+    height: 1920,
+    outroUrl: "",
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [0, 0],
+            bottom_right: [0, 0],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "التي انطلقت لنصرة ال قدس ال قدس والأق صى",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4360.srt"),
+      },
+      tags: {
+        location: "إسطنبول",
+        date: "20-20-2000",
+        source: "مادي بلوك",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "بيب غوارديولا",
+          description: "مدرب مانشستر سيتي",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
+    id: "trendsfacts",
+    component: TrendsFactsTemplate,
+    width: 1080,
+    height: 1920,
+    outroUrl: "",
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [0, 0],
+            bottom_right: [0, 0],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "التي انطلقت لنصرة ال قدس ال قدس والأق صى",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4360.srt"),
+      },
+      tags: {
+        location: "إسطنبول",
+        date: "20-20-2000",
+        source: "مادي بلوك",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "بيب غوارديولا",
+          description: "مدرب مانشستر سيتي",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
+    id: "nowvoice",
+    component: NowVoiceTemplate,
+    width: 1080,
+    height: 1920,
+    outroUrl: "",
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [0, 0],
+            bottom_right: [0, 0],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "التي انطلقت لنصرة ال قدس ال قدس والأق صى",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4360.srt"),
+      },
+      tags: {
+        location: "إسطنبول",
+        date: "20-20-2000",
+        source: "مادي بلوك",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "بيب غوارديولا",
+          description: "مدرب مانشستر سيتي",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
+    id: "breaking24",
+    component: Breaking24Template,
+    width: 1080,
+    height: 1920,
+    outroUrl: "",
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [0, 0],
+            bottom_right: [0, 0],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "Daughter Blasts NM Daughter Blasts NM",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4361.srt"),
+      },
+      tags: {
+        location: "istanbul",
+        date: "20-20-2000",
+        source: "Maddie Block",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "Pep Guardiola",
+          description: "Manchester City Manager",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
+    id: "mdarnews",
+    component: MdarNewsTemplate,
+    width: 1080,
+    height: 1920,
+    outroUrl: "",
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [0, 0],
+            bottom_right: [0, 0],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "التي انطلقت لنصرة ال قدس ال قدس والأق صى",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4360.srt"),
+      },
+      tags: {
+        location: "إسطنبول",
+        date: "20-20-2000",
+        source: "مادي بلوك",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "بيب غوارديولا",
+          description: "مدرب مانشستر سيتي",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
+    id: "masrfive",
+    component: MasrFiveTemplate,
+    width: 1080,
+    height: 1920,
+    outroUrl: "",
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [0, 0],
+            bottom_right: [0, 0],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "التي انطلقت لنصرة ال قدس ال قدس والأق صى",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4360.srt"),
+      },
+      tags: {
+        location: "إسطنبول",
+        date: "20-20-2000",
+        source: "مادي بلوك",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "بيب غوارديولا",
+          description: "مدرب مانشستر سيتي",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
+    id: "factsinseconds",
+    component: FactsInSecondsTemplate,
+    width: 1080,
+    height: 1920,
+    outroUrl: "",
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [0, 0],
+            bottom_right: [0, 0],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "التي انطلقت لنصرة ال قدس ال قدس والأق صى",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4360.srt"),
+      },
+      tags: {
+        location: "إسطنبول",
+        date: "20-20-2000",
+        source: "مادي بلوك",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "بيب غوارديولا",
+          description: "مدرب مانشستر سيتي",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
+    id: "frommeccatojerusalem",
+    component: FromMeccaToJerusalemTemplate,
+    width: 1080,
+    height: 1920,
+    outroUrl: "",
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [0, 0],
+            bottom_right: [0, 0],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "التي انطلقت لنصرة ال قدس ال قدس والأق صى",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4360.srt"),
+      },
+      tags: {
+        location: "إسطنبول",
+        date: "20-20-2000",
+        source: "مادي بلوك",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "بيب غوارديولا",
+          description: "مدرب مانشستر سيتي",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
+    id: "arabvariety",
+    component: ArabVarietyTemplate,
+    width: 1080,
+    height: 1920,
+    outroUrl: "",
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [0, 0],
+            bottom_right: [0, 0],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "التي انطلقت لنصرة ال قدس ال قدس والأق صى",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4360.srt"),
+      },
+      tags: {
+        location: "إسطنبول",
+        date: "20-20-2000",
+        source: "مادي بلوك",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "بيب غوارديولا",
+          description: "مدرب مانشستر سيتي",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
+    id: "livepulse",
+    component: LivePulseTemplate,
+    width: 1080,
+    height: 1920,
+    outroUrl: "",
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [0, 0],
+            bottom_right: [0, 0],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "التي انطلقت لنصرة ال قدس ال قدس والأق صى",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4360.srt"),
+      },
+      tags: {
+        location: "إسطنبول",
+        date: "20-20-2000",
+        source: "مادي بلوك",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "بيب غوارديولا",
+          description: "مدرب مانشستر سيتي",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
+    id: "turkeypulse",
+    component: TurkeyPulseTemplate,
+    width: 1080,
+    height: 1920,
+    outroUrl: "",
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [0, 0],
+            bottom_right: [0, 0],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "التي انطلقت لنصرة ال قدس ال قدس والأق صى",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4360.srt"),
+      },
+      tags: {
+        location: "إسطنبول",
+        date: "20-20-2000",
+        source: "مادي بلوك",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "بيب غوارديولا",
+          description: "مدرب مانشستر سيتي",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
+    id: "turkhaber247",
+    component: TurkHaber247Template,
+    width: 1080,
+    height: 1920,
+    outroUrl: "",
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [0, 0],
+            bottom_right: [0, 0],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "Daughter Blasts NM Daughter Blasts NM",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4361.srt"),
+      },
+      tags: {
+        location: "istanbul",
+        date: "20-20-2000",
+        source: "Maddie Block",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "Pep Guardiola",
+          description: "Manchester City Manager",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
   {
     id: "wajha",
     component: WajhaTemplate,
@@ -99,174 +1392,6 @@ export const VIDEO_TEMPLATES: VideoTemplateConfig[] = [
       background_img_url: "",
     },
   },
-  // {
-  //   id: "turkhaber247",
-  //   component: Turkhaber247Template,
-  //   width: 1080,
-  //   height: 1920,
-  //   outroUrl: "",
-  //   defaultVideoSrc: "",
-  //   defaultData: {
-  //     sequences: [
-  //       {
-  //         start: 0,
-  //         end: 20,
-  //         crop: {
-  //           top_left: [0, 0],
-  //           bottom_right: [0, 0],
-  //         },
-  //         volume: 1,
-  //         videoSrc: staticFile("Sequence05_1.mp4"),
-  //         blur: [],
-  //       },
-  //     ],
-  //     audio_clips: [
-  //       {
-  //         src: staticFile("turkhaber247/sounds/backgorund.mp3"),
-  //         gain: 0.25,
-  //         fadeIn: 1,
-  //         fadeOut: 2,
-  //         startTime: 0,
-  //         duration: 20,
-  //       },
-  //     ],
-  //     title: {
-  //       text: "Daughter Blasts NM Daughter Blasts NM",
-  //     },
-  //     captions: {
-  //       src: staticFile("subtitle_translated_4361.srt"),
-  //     },
-  //     tags: {
-  //       location: "istanbul",
-  //       date: "20-20-2000",
-  //       source: "Maddie Block",
-  //     },
-  //     speakers: [
-  //       {
-  //         start: 6,
-  //         name: "Pep Guardiola",
-  //         description: "Manchester City Manager",
-  //       },
-  //     ],
-  //     private_source: false,
-  //     scale_to_fit: false,
-  //     background_img_url: "",
-  //   },
-  // },
-  //   {
-  //   id: "arab21sport",
-  //   component: Arabi21SportTemplate,
-  //   width: 1080,
-  //   height: 1920,
-  //   outroUrl: staticFile("arabi21sport/elements/outro.webm"),
-  //   defaultVideoSrc: "",
-  //   defaultData: {
-  //     sequences: [
-  //       {
-  //         start: 0,
-  //         end: 20,
-  //         crop: {
-  //           top_left: [0, 0],
-  //           bottom_right: [0, 0],
-  //         },
-  //         volume: 1,
-  //         videoSrc: staticFile("Sequence05_1.mp4"),
-  //         blur: [],
-  //       },
-  //     ],
-  //     title: {
-  //       text: "جوارديولا يواصل دفاعه العلني عن غزة والسودان",
-  //     },
-  //     captions: {
-  //       src: staticFile("subtitle_translated_4360.srt"),
-  //     },
-  //     tags: {
-  //       location: "مانشستر",
-  //       date: "18-07-2026",
-  //       source: "رويترز",
-  //     },
-  //     speakers: [],
-  //     private_source: false,
-  //     scale_to_fit: false,
-  //     background_img_url: "",
-  //   },
-  // },
-  // {
-  //   id: "arab21light",
-  //   component: Arabi21LightTemplate,
-  //   width: 1080,
-  //   height: 1920,
-  //   outroUrl: staticFile("arabi21light/elements/outro.webm"),
-  //   defaultVideoSrc: "",
-  //   defaultData: {
-  //     sequences: [
-  //       {
-  //         start: 0,
-  //         end: 20,
-  //         crop: {
-  //           top_left: [0, 0],
-  //           bottom_right: [0, 0],
-  //         },
-  //         volume: 1,
-  //         videoSrc: staticFile("Sequence05_1.mp4"),
-  //         blur: [],
-  //       },
-  //     ],
-  //     title: {
-  //       text: "جوارديولا يواصل دفاعه العلني عن غزة والسودان",
-  //     },
-  //     captions: {
-  //       src: staticFile("subtitle_translated_4360.srt"),
-  //     },
-  //     tags: {
-  //       location: "مانشستر",
-  //       date: "18-07-2026",
-  //       source: "رويترز",
-  //     },
-  //     speakers: [],
-  //     private_source: false,
-  //     scale_to_fit: false,
-  //     background_img_url: "",
-  //   },
-  // },
-  // {
-  //   id: "arab21asdaa",
-  //   component: Arabi21AsdaaTemplate,
-  //   width: 1080,
-  //   height: 1920,
-  //   outroUrl: staticFile("arabi21asdaa/elements/outro.webm"),
-  //   defaultVideoSrc: "",
-  //   defaultData: {
-  //     sequences: [
-  //       {
-  //         start: 0,
-  //         end: 20,
-  //         crop: {
-  //           top_left: [0, 0],
-  //           bottom_right: [0, 0],
-  //         },
-  //         volume: 1,
-  //         videoSrc: staticFile("Sequence05_1.mp4"),
-  //         blur: [],
-  //       },
-  //     ],
-  //     title: {
-  //       text: "جوارديولا يواصل دفاعه العلني عن غزة والسودان",
-  //     },
-  //     captions: {
-  //       src: staticFile("subtitle_translated_4360.srt"),
-  //     },
-  //     tags: {
-  //       location: "مانشستر",
-  //       date: "18-07-2026",
-  //       source: "رويترز",
-  //     },
-  //     speakers: [],
-  //     private_source: false,
-  //     scale_to_fit: false,
-  //     background_img_url: "",
-  //   },
-  // },
   {
     id: "arabi21tanagod",
     component: Arabi21TanagodTemplate,
@@ -735,7 +1860,7 @@ export const VIDEO_TEMPLATES: VideoTemplateConfig[] = [
     height: 1920,
     outroUrl: staticFile("fokus/elements/outro.webm"),
     defaultVideoSrc: "",
-    outroOverlapFrames: 15 ,
+    outroOverlapFrames: 15,
     defaultData: {
       sequences: [
         {

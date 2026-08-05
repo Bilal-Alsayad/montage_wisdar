@@ -15,11 +15,9 @@ import { TITLE_ANIMATION_DURATION, TitleAnimation } from "./TitleAnimation";
 import { Logo } from "./Logo";
 import Captions from "../../Components/Captions";
 
-const LYON_ARABIC_DISPLAY_BOLD = "lyonarabicdisplaybold"
+const LYON_ARABIC_DISPLAY_BOLD = "lyonarabicdisplaybold";
 
-export default function JomarkTemplate({
-  data,
-}: TemplateProps) {
+export default function JomarkTemplate({ data }: TemplateProps) {
   const frame = useCurrentFrame();
   const { durationInFrames } = useVideoConfig();
   const fontsLoaded = useLoadFonts([

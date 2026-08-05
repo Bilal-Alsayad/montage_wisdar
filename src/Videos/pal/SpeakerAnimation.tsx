@@ -39,13 +39,15 @@ export default function SpeakerAnimation({
   const animationFrame = getAnimationFrame(frame, durationInFrames);
 
   // Step visibility flags (fr=30, steps are hold-frames, no easing needed)
-  const showGhostRed         = animationFrame >= 0 && animationFrame <= 2;
-  const ghostWhiteOpacity    = animationFrame === 1 ? 0.25 : animationFrame === 2 ? 0.5 : 0;
-  const showMainRed          = animationFrame >= 3;
-  const thirdRowWhiteOpacity = animationFrame === 4 ? 0.5 : animationFrame === 5 ? 1 : 0;
-  const showSecondRowWhite   = animationFrame >= 6;
-  const showName             = animationFrame >= 3;
-  const showDescription      = animationFrame >= 6;
+  const showGhostRed = animationFrame >= 0 && animationFrame <= 2;
+  const ghostWhiteOpacity =
+    animationFrame === 1 ? 0.25 : animationFrame === 2 ? 0.5 : 0;
+  const showMainRed = animationFrame >= 3;
+  const thirdRowWhiteOpacity =
+    animationFrame === 4 ? 0.5 : animationFrame === 5 ? 1 : 0;
+  const showSecondRowWhite = animationFrame >= 6;
+  const showName = animationFrame >= 3;
+  const showDescription = animationFrame >= 6;
 
   return (
     <AbsoluteFill>

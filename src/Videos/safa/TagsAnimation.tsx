@@ -33,51 +33,68 @@ export default function TagsAnimation({
   //   opacity: Lottie t=2→17  → Remotion 1→10
   //   slideX:  87→121 = +34px, Lottie t=-2→16 → clamp 0→10 Remotion
   const LOC_ICON_OP_START = 1;
-  const LOC_ICON_OP_END   = 10;
-  const LOC_ICON_SL_END   = 10;
+  const LOC_ICON_OP_END = 10;
+  const LOC_ICON_SL_END = 10;
 
   // Location text animator sweep: Lottie t=0→39 → Remotion 0→23
   const LOC_SWEEP_START = 0;
-  const LOC_SWEEP_END   = Math.round(39 * 0.6); // 23
+  const LOC_SWEEP_END = Math.round(39 * 0.6); // 23
 
   // Date icon (Layer 4 / image_1):
   //   opacity: Lottie t=9→29  → Remotion 5→17
   //   slideX:  +34px, Lottie t=-1→28 → clamp 0→17 Remotion
-  const DATE_ICON_OP_START = Math.round(9  * 0.6); // 5
-  const DATE_ICON_OP_END   = Math.round(29 * 0.6); // 17
-  const DATE_ICON_SL_END   = Math.round(28 * 0.6); // 17
+  const DATE_ICON_OP_START = Math.round(9 * 0.6); // 5
+  const DATE_ICON_OP_END = Math.round(29 * 0.6); // 17
+  const DATE_ICON_SL_END = Math.round(28 * 0.6); // 17
 
   // Date text animator sweep: Lottie t=5→44 → Remotion 3→26
-  const DATE_SWEEP_START = Math.round(5  * 0.6); // 3
-  const DATE_SWEEP_END   = Math.round(44 * 0.6); // 26
+  const DATE_SWEEP_START = Math.round(5 * 0.6); // 3
+  const DATE_SWEEP_END = Math.round(44 * 0.6); // 26
 
   // Enter duration = last enter keyframe
   const ENTER_DURATION = DATE_SWEEP_END; // 26
 
-  const { reverseFrame, isExiting } = reverseFrameOf(frame, ENTER_DURATION, durationInFrames);
+  const { reverseFrame, isExiting } = reverseFrameOf(
+    frame,
+    ENTER_DURATION,
+    durationInFrames,
+  );
   const evalFrame = isExiting ? reverseFrame : frame;
 
   // ─── Location icon ────────────────────────────────────────────────────────
-  const locIconOpacity = interpolate(evalFrame, [LOC_ICON_OP_START, LOC_ICON_OP_END], [0, 1], {
-    extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE,
-  });
+  const locIconOpacity = interpolate(
+    evalFrame,
+    [LOC_ICON_OP_START, LOC_ICON_OP_END],
+    [0, 1],
+    {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+      easing: EASE,
+    },
+  );
   const locIconSlideX = interpolate(evalFrame, [0, LOC_ICON_SL_END], [-34, 0], {
-    extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE,
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: EASE,
   });
 
   // ─── Date icon ────────────────────────────────────────────────────────────
   const dateIconOpacity = interpolate(
-    evalFrame, [DATE_ICON_OP_START, DATE_ICON_OP_END], [0, 1],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE }
+    evalFrame,
+    [DATE_ICON_OP_START, DATE_ICON_OP_END],
+    [0, 1],
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE },
   );
   const dateIconSlideX = interpolate(
-    evalFrame, [DATE_ICON_OP_START, DATE_ICON_SL_END], [-34, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE }
+    evalFrame,
+    [DATE_ICON_OP_START, DATE_ICON_SL_END],
+    [-34, 0],
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE },
   );
 
   // ─── Character arrays ─────────────────────────────────────────────────────
   const locationChars = Array.from(location ?? "");
-  const dateChars     = Array.from(date ?? "");
+  const dateChars = Array.from(date ?? "");
 
   return (
     <AbsoluteFill>
@@ -99,16 +116,35 @@ export default function TagsAnimation({
         {location && (
           <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
             {/* Icon — fade + slideX (same offset as text animator: 34px) */}
-            <div style={{ opacity: locIconOpacity, transform: `translateX(${locIconSlideX}px)` }}>
+            <div
+              style={{
+                opacity: locIconOpacity,
+                transform: `translateX(${locIconSlideX}px)`,
+              }}
+            >
               <Img src={staticFile("safa/icons/location.png")} />
             </div>
 
             {/* Text — per-character charEnter */}
             <span style={{ display: "inline-flex", overflow: "hidden" }}>
               {locationChars.map((char, i) => {
-                const { opacity, translateX } = charEnter(evalFrame, i, locationChars.length, LOC_SWEEP_START, LOC_SWEEP_END);
+                const { opacity, translateX } = charEnter(
+                  evalFrame,
+                  i,
+                  locationChars.length,
+                  LOC_SWEEP_START,
+                  LOC_SWEEP_END,
+                );
                 return (
-                  <span key={i} style={{ display: "inline-block", opacity, transform: `translateX(${translateX}px)`, whiteSpace: "pre" }}>
+                  <span
+                    key={i}
+                    style={{
+                      display: "inline-block",
+                      opacity,
+                      transform: `translateX(${translateX}px)`,
+                      whiteSpace: "pre",
+                    }}
+                  >
                     {char}
                   </span>
                 );
@@ -121,16 +157,35 @@ export default function TagsAnimation({
         {date && (
           <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
             {/* Icon — fade + slideX */}
-            <div style={{ opacity: dateIconOpacity, transform: `translateX(${dateIconSlideX}px)` }}>
+            <div
+              style={{
+                opacity: dateIconOpacity,
+                transform: `translateX(${dateIconSlideX}px)`,
+              }}
+            >
               <Img src={staticFile("safa/icons/date.png")} />
             </div>
 
             {/* Text — per-character charEnter */}
             <span style={{ display: "inline-flex", overflow: "hidden" }}>
               {dateChars.map((char, i) => {
-                const { opacity, translateX } = charEnter(evalFrame, i, dateChars.length, DATE_SWEEP_START, DATE_SWEEP_END);
+                const { opacity, translateX } = charEnter(
+                  evalFrame,
+                  i,
+                  dateChars.length,
+                  DATE_SWEEP_START,
+                  DATE_SWEEP_END,
+                );
                 return (
-                  <span key={i} style={{ display: "inline-block", opacity, transform: `translateX(${translateX}px)`, whiteSpace: "pre" }}>
+                  <span
+                    key={i}
+                    style={{
+                      display: "inline-block",
+                      opacity,
+                      transform: `translateX(${translateX}px)`,
+                      whiteSpace: "pre",
+                    }}
+                  >
                     {char}
                   </span>
                 );

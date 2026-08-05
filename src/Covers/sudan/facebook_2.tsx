@@ -60,7 +60,7 @@ export default function SudanFacebook2Template({ data }: CoverTemplateProps) {
           top: 690,
           left: 550,
           textAlign: "right",
-          width: 460 ,
+          width: 460,
           height: 90,
           direction: "rtl",
           color: "#ffffff",

@@ -34,7 +34,7 @@ export default function NoonTemplate({
   outroStartFrame = 0,
   outroDurationInFrames,
   data,
-  mainVideoDurationInFrames = 1
+  mainVideoDurationInFrames = 1,
 }: TemplateProps) {
   const { fps } = useVideoConfig();
   const frame = useCurrentFrame();
@@ -49,7 +49,7 @@ export default function NoonTemplate({
   );
   const isVideoEnded = frame >= mainVideoDurationInFrames;
   const freezeFrame = totalVideoDuration - 1;
-  
+
   const { text1, text2 } = splitTitle(data.title.text);
   const fontsLoaded = useLoadFonts([
     {

@@ -18,7 +18,7 @@ export function charEnter(
   charIdx: number,
   totalChars: number,
   sweepStart: number,
-  sweepEnd: number
+  sweepEnd: number,
 ): { opacity: number; translateX: number } {
   const total = totalChars === 0 ? 1 : totalChars;
   const sweepSpan = sweepEnd - sweepStart;
@@ -30,14 +30,14 @@ export function charEnter(
     inputFrame,
     [charStart, charStart + charDur],
     [0, 1],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE }
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE },
   );
 
   const translateX = interpolate(
     inputFrame,
     [charStart, charStart + charDur],
     [34, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE }
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE },
   );
 
   return { opacity, translateX };
@@ -49,13 +49,13 @@ export function charEnter(
 export function reverseFrameOf(
   frame: number,
   enterDuration: number,
-  durationInFrames: number
+  durationInFrames: number,
 ): { reverseFrame: number; isExiting: boolean } {
   const exitStart = durationInFrames - enterDuration;
   const isExiting = frame >= exitStart;
   const reverseFrame = Math.max(
     0,
-    Math.min(enterDuration, enterDuration - (frame - exitStart))
+    Math.min(enterDuration, enterDuration - (frame - exitStart)),
   );
   return { reverseFrame, isExiting };
 }

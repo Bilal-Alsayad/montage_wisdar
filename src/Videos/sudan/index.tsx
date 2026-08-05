@@ -72,7 +72,7 @@ export default function SudanTemplate({ data }: TemplateProps) {
               top: 700,
               direction: "ltr",
               backgroundColor: "#007675",
-              padding: "0 5px"
+              padding: "0 5px",
             }}
             textStyle={{
               fontSize: 40,

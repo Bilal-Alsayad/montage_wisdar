@@ -14,9 +14,13 @@ import { TemplateProps } from "../types";
 import AudioClips from "../../Components/AudioClips";
 import Cover from "../../Components/Cover";
 import TitleAnimation, { TITLE_ANIMATION_DURATION } from "./TitleAnimation";
-import SpeakerAnimation, { SPEAKER_ANIMATION_DURATION } from "./SpeakerAnimation";
+import SpeakerAnimation, {
+  SPEAKER_ANIMATION_DURATION,
+} from "./SpeakerAnimation";
+import TagsAnimation from "./TagsAnimation";
+import { TAGS_ANIMATION_DURATION } from "../safa/TagsAnimation";
 
-const QUIET_SANS_SEMIBOLD = "QuietSansSemiBold"
+const QUIET_SANS_SEMIBOLD = "QuietSansSemiBold";
 
 export default function FokusTemplate({
   data,
@@ -24,7 +28,7 @@ export default function FokusTemplate({
   outroStartFrame,
 }: TemplateProps) {
   const { fps } = useVideoConfig();
-  
+
   const fontsLoaded = useLoadFonts([
     {
       family: QUIET_SANS_SEMIBOLD,
@@ -66,7 +70,17 @@ export default function FokusTemplate({
             />
           </Sequence>
         ))}
-        
+      <Sequence
+        from={TITLE_ANIMATION_DURATION}
+        durationInFrames={TAGS_ANIMATION_DURATION}
+      >
+        <TagsAnimation
+          location={data.tags.location ?? ""}
+          source={data.tags.source ?? ""}
+          fontSemiBold={QUIET_SANS_SEMIBOLD}
+          fontMedium={QUIET_SANS_SEMIBOLD}
+        />
+      </Sequence>
       {/* Captions */}
       {data.captions.src && (
         <Captions
@@ -91,23 +105,23 @@ export default function FokusTemplate({
           fontFamily={QUIET_SANS_SEMIBOLD}
         />
       </Sequence>
-      
+
       {/* Logo */}
       <Loop durationInFrames={3600}>
-          <OffthreadVideo
-            src={staticFile("fokus/elements/logo.webm")}
-            transparent
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-            }}
-          />
+        <OffthreadVideo
+          src={staticFile("fokus/elements/logo.webm")}
+          transparent
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+          }}
+        />
       </Loop>
 
       <Sequence from={outroStartFrame} durationInFrames={outroDurationInFrames}>
         <OffthreadVideo
-          src={staticFile("fokus/elements/outro.webm")}
+          src={staticFile("fokus/elements/outro.mp4")}
           transparent
           style={{
             width: "100%",

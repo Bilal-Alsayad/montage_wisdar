@@ -37,8 +37,8 @@ export default function MeeInstagramTemplate({ data }: CoverTemplateProps) {
           style={{
             position: "absolute",
             top: 1140,
-            left:"50%", //daha iyi pls kalsin :P
-            transform:"translateX(-50%)",
+            left: "50%", //daha iyi pls kalsin :P
+            transform: "translateX(-50%)",
             width: "75%",
             textAlign: "center",
           }}

@@ -16,8 +16,8 @@ export default function MeeFacebookTemplate({ data }: CoverTemplateProps) {
   if (!loadFont) {
     return null;
   }
-  
-  const fontSize =data.fontSize ?? 120
+
+  const fontSize = data.fontSize ?? 120;
 
   return (
     <AbsoluteFill>
@@ -39,8 +39,8 @@ export default function MeeFacebookTemplate({ data }: CoverTemplateProps) {
           style={{
             position: "absolute",
             top: 840,
-            left:"50%", //daha iyi pls kalsin :P
-            transform:"translateX(-50%)",
+            left: "50%", //daha iyi pls kalsin :P
+            transform: "translateX(-50%)",
             width: "80%",
             textAlign: "center",
           }}

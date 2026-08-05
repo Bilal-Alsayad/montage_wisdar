@@ -5,7 +5,7 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import {measureText} from "@remotion/layout-utils";
+import { measureText } from "@remotion/layout-utils";
 import RedStrapAnimation, {
   RED_STRAP_BASE_WIDTH,
   RED_STRAP_HEIGHT,
@@ -34,7 +34,7 @@ export default function SpeakerAnimation({
   fontFamily,
 }: SpeakerAnimationProps) {
   const frame = useCurrentFrame();
-  const {fps} = useVideoConfig();
+  const { fps } = useVideoConfig();
 
   const sourceFrame = (frame * 25) / fps;
 
@@ -80,16 +80,11 @@ export default function SpeakerAnimation({
   /*
    * Description kutusu kırmızı strap açıldıktan sonra iner.
    */
-  const descriptionProgress = interpolate(
-    sourceFrame,
-    [17, 29],
-    [0, 1],
-    {
-      easing: EASE,
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-    },
-  );
+  const descriptionProgress = interpolate(sourceFrame, [17, 29], [0, 1], {
+    easing: EASE,
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
 
   const descriptionTranslateY = interpolate(
     descriptionProgress,
@@ -113,14 +108,12 @@ export default function SpeakerAnimation({
   /*
    * Description kırmızı kutunun altına 6 px girer.
    */
-  const descriptionTop =
-    STRAP_TOP + RED_STRAP_HEIGHT - 6;
+  const descriptionTop = STRAP_TOP + RED_STRAP_HEIGHT - 6;
 
-  const descriptionRadius =
-    DESCRIPTION_HEIGHT / 2;
+  const descriptionRadius = DESCRIPTION_HEIGHT / 2;
 
   return (
-    <AbsoluteFill style={{opacity: speakerOpacity}}>
+    <AbsoluteFill style={{ opacity: speakerOpacity }}>
       {/*
        * Description önce çizilir.
        * Kırmızı strap daha sonra çizildiği için description

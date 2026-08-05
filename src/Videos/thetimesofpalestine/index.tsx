@@ -1,4 +1,11 @@
-import { AbsoluteFill, Sequence, staticFile, Img, OffthreadVideo, Loop } from "remotion";
+import {
+  AbsoluteFill,
+  Sequence,
+  staticFile,
+  Img,
+  OffthreadVideo,
+  Loop,
+} from "remotion";
 import { useLoadFonts } from "../../hooks/useLoadFonts";
 import { TemplateProps } from "../types";
 import Video from "../../Components/Video";
@@ -8,8 +15,8 @@ import Captions from "../../Components/Captions";
 import TitleAnimation, { TITLE_ANIMATION_DURATION } from "./TitleAnimation";
 import SourceAnimation, { SOURCE_ANIMATION_DURATION } from "./SourceAnimation";
 
-const LATO_MEDIUM = "LatoMedium"; 
-const LATO_BOLD = "LatoBold"; 
+const LATO_MEDIUM = "LatoMedium";
+const LATO_BOLD = "LatoBold";
 
 export default function ThetimesofpalestineTemplate({
   data,
@@ -52,7 +59,10 @@ export default function ThetimesofpalestineTemplate({
         }}
       />
 
-      <Sequence from={TITLE_ANIMATION_DURATION} durationInFrames={SOURCE_ANIMATION_DURATION}>
+      <Sequence
+        from={TITLE_ANIMATION_DURATION}
+        durationInFrames={SOURCE_ANIMATION_DURATION}
+      >
         <SourceAnimation text={data.tags.source} fontFamily={LATO_BOLD} />
       </Sequence>
 

@@ -22,7 +22,7 @@ export default function HarmonyInstagram2Template({
   ]);
 
   if (!loadFont) return null;
-  
+
   return (
     <AbsoluteFill>
       <AbsoluteFill>
@@ -49,24 +49,30 @@ export default function HarmonyInstagram2Template({
             textAlign: "center",
           }}
         >
-          {splitTextIntoMultipleLines(data.text_fields.text, 4, 15).map((line, index) => {
-            const isLastLine = index === splitTextIntoMultipleLines(data.text_fields.text, 4, 15).length - 1;
+          {splitTextIntoMultipleLines(data.text_fields.text, 4, 15).map(
+            (line, index) => {
+              const isLastLine =
+                index ===
+                splitTextIntoMultipleLines(data.text_fields.text, 4, 15)
+                  .length -
+                  1;
 
-            return (
-              <div
-                key={index}
-                style={{
-                  fontFamily: isLastLine ? lastLine : firstLine,
-                  fontSize: isLastLine ? 95 : 80,
-                  lineHeight: 1.1,
-                  textTransform: isLastLine ? "none" : "uppercase",
-                  color: "#ffffff",
-                }}
-              >
-                {line}
-              </div>
-            );
-          })}
+              return (
+                <div
+                  key={index}
+                  style={{
+                    fontFamily: isLastLine ? lastLine : firstLine,
+                    fontSize: isLastLine ? 95 : 80,
+                    lineHeight: 1.1,
+                    textTransform: isLastLine ? "none" : "uppercase",
+                    color: "#ffffff",
+                  }}
+                >
+                  {line}
+                </div>
+              );
+            },
+          )}
         </div>
       </AbsoluteFill>
     </AbsoluteFill>

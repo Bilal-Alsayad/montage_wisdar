@@ -16,7 +16,6 @@ import {
 const ENTER_DURATION = 21;
 const EASE = Easing.bezier(0.333, 0, 0.667, 1);
 
-
 interface SourceAnimationProps {
   source?: string;
   fontFamily: string;

@@ -12,11 +12,13 @@ import Captions from "../../Components/Captions";
 import { TemplateProps } from "../types";
 import AudioClips from "../../Components/AudioClips";
 import Cover from "../../Components/Cover";
-import SpeakerAnimation, { SPEAKER_ANIMATION_DURATION } from "./SpeakerAnimation";
+import SpeakerAnimation, {
+  SPEAKER_ANIMATION_DURATION,
+} from "./SpeakerAnimation";
 import TitleAnimation, { TITLE_ANIMATION_DURATION } from "./TitleAnimation";
 import TagsAnimation, { TAGS_ANIMATION_DURATION } from "./TagsAnimation";
 
-const ALARABY_TELEVISION_BOLD = "AlarabyTelevisionBold"
+const ALARABY_TELEVISION_BOLD = "AlarabyTelevisionBold";
 
 export default function AlarabyTemplate({
   data,
@@ -107,7 +109,7 @@ export default function AlarabyTemplate({
           textStyle={{
             color: "#bcbcbc",
             fontFamily: ALARABY_TELEVISION_BOLD,
-            
+
             fontSize: 55,
           }}
         />

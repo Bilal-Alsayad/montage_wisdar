@@ -83,32 +83,50 @@ export default function TitleAnimation({
     [4 + ENTER_DELAY, 49 + ENTER_DELAY],
     [0, 1],
     {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: EASE_TEXT,
-  });
-  const text1ExitProgress = interpolate(frame, [106 - EXIT_ADVANCE, 151 - EXIT_ADVANCE], [1, 0], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: EASE_TEXT,
-  });
-  const text1Progress = frame < (106 - EXIT_ADVANCE) ? text1EnterProgress : text1ExitProgress;
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+      easing: EASE_TEXT,
+    },
+  );
+  const text1ExitProgress = interpolate(
+    frame,
+    [106 - EXIT_ADVANCE, 151 - EXIT_ADVANCE],
+    [1, 0],
+    {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+      easing: EASE_TEXT,
+    },
+  );
+  const text1Progress =
+    frame < 106 - EXIT_ADVANCE ? text1EnterProgress : text1ExitProgress;
   const text1Clip = `inset(0 ${(1 - text1Progress) * 100}% 0 0)`;
 
   // ─── Text 02 sweep reveal ────────────────────────────────────────────────────
   // Enter: 0+8=8 → 45+8=53
   // Exit:  102−14=88 → 147−14=133
-  const text2EnterProgress = interpolate(frame, [0 + ENTER_DELAY, 45 + ENTER_DELAY], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: EASE_TEXT,
-  });
-  const text2ExitProgress = interpolate(frame, [102 - EXIT_ADVANCE, 147 - EXIT_ADVANCE], [1, 0], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: EASE_TEXT,
-  });
-  const text2Progress = frame < (102 - EXIT_ADVANCE) ? text2EnterProgress : text2ExitProgress;
+  const text2EnterProgress = interpolate(
+    frame,
+    [0 + ENTER_DELAY, 45 + ENTER_DELAY],
+    [0, 1],
+    {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+      easing: EASE_TEXT,
+    },
+  );
+  const text2ExitProgress = interpolate(
+    frame,
+    [102 - EXIT_ADVANCE, 147 - EXIT_ADVANCE],
+    [1, 0],
+    {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+      easing: EASE_TEXT,
+    },
+  );
+  const text2Progress =
+    frame < 102 - EXIT_ADVANCE ? text2EnterProgress : text2ExitProgress;
   const text2Clip = `inset(0 ${(1 - text2Progress) * 100}% 0 0)`;
 
   return (

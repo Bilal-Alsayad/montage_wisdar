@@ -53,9 +53,7 @@ const AnimatedCharacters: React.FC<AnimatedCharactersProps> = ({
   return (
     <>
       {characters.map((character, index) => {
-        const characterOrder = reverse
-          ? characters.length - index - 1
-          : index;
+        const characterOrder = reverse ? characters.length - index - 1 : index;
 
         const characterProgress = interpolate(
           revealedCharacters,
@@ -94,15 +92,10 @@ const TagsAnimation: React.FC<TagsAnimationProps> = ({
 }) => {
   const frame = useCurrentFrame();
 
-  const boxOpacity = interpolate(
-    frame,
-    [0, 11],
-    [0.02, 1],
-    {
-      ...CLAMP,
-      easing: TEXT_EASE,
-    },
-  );
+  const boxOpacity = interpolate(frame, [0, 11], [0.02, 1], {
+    ...CLAMP,
+    easing: TEXT_EASE,
+  });
 
   return (
     <AbsoluteFill>
@@ -218,10 +211,7 @@ const TagsAnimation: React.FC<TagsAnimationProps> = ({
                 whiteSpace: "nowrap",
               }}
             >
-              <AnimatedCharacters
-                text={source}
-                endFrame={23}
-              />
+              <AnimatedCharacters text={source} endFrame={23} />
             </div>
           </div>
         </div>

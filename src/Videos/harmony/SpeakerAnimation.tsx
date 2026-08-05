@@ -32,15 +32,10 @@ export default function SpeakerAnimation({
 }: SpeakerAnimationProps) {
   const frame = useCurrentFrame();
 
-  const fadeInOpacity = interpolate(
-    frame,
-    [0, FADE_IN_DURATION],
-    [0, 1],
-    {
-      ...CLAMP,
-      easing: Easing.out(Easing.cubic),
-    },
-  );
+  const fadeInOpacity = interpolate(frame, [0, FADE_IN_DURATION], [0, 1], {
+    ...CLAMP,
+    easing: Easing.out(Easing.cubic),
+  });
 
   const fadeOutOpacity = interpolate(
     frame,
@@ -95,10 +90,10 @@ export default function SpeakerAnimation({
               color: "#FF002D",
               fontFamily: nameFontFamily,
               fontSize: 43,
-          }}
-        >
-          {name}
-        </div>
+            }}
+          >
+            {name}
+          </div>
         )}
 
         {description && (
@@ -107,11 +102,11 @@ export default function SpeakerAnimation({
               color: "#FFFFFF",
               fontFamily: descriptionFontFamily,
               fontSize: 38,
-            filter: "drop-shadow(0 0 9.5px rgba(0, 0, 0, 0.84))",
-          }}
-        >
-          {description}
-        </div>
+              filter: "drop-shadow(0 0 9.5px rgba(0, 0, 0, 0.84))",
+            }}
+          >
+            {description}
+          </div>
         )}
       </div>
     </AbsoluteFill>

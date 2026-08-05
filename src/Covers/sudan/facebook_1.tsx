@@ -40,7 +40,7 @@ export default function SudanFacebook1Template({ data }: CoverTemplateProps) {
           left: 500,
           width: 500,
           height: 950,
-          padding:10,
+          padding: 10,
 
           display: "flex",
           alignItems: "center",

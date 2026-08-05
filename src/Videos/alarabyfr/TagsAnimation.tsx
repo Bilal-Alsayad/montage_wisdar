@@ -101,8 +101,7 @@ export default function TagsAnimation({
               display: "flex",
               width: "max-content",
               height: 60,
-              background:
-                "linear-gradient(90deg, #2337d3 0%, #233095 100%)",
+              background: "linear-gradient(90deg, #2337d3 0%, #233095 100%)",
               clipPath: `inset(0 ${(1 - blueReveal) * 100}% 0 ${
                 exitErase * 100
               }%)`,
@@ -218,8 +217,7 @@ export default function TagsAnimation({
               display: "flex",
               width: "max-content",
               height: 60,
-              background:
-                "linear-gradient(90deg, #2337d3 0%, #233095 100%)",
+              background: "linear-gradient(90deg, #2337d3 0%, #233095 100%)",
               clipPath: `inset(0 ${(1 - blueReveal) * 100}% 0 ${
                 exitErase * 100
               }%)`,

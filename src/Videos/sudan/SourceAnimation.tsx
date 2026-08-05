@@ -1,9 +1,4 @@
-import {
-  AbsoluteFill,
-  Easing,
-  interpolate,
-  useCurrentFrame,
-} from "remotion";
+import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from "remotion";
 
 // ─── Lottie data.json: fr=25fps, Remotion=30fps → multiplier = 1.2 ────────────
 // Layer 3 (circle icon, parent=text layer):
@@ -28,16 +23,16 @@ const CHECKMARK_EASE = Easing.bezier(0.333, 0, 0.162, 1);
 
 // ─── Timing constants (in Remotion 30fps frames) ─────────────────────────────
 // Enter
-const CIRCLE_ENTER_END = 14;    // circle finishes settling
-const CHECK_OPACITY_END = 7;    // checkmark fades in
-const CHECK_ROT_END = 16;       // checkmark rotation done
-const CHECK_SCALE_END = 18;     // checkmark scale done (longest enter)
+const CIRCLE_ENTER_END = 14; // circle finishes settling
+const CHECK_OPACITY_END = 7; // checkmark fades in
+const CHECK_ROT_END = 16; // checkmark rotation done
+const CHECK_SCALE_END = 18; // checkmark scale done (longest enter)
 const TEXT_ENTER_START = 4;
 const TEXT_ENTER_END = 19;
 
 // Exit
 const ENTER_DURATION = CHECK_SCALE_END; // 18 frames — used for reverse-frame
-const EXIT_START = 85;                  // t=71 @ 25fps → 85 @ 30fps
+const EXIT_START = 85; // t=71 @ 25fps → 85 @ 30fps
 
 export const SOURCE_ANIMATION_DURATION = EXIT_START + ENTER_DURATION + 2;
 
@@ -54,53 +49,57 @@ export function SourceAnimation({ source, fontFamily }: SourceAnimationProps) {
   // ─── Reverse-frame for exit animations ─────────────────────────────────────
   const reverseFrame = Math.max(
     0,
-    Math.min(ENTER_DURATION, ENTER_DURATION - (frame - EXIT_START))
+    Math.min(ENTER_DURATION, ENTER_DURATION - (frame - EXIT_START)),
   );
 
   const isExiting = frame >= EXIT_START;
 
   // ─── Circle: Enter ─────────────────────────────────────────────────────────
   // Position X: slides in from the left (offset = -109.6px relative to text layer)
-  const circleEnterX = interpolate(
-    frame,
-    [0, CIRCLE_ENTER_END],
-    [-110, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: CIRCLE_EASE }
-  );
+  const circleEnterX = interpolate(frame, [0, CIRCLE_ENTER_END], [-110, 0], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: CIRCLE_EASE,
+  });
   // Rotation: spins from 110° to 0° as it flies in
-  const circleEnterRot = interpolate(
-    frame,
-    [0, CIRCLE_ENTER_END],
-    [110, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: CIRCLE_EASE }
-  );
+  const circleEnterRot = interpolate(frame, [0, CIRCLE_ENTER_END], [110, 0], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: CIRCLE_EASE,
+  });
   // Opacity: quick fade-in
-  const circleEnterOpacity = interpolate(
-    frame,
-    [0, 6],
-    [0, 1],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE }
-  );
+  const circleEnterOpacity = interpolate(frame, [0, 6], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: EASE,
+  });
 
   // ─── Circle: Exit (reverse-frame) ──────────────────────────────────────────
   const circleExitX = interpolate(
     reverseFrame,
     [0, CIRCLE_ENTER_END],
     [-110, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: CIRCLE_EASE }
+    {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+      easing: CIRCLE_EASE,
+    },
   );
   const circleExitRot = interpolate(
     reverseFrame,
     [0, CIRCLE_ENTER_END],
     [110, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: CIRCLE_EASE }
+    {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+      easing: CIRCLE_EASE,
+    },
   );
-  const circleExitOpacity = interpolate(
-    reverseFrame,
-    [0, 6],
-    [0, 1],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE }
-  );
+  const circleExitOpacity = interpolate(reverseFrame, [0, 6], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: EASE,
+  });
 
   // ─── Circle: Combined ──────────────────────────────────────────────────────
   const circleX = isExiting ? circleExitX : circleEnterX;
@@ -113,21 +112,25 @@ export function SourceAnimation({ source, fontFamily }: SourceAnimationProps) {
     frame,
     [CIRCLE_ENTER_END, CIRCLE_ENTER_END + CHECK_OPACITY_END],
     [0, 1],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE }
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE },
   );
   // Rotation: 46° → 0°, giving the "snap into place" feel
   const checkEnterRot = interpolate(
     frame,
     [CIRCLE_ENTER_END, CIRCLE_ENTER_END + CHECK_ROT_END],
     [46, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE }
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE },
   );
   // Scale: 42% → 100% with slight bounce feel
   const checkEnterScale = interpolate(
     frame,
     [CIRCLE_ENTER_END, CIRCLE_ENTER_END + CHECK_SCALE_END],
     [0.42, 1],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: CHECKMARK_EASE }
+    {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+      easing: CHECKMARK_EASE,
+    },
   );
 
   // ─── Checkmark: Exit (reverse-frame, offset by CIRCLE_ENTER_END) ──────────
@@ -135,26 +138,30 @@ export function SourceAnimation({ source, fontFamily }: SourceAnimationProps) {
     0,
     Math.min(
       CIRCLE_ENTER_END + CHECK_SCALE_END,
-      CIRCLE_ENTER_END + CHECK_SCALE_END - (frame - EXIT_START)
-    )
+      CIRCLE_ENTER_END + CHECK_SCALE_END - (frame - EXIT_START),
+    ),
   );
   const checkExitOpacity = interpolate(
     checkRevFrame,
     [CIRCLE_ENTER_END, CIRCLE_ENTER_END + CHECK_OPACITY_END],
     [0, 1],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE }
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE },
   );
   const checkExitRot = interpolate(
     checkRevFrame,
     [CIRCLE_ENTER_END, CIRCLE_ENTER_END + CHECK_ROT_END],
     [46, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE }
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE },
   );
   const checkExitScale = interpolate(
     checkRevFrame,
     [CIRCLE_ENTER_END, CIRCLE_ENTER_END + CHECK_SCALE_END],
     [0.42, 1],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: CHECKMARK_EASE }
+    {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+      easing: CHECKMARK_EASE,
+    },
   );
 
   // ─── Checkmark: Combined ───────────────────────────────────────────────────
@@ -169,13 +176,13 @@ export function SourceAnimation({ source, fontFamily }: SourceAnimationProps) {
     frame,
     [TEXT_ENTER_START, TEXT_ENTER_END],
     [0, 1],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE }
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE },
   );
   const textExitOpacity = interpolate(
     reverseFrame,
     [TEXT_ENTER_START, TEXT_ENTER_END],
     [0, 1],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE }
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE },
   );
   const textOpacity = Math.min(textEnterOpacity, textExitOpacity);
 

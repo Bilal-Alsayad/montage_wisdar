@@ -37,7 +37,7 @@ export default function SudanInstagram2Template({ data }: CoverTemplateProps) {
       <div
         style={{
           position: "absolute",
-          top: 1015 ,
+          top: 1015,
           left: "50%",
           transform: "translateX(-50%)",
 
@@ -59,12 +59,12 @@ export default function SudanInstagram2Template({ data }: CoverTemplateProps) {
       <div
         style={{
           position: "absolute",
-          top: 912 ,
-          left: 450 ,
+          top: 912,
+          left: 450,
           textAlign: "right",
           width: 534,
-          height:90,
-          padding:15,
+          height: 90,
+          padding: 15,
           direction: "rtl",
           color: "#ffffff",
           display: "flex",

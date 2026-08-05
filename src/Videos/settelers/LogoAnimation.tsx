@@ -38,16 +38,11 @@ export function LogoAnimation() {
         easing: Easing.bezier(0.054, 0.013, 0, 1),
       });
     }
-    return interpolate(
-      frame,
-      [slideOutStart, slideOutEnd],
-      [484, 539],
-      {
-        extrapolateLeft: "clamp",
-        extrapolateRight: "clamp",
-        easing: Easing.bezier(1, 0, 0.946, 0.987),
-      },
-    );
+    return interpolate(frame, [slideOutStart, slideOutEnd], [484, 539], {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+      easing: Easing.bezier(1, 0, 0.946, 0.987),
+    });
   })();
 
   return (

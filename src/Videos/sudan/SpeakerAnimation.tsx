@@ -30,7 +30,7 @@ const TEXT_EASE = Easing.bezier(0.333, 0, 0, 1);
 const ICON_EASE = Easing.bezier(0.2, 0, 0, 1);
 
 // ─── Timing constants (30fps) ─────────────────────────────────────────────────
-const ICON_ENTER_END = 10;       // icon rotation: 0→10 frames
+const ICON_ENTER_END = 10; // icon rotation: 0→10 frames
 const NAME_ENTER_START = 4;
 const NAME_ENTER_END = 29;
 const DESC_ENTER_START = 9;
@@ -61,23 +61,21 @@ export const SpeakerAnimation: React.FC<SpeakerAnimationProps> = ({
   // ─── Reverse-frame for exit ────────────────────────────────────────────────
   const reverseFrame = Math.max(
     0,
-    Math.min(ENTER_DURATION, ENTER_DURATION - (frame - exitStart))
+    Math.min(ENTER_DURATION, ENTER_DURATION - (frame - exitStart)),
   );
   const isExiting = frame >= exitStart;
 
   // ─── Icon: Rotation 45°→0° on enter, 0°→45° on exit ──────────────────────
-  const iconEnterRot = interpolate(
-    frame,
-    [0, ICON_ENTER_END],
-    [-45, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: ICON_EASE }
-  );
-  const iconExitRot = interpolate(
-    reverseFrame,
-    [0, ICON_ENTER_END],
-    [-45, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: ICON_EASE }
-  );
+  const iconEnterRot = interpolate(frame, [0, ICON_ENTER_END], [-45, 0], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: ICON_EASE,
+  });
+  const iconExitRot = interpolate(reverseFrame, [0, ICON_ENTER_END], [-45, 0], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: ICON_EASE,
+  });
   const iconRot = isExiting ? iconExitRot : iconEnterRot;
 
   // ─── Icon: Shadow duplicate — same icon lagged by ~4 frames, colored #D2F474 ──
@@ -87,13 +85,13 @@ export const SpeakerAnimation: React.FC<SpeakerAnimationProps> = ({
     Math.max(0, frame - SHADOW_LAG),
     [0, ICON_ENTER_END],
     [-45, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: ICON_EASE }
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: ICON_EASE },
   );
   const shadowExitRot = interpolate(
     Math.max(0, reverseFrame - SHADOW_LAG),
     [0, ICON_ENTER_END],
     [-45, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: ICON_EASE }
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: ICON_EASE },
   );
   const shadowRot = isExiting ? shadowExitRot : shadowEnterRot;
 
@@ -102,22 +100,20 @@ export const SpeakerAnimation: React.FC<SpeakerAnimationProps> = ({
     isExiting ? reverseFrame : frame,
     [0, ICON_ENTER_END],
     [0.8, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
   );
 
   // ─── Icon: Overall opacity ─────────────────────────────────────────────────
-  const iconEnterOpacity = interpolate(
-    frame,
-    [0, 5],
-    [0, 1],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: TEXT_EASE }
-  );
-  const iconExitOpacity = interpolate(
-    reverseFrame,
-    [0, 5],
-    [0, 1],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: TEXT_EASE }
-  );
+  const iconEnterOpacity = interpolate(frame, [0, 5], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: TEXT_EASE,
+  });
+  const iconExitOpacity = interpolate(reverseFrame, [0, 5], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: TEXT_EASE,
+  });
   const iconOpacity = Math.min(iconEnterOpacity, iconExitOpacity);
 
   // ─── Name text: slides in from LEFT (negative X) ─────────────────────────
@@ -126,13 +122,13 @@ export const SpeakerAnimation: React.FC<SpeakerAnimationProps> = ({
     frame,
     [NAME_ENTER_START, NAME_ENTER_END],
     [-41, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: TEXT_EASE }
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: TEXT_EASE },
   );
   const nameExitX = interpolate(
     reverseFrame,
     [NAME_ENTER_START, NAME_ENTER_END],
     [-41, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: TEXT_EASE }
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: TEXT_EASE },
   );
   const nameX = isExiting ? nameExitX : nameEnterX;
 
@@ -142,7 +138,7 @@ export const SpeakerAnimation: React.FC<SpeakerAnimationProps> = ({
     isExiting ? reverseFrame : frame,
     [NAME_ENTER_START, NAME_ENTER_END],
     [0, 1],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: TEXT_EASE }
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: TEXT_EASE },
   );
   const nameClip = `inset(0 0 0 ${(1 - nameWipeProgress) * 100}%)`;
 
@@ -151,13 +147,13 @@ export const SpeakerAnimation: React.FC<SpeakerAnimationProps> = ({
     frame,
     [DESC_ENTER_START, DESC_ENTER_END],
     [-37, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: TEXT_EASE }
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: TEXT_EASE },
   );
   const descExitX = interpolate(
     reverseFrame,
     [DESC_ENTER_START, DESC_ENTER_END],
     [-37, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: TEXT_EASE }
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: TEXT_EASE },
   );
   const descX = isExiting ? descExitX : descEnterX;
 
@@ -166,7 +162,7 @@ export const SpeakerAnimation: React.FC<SpeakerAnimationProps> = ({
     isExiting ? reverseFrame : frame,
     [DESC_ENTER_START, DESC_ENTER_END],
     [0, 1],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: TEXT_EASE }
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: TEXT_EASE },
   );
   const descClip = `inset(0 0 0 ${(1 - descWipeProgress) * 100}%)`;
 
@@ -227,7 +223,9 @@ export const SpeakerAnimation: React.FC<SpeakerAnimationProps> = ({
         </div>
 
         {/* ── Icon: shadow duplicate (lagged rotation, #D2F474) + main icon ── */}
-        <div style={{ opacity: iconOpacity, position: "relative", flexShrink: 0 }}>
+        <div
+          style={{ opacity: iconOpacity, position: "relative", flexShrink: 0 }}
+        >
           {/* Shadow: same icon, lagged rotation, accent color via mix-blend + tint filter */}
           <div
             style={{
@@ -236,7 +234,8 @@ export const SpeakerAnimation: React.FC<SpeakerAnimationProps> = ({
               left: 0,
               opacity: shadowOpacity,
               transform: `rotate(${shadowRot}deg)`,
-              filter: "brightness(0) saturate(100%) invert(88%) sepia(55%) saturate(500%) hue-rotate(30deg) brightness(1.1)",
+              filter:
+                "brightness(0) saturate(100%) invert(88%) sepia(55%) saturate(500%) hue-rotate(30deg) brightness(1.1)",
             }}
           >
             <Img

@@ -1,4 +1,10 @@
-import { AbsoluteFill, interpolate, useCurrentFrame, useVideoConfig, Easing } from "remotion";
+import {
+  AbsoluteFill,
+  interpolate,
+  useCurrentFrame,
+  useVideoConfig,
+  Easing,
+} from "remotion";
 
 // ─── Lottie data.json analysis (fr: 25fps → Remotion 30fps, multiply × 1.2) ───
 //
@@ -20,9 +26,9 @@ import { AbsoluteFill, interpolate, useCurrentFrame, useVideoConfig, Easing } fr
 // Text_2 (desc text): clip-path reveal, frames 9→24 (easing: i:0.194,1 / o:0.333,0)
 
 // ─── Easing curves (from Lottie keyframes: Easing.bezier(o.x, o.y, i.x, i.y)) ───
-const EASE_SLIDE = Easing.bezier(0.333, 0, 0.322, 1);   // position translateY
-const EASE_FADE  = Easing.bezier(0.333, 0, 0.667, 1);   // opacity & color
-const EASE_TEXT  = Easing.bezier(0.333, 0, 0.194, 1);   // text clip-path reveal
+const EASE_SLIDE = Easing.bezier(0.333, 0, 0.322, 1); // position translateY
+const EASE_FADE = Easing.bezier(0.333, 0, 0.667, 1); // opacity & color
+const EASE_TEXT = Easing.bezier(0.333, 0, 0.194, 1); // text clip-path reveal
 
 interface SpeakerAnimationProps {
   name: string;
@@ -42,26 +48,26 @@ export default function SpeakerAnimation({
 
   // ─── Timing constants (Lottie frames × 1.2 for 30fps) ───
   // Name box (Shape Layer 5)
-  const NAME_BOX_SLIDE_START  = 6;   // 5  × 1.2
-  const NAME_BOX_SLIDE_END    = 22;  // 18 × 1.2
-  const NAME_BOX_FADE_START   = 6;   // 5  × 1.2
-  const NAME_BOX_FADE_END     = 12;  // 10 × 1.2
-  const NAME_BOX_COLOR_START  = 6;   // 5  × 1.2
-  const NAME_BOX_COLOR_END    = 17;  // 14 × 1.2
+  const NAME_BOX_SLIDE_START = 6; // 5  × 1.2
+  const NAME_BOX_SLIDE_END = 22; // 18 × 1.2
+  const NAME_BOX_FADE_START = 6; // 5  × 1.2
+  const NAME_BOX_FADE_END = 12; // 10 × 1.2
+  const NAME_BOX_COLOR_START = 6; // 5  × 1.2
+  const NAME_BOX_COLOR_END = 17; // 14 × 1.2
 
   // Description box (Shape Layer 6)
-  const DESC_BOX_SLIDE_START  = 8;   // 7  × 1.2
-  const DESC_BOX_SLIDE_END    = 25;  // 21 × 1.2
-  const DESC_BOX_FADE_START   = 8;   // 7  × 1.2
-  const DESC_BOX_FADE_END     = 14;  // 12 × 1.2
-  const DESC_BOX_COLOR_START  = 12;  // 10 × 1.2
-  const DESC_BOX_COLOR_END    = 19;  // 16 × 1.2
+  const DESC_BOX_SLIDE_START = 8; // 7  × 1.2
+  const DESC_BOX_SLIDE_END = 25; // 21 × 1.2
+  const DESC_BOX_FADE_START = 8; // 7  × 1.2
+  const DESC_BOX_FADE_END = 14; // 12 × 1.2
+  const DESC_BOX_COLOR_START = 12; // 10 × 1.2
+  const DESC_BOX_COLOR_END = 19; // 16 × 1.2
 
   // Text reveals
-  const NAME_TEXT_START       = 8;   // 7  × 1.2
-  const NAME_TEXT_END         = 26;  // 22 × 1.2
-  const DESC_TEXT_START       = 11;  // 9  × 1.2
-  const DESC_TEXT_END         = 29;  // 24 × 1.2
+  const NAME_TEXT_START = 8; // 7  × 1.2
+  const NAME_TEXT_END = 26; // 22 × 1.2
+  const DESC_TEXT_START = 11; // 9  × 1.2
+  const DESC_TEXT_END = 29; // 24 × 1.2
 
   // ─── Enter duration for exit reverse technique ───
   const ENTER_DURATION = DESC_BOX_SLIDE_END; // longest enter animation span
@@ -70,7 +76,7 @@ export default function SpeakerAnimation({
   const exitStart = durationInFrames - ENTER_DURATION;
   const reverseFrame = Math.max(
     0,
-    Math.min(ENTER_DURATION, ENTER_DURATION - (frame - exitStart))
+    Math.min(ENTER_DURATION, ENTER_DURATION - (frame - exitStart)),
   );
 
   // ─── Name box animations ───
@@ -78,27 +84,28 @@ export default function SpeakerAnimation({
     frame,
     [NAME_BOX_SLIDE_START, NAME_BOX_SLIDE_END],
     [58, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_SLIDE }
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_SLIDE },
   );
   const nameBoxSlideExit = interpolate(
     reverseFrame,
     [NAME_BOX_SLIDE_START, NAME_BOX_SLIDE_END],
     [58, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_SLIDE }
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_SLIDE },
   );
-  const nameBoxTranslateY = frame >= exitStart ? nameBoxSlideExit : nameBoxSlideEnter;
+  const nameBoxTranslateY =
+    frame >= exitStart ? nameBoxSlideExit : nameBoxSlideEnter;
 
   const nameBoxOpacityEnter = interpolate(
     frame,
     [NAME_BOX_FADE_START, NAME_BOX_FADE_END],
     [0, 1],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_FADE }
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_FADE },
   );
   const nameBoxOpacityExit = interpolate(
     reverseFrame,
     [NAME_BOX_FADE_START, NAME_BOX_FADE_END],
     [0, 1],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_FADE }
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_FADE },
   );
   const nameBoxOpacity = Math.min(nameBoxOpacityEnter, nameBoxOpacityExit);
 
@@ -107,16 +114,17 @@ export default function SpeakerAnimation({
     frame,
     [NAME_BOX_COLOR_START, NAME_BOX_COLOR_END],
     [0, 1],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_FADE }
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_FADE },
   );
   const nameBoxColorExitT = interpolate(
     reverseFrame,
     [NAME_BOX_COLOR_START, NAME_BOX_COLOR_END],
     [0, 1],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_FADE }
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_FADE },
   );
   // On exit: reverseFrame shrinks → colorT shrinks → color goes back to white
-  const nameBoxColorT = frame >= exitStart ? nameBoxColorExitT : nameBoxColorEnterT;
+  const nameBoxColorT =
+    frame >= exitStart ? nameBoxColorExitT : nameBoxColorEnterT;
   // Lerp: [255,255,255] (white) → [230,31,48] (red #e61f30)
   const nameBoxR = Math.round(interpolate(nameBoxColorT, [0, 1], [255, 230]));
   const nameBoxG = Math.round(interpolate(nameBoxColorT, [0, 1], [255, 31]));
@@ -128,27 +136,28 @@ export default function SpeakerAnimation({
     frame,
     [DESC_BOX_SLIDE_START, DESC_BOX_SLIDE_END],
     [58, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_SLIDE }
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_SLIDE },
   );
   const descBoxSlideExit = interpolate(
     reverseFrame,
     [DESC_BOX_SLIDE_START, DESC_BOX_SLIDE_END],
     [58, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_SLIDE }
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_SLIDE },
   );
-  const descBoxTranslateY = frame >= exitStart ? descBoxSlideExit : descBoxSlideEnter;
+  const descBoxTranslateY =
+    frame >= exitStart ? descBoxSlideExit : descBoxSlideEnter;
 
   const descBoxOpacityEnter = interpolate(
     frame,
     [DESC_BOX_FADE_START, DESC_BOX_FADE_END],
     [0, 1],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_FADE }
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_FADE },
   );
   const descBoxOpacityExit = interpolate(
     reverseFrame,
     [DESC_BOX_FADE_START, DESC_BOX_FADE_END],
     [0, 1],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_FADE }
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_FADE },
   );
   const descBoxOpacity = Math.min(descBoxOpacityEnter, descBoxOpacityExit);
 
@@ -157,16 +166,17 @@ export default function SpeakerAnimation({
     frame,
     [DESC_BOX_COLOR_START, DESC_BOX_COLOR_END],
     [0, 1],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_FADE }
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_FADE },
   );
   const descBoxColorExitT = interpolate(
     reverseFrame,
     [DESC_BOX_COLOR_START, DESC_BOX_COLOR_END],
     [0, 1],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_FADE }
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_FADE },
   );
   // On exit: reverseFrame shrinks → colorT shrinks → color goes back to red
-  const descBoxColorT = frame >= exitStart ? descBoxColorExitT : descBoxColorEnterT;
+  const descBoxColorT =
+    frame >= exitStart ? descBoxColorExitT : descBoxColorEnterT;
   // Lerp: [230,31,48] (red #e61f30) → [255,255,255] (white)
   const descBoxR = Math.round(interpolate(descBoxColorT, [0, 1], [230, 255]));
   const descBoxG = Math.round(interpolate(descBoxColorT, [0, 1], [31, 255]));
@@ -178,13 +188,13 @@ export default function SpeakerAnimation({
     frame,
     [NAME_TEXT_START, NAME_TEXT_END],
     [0, 1],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_TEXT }
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_TEXT },
   );
   const nameTextRevealExit = interpolate(
     reverseFrame,
     [NAME_TEXT_START, NAME_TEXT_END],
     [0, 1],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_TEXT }
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_TEXT },
   );
   const nameTextReveal = Math.min(nameTextRevealEnter, nameTextRevealExit);
   // clipPath: reveal from right to left (inset right side shrinks as progress grows)
@@ -194,19 +204,19 @@ export default function SpeakerAnimation({
     frame,
     [DESC_TEXT_START, DESC_TEXT_END],
     [0, 1],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_TEXT }
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_TEXT },
   );
   const descTextRevealExit = interpolate(
     reverseFrame,
     [DESC_TEXT_START, DESC_TEXT_END],
     [0, 1],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_TEXT }
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_TEXT },
   );
   const descTextReveal = Math.min(descTextRevealEnter, descTextRevealExit);
   const descClipPath = `inset(0 0 0 ${(1 - descTextReveal) * 100}%)`;
 
   // Text opacity mirrors box opacity (already handles both enter & exit)
-  const descTextOpacity  = descBoxOpacity;
+  const descTextOpacity = descBoxOpacity;
 
   return (
     <AbsoluteFill>
@@ -238,9 +248,7 @@ export default function SpeakerAnimation({
             overflow: "hidden",
           }}
         >
-          <span style={{ clipPath: nameClipPath }}>
-            {name}
-          </span>
+          <span style={{ clipPath: nameClipPath }}>{name}</span>
         </span>
 
         {/* ── Description box (Shape Layer 6): translateY + fadeIn + color red→white ── */}

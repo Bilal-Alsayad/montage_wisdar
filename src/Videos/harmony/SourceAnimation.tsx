@@ -13,7 +13,7 @@ interface SourceAnimationProps {
   fontFamily: string;
 }
 
-const AUDIO_DURATION_IN_FRAMES =48;
+const AUDIO_DURATION_IN_FRAMES = 48;
 const VISUAL_DURATION_IN_FRAMES = 204;
 
 const CLAMP = {

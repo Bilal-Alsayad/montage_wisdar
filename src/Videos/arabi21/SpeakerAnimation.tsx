@@ -167,7 +167,14 @@ export default function SpeakerAnimation({
 
         {/* Description row */}
         <div style={{ position: "relative" }}>
-          <div style={{ display: "flex", flexDirection: "row", gap: 20, alignItems: "center" }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              gap: 20,
+              alignItems: "center",
+            }}
+          >
             {/* Description text */}
             <div
               style={{

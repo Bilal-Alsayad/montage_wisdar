@@ -10,10 +10,7 @@ const lottieInterpolate = (
 ) =>
   interpolate(
     frame,
-    [
-      toRemotionFrame(lottieRange[0]),
-      toRemotionFrame(lottieRange[1]),
-    ],
+    [toRemotionFrame(lottieRange[0]), toRemotionFrame(lottieRange[1])],
     outputRange,
     {
       easing,
@@ -136,9 +133,7 @@ export default function SpeakerAnimation({
   // --- Dinamik genişlik hesaplama ---
   // Kutunun (bar) hacmi, isim ve açıklamadan HANGİSİ daha uzunsa ona göre belirlenir.
   // "Uzunluk" burada gerçek render edilmiş piksel genişliği anlamına geliyor (Canvas ile ölçülüyor).
-  const nameTextWidth = name
-    ? measureTextWidth(name, fontFamily, 41)
-    : 0;
+  const nameTextWidth = name ? measureTextWidth(name, fontFamily, 41) : 0;
   const descriptionTextWidth = description
     ? measureTextWidth(description, fontFamily, 35)
     : 0;
@@ -147,7 +142,10 @@ export default function SpeakerAnimation({
   const nameRequiredRight =
     BAR_LEFT + NAME_LEFT_PADDING + nameTextWidth + NAME_RIGHT_PADDING;
   const descriptionRequiredRight =
-    BAR_LEFT + DESCRIPTION_LEFT_PADDING + descriptionTextWidth + DESCRIPTION_RIGHT_PADDING;
+    BAR_LEFT +
+    DESCRIPTION_LEFT_PADDING +
+    descriptionTextWidth +
+    DESCRIPTION_RIGHT_PADDING;
 
   // Ana kural: açıklama esas alınır, ama isim açıklamadan uzunsa ismin boyutu alınır.
   // Yani: max(isim, açıklama, varsayılan minimum)
@@ -205,12 +203,7 @@ export default function SpeakerAnimation({
       ? 0
       : lottieInterpolate(frame, [36, 59], [1, 0], EASE.fade);
 
-  const nameLeft = lottieInterpolate(
-    frame,
-    [3, 27],
-    [137, 56],
-    EASE.nameMove,
-  );
+  const nameLeft = lottieInterpolate(frame, [3, 27], [137, 56], EASE.nameMove);
 
   const nameLetterSpacing = lottieInterpolate(
     frame,
@@ -273,7 +266,6 @@ export default function SpeakerAnimation({
     EASE.shrink,
   );
 
-
   const purpleLeft =
     frame < toRemotionFrame(15)
       ? BAR_LEFT
@@ -314,10 +306,7 @@ export default function SpeakerAnimation({
             top: 514,
             width: Math.max(0, backdropRight - BAR_LEFT),
             height: 60,
-            opacity: Math.min(
-              backdropEnterOpacity,
-              backdropExitOpacity,
-            ),
+            opacity: Math.min(backdropEnterOpacity, backdropExitOpacity),
             background:
               "linear-gradient(90deg, rgba(0, 0, 0, 0.35), rgba(82, 47, 113, 0.35))",
           }}
@@ -331,7 +320,8 @@ export default function SpeakerAnimation({
               top: 514,
               width: Math.max(
                 0,
-                Math.max(BAR_LEFT, Math.min(dynamicBarRight, movingCapRight)) - BAR_LEFT,
+                Math.max(BAR_LEFT, Math.min(dynamicBarRight, movingCapRight)) -
+                  BAR_LEFT,
               ),
               height: 60,
               overflow: "hidden",
@@ -356,7 +346,6 @@ export default function SpeakerAnimation({
           </div>
         )}
 
-
         <div
           style={{
             position: "absolute",
@@ -379,8 +368,6 @@ export default function SpeakerAnimation({
             backgroundColor: "#522F71",
           }}
         />
-
-
 
         {name && purpleWidth > 0 ? (
           <div
@@ -431,7 +418,10 @@ export default function SpeakerAnimation({
             position: "absolute",
             left: 52,
             top: 576,
-            width: Math.max(477, descriptionTextWidth + DESCRIPTION_RIGHT_PADDING),
+            width: Math.max(
+              477,
+              descriptionTextWidth + DESCRIPTION_RIGHT_PADDING,
+            ),
             height: 112,
             overflow: "hidden",
           }}

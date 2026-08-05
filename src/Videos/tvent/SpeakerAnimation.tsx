@@ -1,9 +1,4 @@
-import {
-  AbsoluteFill,
-  Easing,
-  interpolate,
-  useCurrentFrame,
-} from "remotion";
+import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from "remotion";
 
 interface SpeakerAnimationProps {
   name?: string;
@@ -47,7 +42,7 @@ export default function SpeakerAnimation({
           display: "flex",
           flexDirection: "column",
           alignItems: "flex-start",
-          gap:3,
+          gap: 3,
         }}
       >
         {name && (
@@ -83,9 +78,7 @@ export default function SpeakerAnimation({
                 whiteSpace: "nowrap",
                 opacity: textProgress,
                 transform: `translateX(${21.44 * (1 - textProgress)}px)`,
-                clipPath: `inset(0 ${
-                  (1 - textProgress) * 100
-                }% 0 0)`,
+                clipPath: `inset(0 ${(1 - textProgress) * 100}% 0 0)`,
               }}
             >
               {name}
@@ -126,9 +119,7 @@ export default function SpeakerAnimation({
                 whiteSpace: "nowrap",
                 opacity: textProgress,
                 transform: `translateX(${21.44 * (1 - textProgress)}px)`,
-                clipPath: `inset(0 ${
-                  (1 - textProgress) * 100
-                }% 0 0)`,
+                clipPath: `inset(0 ${(1 - textProgress) * 100}% 0 0)`,
               }}
             >
               {description}

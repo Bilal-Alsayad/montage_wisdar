@@ -13,11 +13,13 @@ import Captions from "../../Components/Captions";
 import { TemplateProps } from "../types";
 import AudioClips from "../../Components/AudioClips";
 import Cover from "../../Components/Cover";
-import SpeakerAnimation, { SPEAKER_ANIMATION_DURATION } from "./SpeakerAnimation";
+import SpeakerAnimation, {
+  SPEAKER_ANIMATION_DURATION,
+} from "./SpeakerAnimation";
 import TagsAnimation, { TAGS_ANIMATION_DURATION } from "./TagsAnimation";
 import TitleAnimation, { TITLE_ANIMATION_DURATION } from "./TitleAnimation";
 
-const ALMARAI_BOLD = "Almarai-Bold"
+const ALMARAI_BOLD = "Almarai-Bold";
 const ALMARAI_EXTRA_BOLD = "Almarai_ExtraBold";
 
 export default function TurkpressTemplate({
@@ -91,10 +93,7 @@ export default function TurkpressTemplate({
         />
       </Sequence>
       <Sequence from={0} durationInFrames={TITLE_ANIMATION_DURATION}>
-        <TitleAnimation
-          text={data.title.text}
-          fontFamily={ALMARAI_BOLD}
-        />
+        <TitleAnimation text={data.title.text} fontFamily={ALMARAI_BOLD} />
       </Sequence>
       {data.captions.src && (
         <Captions

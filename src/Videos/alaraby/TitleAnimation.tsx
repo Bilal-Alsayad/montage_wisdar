@@ -82,19 +82,13 @@ export default function TitleAnimation({
           whiteSpace: "nowrap",
           opacity: interpolate(
             frame,
-            [
-              TITLE_ANIMATION_DURATION - 12,
-              TITLE_ANIMATION_DURATION - 1,
-            ],
+            [TITLE_ANIMATION_DURATION - 12, TITLE_ANIMATION_DURATION - 1],
             [1, 0],
             clamp,
           ),
           transform: `translateY(${interpolate(
             frame,
-            [
-              TITLE_ANIMATION_DURATION - 20,
-              TITLE_ANIMATION_DURATION - 1,
-            ],
+            [TITLE_ANIMATION_DURATION - 20, TITLE_ANIMATION_DURATION - 1],
             [0, 28.4],
             {
               ...clamp,
@@ -207,24 +201,14 @@ export default function TitleAnimation({
                 [-148, 0],
                 clamp,
               )}px)
-              scaleX(${interpolate(
-                animationFrame,
-                [-1, 7],
-                [0, 1],
-                {
-                  ...clamp,
-                  easing: Easing.bezier(0.167, 0, 0, 1),
-                },
-              )})
-              scaleY(${interpolate(
-                animationFrame,
-                [-1, 7],
-                [0, 1],
-                {
-                  ...clamp,
-                  easing: Easing.bezier(0.167, 0, 0.667, 1),
-                },
-              )})
+              scaleX(${interpolate(animationFrame, [-1, 7], [0, 1], {
+                ...clamp,
+                easing: Easing.bezier(0.167, 0, 0, 1),
+              })})
+              scaleY(${interpolate(animationFrame, [-1, 7], [0, 1], {
+                ...clamp,
+                easing: Easing.bezier(0.167, 0, 0.667, 1),
+              })})
             `,
           }}
         />

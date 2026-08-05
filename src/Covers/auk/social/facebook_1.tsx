@@ -5,7 +5,9 @@ import { CoverTemplateProps } from "../../types";
 
 const fontFamily = "BahijTheSansArabicBold";
 
-export default function SocialAukFacebook1Template({ data }: CoverTemplateProps) {
+export default function SocialAukFacebook1Template({
+  data,
+}: CoverTemplateProps) {
   const loadFont = useLoadFonts([
     {
       family: fontFamily,

@@ -63,7 +63,7 @@ export default function SudanYoutube2Template({ data }: CoverTemplateProps) {
           top: 637,
           right: 60,
           textAlign: "right",
-          width: 80  ,
+          width: 80,
           height: 30,
           direction: "rtl",
           color: "#ffffff",

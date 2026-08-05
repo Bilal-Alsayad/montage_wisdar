@@ -31,9 +31,7 @@ export default function TimelineAnimation() {
             )}%,
             white 0
           )`,
-          maskImage: `url(${staticFile(
-            "alasimah/images/timeline.png",
-          )})`,
+          maskImage: `url(${staticFile("alasimah/images/timeline.png")})`,
           maskSize: "100% 100%",
           maskRepeat: "no-repeat",
         }}
