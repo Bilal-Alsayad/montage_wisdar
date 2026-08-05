@@ -156,7 +156,7 @@ export default function SpeakerAnimation({
           style={{
             fontFamily: fontBoldFamily,
             fontSize: 62,
-            color: "#F6C11D",
+            color: "#711EF6",
             transform: `translateX(${nameSlideX}px)`,
             WebkitMaskImage: nameMask,
             maskImage: nameMask,
@@ -167,14 +167,7 @@ export default function SpeakerAnimation({
 
         {/* Description row */}
         <div style={{ position: "relative" }}>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              gap: 20,
-              alignItems: "center",
-            }}
-          >
+          <div style={{ display: "flex", flexDirection: "row", gap: 20, alignItems: "center" }}>
             {/* Description text */}
             <div
               style={{
@@ -202,7 +195,7 @@ export default function SpeakerAnimation({
             />
           </div>
 
-          {/* Purple line + triangle (one piece, pulled from right to left) */}
+          {/* Red line + triangle (one piece, pulled from right to left) */}
           <div
             style={{
               position: "absolute",
@@ -213,7 +206,7 @@ export default function SpeakerAnimation({
             }}
           >
             {/* Purple layer */}
-            <div style={{ height: "4px", backgroundColor: "#F6C11D" }} />
+            <div style={{ height: "4px", backgroundColor: "#711EF6" }} />
             <span
               style={{
                 width: 0,
@@ -223,7 +216,7 @@ export default function SpeakerAnimation({
                 right: 0,
                 borderStyle: "solid",
                 borderWidth: "12px 0 0 12px",
-                borderColor: "#F6C11D transparent transparent transparent",
+                borderColor: "#711EF6 transparent transparent transparent",
               }}
             />
 

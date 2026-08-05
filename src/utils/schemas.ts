@@ -60,6 +60,8 @@ export const VideoTemplateDataSchema = z.object({
   captions: z.object({
     src: z.string(),
   }),
+  /** Maps speaker IDs (e.g. "S1", "S2") to arrays of 1-based SRT sentence indices */
+  subtitle_speakers: z.record(z.array(z.number())).optional(),
   tags: z.object({
     location: z.string().optional(),
     date: z.string().optional(),
