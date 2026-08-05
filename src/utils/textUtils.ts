@@ -1,10 +1,22 @@
 /**
- * Splits a text into two lines at the nearest space to the character midpoint.
- * The longer portion is always on the second line (text2).
+ * Splits a text into two lines.
+ * Priority:
+ *   1. If text contains "\n", split at the first newline.
+ *   2. Otherwise, split at the nearest space to the character midpoint
+ *      (the longer portion is always on the second line).
  */
 export const splitTitle = (text: string): { text1: string; text2: string } => {
   const trimmed = text?.trim() || "";
   if (!trimmed) return { text1: "", text2: "" };
+
+  // Priority 1: explicit newline split
+  if (trimmed.includes("\n")) {
+    const newlineIndex = trimmed.indexOf("\n");
+    return {
+      text1: trimmed.slice(0, newlineIndex).trim(),
+      text2: trimmed.slice(newlineIndex + 1).trim(),
+    };
+  }
 
   if (!trimmed.includes(" ")) {
     return { text1: trimmed, text2: "" };
@@ -69,6 +81,15 @@ export const splitTextIntoMultipleLines = (
 ): string[] => {
   const trimmed = text?.trim();
   if (!trimmed) return [""];
+
+  // Priority 1: explicit newline split — take up to maxLines parts
+  if (trimmed.includes("\n")) {
+    return trimmed
+      .split("\n")
+      .map((l) => l.trim())
+      .filter(Boolean)
+      .slice(0, maxLines);
+  }
 
   const words = trimmed.split(/\s+/);
   const wordCount = words.length;

@@ -156,7 +156,7 @@ export default function SpeakerAnimation({
           style={{
             fontFamily: fontBoldFamily,
             fontSize: 62,
-            color: "#F6C11D",
+            color: "#ed4532",
             transform: `translateX(${nameSlideX}px)`,
             WebkitMaskImage: nameMask,
             maskImage: nameMask,
@@ -195,7 +195,7 @@ export default function SpeakerAnimation({
             />
           </div>
 
-          {/* Purple line + triangle (one piece, pulled from right to left) */}
+          {/* Red line + triangle (one piece, pulled from right to left) */}
           <div
             style={{
               position: "absolute",
@@ -205,8 +205,8 @@ export default function SpeakerAnimation({
               clipPath: `inset(-20px 0 -20px ${(1 - lineScaleX) * 100}%)`,
             }}
           >
-            {/* Purple layer */}
-            <div style={{ height: "4px", backgroundColor: "#F6C11D" }} />
+            {/* Red layer */}
+            <div style={{ height: "4px", backgroundColor: "#ed4532" }} />
             <span
               style={{
                 width: 0,
@@ -216,7 +216,7 @@ export default function SpeakerAnimation({
                 right: 0,
                 borderStyle: "solid",
                 borderWidth: "12px 0 0 12px",
-                borderColor: "#F6C11D transparent transparent transparent",
+                borderColor: "#ed4532 transparent transparent transparent",
               }}
             />
 
