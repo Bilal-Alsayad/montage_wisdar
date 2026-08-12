@@ -67,6 +67,7 @@ import WazirDamTemplate from "./wazirdam";
 import TuniflixTemplate from "./tuniflix";
 import Dossiers51Template from "./dossiers51";
 import TounesContreTemplate from "./tounescontre";
+import TruthfrompalestineTemplate from "./truthfrompalestine";
 // import Arabi21LightTemplate from "./arabi21light";
 // import Arabi21AsdaaTemplate from "./arabi21asdaa";
 // import Arabi21SportTemplate from "./arabi21sport";
@@ -85,6 +86,47 @@ export interface VideoTemplateConfig {
 }
 // TurkpressTemplate
 export const VIDEO_TEMPLATES: VideoTemplateConfig[] = [
+    {
+    id: "Truthfrompalestine",
+    component: TruthfrompalestineTemplate,
+    width: 1080,
+    height: 1920,
+    outroUrl: "",
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: { top_left: [0, 0], bottom_right: [0, 0] },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "التي انطلقت لنصرة ال قدس ال قدس والأق صى",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4360.srt"),
+      },
+      tags: {
+        location: "إسطنبول",
+        date: "20-20-2000",
+        source: "مادي بلوك",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "بيب غوارديولا",
+          description: "مدرب مانشستر سيتي",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
   {
     id: "almaredaltounsi",
     component: AlmaredaltounsiTemplate,
