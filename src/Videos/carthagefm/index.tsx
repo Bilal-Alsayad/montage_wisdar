@@ -35,9 +35,9 @@ const hexToRgba = (hex: string, alpha: number) => {
 const TITLE_STYLES: TitleAnimationStyles = {
   container: {
     position: "absolute",
-    top: 1013,
-    left: 72,
-    width: 955,
+    top: 1010,
+    left: 62,
+    width: 956,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -51,15 +51,20 @@ const TITLE_STYLES: TitleAnimationStyles = {
   firstLine: {
     width: "fit-content",
     maxWidth: "100%",
-    padding: "20px 42px",
-    backgroundColor: "rgba(18, 36, 130, 0.92)",
+    padding: "20px 50px",
+    background: "linear-gradient(90deg, #090D24 0%, #3A0614 100%)",
+    borderTop: "5px solid #F1B18C",
+    borderRadius: "30px 30px 0 0",
+    boxShadow: "0 0 0 2px rgba(194, 27, 48, 0.75)",
     whiteSpace: "nowrap",
   },
   secondLine: {
     width: "fit-content",
     maxWidth: "100%",
-    padding: "20px 42px",
-    backgroundColor: "#2438A5",
+    padding: "20px 50px",
+    backgroundColor: "#C21B30",
+    borderBottom: "5px solid #F1B18C",
+    borderRadius: "0 0 30px 30px",
     whiteSpace: "nowrap",
   },
 };
