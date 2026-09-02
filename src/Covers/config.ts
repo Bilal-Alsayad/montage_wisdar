@@ -65,6 +65,7 @@ import Awlad9InstagramTemplate from "./awlad9/instagram";
 import AlmaredaltounsiInstagramTemplate from "./almaredaltounsi/instagram";
 import Intikhabat2019InstagramTemplate from "./intikhabat2019/instagram";
 import Tounes2020InstagramTemplate from "./tounes2020/instagram";
+import CampPostInstagramTemplate from "./camppost/instagram";
 
 export interface CoverTemplateConfig {
   id: string;
@@ -80,6 +81,13 @@ export interface CoverTemplateConfig {
 }
 
 export const COVER_TEMPLATES: CoverTemplateConfig[] = [
+    {
+    id: "camppost-instagram",
+    component: CampPostInstagramTemplate,
+    width: 1080,
+    height: 1920,
+    defaultText: `رف التجارية تعمل مدار الـ(24) ساعة خلال العد`,
+  },
   {
     id: "turkppress-youtube",
     component: TurkpressYoutubeTemplate,
