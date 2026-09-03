@@ -51,11 +51,8 @@ export default function CamppostTemplate({
       {/* Audio Clips */}
       {data.audio_clips && <AudioClips audioClips={data.audio_clips} />}
 
-      <Sequence
-        from={0}
-        durationInFrames={durationInFrames}
-      >
-        <TagsAnimation/>
+      <Sequence from={0} durationInFrames={durationInFrames}>
+        <TagsAnimation />
       </Sequence>
 
       {/* Title */}
@@ -70,12 +67,13 @@ export default function CamppostTemplate({
       <Loop durationInFrames={3000}>
         <OffthreadVideo
           src={staticFile("camppost/elements/logo_stroke.webm")}
-          style={{ 
-            width: 600, 
-            position: "absolute", 
-            top: 30, 
-            right: -90
-        }}
+          transparent
+          style={{
+            width: 600,
+            position: "absolute",
+            top: 30,
+            right: -90,
+          }}
         />
       </Loop>
 

@@ -29,6 +29,7 @@ export default function TitleAnimation({
     <AbsoluteFill>
       <OffthreadVideo
         src={staticFile("camppost/elements/text_box.webm")}
+        transparent
         style={{
           width: 1200,
           position: "absolute",
@@ -47,7 +48,7 @@ export default function TitleAnimation({
 
           width: 655,
           height: 200,
-          textAlign: "right",
+          textAlign: "center",
 
           fontFamily,
           fontSize: 50,
