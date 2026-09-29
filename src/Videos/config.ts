@@ -73,6 +73,7 @@ import GlobinsightsTemplate from "./globinsights";
 import CamppostTemplate from "./camppost";
 import NabizTemplate from "./nabiz";
 import MevzuTemplate from "./mevzu";
+import NuansTemplate from "./nuans";
 // import Arabi21LightTemplate from "./arabi21light";
 // import Arabi21AsdaaTemplate from "./arabi21asdaa";
 // import Arabi21SportTemplate from "./arabi21sport";
@@ -91,7 +92,51 @@ export interface VideoTemplateConfig {
 }
 // TurkpressTemplate TheredstripesTemplate
 export const VIDEO_TEMPLATES: VideoTemplateConfig[] = [
-      {
+  {
+    id: "nunas",
+    component: NuansTemplate,
+    width: 1080,
+    height: 1920,
+    outroUrl: "",
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [0, 0],
+            bottom_right: [0, 0],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "Daughter Blasts NM Daughter Blasts NM Daughter Blasts NM ",
+      },
+      captions: {
+        src: staticFile("subtitle_translated_4361.srt"),
+      },
+      tags: {
+        location: "istanbul",
+        date: "20-20-2000",
+        source: "Maddie Block",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "Pep Guardiola",
+          description: "Manchester City Manager",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
+  {
     id: "mevzu",
     component: MevzuTemplate,
     width: 1080,
@@ -133,7 +178,7 @@ export const VIDEO_TEMPLATES: VideoTemplateConfig[] = [
       background_img_url: "",
     },
   },
-    {
+  {
     id: "nabiz",
     component: NabizTemplate,
     width: 1080,
