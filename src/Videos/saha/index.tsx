@@ -1,3 +1,4 @@
+/* eslint-disable @remotion/from-0 */
 import {AbsoluteFill, Img, Sequence, staticFile} from "remotion";
 import {useLoadFonts} from "../../hooks/useLoadFonts";
 import Video from "../../Components/Video";
@@ -51,14 +52,14 @@ export default function SahaTemplate({data}: TemplateProps) {
         }}
       />
 
-      <Sequence durationInFrames={TITLE_ANIMATION_DURATION}>
+      <Sequence from= {0} durationInFrames={TITLE_ANIMATION_DURATION}>
         <TitleAnimation
           text={data.title.text}
           fontFamily={LATO_BOLD}
         />
       </Sequence>
 
-      <Sequence durationInFrames={TAGS_ANIMATION_DURATION}>
+      <Sequence from= {TITLE_ANIMATION_DURATION} durationInFrames={TAGS_ANIMATION_DURATION}>
         <TagsAnimation
           location={data.tags?.location}
           date={data.tags?.date}

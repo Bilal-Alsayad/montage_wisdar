@@ -31,14 +31,14 @@ export default function TitleAnimation({
         style={{
           position: "absolute",
           top:
-            1105 +
+            1095 +
             interpolate(frame, [130, 150], [0, 97], {
               ...CLAMP,
               easing: Easing.bezier(1, 0, 0.715, 1),
             }),
           left: "50%",
           transform: "translateX(-50%)",
-          display: "inline-grid",
+          display: "grid",
           fontFamily,
           fontSize: 79,
           lineHeight: "95px",
@@ -47,42 +47,41 @@ export default function TitleAnimation({
           direction: "rtl",
         }}
       >
+        <div
+          style={{
+            gridArea: "1 / 1",
+            height: 110,
+            display: "grid",
+            alignItems: "center",
+            padding: "0 25px",
+            visibility: "hidden",
+          }}
+        >
+          <span style={{gridArea: "1 / 1", whiteSpace: "nowrap"}}>{text1}</span>
+          <span style={{gridArea: "1 / 1", whiteSpace: "nowrap"}}>{text2}</span>
+        </div>
+
         {text2 && (
           <div
             style={{
               gridArea: "1 / 1",
               zIndex: 1,
-              width: "100%",
               height: 110,
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              padding: "0 25px",
-              boxSizing: "border-box",
               border: "5px solid #FF981B",
               borderRadius: 36,
+              boxSizing: "border-box",
               whiteSpace: "nowrap",
-              transform: `translateY(${interpolate(frame, [28, 88], [0, 88], {
+              opacity: frame < 51 ? 0 : 1,
+              transform: `translateY(${interpolate(frame, [51, 88], [0, 84], {
                 ...CLAMP,
                 easing: Easing.bezier(0.498, 0, 0.19, 1),
               })}px)`,
-              overflow: "hidden",
             }}
           >
-            <span
-              style={{
-                opacity: interpolate(frame, [41, 108], [0, 1], {
-                  ...CLAMP,
-                  easing: Easing.bezier(0.19, 0, 0.104, 1),
-                }),
-                transform: `translateY(${interpolate(frame, [41, 108], [-28, 0], {
-                  ...CLAMP,
-                  easing: Easing.bezier(0.19, 0, 0.104, 1),
-                })}px)`,
-              }}
-            >
-              {text2}
-            </span>
+            <span style={{position: "relative", top: -4}}>{text2}</span>
           </div>
         )}
 
@@ -90,13 +89,10 @@ export default function TitleAnimation({
           style={{
             gridArea: "1 / 1",
             zIndex: 2,
-            width: "100%",
             height: 110,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            padding: "0 25px",
-            boxSizing: "border-box",
             backgroundColor: "#FF981B",
             borderRadius: "34px 12px 34px 12px",
             whiteSpace: "nowrap",
@@ -104,23 +100,9 @@ export default function TitleAnimation({
               ...CLAMP,
               easing: Easing.bezier(0.406, 0.119, 0.103, 1),
             })}px)`,
-            overflow: "hidden",
           }}
         >
-          <span
-            style={{
-              opacity: interpolate(frame, [0, 67], [0, 1], {
-                ...CLAMP,
-                easing: Easing.bezier(0.19, 0, 0.104, 1),
-              }),
-              transform: `translateY(${interpolate(frame, [0, 67], [42, -3], {
-                ...CLAMP,
-                easing: Easing.bezier(0.19, 0, 0.104, 1),
-              })}px)`,
-            }}
-          >
-            {text1}
-          </span>
+          <span style={{position: "relative", top: -4}}>{text1}</span>
         </div>
       </div>
     </AbsoluteFill>

@@ -14,7 +14,7 @@ interface TagsAnimationProps {
   fontFamily: string;
 }
 
-export const TAGS_ANIMATION_DURATION = 300;
+export const TAGS_ANIMATION_DURATION = 200;
 
 export default function TagsAnimation({
   location,
@@ -23,45 +23,35 @@ export default function TagsAnimation({
   fontFamily,
 }: TagsAnimationProps) {
   const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-
-  const sourceFrame = frame * (25 / fps);
-
-  const animationFrame =
-    sourceFrame < 215
-      ? sourceFrame
-      : Math.max(0, 250 - sourceFrame);
+  const sourceFrame = frame * (25 / useVideoConfig().fps);
 
   const move = (
     start: number,
     end: number,
-    from: number
+    distance: number
   ) =>
-    interpolate(animationFrame, [start, end], [from, 0], {
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-      easing: Easing.bezier(0.901, 0.005, 0.252, 1),
-    });
-
-  const opacity = interpolate(
-    sourceFrame,
-    [215, 250],
-    [1, 0],
-    {
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-    }
-  );
-
-  // HER ŞEYİ AŞAĞI/YUKARI ALMAK İÇİN SADECE BUNU DEĞİŞTİR
-  const verticalOffset = 30;
+    -interpolate(
+      frame < 165
+        ? sourceFrame
+        : interpolate(frame, [165, 200], [35, 0], {
+            extrapolateLeft: "clamp",
+            extrapolateRight: "clamp",
+          }),
+      [start, end],
+      [distance, 0],
+      {
+        extrapolateLeft: "clamp",
+        extrapolateRight: "clamp",
+        easing: Easing.bezier(0.901, 0.005, 0.252, 1),
+      }
+    );
 
   const row = (
     text: string | undefined,
     top: number,
     start: number,
     end: number,
-    from: number,
+    distance: number,
     color: string,
     icon: string
   ) => {
@@ -71,37 +61,23 @@ export default function TagsAnimation({
       <div
         style={{
           position: "absolute",
-
-          top: top + verticalOffset,
-
+          top,
           height: 55,
-
           display: "inline-flex",
           alignItems: "center",
-
-          // Yazı ile ikon arasındaki boşluk
           gap: 10,
-
-          // top right bottom left
-          // ikon sağda olduğu için sağ boşluğu çok küçülttim
           padding: "0 6px 0 30px",
-
           backgroundColor: color,
           color: "#FFFFFF",
-
           fontFamily,
           fontSize: 38,
-
           lineHeight: "55px",
           whiteSpace: "nowrap",
-
-          opacity,
-
-          transform: `translateX(${move(
-            start,
-            end,
-            from
-          )}px)`,
+          opacity: interpolate(frame, [165, 199], [1, 0], {
+            extrapolateLeft: "clamp",
+            extrapolateRight: "clamp",
+          }),
+          transform: `translateX(${move(start, end, distance)}px)`,
         }}
       >
         <span>{text}</span>
@@ -112,7 +88,6 @@ export default function TagsAnimation({
             width: 50,
             height: 50,
             objectFit: "contain",
-            flexShrink: 0,
           }}
         />
       </div>
@@ -123,20 +98,20 @@ export default function TagsAnimation({
     <>
       {row(
         location,
-        124,
+        224,
         0,
         28,
-        -689,
+        689,
         "#C0856E",
         "location.svg"
       )}
 
       {row(
         date,
-        184,
+        284,
         5,
         32,
-        -716,
+        716,
         "#925842",
         "date.svg"
       )}
@@ -145,29 +120,21 @@ export default function TagsAnimation({
         <div
           style={{
             position: "absolute",
-
-            top: 250 + verticalOffset,
+            top: 350,
             left: 30,
-
             display: "inline-flex",
             alignItems: "center",
-
             gap: 10,
-
             color: "#FFFFFF",
             fontFamily,
             fontSize: 36,
             lineHeight: "50px",
-
             whiteSpace: "nowrap",
-
-            opacity,
-
-            transform: `translateX(${move(
-              8,
-              35,
-              -716
-            )}px)`,
+            opacity: interpolate(frame, [165, 199], [1, 0], {
+              extrapolateLeft: "clamp",
+              extrapolateRight: "clamp",
+            }),
+            transform: `translateX(${move(8, 35, 716)}px)`,
           }}
         >
           <Img
@@ -176,7 +143,6 @@ export default function TagsAnimation({
               width: 50,
               height: 50,
               objectFit: "contain",
-              flexShrink: 0,
             }}
           />
 
