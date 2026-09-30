@@ -75,6 +75,7 @@ import NabizTemplate from "./nabiz";
 import MevzuTemplate from "./mevzu";
 import NuansTemplate from "./nuans";
 import SahaTemplate from "./saha";
+import ShehitTemplate from "./shehit";
 // import Arabi21LightTemplate from "./arabi21light";
 // import Arabi21AsdaaTemplate from "./arabi21asdaa";
 // import Arabi21SportTemplate from "./arabi21sport";
@@ -93,6 +94,48 @@ export interface VideoTemplateConfig {
 }
 // TurkpressTemplate TheredstripesTemplate
 export const VIDEO_TEMPLATES: VideoTemplateConfig[] = [
+      {
+    id: "shehit",
+    component: ShehitTemplate,
+    width: 1080,
+    height: 1920,
+    outroUrl: "",
+    defaultVideoSrc: "",
+    defaultData: {
+      sequences: [
+        {
+          start: 0,
+          end: 20,
+          crop: {
+            top_left: [0, 0],
+            bottom_right: [0, 0],
+          },
+          volume: 1,
+          videoSrc: staticFile("Sequence05_1.mp4"),
+          blur: [],
+        },
+      ],
+      title: {
+        text: "Guardiola continues blic opinion",
+      },
+      captions: { src: staticFile("subtitle_translated_4362.srt") },
+      tags: {
+        location: "Spain",
+        date: "2026-02-03",
+        source: "Safa TV",
+      },
+      speakers: [
+        {
+          start: 6,
+          name: "Pep Guardiola",
+          description: "Manchester City Manager",
+        },
+      ],
+      private_source: false,
+      scale_to_fit: false,
+      background_img_url: "",
+    },
+  },
     {
     id: "saha",
     component: SahaTemplate,
