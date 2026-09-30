@@ -25,6 +25,24 @@ export default function TitleAnimation({
     sourceFrame <= 68 ? sourceFrame : Math.max(0, 125 - sourceFrame);
   const lines = splitTextIntoMultipleLines(text, 3);
 
+  const progress = (start: number, end: number, delay = 0) =>
+    interpolate(animationFrame - delay, [start, end], [0, 1], {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+      easing: Easing.bezier(0.333, 0, 0.667, 1),
+    });
+
+  const trailOpacity = (start: number, end: number) =>
+    interpolate(
+      animationFrame,
+      [start, start + 2, end - 2, end],
+      [0, 1, 1, 0],
+      {
+        extrapolateLeft: "clamp",
+        extrapolateRight: "clamp",
+      },
+    );
+
   const reveal = (text: string, start: number, end: number) => {
     const characters = [...text];
     const revealed = interpolate(
@@ -60,6 +78,51 @@ export default function TitleAnimation({
     ));
   };
 
+  const background = (
+    start: number,
+    end: number,
+    color: string,
+    tones: string[],
+  ) => (
+    <div
+      style={{
+        position: "absolute",
+        left: -45,
+        right: -45,
+        top: 18,
+        height: 64,
+      }}
+    >
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundColor: color,
+          transform: `scaleX(${progress(start, end)})`,
+          transformOrigin: "right",
+        }}
+      />
+
+      {tones.map((tone, index) => (
+        <div
+          key={tone}
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundColor: tone,
+            opacity: trailOpacity(start, end),
+            transform: `scaleX(${progress(
+              start,
+              end,
+              (index + 1) * 0.825,
+            )})`,
+            transformOrigin: "right",
+          }}
+        />
+      ))}
+    </div>
+  );
+
   return (
     <div
       style={{
@@ -75,29 +138,17 @@ export default function TitleAnimation({
           style={{
             position: "absolute",
             left: "50%",
-            top: -90,
+            top: -80,
             transform: "translateX(-50%)",
             whiteSpace: "nowrap",
           }}
         >
-          <div
-            style={{
-              position: "absolute",
-              inset: "-10px -45px",
-              backgroundColor: "#313940",
-              transform: `scaleX(${interpolate(
-                animationFrame,
-                [0, 13],
-                [0, 1],
-                {
-                  extrapolateLeft: "clamp",
-                  extrapolateRight: "clamp",
-                  easing: Easing.bezier(0.333, 0, 0.667, 1),
-                },
-              )})`,
-              transformOrigin: "right",
-            }}
-          />
+          {background(
+            0,
+            13,
+            "#313940",
+            ["#20272D", "#293138", "#3B454E"],
+          )}
 
           <div
             style={{
@@ -126,35 +177,12 @@ export default function TitleAnimation({
             whiteSpace: "nowrap",
           }}
         >
-          <div
-            style={{
-              position: "absolute",
-              left: -45,
-              right: -45,
-              top: interpolate(animationFrame, [4, 22], [7, 0], {
-                extrapolateLeft: "clamp",
-                extrapolateRight: "clamp",
-                easing: Easing.bezier(0.333, 0, 0.803, 1),
-              }),
-              height: interpolate(animationFrame, [4, 22], [86, 99], {
-                extrapolateLeft: "clamp",
-                extrapolateRight: "clamp",
-                easing: Easing.bezier(0.333, 0, 0.803, 1),
-              }),
-              backgroundColor: "#212A31",
-              transform: `scaleX(${interpolate(
-                animationFrame,
-                [4, 22],
-                [0, 1],
-                {
-                  extrapolateLeft: "clamp",
-                  extrapolateRight: "clamp",
-                  easing: Easing.bezier(0.333, 0, 0.803, 1),
-                },
-              )})`,
-              transformOrigin: "right",
-            }}
-          />
+          {background(
+            4,
+            22,
+            "#212A31",
+            ["#11171B", "#192127", "#2B3740"],
+          )}
 
           <div
             style={{
@@ -179,7 +207,7 @@ export default function TitleAnimation({
           style={{
             position: "absolute",
             left: "50%",
-            top: 87,
+            top: 80,
             transform: "translateX(-50%)",
             whiteSpace: "nowrap",
           }}
@@ -190,18 +218,9 @@ export default function TitleAnimation({
               left: -45,
               right: -45,
               bottom: 2,
-              height: 6,
+              height: 5,
               backgroundColor: "#212A31",
-              transform: `scaleX(${interpolate(
-                animationFrame,
-                [4, 22],
-                [0, 1],
-                {
-                  extrapolateLeft: "clamp",
-                  extrapolateRight: "clamp",
-                  easing: Easing.bezier(0.333, 0, 0.803, 1),
-                },
-              )})`,
+              transform: `scaleX(${progress(4, 22)})`,
               transformOrigin: "right",
             }}
           />
