@@ -46,7 +46,7 @@ export default function SahaTemplate({data}: TemplateProps) {
         src={staticFile("saha/images/logo.png")}
         style={{
           position: "absolute",
-          top: 160,
+          top: 210,
           right: 100,
           width: 160,
         }}

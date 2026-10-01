@@ -1,6 +1,5 @@
 import {
   Easing,
-  Img,
   interpolate,
   staticFile,
   useCurrentFrame,
@@ -23,16 +22,16 @@ export default function TagsAnimation({
   fontFamily,
 }: TagsAnimationProps) {
   const frame = useCurrentFrame();
-  const sourceFrame = frame * (25 / useVideoConfig().fps);
+  const {fps} = useVideoConfig();
+  const opacity = interpolate(frame, [165, 199], [1, 0], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
 
-  const move = (
-    start: number,
-    end: number,
-    distance: number
-  ) =>
+  const move = (start: number, end: number, distance: number) =>
     -interpolate(
       frame < 165
-        ? sourceFrame
+        ? (frame * 25) / fps
         : interpolate(frame, [165, 200], [35, 0], {
             extrapolateLeft: "clamp",
             extrapolateRight: "clamp",
@@ -57,97 +56,96 @@ export default function TagsAnimation({
   ) => {
     if (!text?.trim()) return null;
 
+    const maskId = `${icon}-cutout`;
+
     return (
       <div
         style={{
           position: "absolute",
           top,
-          height: 55,
+          left: 0,
           display: "inline-flex",
-          alignItems: "center",
-          gap: 10,
-          padding: "0 6px 0 30px",
-          backgroundColor: color,
-          color: "#FFFFFF",
           fontFamily,
           fontSize: 38,
-          lineHeight: "55px",
+          color: "#FFFFFF",
           whiteSpace: "nowrap",
-          opacity: interpolate(frame, [165, 199], [1, 0], {
-            extrapolateLeft: "clamp",
-            extrapolateRight: "clamp",
-          }),
+          opacity,
           transform: `translateX(${move(start, end, distance)}px)`,
         }}
       >
-        <span>{text}</span>
-
-        <Img
-          src={staticFile(`saha/images/${icon}`)}
+        <div
           style={{
-            width: 50,
-            height: 50,
-            objectFit: "contain",
+            height: 55,
+            display: "flex",
+            alignItems: "center",
+            padding: "0 20px 0 56px",
+            backgroundColor: color,
           }}
-        />
+        >
+          {text}
+        </div>
+
+        <svg width={55} height={55}>
+          <defs>
+            <mask id={maskId} maskUnits="userSpaceOnUse">
+              <rect width={55} height={55} fill="white" />
+              <image
+                href={staticFile(`saha/images/${icon}`)}
+                x={5}
+                y={5}
+                width={45}
+                height={45}
+                style={{filter: "brightness(0)"}}
+              />
+            </mask>
+          </defs>
+          <rect width={55} height={55} fill="white" mask={`url(#${maskId})`} />
+        </svg>
       </div>
     );
   };
 
+  const sourceText = source?.trim();
+  const sourceWidth = 80 + Math.ceil((sourceText?.length ?? 0) * 20.5);
+
   return (
     <>
-      {row(
-        location,
-        224,
-        0,
-        28,
-        689,
-        "#C0856E",
-        "location.svg"
-      )}
+      {row(location, 224, 0, 28, 689, "#C0856E", "location.svg")}
+      {row(date, 284, 5, 32, 716, "#925842", "date.svg")}
 
-      {row(
-        date,
-        284,
-        5,
-        32,
-        716,
-        "#925842",
-        "date.svg"
-      )}
-
-      {source?.trim() && (
-        <div
+      {sourceText && (
+        <svg
+          width={sourceWidth}
+          height={55}
           style={{
             position: "absolute",
-            top: 350,
-            left: 30,
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 10,
-            color: "#FFFFFF",
-            fontFamily,
-            fontSize: 36,
-            lineHeight: "50px",
-            whiteSpace: "nowrap",
-            opacity: interpolate(frame, [165, 199], [1, 0], {
-              extrapolateLeft: "clamp",
-              extrapolateRight: "clamp",
-            }),
+            top: 344,
+            left: 0,
+            opacity,
             transform: `translateX(${move(8, 35, 716)}px)`,
           }}
         >
-          <Img
-            src={staticFile("saha/images/source.svg")}
-            style={{
-              width: 50,
-              height: 50,
-              objectFit: "contain",
-            }}
+          <defs>
+            <mask id="source-cutout" maskUnits="userSpaceOnUse">
+              <rect width={sourceWidth} height={55} fill="white" />
+              <text
+                x={56}
+                y={41}
+                fill="black"
+                fontFamily={fontFamily}
+                fontSize={36}
+              >
+                {sourceText}
+              </text>
+            </mask>
+          </defs>
+          <rect
+            width={sourceWidth}
+            height={55}
+            fill="white"
+            mask="url(#source-cutout)"
           />
-
-          <span>{source}</span>
-        </div>
+        </svg>
       )}
     </>
   );
