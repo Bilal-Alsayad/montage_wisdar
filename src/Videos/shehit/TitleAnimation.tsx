@@ -3,10 +3,10 @@ import {splitTitle} from "../../utils/textUtils";
 
 export const TITLE_ANIMATION_DURATION = 151;
 
-const CLAMP = {
-  extrapolateLeft: "clamp" as const,
-  extrapolateRight: "clamp" as const,
-};
+const clamp = {
+  extrapolateLeft: "clamp",
+  extrapolateRight: "clamp",
+} as const;
 
 export default function TitleAnimation({
   text,
@@ -22,7 +22,7 @@ export default function TitleAnimation({
     <AbsoluteFill
       style={{
         opacity: interpolate(frame, [138, 149], [1, 0], {
-          ...CLAMP,
+          ...clamp,
           easing: Easing.bezier(0.54, 0, 0.46, 1),
         }),
       }}
@@ -33,7 +33,7 @@ export default function TitleAnimation({
           top:
             1095 +
             interpolate(frame, [130, 150], [0, 97], {
-              ...CLAMP,
+              ...clamp,
               easing: Easing.bezier(1, 0, 0.715, 1),
             }),
           left: "50%",
@@ -41,68 +41,72 @@ export default function TitleAnimation({
           display: "grid",
           fontFamily,
           fontSize: 79,
-          lineHeight: "95px",
           color: "white",
-          textAlign: "center",
           direction: "rtl",
         }}
       >
         <div
           style={{
             gridArea: "1 / 1",
-            height: 110,
             display: "grid",
-            alignItems: "center",
             padding: "0 25px",
             visibility: "hidden",
           }}
         >
-          <span style={{gridArea: "1 / 1", whiteSpace: "nowrap"}}>{text1}</span>
-          <span style={{gridArea: "1 / 1", whiteSpace: "nowrap"}}>{text2}</span>
+          <span style={{gridArea: "1 / 1", whiteSpace: "nowrap"}}>
+            {text1}
+          </span>
+          <span style={{gridArea: "1 / 1", whiteSpace: "nowrap"}}>
+            {text2}
+          </span>
         </div>
 
         {text2 && (
           <div
             style={{
               gridArea: "1 / 1",
-              zIndex: 1,
-              height: 110,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
+              height: 115,
+              display: "grid",
+              placeItems: "center",
               border: "5px solid #FF981B",
-              borderRadius: 36,
+              borderRadius: "0 0 36px 36px",
               boxSizing: "border-box",
-              whiteSpace: "nowrap",
               opacity: frame < 51 ? 0 : 1,
-              transform: `translateY(${interpolate(frame, [51, 88], [0, 84], {
-                ...CLAMP,
-                easing: Easing.bezier(0.498, 0, 0.19, 1),
-              })}px)`,
+              transform: `translateY(${interpolate(
+                frame,
+                [51, 88],
+                [0, 90],
+                {
+                  ...clamp,
+                  easing: Easing.bezier(0.498, 0, 0.19, 1),
+                }
+              )}px)`,
             }}
           >
-            <span style={{position: "relative", top: -4}}>{text2}</span>
+            <span style={{transform: "translateY(-4px)"}}>{text2}</span>
           </div>
         )}
 
         <div
           style={{
             gridArea: "1 / 1",
-            zIndex: 2,
             height: 110,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            display: "grid",
+            placeItems: "center",
             backgroundColor: "#FF981B",
-            borderRadius: "34px 12px 34px 12px",
-            whiteSpace: "nowrap",
-            transform: `translateX(${interpolate(frame, [0, 51], [984, 0], {
-              ...CLAMP,
-              easing: Easing.bezier(0.406, 0.119, 0.103, 1),
-            })}px)`,
+            borderRadius: "40px 12px 40px 12px",
+            transform: `translateX(${interpolate(
+              frame,
+              [0, 51],
+              [984, 0],
+              {
+                ...clamp,
+                easing: Easing.bezier(0.406, 0.119, 0.103, 1),
+              }
+            )}px)`,
           }}
         >
-          <span style={{position: "relative", top: -4}}>{text1}</span>
+          <span style={{transform: "translateY(-4px)"}}>{text1}</span>
         </div>
       </div>
     </AbsoluteFill>
