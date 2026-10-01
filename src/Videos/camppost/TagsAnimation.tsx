@@ -9,6 +9,7 @@ export default function TagsAnimation() {
     <AbsoluteFill>
       <OffthreadVideo
         src={staticFile("camppost/elements/special.webm")}
+        transparent
         style={{
           position: "absolute",
           top: 100,
