@@ -96,46 +96,40 @@ export const splitTextIntoMultipleLines = (
   const totalChars = trimmed.length;
 
   // Special case: 4 words always split 2+2
-  if (wordCount === 4) {
-    return [
-      words.slice(0, 2).join(" "),
-      words.slice(2).join(" "),
-    ];
-  }
+  // if (wordCount === 4) {
+  //   return [
+  //     words.slice(0, 2).join(" "),
+  //     words.slice(2).join(" "),
+  //   ];
+  // }
 
   if (wordCount === 1 || totalChars <= maxCharsPerLine) return [trimmed];
 
-  // How many lines do we ideally need?
-  const idealLines = Math.ceil(totalChars / maxCharsPerLine);
-  const lineCount = Math.min(idealLines, maxLines, wordCount);
 
-  if (lineCount === 1) return [trimmed];
-
-  // Balance target (try to distribute evenly)
-  const targetCharsPerLine = totalChars / lineCount;
+  // Balance target (try to distribute evenly across needed lines)
+  const idealLines = Math.min(Math.ceil(totalChars / maxCharsPerLine), maxLines, wordCount);
+  const targetCharsPerLine = totalChars / idealLines;
 
   const lines: string[] = [];
   let currentLine: string[] = [];
   let currentLength = 0;
-  let linesRemaining = lineCount;
 
   for (let i = 0; i < wordCount; i++) {
     const word = words[i];
     const newLength =
       currentLength + (currentLine.length > 0 ? 1 : 0) + word.length;
 
-    // Last line: accumulate all remaining words (overflow allowed)
-    if (linesRemaining <= 1) {
+    // True last line (maxLines exhausted): accumulate remaining words
+    if (lines.length >= maxLines - 1) {
       currentLine.push(word);
       continue;
     }
 
-    // Non-last lines: HARD CAP — never exceed maxCharsPerLine
+    // HARD CAP — never exceed maxCharsPerLine
     if (currentLine.length > 0 && newLength > maxCharsPerLine) {
       lines.push(currentLine.join(" "));
       currentLine = [word];
       currentLength = word.length;
-      linesRemaining--;
       continue;
     }
 
@@ -148,7 +142,6 @@ export const splitTextIntoMultipleLines = (
         lines.push(currentLine.join(" "));
         currentLine = [word];
         currentLength = word.length;
-        linesRemaining--;
         continue;
       }
     }

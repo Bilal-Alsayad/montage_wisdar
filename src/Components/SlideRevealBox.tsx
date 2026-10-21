@@ -5,6 +5,7 @@ import {
   useCurrentFrame,
   Easing,
 } from "remotion";
+import { f } from "../utils/constants";
 
 export interface SlideRevealBoxProps {
   text: string;
@@ -53,7 +54,7 @@ const SlideRevealBox: React.FC<SlideRevealBoxProps> = ({
   textExitStart,
   textExitEnd,
   iconFadeStart = 0,
-  iconFadeEnd = 20,
+  iconFadeEnd = f(20),
   slideXStart = 0,
   slideXEnd = 1,
   slideXDistance = 0,

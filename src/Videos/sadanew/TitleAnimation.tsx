@@ -1,5 +1,6 @@
 import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from "remotion";
 import { splitTitle } from "../../utils/textUtils";
+import { f } from "../../utils/constants";
 
 const EASE = Easing.bezier(0.333, 0, 0.667, 1);
 
@@ -8,7 +9,7 @@ interface TitleAnimationProps {
   text: string;
 }
 
-export const TITLE_ANIMATION_DURATION = 125;
+export const TITLE_ANIMATION_DURATION = f(125);
 
 export default function TitleAnimation({
   fontFamily,
@@ -17,11 +18,11 @@ export default function TitleAnimation({
   const frame = useCurrentFrame();
   const { text1, text2 } = splitTitle(text);
 
-  const LINE1_START = 15;
-  const LINE2_START = 20;
-  const DURATION = 25;
-  const FADE_OUT_START = 120;
-  const FADE_OUT_DURATION = 5;
+  const LINE1_START = f(15);
+  const LINE2_START = f(20);
+  const DURATION = f(25);
+  const FADE_OUT_START = f(120);
+  const FADE_OUT_DURATION = f(5);
 
   // Line 1 animations
   const line1Y = interpolate(

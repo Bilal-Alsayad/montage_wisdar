@@ -1,15 +1,10 @@
-import {
-  AbsoluteFill,
-  Img,
-  Sequence,
-  staticFile,
-  useVideoConfig,
-} from "remotion";
+import { AbsoluteFill, Img, Sequence, staticFile, useVideoConfig } from "remotion";
 import { TemplateProps } from "../types";
 import { useLoadFonts } from "../../hooks/useLoadFonts";
 import Video from "../../Components/Video";
 import TitleAnimation, { TITLE_ANIMATION_DURATION } from "./TitleAnimation";
 import TagsAnimation, { TAGS_ANIMATION_DURATION } from "./TagsAnimation";
+import LocationAnimation from "./LocationAnimation";
 import SourceAnimation from "./SourceAnimation";
 import Captions from "../../Components/Captions";
 import SpeakerAnimation, {
@@ -17,7 +12,8 @@ import SpeakerAnimation, {
 } from "./SpeakerAnimation";
 import Cover from "../../Components/Cover";
 import AudioClips from "../../Components/AudioClips";
-// import { MONTAGE_FILES_URL } from "../../utils/constants";
+import VideoLayers from "../../Components/VideoLayers";
+import { f } from "../../utils/constants";
 
 const dinNextArabicMedium = "DinNextArabicMedium";
 const dinNextArabicRegular = "DinNextArabicRegular";
@@ -49,11 +45,15 @@ export default function SadaNewTemplate({ data }: TemplateProps) {
         backgroundUrl={data.background_img_url}
       />
 
+      {/* Cover */}
       {data.cover_src && <Cover coverSrc={data.cover_src} />}
 
       {/* Audio Clips */}
       {data.audio_clips && <AudioClips audioClips={data.audio_clips} />}
 
+
+      {/* Video Layers (overlay videos) */}
+      <VideoLayers layers={data.video_layers} />
       {data.captions.src && (
         <Captions
           src={data.captions.src}
@@ -96,7 +96,7 @@ export default function SadaNewTemplate({ data }: TemplateProps) {
 
       {/* Source */}
       {data.tags.source && (
-        <Sequence from={94} durationInFrames={durationInFrames}>
+        <Sequence from={f(94)} durationInFrames={durationInFrames}>
           <SourceAnimation
             fontFamily={dinNextArabicMedium}
             source={data.tags.source}
@@ -104,12 +104,44 @@ export default function SadaNewTemplate({ data }: TemplateProps) {
         </Sequence>
       )}
 
+      {(data.locations ?? []).map((location, index) => (
+        <Sequence
+          from={(location.from ?? 0) * fps}
+          durationInFrames={
+            location.duration
+              ? Math.round(location.duration * fps)
+              : TAGS_ANIMATION_DURATION
+          }
+          key={`location-${index}`}
+        >
+          <LocationAnimation text={location.text} fontFamily={dinNextArabicMedium} />
+        </Sequence>
+      ))}
+
+      {(data.sources ?? []).map((source, index) => (
+        <Sequence
+          from={(source.from ?? 0) * fps}
+          durationInFrames={
+            source.duration
+              ? Math.round(source.duration * fps)
+              : TAGS_ANIMATION_DURATION
+          }
+          key={`source-${index}`}
+        >
+          <SourceAnimation source={source.text} fontFamily={dinNextArabicMedium} />
+        </Sequence>
+      ))}
+
       {data.speakers.length > 0 &&
         data.speakers.map((speaker, index) => (
           <Sequence
             key={index}
             from={speaker.start * fps}
-            durationInFrames={SPEAKER_ANIMATION_DURATION}
+            durationInFrames={
+              speaker.duration
+                ? Math.round(speaker.duration * fps)
+                : SPEAKER_ANIMATION_DURATION
+            }
           >
             <SpeakerAnimation
               fontFamilyRegular={dinNextArabicRegular}

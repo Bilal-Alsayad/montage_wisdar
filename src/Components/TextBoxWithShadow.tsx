@@ -1,4 +1,5 @@
 import { interpolate, useCurrentFrame, Easing } from "remotion";
+import { f } from "../utils/constants";
 
 interface TextBoxWithShadowProps {
   text: string;
@@ -44,8 +45,8 @@ export default function TextBoxWithShadow({
   positionStartFrame,
   positionEndFrame,
   exitStartFrame,
-  exitDuration = 36,
-  textFadeOffset = 10, // Text is offset by 10 frames from box
+  exitDuration = f(36),
+  textFadeOffset = f(10), // Text is offset by 10 frames from box
   startY,
   endY,
   fontSize = 85,
@@ -63,7 +64,7 @@ export default function TextBoxWithShadow({
   const frame = useCurrentFrame();
 
   // Calculate durations
-  const textFadeDuration = 15; // Smooth fade duration for text
+  const textFadeDuration = f(15); // Smooth fade duration for text
 
   // === BOX OPACITY ===
   // Enter: 0 → 100 over enterDuration

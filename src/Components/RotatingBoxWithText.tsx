@@ -1,22 +1,18 @@
-import {
-  interpolate,
-  useCurrentFrame,
-  Easing,
-  Img,
-  staticFile,
-} from "remotion";
+import { MONTAGE_FILES_URL, f } from "../utils/constants";
+import { interpolate, useCurrentFrame, Easing, Img } from "remotion";
 
 interface RotatingBoxWithTextProps {
   startFrame?: number;
   boxColor?: string;
   x?: number;
   y?: number;
+  fontFamily?: string;
 }
 
 // Total entry
-const ROTATION_DURATION = 50; // Box rotation phase
-const IMG_SCALE_DELAY = 6; // Frames after rotation ends before image starts
-const IMG_SCALE_DURATION = 28; // Image scale-up duration
+const ROTATION_DURATION = f(50); // Box rotation phase
+const IMG_SCALE_DELAY = f(6); // Frames after rotation ends before image starts
+const IMG_SCALE_DURATION = f(28); // Image scale-up duration
 
 // Box specs
 const BOX_WIDTH = 121;
@@ -27,13 +23,14 @@ const BOX_RADIUS = 16;
 const TRAIL_COUNT = 5;
 
 export const ROTATING_BOX_DURATION =
-  ROTATION_DURATION + IMG_SCALE_DELAY + IMG_SCALE_DURATION + 10;
+  ROTATION_DURATION + IMG_SCALE_DELAY + IMG_SCALE_DURATION + f(10);
 
 export default function RotatingBoxWithText({
   startFrame = 0,
   boxColor = "#ee494f",
   x = 972,
   y = 285,
+  fontFamily,
 }: RotatingBoxWithTextProps) {
   const frame = useCurrentFrame();
   const localFrame = frame - startFrame;
@@ -48,7 +45,7 @@ export default function RotatingBoxWithText({
   });
 
   // Box opacity: fade in quickly at start
-  const boxOpacity = interpolate(localFrame, [0, 6], [0, 1], {
+  const boxOpacity = interpolate(localFrame, [0, f(6)], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
@@ -84,7 +81,7 @@ export default function RotatingBoxWithText({
       localFrame >= ROTATION_DURATION
         ? interpolate(
             localFrame,
-            [ROTATION_DURATION, ROTATION_DURATION + 8],
+            [ROTATION_DURATION, ROTATION_DURATION + f(8)],
             [1, 0],
             {
               extrapolateLeft: "clamp",
@@ -128,7 +125,7 @@ export default function RotatingBoxWithText({
 
   const imgOpacity = interpolate(
     localFrame,
-    [imgScaleStart, imgScaleStart + 14],
+    [imgScaleStart, imgScaleStart + f(14)],
     [0, 1],
     {
       extrapolateLeft: "clamp",
@@ -168,16 +165,28 @@ export default function RotatingBoxWithText({
           }}
         >
           {/* Image appears after rotation finishes */}
-          <Img
-            src={
-              `${staticFile("noon/elements/special.png")}`
-            }
-            style={{
-              height: BOX_HEIGHT - 4,
-              transform: `scale(${imgScale})`,
-              opacity: imgOpacity,
-            }}
-          />
+          {fontFamily ? (
+            <div
+              style={{
+                fontSize: 24,
+                fontFamily: fontFamily,
+                color: "#fff",
+                transform: `scale(${imgScale})`,
+                opacity: imgOpacity,
+              }}
+            >
+              Exclusive
+            </div>
+          ) : (
+            <Img
+              src={`${MONTAGE_FILES_URL}/noon/elements/special.png`}
+              style={{
+                height: BOX_HEIGHT - 4,
+                transform: `scale(${imgScale})`,
+                opacity: imgOpacity,
+              }}
+            />
+          )}
         </div>
       </div>
     </div>

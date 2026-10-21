@@ -8,8 +8,8 @@ export const CropCoordinatesSchema = z.object({
 export const CoverTemplateDataSchema = z.object({
   text_fields: z.record(z.string()),
   imageSrc: z.string(),
+  fontSize: z.number().optional(),
   crop: CropCoordinatesSchema.optional(),
-  fontSize: z.number().optional()
 });
 
 export const CoverTemplateSchema = z.object({
@@ -43,6 +43,28 @@ const AudioClipSchema = z.object({
   trimEnd: z.number().optional(),
 });
 
+export const ElementItemSchema = z.object({
+  text: z.string(),
+  from: z.number().optional(),
+  duration: z.number().optional(),
+});
+
+export const VideoLayerSchema = z.object({
+  start: z.number(),
+  end: z.number(),
+  crop: coordinateObjSchema,
+  blur: z.array(BlurSchema),
+  volume: z.number(),
+  videoSrc: z.string(),
+  startTime: z.number(),
+  layer: z.number(),
+  placement: z.object({
+    top_left: coordinateTuple,
+    width: z.number(),
+    height: z.number(),
+  }),
+});
+
 export const VideoTemplateDataSchema = z.object({
   sequences: z.array(
     z.object({
@@ -60,7 +82,6 @@ export const VideoTemplateDataSchema = z.object({
   captions: z.object({
     src: z.string(),
   }),
-  /** Maps speaker IDs (e.g. "S1", "S2") to arrays of 1-based SRT sentence indices */
   subtitle_speakers: z.record(z.array(z.number())).optional(),
   tags: z.object({
     location: z.string().optional(),
@@ -70,6 +91,7 @@ export const VideoTemplateDataSchema = z.object({
   speakers: z.array(
     z.object({
       start: z.number(),
+      duration: z.number().optional(),
       name: z.string(),
       description: z.string(),
     }),
@@ -85,6 +107,13 @@ export const VideoTemplateDataSchema = z.object({
   background_img_url: z.string(),
   audio_clips: z.array(AudioClipSchema).optional(),
   cover_src: z.string().optional(),
+  /** Multiple location tags, each with optional start time in seconds */
+  locations: z.array(ElementItemSchema).optional(),
+  /** Multiple date tags, each with optional start time in seconds */
+  dates: z.array(ElementItemSchema).optional(),
+  /** Multiple source tags, each with optional start time in seconds */
+  sources: z.array(ElementItemSchema).optional(),
+  video_layers: z.array(VideoLayerSchema).optional(),
 });
 
 export const VideoTemplateSchema = z.object({

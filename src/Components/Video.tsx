@@ -4,6 +4,53 @@ import { parseMedia } from "@remotion/media-parser";
 import { useState, useEffect } from "react";
 import { delayRender, continueRender } from "remotion";
 
+// --- Dimension-parsing cache & timeout (Fixes 3 & 4) ---
+const PARSE_TIMEOUT_MS = 15_000;
+const DEFAULT_DIMENSIONS = { width: 1920, height: 1080 };
+const dimensionsCache = new Map<string, { width: number; height: number }>();
+const inflightParses = new Map<string, Promise<{ width: number; height: number }>>();
+
+/**
+ * Returns video dimensions for `src`, using a cache so identical URLs
+ * (e.g. the same .mov across multiple sequences) are only parsed once.
+ * A 15-second timeout prevents parseMedia from hanging the render.
+ */
+function getCachedDimensions(
+  src: string,
+): Promise<{ width: number; height: number }> {
+  const cached = dimensionsCache.get(src);
+  if (cached) return Promise.resolve(cached);
+
+  const inflight = inflightParses.get(src);
+  if (inflight) return inflight;
+
+  const promise = Promise.race([
+    parseMedia({ src, fields: { dimensions: true } }).then(
+      (r) => r.dimensions ?? DEFAULT_DIMENSIONS,
+    ),
+    new Promise<never>((_, reject) =>
+      setTimeout(
+        () => reject(new Error(`parseMedia timed out after ${PARSE_TIMEOUT_MS}ms for ${src}`)),
+        PARSE_TIMEOUT_MS,
+      ),
+    ),
+  ])
+    .catch((err) => {
+      console.warn("parseMedia failed, using default dimensions:", err);
+      return DEFAULT_DIMENSIONS;
+    })
+    .then((dims) => {
+      dimensionsCache.set(src, dims);
+      return dims;
+    })
+    .finally(() => {
+      inflightParses.delete(src);
+    });
+
+  inflightParses.set(src, promise);
+  return promise;
+}
+
 interface Blur {
   top_left: [number, number];
   top_right: [number, number];
@@ -283,8 +330,8 @@ function FitWidthVideo({
             }}
             {...trimProps}
             volume={0}
-            delayRenderTimeoutInMilliseconds={120000}
-            delayRenderRetries={2}
+            delayRenderTimeoutInMilliseconds={30000}
+            delayRenderRetries={1}
           />
         </div>
       )}
@@ -308,8 +355,8 @@ function FitWidthVideo({
           }}
           {...trimProps}
           volume={sequence.volume}
-          delayRenderTimeoutInMilliseconds={120000}
-          delayRenderRetries={2}
+          delayRenderTimeoutInMilliseconds={30000}
+          delayRenderRetries={1}
         />
         {sequence.blur.length > 0 &&
           sequence.blur.map((blur, i) => <BlurOverlay key={i} blur={blur} />)}
@@ -384,8 +431,8 @@ function ScalledVideo({
             }}
             {...trimProps}
             volume={sequence.volume}
-            delayRenderTimeoutInMilliseconds={120000}
-            delayRenderRetries={2}
+            delayRenderTimeoutInMilliseconds={30000}
+            delayRenderRetries={1}
           />
           {sequence.blur.length > 0 &&
             sequence.blur.map((blur, i) => <BlurOverlay key={i} blur={blur} />)}
@@ -447,8 +494,8 @@ function ScalledVideo({
           }}
           {...trimProps}
           volume={sequence.volume}
-          delayRenderTimeoutInMilliseconds={120000}
-          delayRenderRetries={2}
+          delayRenderTimeoutInMilliseconds={30000}
+          delayRenderRetries={1}
         />
         {sequence.blur.length > 0 &&
           sequence.blur.map((blur, i) => <BlurOverlay key={i} blur={blur} />)}
@@ -481,15 +528,9 @@ function VideoSequenceItem({
   } | null>(null);
 
   useEffect(() => {
-    parseMedia({
-      src: sequence.videoSrc,
-      fields: { dimensions: true },
-    })
-      .then((result) => {
-        setDimensions(result.dimensions ?? { width: 1920, height: 1080 });
-      })
-      .catch(() => {
-        setDimensions({ width: 1920, height: 1080 });
+    getCachedDimensions(sequence.videoSrc)
+      .then((dims) => {
+        setDimensions(dims);
       })
       .finally(() => {
         continueRender(handle);
@@ -549,15 +590,10 @@ export default function Video({
     <>
       {sequences.map((sequence, i) => {
         // Calculate the accumulated starting frame position to play sequences sequentially
-        const fromFrame = Math.round(
-          sequences
-            .slice(0, i)
-            .reduce((acc, curr) => acc + (curr.end - curr.start) * fps, 0),
-        );
-        const durationInFrames = Math.max(
-          1,
-          Math.round((sequence.end - sequence.start) * fps),
-        );
+        const fromFrame = Math.round(sequences
+          .slice(0, i)
+          .reduce((acc, curr) => acc + (curr.end - curr.start) * fps, 0));
+        const durationInFrames = Math.max(1, Math.round((sequence.end - sequence.start) * fps));
 
         return (
           <Sequence

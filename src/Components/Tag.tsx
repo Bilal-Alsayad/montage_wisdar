@@ -7,6 +7,7 @@ import {
   delayRender,
   continueRender,
 } from "remotion";
+import { f } from "../utils/constants";
 
 interface TagProps {
   text: string;
@@ -25,9 +26,9 @@ interface TagProps {
 }
 
 // Animation durations (frames)
-const CIRCLE_SCALE_DURATION = 24;
-const RECT_EXPAND_DURATION = 60;
-const ICON_FADE_DURATION = 20;
+const CIRCLE_SCALE_DURATION = f(24);
+const RECT_EXPAND_DURATION = f(60);
+const ICON_FADE_DURATION = f(20);
 
 /**
  * Tag Component
@@ -44,7 +45,7 @@ export default function Tag({
   y = 960,
   fontFamily = "'IBM Plex Sans Arabic SemiBold', Arial, sans-serif",
   fontSize = 30,
-  pauseDuration = 180, // 3 seconds at 60fps
+  pauseDuration = f(180), // 3 seconds at 60fps
   iconWidth = 28,
   iconHeight = 33,
   backgroundColor,
@@ -129,7 +130,7 @@ export default function Tag({
   // Icon opacity (fade in after circle is visible)
   const iconOpacity = interpolate(
     animProgress,
-    [CIRCLE_SCALE_DURATION - 5, CIRCLE_SCALE_DURATION - 5 + ICON_FADE_DURATION],
+    [CIRCLE_SCALE_DURATION - f(5), CIRCLE_SCALE_DURATION - f(5) + ICON_FADE_DURATION],
     [0, 1],
     {
       extrapolateLeft: "clamp",
@@ -251,7 +252,7 @@ export default function Tag({
 };
 
 // Export total duration for use in parent components
-export const getTagTotalDuration = (pauseDuration = 180) => {
+export const getTagTotalDuration = (pauseDuration = f(180)) => {
   const inDuration = CIRCLE_SCALE_DURATION + RECT_EXPAND_DURATION;
   return inDuration + pauseDuration + inDuration;
 };

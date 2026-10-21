@@ -1,7 +1,8 @@
 import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from "remotion";
+import { f } from "../../utils/constants";
 
 // Enter
-export const SPEAKER_ANIMATION_DURATION = 180;
+export const SPEAKER_ANIMATION_DURATION = f(180);
 
 const EASE_ENTER = Easing.bezier(0.161, 0, 0.108, 1);
 // Exit
@@ -25,14 +26,14 @@ export default function SpeakerAnimation({
   const frame = useCurrentFrame();
 
   // Enter: slide from right
-  const enterX = interpolate(frame, [0, 45], [SLIDE_DISTANCE, 0], {
+  const enterX = interpolate(frame, [0, f(45)], [SLIDE_DISTANCE, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
     easing: EASE_ENTER,
   });
 
   // Exit: slide to right
-  const exitX = interpolate(frame, [149, 179], [0, SLIDE_DISTANCE], {
+  const exitX = interpolate(frame, [f(149), f(179)], [0, SLIDE_DISTANCE], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
     easing: EASE_EXIT,
@@ -68,16 +69,18 @@ export default function SpeakerAnimation({
         >
           {name}
         </div>
-        <div
-          style={{
-            fontSize: 33,
-            color: "#000000",
-            fontFamily: fontFamilyRegular,
-            transform: `translateY(-3px)`,
-          }}
-        >
-          {description}
-        </div>
+        {description && (
+          <div
+            style={{
+              fontSize: 33,
+              color: "#000000",
+              fontFamily: fontFamilyRegular,
+              transform: `translateY(-3px)`,
+            }}
+          >
+            {description}
+          </div>
+        )}
       </div>
     </AbsoluteFill>
   );

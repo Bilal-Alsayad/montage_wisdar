@@ -6,6 +6,7 @@ import {
   staticFile,
   useCurrentFrame,
 } from "remotion";
+import { f } from "../../utils/constants";
 
 const EASE_BG = Easing.bezier(0.333, 0, 0, 1);
 
@@ -14,7 +15,7 @@ interface TagsAnimationProps {
   location?: string;
 }
 
-export const TAGS_ANIMATION_DURATION = 125;
+export const TAGS_ANIMATION_DURATION = f(125);
 
 export default function TagsAnimation({
   fontFamily,
@@ -25,13 +26,13 @@ export default function TagsAnimation({
   if (!location) return null;
 
   // Exit
-  const locationExit = interpolate(frame, [120, 125], [1, 0], {
+  const locationExit = interpolate(frame, [f(120), f(125)], [1, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
   // Location pill scaleX
-  const bgProgress = interpolate(frame, [37, 66], [0, 1], {
+  const bgProgress = interpolate(frame, [f(37), f(66)], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
     easing: EASE_BG,

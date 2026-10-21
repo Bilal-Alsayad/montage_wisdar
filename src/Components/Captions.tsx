@@ -62,7 +62,7 @@ export default function Captions({
     };
 
     loadCaptions();
-  }, [handle]);
+  }, [handle, src]);
 
   // Build a reverse lookup: 1-based SRT index → speaker ID
   // e.g. { 1: "S1", 2: "S1", 7: "S2", ... }
@@ -93,7 +93,11 @@ export default function Captions({
     return false;
   });
 
-  if (!currentCaption || !currentCaption.text.trim() || currentCaption.text.trim() === ".") {
+  if (
+    !currentCaption ||
+    !currentCaption.text.trim() ||
+    currentCaption.text.trim() === "."
+  ) {
     return null;
   }
 
@@ -137,47 +141,48 @@ export default function Captions({
           ...mergedContainerStyle,
         }}
       >
-        {wordByWord
-          ? words.map((word, i) => {
-              // Animate over 60% of duration, hold for remaining 40%
-              const animDuration = captionDurationMs * 0.6;
-              const wordStart = (i / words.length) * animDuration;
-              const wordDuration = (animDuration / words.length) * 2;
-              const wordProgress = Math.min(
-                1,
-                Math.max(0, (elapsed - wordStart) / wordDuration)
-              );
+        {wordByWord ? (
+          words.map((word, i) => {
+            // Animate over 60% of duration, hold for remaining 40%
+            const animDuration = captionDurationMs * 0.6;
+            const wordStart = (i / words.length) * animDuration;
+            const wordDuration = (animDuration / words.length) * 2;
+            const wordProgress = Math.min(
+              1,
+              Math.max(0, (elapsed - wordStart) / wordDuration),
+            );
 
-              // Opacity reaches 1 early so the word is visible while still blurry
-              const opacity = interpolate(wordProgress, [0, 0.4], [0, 1], {
-                extrapolateLeft: "clamp",
-                extrapolateRight: "clamp",
-                easing: EASE,
-              });
+            // Opacity reaches 1 early so the word is visible while still blurry
+            const opacity = interpolate(wordProgress, [0, 0.4], [0, 1], {
+              extrapolateLeft: "clamp",
+              extrapolateRight: "clamp",
+              easing: EASE,
+            });
 
-              // Blur clears over the full duration — lingers after word appears
-              const blur = interpolate(wordProgress, [0, 1], [12, 0], {
-                extrapolateLeft: "clamp",
-                extrapolateRight: "clamp",
-                easing: EASE,
-              });
+            // Blur clears over the full duration — lingers after word appears
+            const blur = interpolate(wordProgress, [0, 1], [12, 0], {
+              extrapolateLeft: "clamp",
+              extrapolateRight: "clamp",
+              easing: EASE,
+            });
 
-              return (
-                <span
-                  key={i}
-                  style={{
-                    ...mergedTextStyle,
-                    opacity,
-                    filter: blur > 0.01 ? `blur(${blur}px)` : undefined,
-                  }}
-                >
-                  {word}
-                  {i < words.length - 1 ? " " : ""}
-                </span>
-              );
-            })
-          : <span style={mergedTextStyle}>{currentCaption.text}</span>
-        }
+            return (
+              <span
+                key={i}
+                style={{
+                  ...mergedTextStyle,
+                  opacity,
+                  filter: blur > 0.01 ? `blur(${blur}px)` : undefined,
+                }}
+              >
+                {word}
+                {i < words.length - 1 ? " " : ""}
+              </span>
+            );
+          })
+        ) : (
+          <span style={mergedTextStyle}>{currentCaption.text}</span>
+        )}
       </div>
     </AbsoluteFill>
   );
