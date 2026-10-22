@@ -3,20 +3,19 @@ import { TemplateProps } from "../types";
 import { useLoadFonts } from "../../hooks/useLoadFonts";
 import Video from "../../Components/Video";
 import TitleAnimation, { TITLE_ANIMATION_DURATION } from "./TitleAnimation";
-// import TagsAnimation, { TAGS_ANIMATION_DURATION } from "./TagsAnimation";
-// import LocationAnimation from "./LocationAnimation";
-// import SourceAnimation from "./SourceAnimation";
-// import Captions from "../../Components/Captions";
-// import SpeakerAnimation, {
-//   SPEAKER_ANIMATION_DURATION,
-// } from "./SpeakerAnimation";
+import LocationAnimation from "./LocationAnimation";
+import LogoAnimation from "./LogoAnimation";
+import DateAnimation from "./DateAnimation";
+import SourceAnimation, { SOURCE_ANIMATION_DURATION } from "./SourceAnimation";
+
 import Cover from "../../Components/Cover";
 import AudioClips from "../../Components/AudioClips";
 import VideoLayers from "../../Components/VideoLayers";
-// import { f } from "../../utils/constants";
-import LogoAnimation from "./LogoAnimation";
+import { f } from "../../utils/constants";
+import SubtitleAnimation from "./SubtitleAnimation";
 
 const AlmaraiExtraBold = "AlmaraiExtraBold";
+const AlmaraiBold = "AlmaraiBold";
 
 export default function ArrajelTemplate({ data }: TemplateProps) {
   const { fps, durationInFrames } = useVideoConfig();
@@ -25,6 +24,10 @@ export default function ArrajelTemplate({ data }: TemplateProps) {
     {
       family: AlmaraiExtraBold,
       url: staticFile("arrajel/fonts/AlmaraiExtraBold.ttf"),
+    },
+    {
+      family: AlmaraiBold,
+      url: staticFile("arrajel/fonts/AlmaraiBold.ttf"),
     }
   ]);
 
@@ -51,27 +54,12 @@ export default function ArrajelTemplate({ data }: TemplateProps) {
       {/* Video Layers (overlay videos) */}
       <VideoLayers layers={data.video_layers} />
 
-      {/* {data.captions.src && (
-        <Captions
+      {data.captions.src && (
+        <SubtitleAnimation
           src={data.captions.src}
-          containerStyle={{
-            top: 1520,
-            fontSize: 48,
-            fontFamily: dinNextArabicMedium,
-            color: "#FFFFFF",
-          }}
-          textStyle={{
-            display: "inline",
-            background: "#52B5C3",
-            padding: "5px 15px",
-            lineHeight: 1.9,
-            boxDecorationBreak: "clone",
-            WebkitBoxDecorationBreak: "clone",
-            transform: `translateY(-3px)`,
-            direction: "rtl",
-          }}
+          fontFamily={AlmaraiBold}
         />
-      )} */}
+      )}
 
       {/* Title */}
       <Sequence from={0} durationInFrames={TITLE_ANIMATION_DURATION}>
@@ -82,72 +70,76 @@ export default function ArrajelTemplate({ data }: TemplateProps) {
       </Sequence>
 
       {/* Location */}
-      {/* {data.tags.location && (
-        <Sequence from={0} durationInFrames={TAGS_ANIMATION_DURATION}>
-          <TagsAnimation
-            fontFamily={dinNextArabicMedium}
-            location={data.tags.location}
+      {data.tags.location && (
+        <Sequence from={TITLE_ANIMATION_DURATION} durationInFrames={f(120)}>
+          <LocationAnimation
+            fontFamily={AlmaraiBold}
+            text={data.tags.location}
           />
         </Sequence>
-      )} */}
+      )}
+
+      {/* Date */}
+      {data.tags.date && (
+        <Sequence from={TITLE_ANIMATION_DURATION} durationInFrames={f(120)}>
+          <DateAnimation
+            fontFamily={AlmaraiBold}
+            text={data.tags.date}
+          />
+        </Sequence>
+      )}
 
       {/* Source */}
-      {/* {data.tags.source && (
-        <Sequence from={f(94)} durationInFrames={durationInFrames}>
+      {data.tags.source && (
+        <Sequence from={TITLE_ANIMATION_DURATION} durationInFrames={SOURCE_ANIMATION_DURATION}>
           <SourceAnimation
-            fontFamily={dinNextArabicMedium}
+            fontFamily={AlmaraiBold}
             source={data.tags.source}
           />
         </Sequence>
-      )} */}
+      )}
 
-      {/* {(data.locations ?? []).map((location, index) => (
+      {(data.locations ?? []).map((location, index) => (
         <Sequence
-          from={(location.from ?? 0) * fps}
+          from={(location.from ?? TITLE_ANIMATION_DURATION) * fps}
           durationInFrames={
             location.duration
               ? Math.round(location.duration * fps)
-              : TAGS_ANIMATION_DURATION
+              : f(120)
           }
           key={`location-${index}`}
         >
-          <LocationAnimation text={location.text} fontFamily={dinNextArabicMedium} />
+          <LocationAnimation text={location.text} fontFamily={AlmaraiBold} />
         </Sequence>
-      ))} */}
+      ))}
 
-      {/* {(data.sources ?? []).map((source, index) => (
+      {(data.dates ?? []).map((date, index) => (
         <Sequence
-          from={(source.from ?? 0) * fps}
+          from={(date.from ?? TITLE_ANIMATION_DURATION) * fps}
+          durationInFrames={
+            date.duration
+              ? Math.round(date.duration * fps)
+              : f(120)
+          }
+          key={`date-${index}`}
+        >
+          <DateAnimation text={date.text} fontFamily={AlmaraiBold} />
+        </Sequence>
+      ))}
+
+      {(data.sources ?? []).map((source, index) => (
+        <Sequence
+          from={(source.from ?? TITLE_ANIMATION_DURATION) * fps}
           durationInFrames={
             source.duration
               ? Math.round(source.duration * fps)
-              : TAGS_ANIMATION_DURATION
+              : f(120)
           }
           key={`source-${index}`}
         >
-          <SourceAnimation source={source.text} fontFamily={dinNextArabicMedium} />
+          <SourceAnimation source={source.text} fontFamily={AlmaraiBold} />
         </Sequence>
-      ))} */}
-
-      {/* {data.speakers.length > 0 &&
-        data.speakers.map((speaker, index) => (
-          <Sequence
-            key={index}
-            from={speaker.start * fps}
-            durationInFrames={
-              speaker.duration
-                ? Math.round(speaker.duration * fps)
-                : SPEAKER_ANIMATION_DURATION
-            }
-          >
-            <SpeakerAnimation
-              fontFamilyRegular={dinNextArabicRegular}
-              fontFamilyMedium={dinNextArabicMedium}
-              name={speaker.name}
-              description={speaker.description}
-            />
-          </Sequence>
-        ))} */}
+      ))}
 
       {/* Logo */}
       <Sequence from={0} durationInFrames={durationInFrames}>
