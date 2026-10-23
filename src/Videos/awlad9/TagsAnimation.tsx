@@ -16,6 +16,7 @@ interface TagItemStyles {
   text: CSSProperties;
   iconBox: CSSProperties;
   icon: CSSProperties;
+  alignment: "left" | "right";
   textBackgroundColors: [string, string];
   textColors: [string, string, string];
   iconBackgroundColors: [string, string, string];
@@ -74,7 +75,8 @@ function AnimatedTag({
 
   const animationFrame = frame < 108 ? frame : TAG_DURATION - frame;
 
-  const textTranslateX = interpolate(animationFrame, [4.8, 20.4], [36, 0], {
+  const direction = styles.alignment === "right" ? 1 : -1;
+  const textTranslateX = interpolate(animationFrame, [4.8, 20.4], [36 * direction, 0], {
     ...clamp,
     easing: ease,
   });
@@ -89,7 +91,7 @@ function AnimatedTag({
     easing: textRevealEase,
   });
 
-  const iconTranslateX = interpolate(animationFrame, [0, 19.2], [68, 0], {
+  const iconTranslateX = interpolate(animationFrame, [0, 19.2], [68 * direction, 0], {
     ...clamp,
     easing: ease,
   });
@@ -124,7 +126,7 @@ function AnimatedTag({
               styles.textBackgroundColors,
             ),
             transform: `scaleX(${backgroundScaleX})`,
-            transformOrigin: "right center",
+            transformOrigin: `${styles.alignment} center`,
           }}
         />
 
@@ -136,7 +138,10 @@ function AnimatedTag({
               [7.2, 13.2, 14.4],
               styles.textColors,
             ),
-            clipPath: `inset(0 0 0 ${textReveal}%)`,
+            clipPath:
+              styles.alignment === "right"
+                ? `inset(0 0 0 ${textReveal}%)`
+                : `inset(0 ${textReveal}% 0 0)`,
           }}
         >
           {text}
@@ -152,6 +157,7 @@ function AnimatedTag({
             styles.iconBackgroundColors,
           ),
           transform: `translateX(${iconTranslateX}px) scaleX(${iconScaleX})`,
+          transformOrigin: `${styles.alignment} center`,
         }}
       />
 

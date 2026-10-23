@@ -16,6 +16,7 @@ interface TagItemStyles {
   text: CSSProperties;
   iconBox: CSSProperties;
   icon: CSSProperties;
+  alignment: "left" | "right";
   textBackgroundColors: [string, string];
   textColors: [string, string, string];
   iconBackgroundColors: [string, string, string];
@@ -37,7 +38,7 @@ interface TagsAnimationProps {
 const TAG_DURATION = 150;
 const DATE_OFFSET_Y = 70;
 
-export const TAGS_ANIMATION_DURATION = 300;
+export const TAGS_ANIMATION_DURATION = TAG_DURATION * 2;
 
 const clamp = {
   extrapolateLeft: "clamp",
@@ -46,10 +47,6 @@ const clamp = {
 
 const ease = Easing.bezier(0.333, 0, 0.667, 1);
 const textRevealEase = Easing.bezier(0.194, 0, 0.333, 1);
-
-// --- Üç tag (location, date, source) aynı animasyonu paylaşıyor.
-// Tek fark: hangi ikon dosyası kullanıldığı, ikonun opacity zamanlaması
-// (location/source: 0-7.2, date: 3.6-10.8) ve date'in ekstra Y ofseti.
 
 interface AnimatedTagProps {
   text?: string;
@@ -74,10 +71,13 @@ function AnimatedTag({
 
   const animationFrame = frame < 108 ? frame : TAG_DURATION - frame;
 
-  const textTranslateX = interpolate(animationFrame, [4.8, 20.4], [36, 0], {
-    ...clamp,
-    easing: ease,
-  });
+  const direction = styles.alignment === "right" ? 1 : -1;
+  const textTranslateX = interpolate(
+    animationFrame,
+    [4.8, 20.4],
+    [36 * direction, 0],
+    { ...clamp, easing: ease },
+  );
 
   const backgroundScaleX = interpolate(animationFrame, [4.8, 19.2], [0, 1], {
     ...clamp,
@@ -89,10 +89,12 @@ function AnimatedTag({
     easing: textRevealEase,
   });
 
-  const iconTranslateX = interpolate(animationFrame, [0, 19.2], [68, 0], {
-    ...clamp,
-    easing: ease,
-  });
+  const iconTranslateX = interpolate(
+    animationFrame,
+    [0, 19.2],
+    [68 * direction, 0],
+    { ...clamp, easing: ease },
+  );
 
   const iconScaleX = interpolate(animationFrame, [0, 12], [0.16, 1], {
     ...clamp,
@@ -124,7 +126,7 @@ function AnimatedTag({
               styles.textBackgroundColors,
             ),
             transform: `scaleX(${backgroundScaleX})`,
-            transformOrigin: "right center",
+            transformOrigin: `${styles.alignment} center`,
           }}
         />
 
@@ -136,7 +138,10 @@ function AnimatedTag({
               [7.2, 13.2, 14.4],
               styles.textColors,
             ),
-            clipPath: `inset(0 0 0 ${textReveal}%)`,
+            clipPath:
+              styles.alignment === "right"
+                ? `inset(0 0 0 ${textReveal}%)`
+                : `inset(0 ${textReveal}% 0 0)`,
           }}
         >
           {text}
@@ -152,6 +157,7 @@ function AnimatedTag({
             styles.iconBackgroundColors,
           ),
           transform: `translateX(${iconTranslateX}px) scaleX(${iconScaleX})`,
+          transformOrigin: `${styles.alignment} center`,
         }}
       />
 
@@ -188,13 +194,13 @@ export default function TagsAnimation({
         <AnimatedTag
           text={location}
           styles={styles.location}
-          iconSrc={staticFile("short/turkhaber247tikbum/images/location.png")}
+          iconSrc={staticFile("pulitkat/tounes2020/images/location.png")}
         />
 
         <AnimatedTag
           text={date}
           styles={styles.date}
-          iconSrc={staticFile("short/turkhaber247tikbum/images/date.png")}
+          iconSrc={staticFile("pulitkat/tounes2020/images/date.png")}
           iconOpacityRange={[3.6, 10.8]}
           offsetY={DATE_OFFSET_Y}
         />
@@ -204,7 +210,7 @@ export default function TagsAnimation({
         <AnimatedTag
           text={source}
           styles={styles.source}
-          iconSrc={staticFile("short/turkhaber247tikbum/images/source.png")}
+          iconSrc={staticFile("pulitkat/tounes2020/images/source.png")}
         />
       </Sequence>
     </AbsoluteFill>

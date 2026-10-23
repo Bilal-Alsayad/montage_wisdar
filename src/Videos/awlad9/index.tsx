@@ -32,24 +32,49 @@ const hexToRgba = (hex: string, alpha: number) => {
 const TITLE_STYLES: TitleAnimationStyles = {
   container: {
     position: "absolute",
-    top: 1013,
-    left: 72,
-    width: 955,
-    padding: "20px 30px",
-    overflow: "hidden",
-    color: "#FFFFFF",
-    borderRight: `8px solid ${PRIMARY_COLOR}`,
+    top: 815,
+    left: 0,
+    width: 1080,
+    height: 490,
+  },
+  firstLine: {
+    position: "absolute",
+    top: 97,
+    left: 169,
+    width: 794,
+    height: 152,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    fontFamily: TEMPLATE_FONT,
-    fontSize: 65,
+    backgroundColor: "#A0010C",
+    color: "#FFFFFF",
+    fontFamily: "Cairo",
+    fontSize: 92,
+    fontWeight: 800,
     lineHeight: 1.15,
-    textAlign: "right",
-    direction: "rtl",
-    textShadow: "0 3px 4px rgba(0, 0, 0, 0.65)",
+    textAlign: "center",
+    whiteSpace: "nowrap",
+  },
+  secondLine: {
+    position: "absolute",
+    top: 97,
+    left: 124,
+    width: 842,
+    height: 152,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#FEFDFD",
+    color: "#C40012",
+    fontFamily: "Cairo",
+    fontSize: 92,
+    fontWeight: 800,
+    lineHeight: 1.15,
+    textAlign: "center",
+    whiteSpace: "nowrap",
   },
 };
+
 const SPEAKER_STYLES: SpeakerAnimationStyles = {
   nameContainer: {
     position: "absolute",
@@ -92,7 +117,7 @@ const SPEAKER_STYLES: SpeakerAnimationStyles = {
 const tagsTextBox = {
   position: "absolute" as const,
   top: 298,
-  right: 157,
+  left: 157,
   height: 55,
   padding: "0 30.75px",
   display: "inline-flex" as const,
@@ -104,15 +129,16 @@ const tagsTextBox = {
 const tagsIconBox = {
   position: "absolute" as const,
   top: 298,
-  right: 102,
+  left: 102,
   width: 55,
   height: 55,
-  transformOrigin: "right center",
+  transformOrigin: "left center",
 };
 const tagsCommon: Omit<TagsAnimationStyles["location"], "icon"> = {
   textBox: tagsTextBox,
   text: { position: "relative" },
   iconBox: tagsIconBox,
+  alignment: "left",
   textBackgroundColors: [PRIMARY_COLOR, "#FFFFFF"],
   textColors: ["#DEDEDE", "#FFFFFF", PRIMARY_COLOR],
   iconBackgroundColors: ["#FFFFFF", "#171717", PRIMARY_COLOR],
@@ -123,7 +149,7 @@ const TAGS_STYLES: TagsAnimationStyles = {
     icon: {
       position: "absolute",
       top: 301.5,
-      right: 112.85,
+      left: 112.85,
       width: 32.3,
       height: 45,
     },
@@ -133,7 +159,7 @@ const TAGS_STYLES: TagsAnimationStyles = {
     icon: {
       position: "absolute",
       top: 304.34,
-      right: 112.2,
+      left: 112.2,
       width: 33.6,
       height: 37.32,
     },
@@ -143,7 +169,7 @@ const TAGS_STYLES: TagsAnimationStyles = {
     icon: {
       position: "absolute",
       top: 306.83,
-      right: 111.85,
+      left: 111.85,
       width: 34.3,
       height: 34.35,
     },
@@ -195,7 +221,7 @@ export default function Awlad9Template({ data }: TemplateProps) {
       </Sequence>
       <Img
         src={staticFile("pulitkat/awlad9/images/logo.png")}
-        style={{ position: "absolute", top: 270, left: 110, width: 160 }}
+        style={{ position: "absolute", top: 280, right: 102, width: 160 }}
       />
       {data.captions.src && (
         <Captions

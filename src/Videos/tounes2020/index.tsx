@@ -20,35 +20,65 @@ import TagsAnimation, {
 } from "./TagsAnimation";
 
 const TEMPLATE_FONT = "Tounes2020AlmaraiExtraBold";
-const PRIMARY_COLOR = "#860509";
-
-const hexToRgba = (hex: string, alpha: number) => {
-  const r = parseInt(hex.slice(1, 3), 16);
-  const g = parseInt(hex.slice(3, 5), 16);
-  const b = parseInt(hex.slice(5, 7), 16);
-  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-};
+const PRIMARY_COLOR = "#d50a10";
+const CUT_MASK = `url("data:image/svg+xml,${encodeURIComponent(
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 145" preserveAspectRatio="none">
+    <path fill="white" d="M24 0 H900 V121 L876 145 H0 V24 Z"/>
+  </svg>`
+)}")`;
 
 const TITLE_STYLES: TitleAnimationStyles = {
   container: {
     position: "absolute",
-    top: 1013,
-    left: 72,
-    width: 955,
-    padding: "35px 40px",
+    top: 945,
+    left: 90,
+    width: 900,
+    height: 309,
+    background: "linear-gradient(#12AEBA, #12AEBA) bottom / 100% 5px no-repeat",
+  },
+
+  firstLine: {
+    marginLeft: 52,
+    width: 848,
+    height: 143,
     boxSizing: "border-box",
-    overflow: "hidden",
-    backgroundColor: "#FFFFFF",
-    color: "#8F0000",
-    borderTop: "12px solid #970B12",
-    borderRight: "12px solid #970B12",
-    borderRadius: 55,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#D30104",
+    maskImage: CUT_MASK,
+    maskSize: "100% 100%",
+    maskRepeat: "no-repeat",
+    WebkitMaskImage: CUT_MASK,
+    WebkitMaskSize: "100% 100%",
+    WebkitMaskRepeat: "no-repeat",
+    color: "#FFF2E2",
     fontFamily: TEMPLATE_FONT,
-    fontSize: 65,
-    fontWeight: 700,
-    lineHeight: 1.35,
-    textAlign: "center",
-    direction: "rtl",
+    fontSize: 76,
+    lineHeight: 1.25,
+    whiteSpace: "nowrap",
+  },
+
+  secondLine: {
+    marginTop: 17,
+    width: 900,
+    height: 144,
+    boxSizing: "border-box",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#00071D",
+    maskImage: CUT_MASK,
+    maskSize: "100% 100%",
+    maskRepeat: "no-repeat",
+    WebkitMaskImage: CUT_MASK,
+    WebkitMaskSize: "100% 100%",
+    WebkitMaskRepeat: "no-repeat",
+    color: "#EDE1CF",
+    fontFamily: TEMPLATE_FONT,
+    fontSize: 76,
+    lineHeight: 1.25,
+    whiteSpace: "nowrap",
   },
 };
 const SPEAKER_STYLES: SpeakerAnimationStyles = {
@@ -56,6 +86,7 @@ const SPEAKER_STYLES: SpeakerAnimationStyles = {
     position: "absolute",
     top: 938.223,
     right: 100,
+    height: 56.7,
     padding: "0 24px",
     display: "flex",
     alignItems: "center",
@@ -93,7 +124,7 @@ const SPEAKER_STYLES: SpeakerAnimationStyles = {
 const tagsTextBox = {
   position: "absolute" as const,
   top: 298,
-  right: 157,
+  left: 157,
   height: 55,
   padding: "0 30.75px",
   display: "inline-flex" as const,
@@ -101,22 +132,25 @@ const tagsTextBox = {
   fontFamily: TEMPLATE_FONT,
   fontSize: 30,
   whiteSpace: "nowrap" as const,
+  clipPath:
+    "polygon(0 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%)",
 };
 const tagsIconBox = {
   position: "absolute" as const,
   top: 298,
-  right: 102,
+  left: 102,
   width: 55,
   height: 55,
-  transformOrigin: "right center",
+  transformOrigin: "left center",
 };
 const tagsCommon: Omit<TagsAnimationStyles["location"], "icon"> = {
   textBox: tagsTextBox,
   text: { position: "relative" },
+  alignment: "left",
   iconBox: tagsIconBox,
-  textBackgroundColors: [PRIMARY_COLOR, "#FFFFFF"],
-  textColors: ["#DEDEDE", "#FFFFFF", PRIMARY_COLOR],
-  iconBackgroundColors: ["#FFFFFF", "#171717", PRIMARY_COLOR],
+  textBackgroundColors: ["#F3EEE5", "#F3EEE5"],
+  textColors: ["#011429", "#011429", "#011429"],
+  iconBackgroundColors: ["#D50A10", "#D50A10", "#D50A10"],
 };
 const TAGS_STYLES: TagsAnimationStyles = {
   location: {
@@ -124,7 +158,7 @@ const TAGS_STYLES: TagsAnimationStyles = {
     icon: {
       position: "absolute",
       top: 301.5,
-      right: 112.85,
+      left: 112.85,
       width: 32.3,
       height: 45,
     },
@@ -134,7 +168,7 @@ const TAGS_STYLES: TagsAnimationStyles = {
     icon: {
       position: "absolute",
       top: 304.34,
-      right: 112.2,
+      left: 112.2,
       width: 33.6,
       height: 37.32,
     },
@@ -144,7 +178,7 @@ const TAGS_STYLES: TagsAnimationStyles = {
     icon: {
       position: "absolute",
       top: 306.83,
-      right: 111.85,
+      left: 111.85,
       width: 34.3,
       height: 34.35,
     },
@@ -196,21 +230,26 @@ export default function Tounes2020Template({ data }: TemplateProps) {
       </Sequence>
       <Img
         src={staticFile("pulitkat/tounes2020/images/logo.png")}
-        style={{ position: "absolute", top: 300, left: 110, width: 160 }}
+        style={{ position: "absolute", top: 260, right: 102, width: 200 }}
       />
       {data.captions.src && (
         <Captions
           src={data.captions.src}
           containerStyle={{
             top: 1450,
-            backgroundColor: hexToRgba(PRIMARY_COLOR, 0.54),
-            textShadow: "0 0 50px 11.3px rgba(0, 0, 0, 0.52)",
-            padding: "10px",
+            backgroundColor: "#011429",
+            borderBottom: "5px solid #1DAFBA",
+            padding: "5px 16px",
+            width: "fit-content",
+            textAlign: "center",
+            clipPath:
+              "polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)",
           }}
           textStyle={{
-            color: "#bcbcbc",
-            fontFamily: TEMPLATE_FONT,
+            color: "#F3EEE5",
+            fontFamily: "Cairo",
             fontSize: 55,
+            fontWeight: 800,
           }}
         />
       )}
