@@ -25,11 +25,27 @@ import TagsAnimation, {
 const TEMPLATE_FONT = "TajawalBold";
 const PRIMARY_COLOR = "#9F1117";
 
+const LINE_STYLES = {
+  boxSizing: "border-box",
+  padding: "0 48px 0 16px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "flex-start",
+  direction: "rtl",
+  whiteSpace: "nowrap",
+
+  color: "#F2E7D4",
+  fontFamily: "Amiri",
+  fontSize: 76,
+  fontWeight: 700,
+  lineHeight: 1.25,
+} as const;
+
 const TITLE_STYLES: TitleAnimationStyles = {
   container: {
     position: "absolute",
     top: 871,
-    left: 155,
+    right: 155,
     width: 770,
     height: 450,
     transform: "scale(0.9)",
@@ -43,73 +59,28 @@ const TITLE_STYLES: TitleAnimationStyles = {
 
     backgroundImage: [
       "linear-gradient(#D20A1D, #D20A1D)",
-      "linear-gradient(#868686, #868686)",
-      "linear-gradient(#868686, #868686)",
-      "linear-gradient(#868686, #868686)",
-      "linear-gradient(#868686, #868686)",
+      ...Array(4).fill("linear-gradient(#868686, #868686)"),
     ].join(", "),
 
-    backgroundPosition: [
-      "right 0 top 0",
-      "left 14px top 46px",
-      "left 14px top 46px",
-      "left 14px top 400px",
-      "left 14px top 376px",
-    ].join(", "),
-
-    backgroundSize: [
-      "10px 450px",
-      "30px 4px",
-      "4px 28px",
-      "30px 4px",
-      "4px 28px",
-    ].join(", "),
-
+    backgroundPosition:
+      "right top, 14px 46px, 14px 46px, 14px 400px, 14px 376px",
+    backgroundSize:
+      "10px 450px, 30px 4px, 4px 28px, 30px 4px, 4px 28px",
     backgroundRepeat: "no-repeat",
   },
 
   firstLine: {
+    ...LINE_STYLES,
     width: 668,
     height: 146,
-    boxSizing: "border-box",
-    padding: "0 48px 0 16px",
-
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "flex-end",
-
     backgroundColor: "#D20A1D",
-    color: "#F2E7D4",
-
-    fontFamily: "Amiri",
-    fontSize: 76,
-    fontWeight: 700,
-    lineHeight: 1.25,
-    textAlign: "right",
-    direction: "rtl",
-    whiteSpace: "nowrap",
   },
 
   secondLine: {
+    ...LINE_STYLES,
     width: 694,
     height: 144,
-    boxSizing: "border-box",
-    padding: "0 48px 0 16px",
-
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "flex-end",
-
     backgroundColor: "#111111",
-    color: "#F2E7D4",
-
-    fontFamily: "Amiri",
-    fontSize: 76,
-    fontWeight: 700,
-    lineHeight: 1.25,
-    textAlign: "right",
-    direction: "rtl",
-    whiteSpace: "nowrap",
   },
 };
 
